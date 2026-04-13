@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sauvegarde &amp; Restauration — Basilique Saint-Epvre de Nancy</title>
+  <!-- SEO -->
+  <meta name="description" content="Travaux de sauvegarde et restauration de la Basilique Saint-Epvre de Nancy. Chronologie des interventions patrimoniales sur ce monument historique lorrain.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#061E29">
+  <link rel="canonical" href="https://macflurry544.github.io/sauvegarde-et-restauration/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://macflurry544.github.io/sauvegarde-et-restauration/">
+  <meta property="og:title"       content="Sauvegarde &amp; Restauration — Basilique Saint-Epvre">
+  <meta property="og:description" content="Chronologie des travaux de restauration et de sauvegarde de la Basilique Saint-Epvre, monument historique de Nancy.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Sauvegarde &amp; Restauration — Basilique Saint-Epvre">
+  <meta name="twitter:description" content="Chronologie des travaux de restauration de la Basilique Saint-Epvre, monument historique de Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+    :root {
+      --cream:     #F8EEDF;
+      --cream-2:   #E8C999;
+      --sage:      #1D546D;
+      --olive:     #061E29;
+      --olive-rgb: 65, 67, 27;
+      --font-titre: 'Young Serif', Georgia, serif;
+      --font-texte: 'Bitter', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--olive);
+      font-family: var(--font-texte);
+      font-size: 16px; font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content:''; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:0; opacity:.5;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity:0; transform:translateY(28px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── PAGE ── */
+    .page {
+      position:relative; z-index:1;
+      max-width:820px; margin:0 auto;
+      padding:7rem 2rem 8rem;
+    }
+
+    /* ── RETOUR ── */
+    .retour {
+      display:inline-flex; align-items:center; gap:.6rem;
+      font-size:.7rem; font-weight:700; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--olive);
+      text-decoration:none; margin-bottom:5rem;
+      opacity:0; animation:app .8s ease forwards .1s; transition:opacity .2s;
+    }
+    .retour:hover { opacity:.65 !important; }
+    .retour svg { width:18px; height:8px; overflow:visible; }
+    .retour svg line, .retour svg polyline { stroke:var(--olive); stroke-width:1.2; fill:none; }
+
+    /* ── EN-TÊTE ── */
+    .surtitre {
+      display:block; font-size:.68rem; font-weight:700;
+      letter-spacing:.28em; text-transform:uppercase;
+      color:rgba(var(--olive-rgb),.42); margin-bottom:1.2rem;
+      opacity:0; animation:app .8s ease forwards .25s;
+    }
+    .titre-page {
+      font-family:var(--font-titre);
+      font-size:clamp(2.6rem,6vw,5rem); line-height:1.06;
+      color:var(--olive); letter-spacing:-.01em;
+      opacity:0; animation:app .9s ease forwards .4s;
+    }
+    .sous-titre {
+      font-size:1rem; font-style:italic; font-weight:400;
+      color:rgba(var(--olive-rgb),.52); margin-top:1rem;
+      opacity:0; animation:app .9s ease forwards .55s;
+    }
+    .trait {
+      width:48px; height:1px; background:var(--sage);
+      margin:2.5rem 0 3rem;
+      opacity:0; animation:app .8s ease forwards .65s;
+    }
+    .intro {
+      font-size:16px; line-height:1.9; color:rgba(var(--olive-rgb),.68);
+      font-style:italic; border-left:2px solid var(--sage);
+      padding-left:1.5rem; max-width:640px; margin-bottom:5rem;
+      opacity:0; animation:app .9s ease forwards .75s;
+    }
+
+    /* ══════════════════════════════════════════════
+       SECTION ARGUMENTS VISUELS SVG — PREMIUM
+    ══════════════════════════════════════════════ */
+    .args-section {
+      background: var(--olive);
+      padding: 4rem 3rem;
+      margin-bottom: 2px;
+      position: relative; overflow: hidden;
+    }
+
+    /* fond décoratif */
+    .args-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 20%, rgba(174,183,132,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .args-label {
+      display: block; font-size: .62rem; font-weight: 700;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: .8rem;
+    }
+
+    .args-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.3rem,2.5vw,1.9rem);
+      color: var(--cream); line-height: 1.2; margin-bottom: 3rem;
+    }
+
+    .args-grille {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 3px;
+    }
+
+    .arg-item {
+      background: rgba(248,243,225,.04);
+      border: 1px solid rgba(248,243,225,.08);
+      padding: 2rem 1.5rem 1.8rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      position: relative; overflow: hidden;
+      transition: background .25s, border-color .25s;
+    }
+
+    .arg-item:hover {
+      background: rgba(248,243,225,.08);
+      border-color: rgba(174,183,132,.3);
+    }
+
+    /* SVG illustration */
+    .arg-svg-wrap {
+      width: 64px; height: 64px;
+      flex-shrink: 0;
+    }
+
+    .arg-svg-wrap svg {
+      width: 100%; height: 100%;
+      overflow: visible;
+    }
+
+    /* Cercle de fond animé */
+    .arg-circle {
+      fill: none;
+      stroke: rgba(174,183,132,.2);
+      stroke-width: 1;
+    }
+
+    /* Arc de progression — animé par JS */
+    .arg-arc {
+      fill: none;
+      stroke: var(--sage);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 157; /* 2π×25 */
+      stroke-dashoffset: 157;
+      transform-origin: center;
+      transform: rotate(-90deg);
+      transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    .arg-valeur {
+      font-family: var(--font-titre);
+      font-size: 1.6rem; color: var(--cream);
+      line-height: 1; text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .arg-titre-item {
+      font-family: var(--font-titre);
+      font-size: 1rem; color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .arg-texte {
+      font-size: .82rem; line-height: 1.72;
+      color: rgba(248,243,225,.58);
+    }
+
+    .arg-source {
+      font-size: .65rem; font-style: italic;
+      color: rgba(174,183,132,.6);
+      margin-top: auto;
+    }
+
+    /* ══════════════════════════════════════════════
+       GRANDE STAT CENTRALE
+    ══════════════════════════════════════════════ */
+    .stat-centrale {
+      background: var(--cream-2);
+      padding: 4rem 3rem;
+      margin-bottom: 2px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .stat-centrale::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle 200px at 50% 40%, rgba(174,183,132,.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── compteurs animés dans les args ── */
+    .arg-counter-wrap {
+      margin-bottom: .5rem;
+    }
+
+    .arg-counter {
+      font-family: var(--font-titre);
+      font-size: 3.2rem;
+      color: var(--cream);
+      line-height: 1;
+      display: block;
+      /* Animation : slide-up depuis le bas */
+      transition: none;
+    }
+
+    .arg-counter-label {
+      display: block;
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(248,243,225,.45);
+      margin-top: .2rem;
+    }
+
+    /* ── Stat centrale héro ── */
+    .stat-hero {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-hero-chiffre {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+    }
+
+    .stat-count {
+      font-family: var(--font-titre);
+      font-size: clamp(4rem, 10vw, 7rem);
+      color: var(--olive);
+      line-height: 1;
+      display: inline-block;
+    }
+
+    .stat-virgule {
+      font-family: var(--font-titre);
+      font-size: clamp(4rem, 10vw, 7rem);
+      color: var(--sage);
+      line-height: 1;
+    }
+
+    .stat-hero-unite {
+      font-family: var(--font-titre);
+      font-size: 1.1rem;
+      color: var(--sage);
+      margin-top: .4rem;
+    }
+
+    .stat-hero-pour {
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(var(--olive-rgb),.38);
+      margin-top: .3rem;
+    }
+
+    .stat-hero-svg {
+      flex-shrink: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .8s ease .6s, transform .8s ease .6s;
+    }
+
+    .stat-centrale.visible .stat-hero-svg {
+      opacity: 1; transform: translateY(0);
+    }
+
+    .stat-texte-label {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(var(--olive-rgb),.4);
+    }
+
+    .stat-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.3rem,2.5vw,1.8rem);
+      color: var(--olive); line-height: 1.2; max-width: 500px;
+    }
+
+    .stat-desc {
+      font-size: .9rem; line-height: 1.8;
+      color: rgba(var(--olive-rgb),.62); max-width: 520px;
+    }
+
+    .stat-source {
+      font-size: .72rem; font-style: italic;
+      color: rgba(var(--olive-rgb),.35);
+    }
+
+    /* ══════════════════════════════════════════════
+       FRISE HISTORIQUE PREMIUM
+    ══════════════════════════════════════════════ */
+    .frise-section {
+      background: var(--cream);
+      border: 1px solid rgba(var(--olive-rgb),.08);
+      padding: 3rem 3rem 2.5rem;
+      margin-bottom: 2px;
+    }
+
+    .frise-label {
+      display: block; font-size: .62rem; font-weight: 700;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(var(--olive-rgb),.38); margin-bottom: 2.5rem;
+    }
+
+    .frise {
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+
+    .frise::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--sage) 8%, var(--sage) 92%, transparent);
+    }
+
+    .frise-item {
+      display: flex; gap: 2rem;
+      padding: 0 0 2.2rem; position: relative;
+    }
+    .frise-item:last-child { padding-bottom: 0; }
+
+    .frise-item::before {
+      content: '';
+      position: absolute; left: -4.5px; top: 7px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--cream); border: 1.5px solid var(--sage);
+    }
+
+    .frise-item.pivot::before {
+      background: var(--sage); border-color: var(--olive);
+      width: 12px; height: 12px; left: -5.5px; top: 6px;
+    }
+
+    .frise-date {
+      font-family: var(--font-titre);
+      font-size: .88rem; color: var(--sage);
+      min-width: 4rem; flex-shrink: 0; padding-left: 1.8rem;
+      padding-top: .1rem;
+    }
+
+    .frise-texte {
+      font-size: .88rem; line-height: 1.75;
+      color: rgba(var(--olive-rgb),.65);
+    }
+    .frise-texte strong { color: var(--olive); font-weight: 600; }
+
+    /* ══════════════════════════════════════════════
+       CARTE PROJET PRINCIPALE
+    ══════════════════════════════════════════════ */
+    .projet-carte {
+      background: var(--cream-2);
+      margin-bottom: 2px;
+    }
+
+    .projet-image {
+      width: 100%; aspect-ratio: 16/7;
+      overflow: hidden; position: relative;
+    }
+
+    .projet-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform .6s ease;
+    }
+    .projet-carte:hover .projet-image img { transform: scale(1.03); }
+
+    .projet-badge {
+      position: absolute; top: 1.2rem; left: 1.2rem;
+      background: var(--olive); color: var(--cream);
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: .35rem .8rem;
+    }
+
+    .projet-body { padding: 3rem 3rem 2.5rem; }
+
+    .projet-type {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--sage); display: block; margin-bottom: .8rem;
+    }
+
+    .projet-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.4rem,2.5vw,2rem);
+      color: var(--olive); line-height: 1.15; margin-bottom: 1.5rem;
+    }
+
+    .projet-desc {
+      font-size: .92rem; line-height: 1.85;
+      color: rgba(var(--olive-rgb),.68); max-width: 600px;
+    }
+    .projet-desc p + p { margin-top: 1rem; }
+
+    /* ── duo photos ── */
+    .duo-photos {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3px; margin: 2rem 0;
+    }
+
+    .duo-item { position: relative; overflow: hidden; }
+    .duo-item img {
+      width: 100%; height: 220px; object-fit: cover;
+      display: block; transition: transform .5s;
+    }
+    .duo-item:hover img { transform: scale(1.04); }
+
+    .duo-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(var(--olive-rgb),.82), transparent);
+      color: rgba(248,243,225,.88);
+      font-size: .65rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 1.2rem 1rem .7rem;
+    }
+
+    /* ── Progress ── */
+    .projet-progress {
+      margin-top: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid rgba(var(--olive-rgb),.1);
+    }
+
+    .progress-stats {
+      display: flex; gap: 3px; margin-bottom: 1.2rem; flex-wrap: wrap;
+    }
+
+    .p-stat {
+      background: var(--cream); border: 1px solid rgba(var(--olive-rgb),.08);
+      padding: 1rem 1.4rem; flex: 1; min-width: 110px;
+    }
+
+    .p-val {
+      font-family: var(--font-titre);
+      font-size: 1.4rem; color: var(--olive);
+      display: block; line-height: 1; margin-bottom: .3rem;
+    }
+    .p-val.vert { color: #5C7A2A; }
+
+    .p-lab {
+      font-size: .62rem; font-weight: 600;
+      letter-spacing: .13em; text-transform: uppercase;
+      color: rgba(var(--olive-rgb),.42);
+    }
+
+    .barre-fond {
+      height: 4px; background: rgba(var(--olive-rgb),.1);
+      margin-bottom: .6rem; overflow: hidden;
+    }
+
+    .barre-fill {
+      height: 100%; background: var(--sage);
+      transition: width 1.5s cubic-bezier(.4,0,.2,1); width: 0%;
+    }
+
+    .barre-meta {
+      display: flex; justify-content: space-between;
+      font-size: .7rem; color: rgba(var(--olive-rgb),.42);
+    }
+
+    /* Compteur jours */
+    .compteur-zone {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.5rem 0 2rem;
+      padding: 1.2rem 1.5rem;
+      background: rgba(var(--olive-rgb),.04);
+      border-left: 2px solid var(--sage);
+    }
+
+    .cpt-chiffre {
+      font-family: var(--font-titre);
+      font-size: 2rem; color: var(--olive);
+      line-height: 1; flex-shrink: 0;
+    }
+
+    .cpt-txt {
+      font-size: .82rem; line-height: 1.55;
+      color: rgba(var(--olive-rgb),.6);
+    }
+    .cpt-txt strong { color: var(--olive); }
+
+    /* Boutons */
+    .don-zone {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-don {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--olive); color: var(--cream);
+      font-family: var(--font-texte); font-size: .75rem;
+      font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      padding: .9rem 2rem; transition: background .2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-don::after {
+      content: ''; position: absolute;
+      inset: 0; background: rgba(255,255,255,0);
+      transition: background .2s;
+    }
+    .btn-don:hover { background: #5C6020; }
+    .btn-don svg { width: 12px; height: 10px; overflow: visible; }
+    .btn-don svg line, .btn-don svg polyline { stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    .btn-voir {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--olive); text-decoration: none;
+      border-bottom: 1px solid rgba(var(--olive-rgb),.3);
+      padding-bottom: 2px; transition: border-color .2s;
+    }
+    .btn-voir:hover { border-color: var(--olive); }
+    .btn-voir svg { width: 10px; height: 10px; overflow: visible; }
+    .btn-voir svg path, .btn-voir svg line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* ══════════════════════════════════════════════
+       BLOC FONDATION + DÉFISC
+    ══════════════════════════════════════════════ */
+    .bloc-fondation {
+      display: flex; gap: 3px; margin-bottom: 2px;
+      flex-wrap: wrap;
+    }
+
+    .fondation-corps {
+      flex: 1; min-width: 260px;
+      background: var(--cream-2); padding: 3rem;
+    }
+
+    .fondation-label {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(var(--olive-rgb),.38); display: block; margin-bottom: .8rem;
+    }
+
+    .fondation-titre {
+      font-family: var(--font-titre);
+      font-size: 1.4rem; color: var(--olive);
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+
+    .fondation-desc {
+      font-size: .88rem; line-height: 1.8;
+      color: rgba(var(--olive-rgb),.65);
+    }
+    .fondation-desc a { color: var(--olive); }
+
+    .fondation-lien {
+      display: inline-flex; align-items: center; gap: .5rem;
+      margin-top: 1.5rem;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--olive); text-decoration: none;
+      border-bottom: 1px solid rgba(var(--olive-rgb),.28);
+      padding-bottom: 2px; transition: border-color .2s;
+    }
+    .fondation-lien:hover { border-color: var(--olive); }
+    .fondation-lien svg { width: 10px; height: 10px; overflow: visible; }
+    .fondation-lien svg path, .fondation-lien svg line { stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* Encart défisc */
+    .defisca {
+      width: 200px; flex-shrink: 0;
+      background: var(--olive); color: var(--cream);
+      padding: 2rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .defisca-num {
+      font-family: var(--font-titre);
+      font-size: 3.5rem; color: var(--sage);
+      line-height: 1; margin-bottom: .4rem;
+    }
+
+    .defisca-txt {
+      font-size: .78rem; line-height: 1.65;
+      color: rgba(248,243,225,.6);
+    }
+    .defisca-txt strong { color: var(--cream); }
+
+    /* ══════════════════════════════════════════════
+       TÉMOIGNAGE
+    ══════════════════════════════════════════════ */
+    .temoignage {
+      background: var(--olive); padding: 3.5rem 3rem;
+      margin-bottom: 2px; position: relative; overflow: hidden;
+    }
+
+    .temoignage::before {
+      content: '«';
+      font-family: var(--font-titre); font-size: 10rem;
+      color: rgba(248,243,225,.04);
+      position: absolute; top: -1rem; left: 2rem;
+      line-height: 1; pointer-events: none;
+    }
+
+    .temoignage blockquote {
+      font-family: var(--font-titre);
+      font-size: clamp(1rem,2vw,1.3rem); font-style: italic;
+      line-height: 1.65; color: rgba(248,243,225,.88);
+      max-width: 600px; position: relative; z-index: 1;
+    }
+
+    .temoignage-auteur {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 1.8rem; position: relative; z-index: 1;
+    }
+
+    .temoignage-trait {
+      width: 28px; height: 1px; background: var(--sage); flex-shrink: 0;
+    }
+
+    .temoignage-nom {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase; color: var(--sage);
+    }
+
+    .temoignage-role {
+      font-size: .7rem; color: rgba(248,243,225,.38); font-style: italic;
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOC À VENIR
+    ══════════════════════════════════════════════ */
+    .bloc-avenir {
+      background: var(--cream-2); padding: 2.5rem 3rem; margin-bottom: 2px;
+    }
+
+    .avenir-label {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(var(--olive-rgb),.38); display: block; margin-bottom: .8rem;
+    }
+
+    .avenir-titre {
+      font-family: var(--font-titre);
+      font-size: 1.3rem; color: var(--olive);
+      line-height: 1.2; margin-bottom: .8rem;
+    }
+
+    .avenir-texte {
+      font-size: .88rem; line-height: 1.75;
+      color: rgba(var(--olive-rgb),.6);
+    }
+
+    .dot-pulse {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--sage);
+      margin-right: .5rem; vertical-align: middle;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    /* ── PIED ── */
+    .pied {
+      margin-top: 7rem; padding-top: 3rem;
+      border-top: 1px solid rgba(var(--olive-rgb),.1);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .pied-nom { font-family: var(--font-titre); font-size: 1.1rem; color: rgba(var(--olive-rgb),.12); letter-spacing: .06em; user-select: none; }
+    .pied-lieu { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(var(--olive-rgb),.28); font-weight: 500; }
+
+    /* ANIMS */
+    @keyframes app { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.3; transform:scale(.6); } }
+
+    /* RESPONSIVE */
+    @media (max-width:640px) {
+      .page { padding: 4rem 1.5rem 6rem; }
+      .args-section { padding: 2.5rem 1.5rem; }
+      .args-grille { grid-template-columns: 1fr; gap: 3px; }
+      .stat-centrale { padding: 2.5rem 1.5rem; }
+      .frise-section { padding: 2rem 1.5rem; }
+      .projet-body { padding: 2rem 1.5rem; }
+      .duo-photos { grid-template-columns: 1fr; }
+      .duo-item img { height: 200px; }
+      .bloc-fondation { flex-direction: column; }
+      .defisca { width: 100%; }
+      .temoignage { padding: 2.5rem 1.5rem; }
+      .bloc-avenir { padding: 2rem 1.5rem; }
+      .pied { flex-direction: column; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- RETOUR -->
+  <a href="https://www.basiliquesaintepvre.com" class="retour">
+    <svg viewBox="0 0 18 8"><polyline points="6,1 1,4 6,7"/><line x1="1" y1="4" x2="17" y2="4"/></svg>
+    Basilique Saint-Epvre
+  </a>
+
+  <span class="surtitre">Patrimoine · Conservation</span>
+  <h1 class="titre-page">Sauvegarde<br>&amp; Restauration</h1>
+  <p class="sous-titre">Les chantiers qui préservent l'édifice</p>
+  <div class="trait"></div>
+
+  <p class="intro">
+    Édifiée au XIXᵉ siècle, la basilique Saint-Epvre est un organisme vivant. Ses vitraux vieillissent, ses pierres se fissurent, ses plombs se distordent. Préserver ce patrimoine exige un effort collectif continu — celui de la paroisse, de la Ville, et de chacun d'entre vous.
+  </p>
+
+
+  <!-- ══════════════════════════════════════════
+       ARGUMENTS VISUELS — EN PREMIER
+  ══════════════════════════════════════ -->
+  <div class="args-section reveal">
+    <span class="args-label">Trois raisons de donner</span>
+    <h2 class="args-titre">Le patrimoine, un investissement qui rapporte</h2>
+
+    <div class="args-grille">
+
+      <!-- ARG 1 -->
+      <div class="arg-item">
+        <div class="arg-counter-wrap">
+          <span class="arg-counter" data-target="21" data-suffix="×">0×</span>
+        </div>
+        <h3 class="arg-titre-item">1 € investi = 21 € de retombées</h3>
+        <p class="arg-texte">Chaque euro versé génère 21,17 € de retombées économiques locales — emplois, tourisme, artisanat, savoir-faire.</p>
+        <p class="arg-source">— Étude cabinet Pluricité pour la Fondation du patrimoine, 2021</p>
+      </div>
+
+      <!-- ARG 2 -->
+      <div class="arg-item">
+        <div class="arg-counter-wrap">
+          <span class="arg-counter" data-target="66" data-suffix="%">0%</span>
+        </div>
+        <h3 class="arg-titre-item">de réduction d'impôt</h3>
+        <p class="arg-texte">Tout don à la Fondation du patrimoine ouvre droit à 66 % de réduction d'impôt sur le revenu. 100 € donnés = 34 € de coût réel.</p>
+        <p class="arg-source">— Article 200 du Code général des impôts</p>
+      </div>
+
+      <!-- ARG 3 -->
+      <div class="arg-item">
+        <div class="arg-counter-wrap">
+          <span class="arg-counter" data-target="500" data-suffix=" k">0 k</span>
+          <span class="arg-counter-label">emplois</span>
+        </div>
+        <h3 class="arg-titre-item">emplois non délocalisables</h3>
+        <p class="arg-texte">Le patrimoine culturel génère 500 000 emplois en France — maçons, verriers, charpentiers, restaurateurs — ancrés dans les territoires.</p>
+        <p class="arg-source">— Ministère de la Culture, étude nationale retombées économiques</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       GRANDE STAT CENTRALE
+  ══════════════════════════════════════════ -->
+  <div class="stat-centrale reveal">
+    <span class="stat-texte-label">Impact mesuré · Fondation du patrimoine · 2021</span>
+
+    <div class="stat-hero">
+      <div class="stat-hero-gauche">
+        <div class="stat-hero-chiffre">
+          <span class="stat-count" data-target="21" data-dec="17">0</span><span class="stat-virgule">,17</span>
+        </div>
+        <div class="stat-hero-unite">euros de retombées</div>
+        <div class="stat-hero-pour">pour chaque euro donné</div>
+      </div>
+      <!-- Trait décoratif SVG animé -->
+      <div class="stat-hero-svg">
+        <svg viewBox="0 0 80 120" width="80" height="120">
+          <!-- Flèche montante animée -->
+          <line id="statLine" x1="40" y1="110" x2="40" y2="110"
+                stroke="#AEB784" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline id="statArrow" points="28,22 40,8 52,22"
+                fill="none" stroke="#AEB784" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round"
+                opacity="0"/>
+          <!-- Petits tirets de croissance -->
+          <line id="t1" x1="20" y1="90" x2="60" y2="90" stroke="rgba(174,183,132,.25)" stroke-width="0.8" opacity="0"/>
+          <line id="t2" x1="20" y1="70" x2="60" y2="70" stroke="rgba(174,183,132,.2)"  stroke-width="0.8" opacity="0"/>
+          <line id="t3" x1="20" y1="50" x2="60" y2="50" stroke="rgba(174,183,132,.15)" stroke-width="0.8" opacity="0"/>
+          <line id="t4" x1="20" y1="30" x2="60" y2="30" stroke="rgba(174,183,132,.1)"  stroke-width="0.8" opacity="0"/>
+        </svg>
+      </div>
+    </div>
+
+    <p class="stat-desc">
+      En 2019, les 55 millions d'euros d'aides accordées par la Fondation du patrimoine ont généré <strong>1,2 milliard d'euros</strong> de retombées économiques et contribué à soutenir <strong>15 370 emplois</strong> en équivalent temps plein.
+    </p>
+    <p class="stat-source">— Étude cabinet Pluricité pour les 25 ans de la Fondation du patrimoine (2021), portant sur 2 500 projets accompagnés en 2019</p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       FRISE HISTORIQUE
+  ══════════════════════════════════════════ -->
+  <div class="frise-section reveal">
+    <span class="frise-label">Chronologie · Vitrail saint Nicolas &amp; sainte Odile</span>
+    <div class="frise">
+
+      <div class="frise-item">
+        <span class="frise-date">1867</span>
+        <p class="frise-texte">Inauguration de la basilique. Le couple impérial <strong>François et Élisabeth d'Autriche</strong> offre un vitrail représentant leurs saints patrons.</p>
+      </div>
+
+      <div class="frise-item">
+        <span class="frise-date">1914–18</span>
+        <p class="frise-texte">La Grande Guerre endommage sévèrement la basilique. <strong>Le vitrail autrichien est détruit</strong> lors des combats qui ravagent la Lorraine.</p>
+      </div>
+
+      <div class="frise-item pivot">
+        <span class="frise-date">1921</span>
+        <p class="frise-texte">Le verrier <strong>Jacques Gruber</strong> réalise le nouveau vitrail : saint Nicolas et sainte Odile — patrons de la Lorraine et de l'Alsace retrouvée. En bas, les portraits du général de Castelnau et du maréchal Foch.</p>
+      </div>
+
+      <div class="frise-item">
+        <span class="frise-date">1999</span>
+        <p class="frise-texte">La <strong>tempête de décembre</strong> détériore le vitrail : plombs distordus, verres brisés, montants en pierre fragilisés.</p>
+      </div>
+
+      <div class="frise-item pivot">
+        <span class="frise-date">Aujourd'hui</span>
+        <p class="frise-texte"><strong>Collecte en cours</strong> avec la Fondation du patrimoine. 69 % de l'objectif atteint grâce à 145 donateurs.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       CARTE PROJET
+  ══════════════════════════════════════════ -->
+  <div class="projet-carte reveal">
+
+    <div class="projet-image">
+      <img
+        src="https://strapi-upload.cdn.fondation-patrimoine.org/large_pm_37_187_187624_ln9e3ykqhq_whr_2f44477a6e.jpg"
+        alt="Vitrail saint Nicolas et sainte Odile — Basilique Saint-Epvre"
+        loading="lazy"
+      >
+      <span class="projet-badge">Collecte en cours</span>
+    </div>
+
+    <div class="projet-body">
+      <span class="projet-type">Vitrail · Jacques Gruber, 1921 · Meurthe-et-Moselle</span>
+      <h2 class="projet-titre">Restauration du vitrail<br>saint Nicolas &amp; sainte Odile</h2>
+
+      <div class="projet-desc">
+        <p>La verrière doit être déposée et restaurée dans un atelier spécialisé : les montants en pierre seront consolidés, les plombs entièrement repris, et les éléments de verre cassés ou déformés remplacés à l'identique.</p>
+        <p>La surface vitrée de la basilique avoisine les 2 300 m² — 71 verrières et trois rosaces. Chaque restauration est une victoire contre l'oubli.</p>
+      </div>
+
+      <div class="duo-photos">
+        <div class="duo-item">
+          <img
+            src="https://strapi-upload.cdn.fondation-patrimoine.org/large_pm_37_187_187615_dck5e3wr1f_whr_53b8671fbc.jpg"
+            alt="Vitrail — état actuel dégradé"
+            loading="lazy"
+          >
+          <span class="duo-label">État actuel — après la tempête de 1999</span>
+        </div>
+        <div class="duo-item">
+          <img
+            src="https://strapi-upload.cdn.fondation-patrimoine.org/large_pm_37_187_187585_xb2hg20rnu_whr_de1ab8a265.jpg"
+            alt="Vitrail — détail de l'œuvre Gruber"
+            loading="lazy"
+          >
+          <span class="duo-label">Détail de l'œuvre — Jacques Gruber, 1921</span>
+        </div>
+      </div>
+
+      <!-- Progression -->
+      <div class="projet-progress">
+        <div class="progress-stats">
+          <div class="p-stat">
+            <span class="p-val vert">27 792 €</span>
+            <span class="p-lab">Dons collectés</span>
+          </div>
+          <div class="p-stat">
+            <span class="p-val">40 000 €</span>
+            <span class="p-lab">Objectif collecte</span>
+          </div>
+          <div class="p-stat">
+            <span class="p-val">145</span>
+            <span class="p-lab">Donateurs</span>
+          </div>
+          <div class="p-stat">
+            <span class="p-val">72 293 €</span>
+            <span class="p-lab">Financement total</span>
+          </div>
+        </div>
+
+        <div class="barre-fond">
+          <div class="barre-fill" id="barre"></div>
+        </div>
+        <div class="barre-meta">
+          <span>69 % de l'objectif atteint</span>
+          <span>Objectif : 40 000 €</span>
+        </div>
+      </div>
+
+      <!-- Compteur -->
+      <div class="compteur-zone">
+        <span class="cpt-chiffre" id="jours">–</span>
+        <div class="cpt-txt">
+          <strong>jours restants</strong> pour participer à la collecte<br>
+          Campagne jusqu'au <strong id="dateFin">–</strong>
+        </div>
+      </div>
+
+      <!-- Boutons -->
+      <div class="don-zone">
+        <a href="https://www.fondation-patrimoine.org/les-projets/vitrail-st-nicolas-et-ste-odile-de-la-basilique-st-epvre-a-nancy/78170/faire-un-don"
+           class="btn-don" target="_blank" rel="noopener">
+          Faire un don
+          <svg viewBox="0 0 12 10"><polyline points="7,1 11,5 7,9"/><line x1="1" y1="5" x2="11" y2="5"/></svg>
+        </a>
+        <a href="https://www.fondation-patrimoine.org/les-projets/vitrail-st-nicolas-et-ste-odile-de-la-basilique-st-epvre-a-nancy/78170"
+           class="btn-voir" target="_blank" rel="noopener">
+          Voir le projet complet
+          <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       TÉMOIGNAGE
+  ══════════════════════════════════════════ -->
+  <div class="temoignage reveal">
+    <blockquote>
+      « Pour moi, un vitrail représente la cloison transparente entre mon cœur et le cœur du monde. Le vitrail est exaltant, il lui faut de la gravité, de la passion. Il doit vivre à travers la lumière perçue. »
+    </blockquote>
+    <div class="temoignage-auteur">
+      <div class="temoignage-trait"></div>
+      <div>
+        <div class="temoignage-nom">Marc Chagall</div>
+        <div class="temoignage-role">Entretien avec André Verdet — <em>Chagall méditerranéen</em>, Paris, 1984</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       BLOC FONDATION + DÉFISC
+  ══════════════════════════════════════════ -->
+  <div class="bloc-fondation reveal">
+    <div class="fondation-corps">
+      <span class="fondation-label">Partenaire · Fondation du patrimoine</span>
+      <h3 class="fondation-titre">Un mécénat ouvert à tous</h3>
+      <p class="fondation-desc">
+        La Fondation du patrimoine accompagne la basilique en organisant des collectes accessibles à tous — particuliers comme entreprises. La Délégation Lorraine est joignable au <strong>03 83 46 86 35</strong> ou à <a href="mailto:lorraine@fondation-patrimoine.org">lorraine@fondation-patrimoine.org</a>.
+      </p>
+      <a href="https://www.fondation-patrimoine.org/les-projets?q=saint-epvre"
+         class="fondation-lien" target="_blank" rel="noopener">
+        Tous les projets Saint-Epvre sur fondation-patrimoine.org
+        <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+      </a>
+    </div>
+
+    <div class="defisca">
+      <div class="defisca-num">66 %</div>
+      <p class="defisca-txt">
+        de réduction d'impôt pour tout don à la Fondation.<br><br>
+        <strong>100 € donnés = 34 € de coût réel.</strong>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       À VENIR
+  ══════════════════════════════════════════ -->
+  <div class="bloc-avenir reveal">
+    <span class="avenir-label">
+      <span class="dot-pulse"></span>
+      Page régulièrement mise à jour
+    </span>
+    <h3 class="avenir-titre">D'autres chantiers à venir</h3>
+    <p class="avenir-texte">
+      La restauration d'un édifice de cette envergure est un effort de longue haleine. D'autres projets sont en cours de planification, notamment en ce qui concerne la sacristie des prêtres, gravement endommagée lors de l'incendie de 2018.
+    </p>
+  </div>
+
+
+  <!-- PIED -->
+  <div class="pied">
+    <span class="pied-nom">Saint-Epvre</span>
+    <span class="pied-lieu">Nancy · Lorraine · France</span>
+  </div>
+
+</div>
+
+
+<script>
+(function() {
+
+  /* ── Compteur de jours ─────────────── */
+  var JOURS = 285;
+  var fin = new Date(Date.now() + JOURS * 86400000);
+  var mois = ['janvier','février','mars','avril','mai','juin',
+              'juillet','août','septembre','octobre','novembre','décembre'];
+  var elJ = document.getElementById('jours');
+  var elD = document.getElementById('dateFin');
+  if (elJ) elJ.textContent = JOURS;
+  if (elD) elD.textContent = fin.getDate() + ' ' + mois[fin.getMonth()] + ' ' + fin.getFullYear();
+
+  /* ── Ease out quad ─────────────────── */
+  function easeOut(t) { return t * (2 - t); }
+
+  /* ── Anime un compteur HTML ────────── */
+  function animCounter(el, target, duration, suffix) {
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var val = Math.round(easeOut(progress) * target);
+      el.textContent = val + (suffix || '');
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── Anime le grand chiffre 21,17 ──── */
+  function animStatCount(el, target, duration) {
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var val = Math.round(easeOut(p) * target);
+      el.textContent = val;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── Anime la flèche SVG ───────────── */
+  function animStatSvg() {
+    var line  = document.getElementById('statLine');
+    var arrow = document.getElementById('statArrow');
+    var ticks = ['t1','t2','t3','t4'];
+
+    if (!line) return;
+
+    /* La ligne monte de y=110 à y=10 sur 1s */
+    var dur = 1000, start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var e = easeOut(p);
+      var y2 = 110 - e * 100;
+      line.setAttribute('y2', y2);
+      if (p < 1) { requestAnimationFrame(step); }
+      else {
+        /* Apparition de la flèche */
+        arrow.style.transition = 'opacity .3s ease';
+        arrow.style.opacity = '1';
+        /* Apparition des tirets avec délai */
+        ticks.forEach(function(id, i) {
+          var el = document.getElementById(id);
+          if (el) setTimeout(function() {
+            el.style.transition = 'opacity .4s ease';
+            el.style.opacity = '1';
+          }, i * 80);
+        });
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── Barre de progression ──────────── */
+  var barre = document.getElementById('barre');
+
+  /* ── Scroll reveal + déclenchement ── */
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add('visible');
+
+      /* Compteurs des 3 args */
+      el.querySelectorAll('.arg-counter').forEach(function(c) {
+        var target = parseInt(c.getAttribute('data-target'));
+        var suffix = c.getAttribute('data-suffix') || '';
+        setTimeout(function() { animCounter(c, target, 1200, suffix); }, 250);
+      });
+
+      /* Grand stat 21 */
+      var sc = el.querySelector('.stat-count');
+      if (sc) {
+        setTimeout(function() {
+          animStatCount(sc, 21, 1400);
+          animStatSvg();
+        }, 200);
+      }
+
+      /* Barre projet */
+      if (barre && el.contains(barre)) {
+        setTimeout(function() { barre.style.width = '69%'; }, 300);
+      }
+
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.14 });
+
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+})();
+</script>
+
+</body>
+</html>

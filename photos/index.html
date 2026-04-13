@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie Photos — Basilique Saint-Epvre de Nancy</title>
+  <!-- SEO -->
+  <meta name="description" content="Galerie photographique de la Basilique Saint-Epvre de Nancy. Architecture néo-gothique, détails sculptés, vitraux et espaces intérieurs de ce chef-d'œuvre lorrain.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0c0c08">
+  <link rel="canonical" href="https://macflurry544.github.io/photos/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://macflurry544.github.io/photos/">
+  <meta property="og:title"       content="Galerie Photos — Basilique Saint-Epvre de Nancy">
+  <meta property="og:description" content="Architecture néo-gothique, vitraux, sculptures et espaces intérieurs de la Basilique Saint-Epvre de Nancy en images.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Galerie Photos — Basilique Saint-Epvre de Nancy">
+  <meta name="twitter:description" content="Architecture néo-gothique, vitraux et sculptures de la Basilique Saint-Epvre à Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir:      #0c0c08;
+      --cream:     #F8F3E1;
+      --sage:      #AEB784;
+      --olive:     #41431B;
+      --sable:     rgba(248,243,225,0.38);
+      --sable-dim: rgba(248,243,225,0.16);
+      --font-titre: 'Young Serif', Georgia, serif;
+      --font-texte: 'Bitter', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--noir);
+      color: var(--cream);
+      font-family: var(--font-texte);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       HERO — plein écran, silence total
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+      z-index: 0;
+      transform-origin: center;
+      transition: transform 18s ease-in-out;
+    }
+
+    .hero-img.loaded { transform: scale(1.04); }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, transparent 40%, rgba(12,12,8,0.55) 100%),
+        linear-gradient(to bottom, rgba(12,12,8,0.45) 0%, transparent 25%, transparent 65%, rgba(12,12,8,0.92) 100%);
+      z-index: 1;
+    }
+
+    .hero-retour {
+      position: absolute;
+      top: 2.5rem;
+      left: 3.5rem;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.25s;
+      opacity: 0;
+      animation: aUp 0.9s ease forwards 0.2s;
+    }
+    .hero-retour:hover { color: rgba(255,255,255,0.85); }
+    .hero-retour svg { width: 15px; height: 6px; overflow: visible; }
+    .hero-retour svg line,
+    .hero-retour svg polyline { stroke: currentColor; stroke-width: 1.2; fill: none; }
+
+    .hero-meta {
+      position: absolute;
+      bottom: 3.5rem;
+      left: 3.5rem;
+      z-index: 5;
+      max-width: 600px;
+    }
+
+    .hero-eyebrow {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.9rem;
+      opacity: 0;
+      animation: aUp 0.8s ease forwards 0.35s;
+    }
+
+    .hero-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(4rem, 9vw, 8rem);
+      line-height: 0.92;
+      color: #fff;
+      letter-spacing: -0.025em;
+      text-shadow: 0 8px 80px rgba(0,0,0,0.5);
+      opacity: 0;
+      animation: aUp 1s ease forwards 0.5s;
+    }
+
+    .hero-rule {
+      width: 28px;
+      height: 1px;
+      background: var(--sage);
+      margin: 1.4rem 0 0.9rem;
+      opacity: 0;
+      animation: aUp 0.8s ease forwards 0.65s;
+    }
+
+    .hero-sous {
+      font-size: 0.83rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: aUp 0.8s ease forwards 0.78s;
+    }
+
+    /* indicateur scroll */
+    .hero-scroll {
+      position: absolute;
+      bottom: 3.5rem;
+      right: 3.5rem;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      animation: aUp 0.8s ease forwards 1.1s;
+    }
+
+    .hero-scroll-label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
+      animation: scrollPulse 2.5s ease infinite 1.5s;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 0.4; }
+      50% { transform: scaleY(0.4); opacity: 0.1; }
+    }
+
+    /* curseur personnalisé sur le hero */
+    .cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--sage);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, opacity 0.3s;
+      opacity: 0;
+      mix-blend-mode: screen;
+    }
+
+    /* ══════════════════════════════════════
+       SÉPARATEUR DE SECTION
+    ══════════════════════════════════════ */
+    .section-header {
+      padding: 6rem 3.5rem 3rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .section-num {
+      font-family: var(--font-titre);
+      font-size: 0.7rem;
+      color: var(--sage);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+    }
+
+    .section-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: rgba(255,255,255,0.85);
+      letter-spacing: -0.01em;
+      font-weight: 400;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 0.2rem;
+    }
+
+    /* ══════════════════════════════════════
+       SÉLECTION ÉDITORIALE — grille magazine
+    ══════════════════════════════════════ */
+    .editorial {
+      padding: 0 3.5rem 2rem;
+    }
+
+    /* Layout magazine asymétrique */
+    .editorial-grid {
+      display: grid;
+      gap: 6px;
+    }
+
+    /* Rangée 1 : grande gauche + deux petites droite */
+    .row-1 {
+      display: grid;
+      grid-template-columns: 62fr 38fr;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .row-1-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+    }
+
+    /* Rangée 2 : panoramique pleine largeur */
+    .row-2 {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    /* Rangée 3 : trois images égales */
+    .row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+    }
+
+    /* Cellule photo éditoriale */
+    .ed-cell {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .ed-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(12,12,8,0);
+      transition: background 0.4s ease;
+      z-index: 1;
+    }
+
+    .ed-cell:hover::after { background: rgba(12,12,8,0.18); }
+
+    .ed-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .ed-cell:hover img { transform: scale(1.04); }
+
+    /* hauteurs */
+    .ed-cell.grande   { height: 72vh; min-height: 440px; }
+    .ed-cell.petite   { height: calc(36vh - 3px); min-height: 217px; }
+    .ed-cell.pano     { height: 42vh; min-height: 260px; }
+    .ed-cell.tiers    { height: 50vh; min-height: 300px; }
+
+    /* légende au survol */
+    .ed-legende {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1.8rem 1.4rem;
+      background: linear-gradient(transparent, rgba(12,12,8,0.9));
+      z-index: 2;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+
+    .ed-cell:hover .ed-legende { opacity: 1; transform: translateY(0); }
+
+    .ed-legende-titre {
+      font-family: var(--font-titre);
+      font-size: 1rem;
+      color: #fff;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .ed-legende-texte {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    /* indicateur loupe */
+    .ed-loupe {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 3;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: rgba(12,12,8,0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .ed-cell:hover .ed-loupe { opacity: 1; }
+
+    .ed-loupe svg { width: 14px; height: 14px; overflow: visible; }
+    .ed-loupe svg path,
+    .ed-loupe svg circle,
+    .ed-loupe svg line { stroke: rgba(255,255,255,0.7); stroke-width: 1.2; fill: none; }
+
+    /* ══════════════════════════════════════
+       ARCHIVE MASONRY
+    ══════════════════════════════════════ */
+    .archive {
+      padding: 0 3.5rem 6rem;
+    }
+
+    .masonry {
+      columns: 4;
+      column-gap: 6px;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: rgba(255,255,255,0.02);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .masonry-item.visible { opacity: 1; transform: translateY(0); }
+
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+      filter: brightness(0.88);
+    }
+
+    .masonry-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    /* spinner chargement */
+    .loader {
+      text-align: center;
+      padding: 3rem 0;
+      display: none;
+    }
+
+    .loader.actif { display: block; }
+
+    .loader-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sage);
+      margin: 0 3px;
+      opacity: 0.3;
+      animation: dotPulse 1.2s ease infinite;
+    }
+
+    .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.3); }
+    }
+
+    /* fin de collection */
+    .fin {
+      text-align: center;
+      padding: 2rem 0 4rem;
+      display: none;
+    }
+
+    .fin.visible { display: block; }
+
+    .fin-rule {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto 1.2rem;
+    }
+
+    .fin-texte {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ══════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════ */
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(8,8,5,0.97);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .lb.ouverte {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lb-fermer {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-texte);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .lb-fermer:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+    .lb-compteur {
+      position: absolute;
+      top: 2.2rem;
+      left: 2rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.22);
+    }
+
+    .lb-compteur em { font-style: normal; color: rgba(255,255,255,0.5); }
+
+    .lb-zone {
+      position: relative;
+      max-width: 88vw;
+      max-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-img {
+      max-width: 88vw;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lb-img.pret { opacity: 1; }
+
+    .lb-legende {
+      position: absolute;
+      bottom: -3.2rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    .lb-legende-texte {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.04em;
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.35);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .lb-nav:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); }
+    .lb-nav svg { width: 14px; height: 6px; overflow: visible; }
+    .lb-nav svg line, .lb-nav svg polyline { stroke: currentColor; stroke-width: 1.2; fill: none; }
+    .lb-prev { right: calc(100% + 2.5rem); }
+    .lb-next { left: calc(100% + 2.5rem); }
+
+    /* ══════════════════════════════════════
+       PIED
+    ══════════════════════════════════════ */
+    .pied {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 3rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .pied-nom {
+      font-family: var(--font-titre);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.05);
+      user-select: none;
+    }
+
+    .pied-lieu {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.14);
+    }
+
+    /* ══════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════ */
+    @keyframes aUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* scroll reveal générique */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* stagger editorial cells */
+    .ed-cell { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .ed-cell.visible { opacity: 1; transform: translateY(0); }
+    .ed-cell:nth-child(2) { transition-delay: 0.1s; }
+    .ed-cell:nth-child(3) { transition-delay: 0.18s; }
+    .ed-cell:nth-child(4) { transition-delay: 0.08s; }
+    .ed-cell:nth-child(5) { transition-delay: 0.22s; }
+    .ed-cell:nth-child(6) { transition-delay: 0.14s; }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .masonry { columns: 2; }
+      .row-3 { grid-template-columns: 1fr 1fr; }
+      .row-3 .ed-cell:last-child { grid-column: 1 / -1; height: 40vw; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-retour { left: 1.5rem; top: 1.5rem; }
+      .hero-meta { left: 1.5rem; bottom: 2.5rem; }
+      .hero-scroll { display: none; }
+      .editorial, .archive { padding-left: 1rem; padding-right: 1rem; }
+      .section-header { padding: 4rem 1rem 2rem; }
+      .row-1 { grid-template-columns: 1fr; }
+      .row-1-right { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .ed-cell.grande { height: 56vw; min-height: 0; }
+      .ed-cell.petite { height: 38vw; min-height: 0; }
+      .row-2, .row-3 { display: none; }
+      .masonry { columns: 2; }
+      .lb-prev, .lb-next { display: none; }
+      .pied { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Curseur personnalisé -->
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ════ LIGHTBOX ════════════════════════════════════════ -->
+<div class="lb" id="lb">
+  <button class="lb-fermer" id="lbFermer">✕ Fermer</button>
+  <span class="lb-compteur" id="lbCpt"></span>
+  <div class="lb-zone">
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Précédente">
+      <svg viewBox="0 0 14 6"><polyline points="4,1 1,3 4,5"/><line x1="1" y1="3" x2="13" y2="3"/></svg>
+    </button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Suivante">
+      <svg viewBox="0 0 14 6"><line x1="1" y1="3" x2="13" y2="3"/><polyline points="10,1 13,3 10,5"/></svg>
+    </button>
+    <div class="lb-legende"><span class="lb-legende-texte" id="lbLeg"></span></div>
+  </div>
+</div>
+
+
+<!-- ════ HERO ════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <img
+    class="hero-img"
+    id="heroImg"
+    src="https://lh3.googleusercontent.com/d/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya"
+    alt="Basilique Saint-Epvre"
+    loading="eager"
+    fetchpriority="high"
+  >
+  <div class="hero-vignette"></div>
+
+  <a href="https://www.basiliquesaintepvre.com" class="hero-retour">
+    <svg viewBox="0 0 16 7"><polyline points="5,1 1,3.5 5,6"/><line x1="1" y1="3.5" x2="15" y2="3.5"/></svg>
+    Basilique Saint-Epvre
+  </a>
+
+  <div class="hero-meta">
+    <span class="hero-eyebrow">Photographies</span>
+    <h1 class="hero-titre">Galerie</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sous">La basilique en images</p>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="hero-scroll-label">Défiler</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ════ SÉLECTION ÉDITORIALE ════════════════════════════ -->
+<div class="section-header reveal">
+  <span class="section-num">I</span>
+  <h2 class="section-titre">Sélection</h2>
+  <div class="section-rule"></div>
+</div>
+
+<section class="editorial">
+  <div class="editorial-grid">
+
+    <!-- Rangée 1 : grande + deux petites -->
+    <div class="row-1">
+      <div class="ed-cell grande" data-id="18wVLuZQYIEpeDitgNRFDj7EavkOMXp6E" data-legende="La nef principale · Lumière de l'est">
+        <img src="https://lh3.googleusercontent.com/d/18wVLuZQYIEpeDitgNRFDj7EavkOMXp6E" alt="Nef principale" loading="lazy">
+        <div class="ed-legende">
+          <span class="ed-legende-titre">La nef principale</span>
+          <span class="ed-legende-texte">Lumière de l'est</span>
+        </div>
+        <div class="ed-loupe">
+          <svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg>
+        </div>
+      </div>
+      <div class="row-1-right">
+        <div class="ed-cell petite" data-id="1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh" data-legende="Détail de sculpture · Chapiteau">
+          <img src="https://lh3.googleusercontent.com/d/1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh" alt="Chapiteau" loading="lazy">
+          <div class="ed-legende">
+            <span class="ed-legende-titre">Chapiteau sculpté</span>
+            <span class="ed-legende-texte">Pierre de taille, XIXe siècle</span>
+          </div>
+          <div class="ed-loupe"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg></div>
+        </div>
+        <div class="ed-cell petite" data-id="1UlLBIOpu8qURFknNoAMlC5VHUV4-b8Nr" data-legende="Intérieur · Voûte en croisée d'ogives">
+          <img src="https://lh3.googleusercontent.com/d/1UlLBIOpu8qURFknNoAMlC5VHUV4-b8Nr" alt="Voûtes" loading="lazy">
+          <div class="ed-legende">
+            <span class="ed-legende-titre">Voûtes en ogives</span>
+            <span class="ed-legende-texte">Nef centrale, regard vers l'est</span>
+          </div>
+          <div class="ed-loupe"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rangée 2 : panoramique -->
+    <div class="row-2">
+      <div class="ed-cell pano" data-id="1oHDx7WGFwbSldaG8HEjzs5Y10mZ_4lxN" data-legende="Place Saint-Epvre · Façade principale">
+        <img src="https://lh3.googleusercontent.com/d/1oHDx7WGFwbSldaG8HEjzs5Y10mZ_4lxN" alt="Façade" loading="lazy" style="object-position: center 30%;">
+        <div class="ed-legende">
+          <span class="ed-legende-titre">Façade principale</span>
+          <span class="ed-legende-texte">Place Saint-Epvre · Nancy</span>
+        </div>
+        <div class="ed-loupe"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg></div>
+      </div>
+    </div>
+
+    <!-- Rangée 3 : trois tiers -->
+    <div class="row-3">
+      <div class="ed-cell tiers" data-id="1Gzpo--O50Qjvf_hJcdWy_pxfK5h5-_ih" data-legende="Vitrail · Lumière colorée">
+        <img src="https://lh3.googleusercontent.com/d/1Gzpo--O50Qjvf_hJcdWy_pxfK5h5-_ih" alt="Vitrail" loading="lazy">
+        <div class="ed-legende">
+          <span class="ed-legende-titre">Lumière colorée</span>
+          <span class="ed-legende-texte">Vitraux des ateliers Geyling</span>
+        </div>
+        <div class="ed-loupe"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg></div>
+      </div>
+      <div class="ed-cell tiers" data-id="1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya" data-legende="Vue générale · Intérieur">
+        <img src="https://lh3.googleusercontent.com/d/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya" alt="Intérieur" loading="lazy">
+        <div class="ed-legende">
+          <span class="ed-legende-titre">Intérieur</span>
+          <span class="ed-legende-texte">Vue depuis le narthex</span>
+        </div>
+        <div class="ed-loupe"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg></div>
+      </div>
+      <div class="ed-cell tiers" data-id="1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK" data-legende="Rosace Ouest · Carl Geyling, Vienne">
+        <img src="https://lh3.googleusercontent.com/d/1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK" alt="Rosace" loading="lazy">
+        <div class="ed-legende">
+          <span class="ed-legende-titre">Rosace Ouest</span>
+          <span class="ed-legende-texte">Carl Geyling · Vienne, 1875</span>
+        </div>
+        <div class="ed-loupe"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><line x1="9.5" y1="9.5" x2="13" y2="13"/></svg></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════ ARCHIVE ═════════════════════════════════════════ -->
+<div class="section-header reveal">
+  <span class="section-num">II</span>
+  <h2 class="section-titre">Archive</h2>
+  <div class="section-rule"></div>
+</div>
+
+<section class="archive">
+  <div class="masonry" id="masonry"></div>
+  <div class="loader" id="loader">
+    <span class="loader-dot"></span>
+    <span class="loader-dot"></span>
+    <span class="loader-dot"></span>
+  </div>
+  <div class="fin" id="fin">
+    <div class="fin-rule"></div>
+    <span class="fin-texte">Fin de la collection</span>
+  </div>
+</section>
+
+
+<!-- ════ PIED ════════════════════════════════════════════ -->
+<div class="pied">
+  <span class="pied-nom">Saint-Epvre</span>
+  <span class="pied-lieu">Nancy · Lorraine · France</span>
+</div>
+
+
+<script>
+(function() {
+
+  var BASE = 'https://lh3.googleusercontent.com/d/';
+
+  /* ════════════════════════════════════════
+     ARCHIVE — ajoutez vos IDs Google Drive.
+     L'ordre ici = ordre d'affichage.
+     Les 6 photos éditoriales ci-dessus ne
+     sont PAS listées ici pour éviter les doublons.
+  ════════════════════════════════════════ */
+  var ARCHIVE = [
+    /* ↓ Remplacez par vos vrais IDs — exemples indicatifs : */
+    '18wVLuZQYIEpeDitgNRFDj7EavkOMXp6E',
+    '1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh',
+    '1UlLBIOpu8qURFknNoAMlC5VHUV4-b8Nr',
+    '1oHDx7WGFwbSldaG8HEjzs5Y10mZ_4lxN',
+    '1Gzpo--O50Qjvf_hJcdWy_pxfK5h5-_ih',
+    '1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya',
+    '1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK',
+    '1SJLGKQ1NN2ihmz453oJWROe4S-qvoaN3',
+    '19P2LSu545EQSZNjR4VOsGJ1iSYxU0Sra',
+    '1iH2l03LFQo7xGUNR1xaeRhZqoUpJf0D4',
+    '1T4KqmutN7a13yo94Z6Qo_b8oil0D_4MF',
+    '15bQaJ-Yu9T1n9lQK5rqxdRBip5sDgD0U',
+    '1XM1Lr4MhFPbsP1l1jzh0avIBJqIdk6xX',
+    '1cn1doYfmF-5Ratf8EkkQqO8XyhGzdF7x',
+    '14TQiPDy9XghjuuehVQsfipTCjY2fXVZt',
+    '1TT54fVyotGZLqRXG2LDWJmTQp5pq2_F4',
+    '1yjtSA51lp-Fnyb5z8R1sl5tA41v4_aNX',
+    '1nEtqcCeOvtBB2h5x6sfVcgfej_4kFH9Y',
+    '1PdwvuZCFEc2CgsLouXwY2rxqWvoLW5R2',
+    '1jYKl1lrJZbqTG3vID6zbqiUzUzAk0q0t',
+    '1KD4k6mvvl-6-UgL-B6v0BLQFb50i2KmI',
+    '1fweiMPnIJ3Pi7Qhji-2LZsFvVRW0SdDt',
+    '1RiC8-K2pXU7Ej-pCVbiBwoOjf4ryZGML',
+    '1UTgz_zoaGaoSeVKLfQeTM8DSAkwdefxH',
+    /* ↑ continuez d'ajouter vos IDs... */
+  ];
+
+  var LOT = 12; /* photos chargées par batch */
+  var curseurArchive = 0;
+  var chargement = false;
+
+  /* ─── Hero zoom ─────────────────────── */
+  var heroImg = document.getElementById('heroImg');
+  if (heroImg.complete) {
+    heroImg.classList.add('loaded');
+  } else {
+    heroImg.addEventListener('load', function() { heroImg.classList.add('loaded'); });
+  }
+
+  /* ─── Curseur personnalisé (hero) ───── */
+  var dot = document.getElementById('cursorDot');
+  var hero = document.getElementById('hero');
+
+  hero.addEventListener('mouseenter', function() { dot.style.opacity = '1'; });
+  hero.addEventListener('mouseleave', function() { dot.style.opacity = '0'; });
+  document.addEventListener('mousemove', function(e) {
+    dot.style.left = e.clientX + 'px';
+    dot.style.top  = e.clientY + 'px';
+  });
+
+  /* ─── Scroll reveal générique ────────── */
+  function initReveal() {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .ed-cell').forEach(function(el) { io.observe(el); });
+  }
+
+  initReveal();
+
+  /* ─── Editorial : clic → lightbox ────── */
+  /* Construction de la liste ordonnée pour la lightbox éditoriale */
+  var edItems = [];
+  document.querySelectorAll('.ed-cell').forEach(function(cell) {
+    var id  = cell.dataset.id;
+    var leg = cell.dataset.legende || '';
+    if (id) edItems.push({ id: id, legende: leg, el: cell });
+    cell.addEventListener('click', function() {
+      ouvrirLb('ed', edItems.findIndex(function(x) { return x.el === cell; }));
+    });
+  });
+
+  /* ─── Masonry : chargement par lots ──── */
+  var masonry    = document.getElementById('masonry');
+  var loader     = document.getElementById('loader');
+  var fin        = document.getElementById('fin');
+  var archiveItems = [];
+
+  function chargerLot() {
+    if (chargement || curseurArchive >= ARCHIVE.length) return;
+    chargement = true;
+    loader.classList.add('actif');
+
+    var fin_lot = Math.min(curseurArchive + LOT, ARCHIVE.length);
+    var lot     = ARCHIVE.slice(curseurArchive, fin_lot);
+    curseurArchive = fin_lot;
+
+    /* délai léger pour effet de streaming */
+    lot.forEach(function(id, i) {
+      setTimeout(function() {
+        var item = document.createElement('div');
+        item.className   = 'masonry-item';
+        item.dataset.id  = id;
+        item.dataset.idx = archiveItems.length;
+
+        var img = document.createElement('img');
+        img.src     = BASE + id;
+        img.alt     = 'Basilique Saint-Epvre';
+        img.loading = 'lazy';
+        item.appendChild(img);
+        masonry.appendChild(item);
+
+        archiveItems.push({ id: id, el: item });
+
+        /* reveal au scroll */
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.05 });
+        io.observe(item);
+
+        item.addEventListener('click', function() {
+          ouvrirLb('arc', parseInt(this.dataset.idx));
+        });
+
+        if (i === lot.length - 1) {
+          loader.classList.remove('actif');
+          chargement = false;
+          if (curseurArchive >= ARCHIVE.length) {
+            fin.classList.add('visible');
+          }
+        }
+      }, i * 60);
+    });
+  }
+
+  /* observer sentinelle pour défilement infini */
+  var sentinelle = document.createElement('div');
+  sentinelle.style.height = '1px';
+  document.querySelector('.archive').appendChild(sentinelle);
+
+  var ioSentinelle = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) chargerLot();
+  }, { rootMargin: '400px' });
+  ioSentinelle.observe(sentinelle);
+
+  chargerLot(); /* premier lot au chargement */
+
+  /* ─── Lightbox ───────────────────────── */
+  var lb      = document.getElementById('lb');
+  var lbImg   = document.getElementById('lbImg');
+  var lbCpt   = document.getElementById('lbCpt');
+  var lbLeg   = document.getElementById('lbLeg');
+  var lbFerm  = document.getElementById('lbFermer');
+  var lbPrevB = document.getElementById('lbPrev');
+  var lbNextB = document.getElementById('lbNext');
+
+  var lbSource = null; /* 'ed' ou 'arc' */
+  var lbIdx    = 0;
+
+  function ouvrirLb(source, idx) {
+    lbSource = source;
+    lbIdx    = idx;
+    afficherLb();
+    lb.classList.add('ouverte');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function afficherLb() {
+    var list  = lbSource === 'ed' ? edItems : archiveItems;
+    var total = list.length;
+    var item  = list[lbIdx];
+    if (!item) return;
+
+    lbImg.classList.remove('pret');
+    lbImg.src = '';
+    lbImg.src = BASE + item.id;
+    lbImg.onload = function() { lbImg.classList.add('pret'); };
+
+    lbLeg.textContent = item.legende || '';
+    lbCpt.innerHTML   = '<em>' + (lbIdx + 1) + '</em> / ' + total;
+  }
+
+  function fermerLb() {
+    lb.classList.remove('ouverte');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  function lbNav(dir) {
+    var list = lbSource === 'ed' ? edItems : archiveItems;
+    lbIdx = ((lbIdx + dir) + list.length) % list.length;
+    afficherLb();
+  }
+
+  lbFerm.addEventListener('click', fermerLb);
+  lb.addEventListener('click', function(e) { if (e.target === lb) fermerLb(); });
+  lbPrevB.addEventListener('click', function() { lbNav(-1); });
+  lbNextB.addEventListener('click', function() { lbNav(1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('ouverte')) return;
+    if (e.key === 'Escape')      fermerLb();
+    if (e.key === 'ArrowLeft')   lbNav(-1);
+    if (e.key === 'ArrowRight')  lbNav(1);
+  });
+
+  /* swipe lightbox mobile */
+  var lbSx = 0;
+  lb.addEventListener('touchstart', function(e) { lbSx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function(e) {
+    var d = lbSx - e.changedTouches[0].clientX;
+    if (Math.abs(d) > 50) lbNav(d > 0 ? 1 : -1);
+  }, { passive: true });
+
+})();
+</script>
+
+</body>
+</html>

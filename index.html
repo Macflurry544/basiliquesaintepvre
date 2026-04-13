@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ══ SEO ══════════════════════════════════════════════════ -->
+  <title>Basilique Saint-Epvre — Nancy</title>
+  <meta name="description" content="Découvrez la Basilique Saint-Epvre de Nancy, chef-d'œuvre du néo-gothique lorrain érigé entre 1864 et 1871. Horaires des messes, histoire, grandes orgues et vitraux.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://macflurry544.github.io/">
+  <meta name="theme-color" content="#213448">
+  <link rel="icon" type="image/x-icon"  href="/assets/favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
+
+  <!-- Open Graph (partage réseaux sociaux) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://macflurry544.github.io/">
+  <meta property="og:title"       content="Basilique Saint-Epvre — Nancy">
+  <meta property="og:description" content="Chef-d'œuvre du néo-gothique lorrain au cœur de la vieille ville de Nancy. Messes, histoire, grandes orgues et vitraux.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Basilique Saint-Epvre — Nancy">
+  <meta name="twitter:description" content="Chef-d'œuvre du néo-gothique lorrain au cœur de la vieille ville de Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+
+  <!-- Données structurées (Google Rich Results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Basilique Saint-Epvre",
+    "description": "Basilique néo-gothique érigée entre 1864 et 1871 par l'architecte Prosper Morey, au cœur de la vieille ville de Nancy.",
+    "url": "https://macflurry544.github.io/",
+    "image": "https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Place Saint-Epvre",
+      "postalCode": "54000",
+      "addressLocality": "Nancy",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.6939,
+      "longitude": 6.1788
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday",    "opens": "09:30", "closes": "12:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday",  "opens": "18:30", "closes": "19:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:30", "closes": "09:30" }
+    ]
+  }
+  </script>
+
+  <!-- ══ FONTS ══════════════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/nav.css">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:     #EAE0CF;
+    --cream-2:   #94B4C1;
+    --sage:      #547792;
+    --olive:     #213448;
+    --olive-rgb: 33, 52, 72;
+    --font-display: 'Young Serif', Georgia, serif;
+    --font-body:    'Bitter', Georgia, serif;
+    --nav-h: 64px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--olive);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ══ HERO ══════════════════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.52) 50%,
+      rgba(0,0,0,0.68) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero > *:not(.hero-photo):not(.hero-overlay) {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-rule {
+    width: 48px; height: 1px;
+    background: rgba(255,255,255,0.6);
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.2s;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.4s;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 8vw, 7.5rem);
+    line-height: 1.05;
+    color: #fff;
+    letter-spacing: -0.01em;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.8s;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.4s;
+    z-index: 2;
+  }
+  .scroll-hint span {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ══ BOUTONS ══════════════════════════════════════════════ */
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.1rem 2.4rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.25s ease;
+  }
+  .btn:hover { transform: scale(1.03); }
+  .btn:hover::after { background: rgba(255,255,255,0.08); }
+  .btn-teal { background-color: var(--olive); color: #fff; }
+  .btn-teal:hover { filter: brightness(1.2); }
+  .btn-dark {
+    background-color: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.45);
+    backdrop-filter: blur(4px);
+  }
+  .btn-dark:hover { background-color: rgba(255,255,255,0.28); filter: none; }
+
+  /* ══ SECTIONS ══════════════════════════════════════════════ */
+  .section-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(var(--olive-rgb),0.14), transparent);
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(var(--olive-rgb),0.45);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  /* INTRO */
+  .intro {
+    background-color: var(--cream);
+    padding: 8rem 2rem;
+    display: flex;
+    justify-content: center;
+  }
+  .intro-inner { max-width: 640px; text-align: center; }
+  .intro-text { font-size: 16px; line-height: 1.9; color: var(--olive); font-weight: 500; }
+  .intro-text strong { font-weight: 700; }
+
+  /* FEATURES */
+  .features { background-color: var(--cream-2); padding: 8rem 2rem; }
+  .features-inner { max-width: 1100px; margin: 0 auto; }
+  .features-header { text-align: center; margin-bottom: 5rem; }
+  .features-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem,4vw,3.2rem);
+    color: var(--olive);
+    line-height: 1.15;
+  }
+  .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+
+  .feature-card {
+    background-color: var(--cream);
+    padding: 3.5rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--sage);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-number {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: rgba(var(--olive-rgb),0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .feature-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem,2.5vw,2rem);
+    color: var(--olive);
+    line-height: 1.2;
+  }
+  .feature-desc { font-size: 16px; line-height: 1.85; color: rgba(var(--olive-rgb),0.68); flex: 1; }
+
+  /* INFO */
+  .info {
+    background-color: var(--cream-2);
+    padding: 7rem 2rem;
+    border-top: 1px solid rgba(var(--olive-rgb),0.1);
+  }
+  .info-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .info-block-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--olive);
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+  }
+  .info-detail { font-size: 16px; line-height: 2; color: rgba(var(--olive-rgb),0.68); font-weight: 500; }
+  .info-detail strong { color: var(--olive); font-weight: 700; display: block; margin-top: 0.8rem; }
+  .info-detail strong:first-child { margin-top: 0; }
+  .info-note { font-size: 0.78rem; font-style: italic; color: rgba(var(--olive-rgb),0.5); margin-top: 1rem; line-height: 1.6; }
+  .info-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--olive);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--olive-rgb),0.35);
+    padding-bottom: 2px;
+    transition: border-color 0.2s, opacity 0.2s;
+    font-weight: 600;
+    opacity: 0.6;
+  }
+  .info-link:hover { opacity: 1; border-color: var(--olive); }
+  .info-gold-line { width: 30px; height: 1px; background: var(--sage); margin-bottom: 1.5rem; opacity: 0.8; }
+
+  /* CLOSING */
+  .closing { background-color: var(--cream); padding: 5rem 2rem; text-align: center; }
+  .closing-mark {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem,4vw,3rem);
+    color: rgba(var(--olive-rgb),0.07);
+    letter-spacing: 0.08em;
+    user-select: none;
+  }
+  .closing-small {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(var(--olive-rgb),0.28);
+    margin-top: 1.5rem;
+    font-weight: 400;
+  }
+
+  /* SVG DRAW-ON */
+  .btn-svg, .btn-hero-svg { display: inline-flex; align-items: center; gap: 0.75rem; }
+  .btn-svg svg, .btn-hero-svg svg { flex-shrink: 0; overflow: visible; }
+  .btn-svg .draw-line, .btn-hero-svg .draw-line {
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+    transition: stroke-dashoffset 0.45s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn-svg:hover .draw-line, .btn-hero-svg:hover .draw-line { stroke-dashoffset: 0; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.85; }
+  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.34s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .features-grid { grid-template-columns: 1fr; gap: 2px; }
+    .info-inner    { grid-template-columns: 1fr; gap: 3rem; }
+    .feature-card  { padding: 2.5rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    .hero-buttons { flex-direction: column; align-items: center; width: 100%; }
+    .btn { width: 100%; max-width: 320px; text-align: center; }
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.75) 100%);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero">
+  <img
+    class="hero-photo"
+    src="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n"
+    alt="Vue de la Basilique Saint-Epvre de Nancy"
+    loading="eager"
+    fetchpriority="high"
+  >
+  <div class="hero-overlay"></div>
+
+  <div class="hero-rule"></div>
+  <p class="hero-eyebrow">Nancy · Place Saint-Epvre · XIXe siècle</p>
+  <h1 class="hero-title">Basilique<br>Saint-Epvre</h1>
+  <p class="hero-subtitle">
+    Élevée au cœur de la vieille ville,<br>repère historique au centre du vieux Nancy.
+  </p>
+  <div class="hero-buttons">
+    <a href="/histoire/" class="btn btn-teal btn-hero-svg">
+      Découvrir l'histoire
+      <svg width="24" height="10" viewBox="0 0 24 10" fill="none" aria-hidden="true">
+        <line class="draw-line" x1="0" y1="5" x2="18" y2="5" stroke="#fff" stroke-width="1.2"/>
+        <polyline class="draw-line" points="13,1 18,5 13,9" stroke="#fff" stroke-width="1.2" fill="none" stroke-dasharray="14" stroke-dashoffset="14"/>
+      </svg>
+    </a>
+    <a href="/horaires-douverture/" class="btn btn-dark btn-hero-svg">
+      Horaires d'ouverture
+      <svg width="24" height="10" viewBox="0 0 24 10" fill="none" aria-hidden="true">
+        <line class="draw-line" x1="0" y1="5" x2="18" y2="5" stroke="#fff" stroke-width="1.2"/>
+        <polyline class="draw-line" points="13,1 18,5 13,9" stroke="#fff" stroke-width="1.2" fill="none" stroke-dasharray="14" stroke-dashoffset="14"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Descendre</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══ INTRO ══════════════════════════════════════════════════ -->
+<section class="intro">
+  <div class="intro-inner reveal">
+    <span class="section-label">À propos</span>
+    <p class="intro-text">
+      Érigée entre <strong>1864 et 1871</strong> par l'architecte Prosper Morey, la Basilique Saint-Epvre est un chef-d'œuvre du <strong>néo-gothique lorrain</strong>. Dominant la place éponyme au cœur médiéval de Nancy, elle séduit par ses vitraux, ses dentelles de pierre et ses grandes orgues. Plus qu'un simple chef-d'œuvre architectural, elle est un <strong>lieu de culte catholique</strong>, ouvert à tous pour la prière, le silence et la contemplation.
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══ FEATURES ═══════════════════════════════════════════════ -->
+<section class="features">
+  <div class="features-inner">
+    <div class="features-header reveal">
+      <span class="section-label">Explorer</span>
+      <h2 class="features-title">Trois portes<br>vers l'essentiel</h2>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-number">01</div>
+        <h3 class="feature-title">L'Histoire</h3>
+        <p class="feature-desc">De la paroisse médiévale à la Basilique Saint‑Epvre du XIXᵉ siècle.</p>
+        <a href="/histoire/" class="btn btn-teal btn-svg" style="align-self:flex-start;margin-top:0.5rem;">
+          Lire l'histoire
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <line class="draw-line" x1="3" y1="10" x2="17" y2="10" stroke="#fff" stroke-width="1.2" stroke-dasharray="14" stroke-dashoffset="14"/>
+            <line class="draw-line" x1="10" y1="3" x2="10" y2="17" stroke="#fff" stroke-width="1.2" stroke-dasharray="14" stroke-dashoffset="14"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-number">02</div>
+        <h3 class="feature-title">Les Grandes Orgues</h3>
+        <p class="feature-desc">Construites au XIXᵉ siècle par le facteur Joseph Merklin, les grandes orgues résonnent depuis 1869 et sont considérées comme un exemple majeur d'orgue symphonique.</p>
+        <a href="/les-grandes-orgues/" class="btn btn-teal btn-svg" style="align-self:flex-start;margin-top:0.5rem;">
+          Les orgues
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <line class="draw-line" x1="5"  y1="16" x2="5"  y2="4"  stroke="#fff" stroke-width="1.2" stroke-dasharray="12" stroke-dashoffset="12"/>
+            <line class="draw-line" x1="10" y1="16" x2="10" y2="2"  stroke="#fff" stroke-width="1.2" stroke-dasharray="14" stroke-dashoffset="14"/>
+            <line class="draw-line" x1="15" y1="16" x2="15" y2="6"  stroke="#fff" stroke-width="1.2" stroke-dasharray="10" stroke-dashoffset="10"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-number">03</div>
+        <h3 class="feature-title">Messes &amp; Offices</h3>
+        <p class="feature-desc">Chaque semaine, la Basilique Saint‑Epvre accueille laudes, vêpres et célébrations ouvertes à tous. La Congrégation de l'Oratoire gère la vie spirituelle.</p>
+        <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/" class="btn btn-teal btn-svg" style="align-self:flex-start;margin-top:0.5rem;" target="_blank" rel="noopener">
+          Voir les offices
+          <svg width="20" height="22" viewBox="0 0 20 22" fill="none" aria-hidden="true">
+            <line class="draw-line" x1="10" y1="20" x2="10" y2="10" stroke="#fff" stroke-width="1.4" stroke-dasharray="10" stroke-dashoffset="10"/>
+            <path class="draw-line" d="M10 10 C8 8 7 5 10 2" stroke="#fff" stroke-width="1.2" fill="none" stroke-dasharray="12" stroke-dashoffset="12"/>
+            <path class="draw-line" d="M10 10 C12 8 13 5 10 2" stroke="#fff" stroke-width="1.2" fill="none" stroke-dasharray="12" stroke-dashoffset="12"/>
+            <line class="draw-line" x1="7" y1="20" x2="13" y2="20" stroke="#fff" stroke-width="1.2" stroke-dasharray="6" stroke-dashoffset="6"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══ INFO ═══════════════════════════════════════════════════ -->
+<section class="info">
+  <div class="info-inner">
+
+    <div class="reveal">
+      <div class="info-gold-line"></div>
+      <h4 class="info-block-title">Messes &amp;<br>Offices</h4>
+      <div class="info-detail">
+        <strong>Dimanche</strong>
+        9h30 &nbsp;·&nbsp; 11h00
+        <strong>Samedi</strong>
+        18h30 — Crypte
+        <strong>Lundi au vendredi</strong>
+        8h30 — Crypte
+        <strong>Confessions</strong>
+        Samedi 16h30 – 18h00 (Basilique)<br>
+        Lundi 19h15 – 19h45<br>
+        Vendredi 11h30 – 12h30
+      </div>
+      <p class="info-note">Ces horaires sont susceptibles de changer — consultez le site de l'Oratoire pour les informations à jour.</p>
+      <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/" class="info-link" target="_blank" rel="noopener">
+        Site de l'Oratoire →
+      </a>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <div class="info-gold-line"></div>
+      <h4 class="info-block-title">Accès<br>&amp; Localisation</h4>
+      <div class="info-detail">
+        <strong>Adresse</strong>
+        Place Saint-Epvre<br>54000 Nancy, France
+        <strong>Transports</strong>
+        Tram ligne 1 — arrêt <em>Basilique</em><br>
+        Bus lignes 3, 11, 122<br>
+        Parking Carrière, à 5 min à pied
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <div class="info-gold-line"></div>
+      <h4 class="info-block-title">Nous<br>contacter</h4>
+      <div class="info-detail">
+        Pour toute question ou demande, merci de consulter notre page Contact !
+      </div>
+      <a href="/contact/" class="info-link">Envoyer un message →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CLOSING ════════════════════════════════════════════════ -->
+<section class="closing">
+  <div class="closing-mark">Saint-Epvre</div>
+  <p class="closing-small">Nancy · Lorraine · France</p>
+</section>
+
+<script>
+  // ── Reveal on scroll ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+<script defer src="assets/js/nav.js"></script>
+</body>
+</html>

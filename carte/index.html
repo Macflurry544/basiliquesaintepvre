@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ══ SEO ══════════════════════════════════════════════════ -->
+  <title>Carte — Quartier Saint-Epvre · Nancy</title>
+  <meta name="description" content="Carte interactive du quartier Saint-Epvre à Nancy. Points d'intérêt, patrimoine, accès et itinéraires autour de la Basilique Saint-Epvre.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://macflurry544.github.io/carte/">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://macflurry544.github.io/carte/">
+  <meta property="og:title"       content="Carte — Quartier Saint-Epvre · Nancy">
+  <meta property="og:description" content="Carte interactive du quartier Saint-Epvre à Nancy.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+
+  <!-- Navbar partagée -->
+  <link rel="stylesheet" href="../assets/css/nav.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #F5EEDC;
+      --cream-2:   #D4C9A8;
+      --sage:      #DDA853;
+      --sage-dark: #27548A;
+      --olive:     #183B4E;
+      --olive-rgb: 24, 59, 78;
+      --font-titre: 'Young Serif', Georgia, serif;
+      --font-texte: 'Bitter', Georgia, serif;
+      --nav-h:     64px;
+    }
+
+    html {
+      height: 100%;
+      background-color: var(--cream);
+    }
+
+    body {
+      /* On ne met PAS overflow:hidden sur body — la navbar fixe doit rester visible */
+      height: calc(100vh - var(--nav-h));
+      background-color: var(--cream);
+      font-family: var(--font-texte);
+      color: var(--olive);
+      -webkit-font-smoothing: antialiased;
+      touch-action: manipulation;
+      overflow: hidden;
+      /* Le padding-top vient de nav.css (body { padding-top: var(--nav-h) }) */
+    }
+
+    /* ── Layout carte : occupe tout l'espace sous la navbar ── */
+    .layout {
+      display: flex;
+      height: 100%;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    /* ── Panneau latéral ── */
+    .panneau {
+      width: 340px;
+      flex-shrink: 0;
+      background-color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-right: 1px solid rgba(var(--olive-rgb), 0.1);
+      position: relative;
+      z-index: 10;
+    }
+
+    .panneau::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: 0.5;
+    }
+
+    .panneau-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid rgba(var(--olive-rgb), 0.1);
+      position: relative;
+    }
+
+    /* ── Retour ── */
+    .panneau-retour {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(var(--olive-rgb), 0.4);
+      text-decoration: none; margin-bottom: 1.2rem; transition: color 0.2s;
+    }
+    .panneau-retour:hover { color: var(--olive); }
+    .panneau-retour svg { width: 14px; height: 6px; overflow: visible; }
+    .panneau-retour svg line,
+    .panneau-retour svg polyline { stroke: currentColor; stroke-width: 1.2; fill: none; }
+
+    .panneau-surtitre {
+      display: block; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--sage-dark); margin-bottom: 0.5rem;
+    }
+    .panneau-titre {
+      font-family: var(--font-titre); font-size: 1.9rem;
+      color: var(--olive); line-height: 1.1; margin-bottom: 0.4rem;
+    }
+    .panneau-sous-titre {
+      font-size: 0.78rem; font-style: italic; font-weight: 400;
+      color: rgba(var(--olive-rgb), 0.5); line-height: 1.5;
+    }
+
+    /* ── Filtres ── */
+    .filtres {
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid rgba(var(--olive-rgb), 0.08);
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .filtre-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      font-family: var(--font-texte); font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background-color: var(--cream-2); color: rgba(var(--olive-rgb), 0.55);
+      border: 1px solid rgba(var(--olive-rgb), 0.1);
+      cursor: pointer; transition: all 0.15s ease; user-select: none;
+    }
+    .filtre-btn .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .filtre-btn.actif { background-color: var(--olive); color: var(--cream); border-color: var(--olive); }
+    .filtre-btn:hover:not(.actif) { border-color: rgba(var(--olive-rgb), 0.3); color: var(--olive); }
+
+    /* ── Liste ── */
+    .liste-lieux {
+      flex: 1; overflow-y: auto; padding: 0.5rem 0;
+      scrollbar-width: thin; scrollbar-color: var(--cream-2) transparent;
+    }
+    .liste-lieux::-webkit-scrollbar { width: 4px; }
+    .liste-lieux::-webkit-scrollbar-track { background: transparent; }
+    .liste-lieux::-webkit-scrollbar-thumb { background-color: var(--cream-2); }
+
+    .lieu-item {
+      padding: 1rem 2rem; cursor: pointer;
+      border-bottom: 1px solid rgba(var(--olive-rgb), 0.05);
+      transition: background-color 0.15s ease;
+      display: flex; align-items: flex-start; gap: 1rem;
+      position: relative;
+    }
+    .lieu-item:hover { background-color: rgba(var(--olive-rgb), 0.03); }
+    .lieu-item.actif { background-color: var(--cream-2); }
+    .lieu-item.actif::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background-color: var(--sage);
+    }
+    .lieu-icone {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.85rem; margin-top: 2px;
+    }
+    .lieu-infos { flex: 1; min-width: 0; }
+    .lieu-nom { font-family: var(--font-titre); font-size: 0.95rem; color: var(--olive); line-height: 1.3; margin-bottom: 0.2rem; }
+    .lieu-cat { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(var(--olive-rgb), 0.4); margin-bottom: 0.25rem; }
+    .lieu-desc { font-size: 0.78rem; font-style: italic; font-weight: 400; color: rgba(var(--olive-rgb), 0.5); line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* ── Pied panneau ── */
+    .panneau-pied {
+      padding: 1rem 2rem;
+      border-top: 1px solid rgba(var(--olive-rgb), 0.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .panneau-pied-nom { font-family: var(--font-titre); font-size: 0.85rem; color: rgba(var(--olive-rgb), 0.2); }
+    .panneau-pied-coord { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; color: rgba(var(--olive-rgb), 0.25); }
+
+    /* ── Carte Leaflet ── */
+    #carte { flex: 1; position: relative; z-index: 1; }
+
+    /* ── Popups Leaflet ── */
+    .leaflet-popup-content-wrapper {
+      background: var(--cream) !important;
+      border: 1px solid rgba(var(--olive-rgb), 0.12) !important;
+      border-radius: 0 !important;
+      box-shadow: 0 8px 32px rgba(var(--olive-rgb), 0.18) !important;
+      padding: 0 !important;
+      font-family: var(--font-texte) !important;
+    }
+    .leaflet-popup-content { margin: 0 !important; width: 260px !important; }
+    .leaflet-popup-tip-container { display: none !important; }
+    .leaflet-popup-close-button { color: rgba(var(--olive-rgb), 0.4) !important; font-size: 18px !important; top: 10px !important; right: 12px !important; }
+    .leaflet-popup-close-button:hover { color: var(--olive) !important; }
+
+    .popup-inner { padding: 1.4rem 1.6rem; position: relative; }
+    .popup-cat { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage-dark); display: block; margin-bottom: 0.4rem; }
+    .popup-titre { font-family: var(--font-titre); font-size: 1.1rem; color: var(--olive); line-height: 1.25; margin-bottom: 0.8rem; }
+    .popup-sep { width: 28px; height: 1px; background-color: var(--sage); margin-bottom: 0.8rem; }
+    .popup-texte { font-size: 0.82rem; line-height: 1.7; color: rgba(var(--olive-rgb), 0.65); font-style: italic; font-weight: 400; }
+    .popup-distance { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.8rem; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(var(--olive-rgb), 0.35); }
+    .popup-distance::before { content: ''; width: 12px; height: 1px; background-color: rgba(var(--olive-rgb), 0.2); }
+
+    .popup-nav {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      margin-top: 1rem; padding: 0.55rem 1rem;
+      background-color: var(--olive); color: var(--cream);
+      font-family: var(--font-texte); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      transition: background-color 0.15s ease; border: none; cursor: pointer;
+      width: 100%; justify-content: center;
+    }
+    .popup-nav:hover { background-color: #0f2535; }
+    .popup-nav svg { width: 13px; height: 13px; stroke: var(--sage); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* ── Contrôles Leaflet ── */
+    .leaflet-control-attribution { font-family: var(--font-texte) !important; font-size: 0.58rem !important; background: rgba(245,238,220,0.9) !important; color: rgba(var(--olive-rgb), 0.4) !important; border-radius: 0 !important; }
+    .leaflet-control-zoom a { background-color: var(--cream) !important; color: var(--olive) !important; border-color: rgba(var(--olive-rgb), 0.15) !important; font-family: var(--font-texte) !important; border-radius: 0 !important; width: 32px !important; height: 32px !important; line-height: 30px !important; font-size: 16px !important; }
+    .leaflet-control-zoom a:hover { background-color: var(--cream-2) !important; }
+    .leaflet-control-zoom { border: 1px solid rgba(var(--olive-rgb), 0.15) !important; border-radius: 0 !important; box-shadow: 0 2px 12px rgba(var(--olive-rgb), 0.1) !important; }
+
+    /* ── Bouton toggle mobile ── */
+    .toggle-panneau {
+      display: none;
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 20; background-color: var(--olive); color: var(--cream);
+      border: none; padding: 0.7rem 1.6rem;
+      font-family: var(--font-texte); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer; box-shadow: 0 4px 20px rgba(var(--olive-rgb), 0.35);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 701px) {
+      .panneau { animation: fadeIn 0.6s ease forwards; }
+    }
+
+    /* ── Responsive mobile ── */
+    @media (max-width: 700px) {
+      body { height: calc(100dvh - var(--nav-h)); }
+
+      .layout { display: block; position: relative; width: 100vw; height: 100%; }
+
+      #carte { position: fixed; left: 0; right: 0; top: var(--nav-h); bottom: 0; width: 100vw; z-index: 1; }
+
+      .panneau {
+        position: fixed; left: 0; right: 0; bottom: 0;
+        height: 70vh; max-height: 70dvh; width: 100%;
+        border-right: none; border-top: 2px solid var(--sage);
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        z-index: 40; animation: none; opacity: 1;
+        overflow: hidden; display: flex; flex-direction: column;
+      }
+      .panneau.ouvert { transform: translateY(0); }
+
+      .liste-lieux { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      .toggle-panneau { display: flex; align-items: center; gap: 0.5rem; }
+
+      .leaflet-popup-content { width: 220px !important; }
+      .leaflet-popup-content-wrapper { max-width: 240px !important; }
+
+      .panneau-header { padding: 1rem 1.5rem 0.8rem; flex-shrink: 0; }
+      .panneau-titre { font-size: 1.3rem; }
+      .panneau-retour { display: none; }
+      .panneau-sous-titre { display: none; }
+      .filtres { padding: 0.8rem 1rem; flex-shrink: 0; }
+      .panneau-pied { flex-shrink: 0; padding: 0.6rem 1.5rem; }
+      .leaflet-control-zoom { margin-bottom: 4.5rem !important; margin-right: 0.8rem !important; }
+      .leaflet-popup { margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="panneau" id="panneau">
+    <div class="panneau-header">
+      <a href="../" class="panneau-retour">
+        <svg viewBox="0 0 14 6" aria-hidden="true">
+          <polyline points="5,1 1,3 5,5"/>
+          <line x1="1" y1="3" x2="13" y2="3"/>
+        </svg>
+        Basilique Saint-Epvre
+      </a>
+      <span class="panneau-surtitre">Nancy · Grand Est</span>
+      <div class="panneau-titre">Quartier<br>Saint-Epvre</div>
+      <p class="panneau-sous-titre">Points d'intérêt · Itinéraires · Patrimoine</p>
+    </div>
+
+    <div class="filtres" id="filtres">
+      <button class="filtre-btn actif" data-cat="tous">
+        <span class="dot" style="background:#DDA853"></span> Tous
+      </button>
+      <button class="filtre-btn" data-cat="religieux">
+        <span class="dot" style="background:#183B4E"></span> Religieux
+      </button>
+      <button class="filtre-btn" data-cat="patrimoine">
+        <span class="dot" style="background:#27548A"></span> Patrimoine
+      </button>
+      <button class="filtre-btn" data-cat="pratique">
+        <span class="dot" style="background:#DDA853"></span> Pratique
+      </button>
+      <button class="filtre-btn" data-cat="restauration">
+        <span class="dot" style="background:#2e7a6e"></span> Restauration
+      </button>
+    </div>
+
+    <div class="liste-lieux" id="liste-lieux"></div>
+
+    <div class="panneau-pied">
+      <span class="panneau-pied-nom">Saint-Epvre</span>
+      <span class="panneau-pied-coord">48.6942° N · 6.1791° E</span>
+    </div>
+  </aside>
+
+  <div id="carte"></div>
+</div>
+
+<button class="toggle-panneau" id="toggle-panneau" onclick="togglePanneau()">
+  ☰ Points d'intérêt
+</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ════ NAVIGATION ════ */
+function ouvrirNavigation(lat, lng, nom) {
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isAndroid = /Android/i.test(ua);
+  let url;
+  if (isIOS) {
+    url = `maps://?daddr=${lat},${lng}&dirflg=w`;
+  } else if (isAndroid) {
+    url = `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(nom)})`;
+  } else {
+    url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
+  }
+  window.open(url, '_blank', 'noopener');
+}
+
+/* ════ DONNÉES ════ */
+const LIEUX = [
+  { id:'basilique',        nom:'Basilique Saint-Epvre',                   cat:'religieux',    emoji:'⛪', couleur:'#183B4E', lat:48.69596145417472, lng:6.179900228505444,  desc:'Basilique néo-gothique consacrée en 1875. Beffroi de 87 m, 9 cloches historiques. Œuvre de Prosper Morey.',         detail:'La plus imposante église néo-gothique de Lorraine. Classée monument historique.',                                          distance:'Point de référence' },
+  { id:'musee-lorrain',    nom:'Palais Ducal · Musée Lorrain',            cat:'patrimoine',   emoji:'🏰', couleur:'#27548A', lat:48.697271536449676, lng:6.179294049254174,  desc:'Ancien palais des Ducs de Lorraine, aujourd\'hui Musée Lorrain. Porterie gothique flamboyant (XVIe s.).',           detail:'L\'un des rares palais ducaux médiévaux conservés en France. Porterie de 1512.',                                           distance:'≈ 150 m de la basilique' },
+  { id:'eglise-cordeliers',nom:'Église des Cordeliers',                   cat:'religieux',    emoji:'⛪', couleur:'#183B4E', lat:48.69760367414451,  lng:6.178998070345293,  desc:'Chapelle ducale funéraire. Gisants des Ducs de Lorraine. Rotonde Renaissance remarquable.',                            detail:'Nécropole des Ducs de Lorraine. La rotonde Renaissance abrite les tombeaux de la famille ducale.',                         distance:'≈ 200 m de la basilique' },
+  { id:'oratoire',         nom:'Oratoire Saint-Philippe-Néri',            cat:'religieux',    emoji:'🕍', couleur:'#183B4E', lat:48.697059508666996, lng:6.177195255652328,  desc:'Oratoire baroque du XVIIe siècle, rattaché à la congrégation de l\'Oratoire. Façade remarquable.',                   detail:'Fondé au XVIIe siècle par les Pères de l\'Oratoire. Témoignage du baroque lorrain en pleine vieille ville.',               distance:'≈ 200 m de la basilique' },
+  { id:'cathedrale',       nom:'Cathédrale Notre-Dame-de-l\'Annonciation',cat:'religieux',    emoji:'⛪', couleur:'#183B4E', lat:48.69151429593662,  lng:6.185850449968589,  desc:'Cathédrale baroque du XVIIIe siècle. Trésor de la cathédrale, reliques de saint Nicolas.',                             detail:'Chef-d\'œuvre du baroque lorrain, construite entre 1703 et 1742. Abrite un trésor exceptionnel.',                          distance:'≈ 700 m de la basilique' },
+  { id:'grande-rue',       nom:'Grande Rue',                              cat:'patrimoine',   emoji:'🏛', couleur:'#27548A', lat:48.696855358777846, lng:6.179668759169878,  desc:'Axe historique de la vieille ville, bordé de façades XVIIe–XVIIIe siècles.',                                           detail:'Artère principale de la vieille ville. Relie la basilique Saint-Epvre à la place Stanislas.',                              distance:'≈ 100 m de la basilique' },
+  { id:'place-stanislas',  nom:'Place Stanislas',                         cat:'patrimoine',   emoji:'⭐', couleur:'#27548A', lat:48.6931,            lng:6.1833,             desc:'Chef-d\'œuvre du XVIIIe siècle. Classée UNESCO en 1983. Grilles en fer forgé de Jean Lamour.',                          detail:'L\'une des plus belles places d\'Europe. Commandée par Stanislas Leszczynski, duc de Lorraine.',                           distance:'≈ 500 m de la basilique' },
+  { id:'porte-craffe',     nom:'Porte de la Craffe',                      cat:'patrimoine',   emoji:'🏰', couleur:'#27548A', lat:48.69973,           lng:6.17720,            desc:'Porte médiévale du XIVe siècle. L\'une des mieux conservées de Lorraine. Vestige des fortifications.',                   detail:'Construite vers 1350, elle défendait l\'entrée nord de la vieille ville. Tours rondes caractéristiques.',                  distance:'≈ 450 m de la basilique' },
+  { id:'parking-indigo',   nom:'Parking Indigo Léopold',                  cat:'pratique',     emoji:'🅿', couleur:'#DDA853', lat:48.69665620041898,  lng:6.174671053759983,  desc:'Parking couvert à proximité de la vieille ville. Accès piéton à la basilique en 5 min.',                                detail:'Le stationnement le plus pratique pour visiter le quartier Saint-Epvre à pied.',                                            distance:'≈ 400 m de la basilique' },
+  { id:'office-tourisme',  nom:'Office de Tourisme de Nancy',             cat:'pratique',     emoji:'ℹ', couleur:'#DDA853', lat:48.693017060556095, lng:6.183084140137937,  desc:'Visites guidées, brochures, plans de la ville. Ouvert 7j/7 en saison.',                                                 detail:'Propose des audioguides et des circuits thématiques dans la vieille ville et ses alentours.',                               distance:'≈ 500 m de la basilique' },
+  { id:'arc-here',         nom:'Arc Héré',                                cat:'patrimoine',   emoji:'🏛', couleur:'#27548A', lat:48.694462837854424, lng:6.18265621566205,   desc:'Arc de triomphe de 1754 dédié à Louis XV. Relie la place Stanislas à la place de la Carrière.',                          detail:'Œuvre d\'Emmanuel Héré, constituant avec la place Stanislas un ensemble classé UNESCO.',                                    distance:'≈ 450 m de la basilique' }
+];
+
+/* ════ CARTE ════ */
+const carte = L.map('carte', {
+  center: [48.6955, 6.1785], zoom: 16, zoomControl: false, attributionControl: true
+});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd', maxZoom: 19
+}).addTo(carte);
+L.control.zoom({ position: 'bottomright' }).addTo(carte);
+
+/* ════ MARQUEURS ════ */
+function creerIcone(lieu, estActif) {
+  const taille = lieu.id === 'basilique' ? 44 : 34;
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:${taille}px;height:${taille}px;background:${lieu.couleur};border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 14px rgba(0,0,0,0.25);border:2px solid rgba(255,255,255,0.6);">
+      <span style="transform:rotate(45deg);font-size:${lieu.id==='basilique'?'1.1rem':'0.8rem'};line-height:1;">${lieu.emoji}</span>
+    </div>`,
+    iconSize: [taille, taille], iconAnchor: [taille/2, taille], popupAnchor: [0, -taille-4]
+  });
+}
+
+const marqueurs = {};
+let lieuActif = null;
+
+LIEUX.forEach(lieu => {
+  const marqueur = L.marker([lieu.lat, lieu.lng], { icon: creerIcone(lieu, false) }).addTo(carte);
+  const isMobile = window.innerWidth <= 700;
+  const popupHTML = `<div class="popup-inner">
+    <span class="popup-cat">${lieu.cat.charAt(0).toUpperCase()+lieu.cat.slice(1)}</span>
+    <div class="popup-titre">${lieu.nom}</div>
+    <div class="popup-sep"></div>
+    <p class="popup-texte">${lieu.detail}</p>
+    <span class="popup-distance">${lieu.distance}</span>
+    <button class="popup-nav" onclick="ouvrirNavigation(${lieu.lat},${lieu.lng},'${lieu.nom.replace(/'/g,"\\'")}')">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Y aller
+    </button>
+  </div>`;
+  marqueur.bindPopup(popupHTML, {
+    maxWidth: isMobile ? 250 : 280, minWidth: isMobile ? 220 : 260,
+    autoPan: true,
+    autoPanPaddingTopLeft: L.point(isMobile ? 20 : 360, 80),
+    autoPanPaddingBottomRight: L.point(20, isMobile ? 80 : 20)
+  });
+  marqueur.on('click', () => activerLieu(lieu.id));
+  marqueurs[lieu.id] = marqueur;
+});
+
+/* ════ ACTIVATION ════ */
+function activerLieu(id) {
+  if (lieuActif) {
+    marqueurs[lieuActif].setIcon(creerIcone(LIEUX.find(l=>l.id===lieuActif), false));
+    document.querySelectorAll('.lieu-item').forEach(el => el.classList.remove('actif'));
+  }
+  lieuActif = id;
+  const lieu = LIEUX.find(l=>l.id===id);
+  marqueurs[id].setIcon(creerIcone(lieu, true));
+  marqueurs[id].openPopup();
+  const item = document.getElementById('lieu-'+id);
+  if (item) { item.classList.add('actif'); item.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+  setTimeout(() => carte.setView([lieu.lat, lieu.lng], 17, { animate:true, duration:0.6 }), 80);
+}
+
+/* ════ LISTE ════ */
+function construireListe(filtre) {
+  const liste = document.getElementById('liste-lieux');
+  liste.innerHTML = '';
+  const lieux = filtre === 'tous' ? LIEUX : LIEUX.filter(l=>l.cat===filtre);
+  lieux.forEach(lieu => {
+    const item = document.createElement('div');
+    item.className = 'lieu-item' + (lieuActif===lieu.id ? ' actif' : '');
+    item.id = 'lieu-'+lieu.id;
+    item.innerHTML = `
+      <div class="lieu-icone" style="background:${lieu.couleur}20;color:${lieu.couleur}">${lieu.emoji}</div>
+      <div class="lieu-infos">
+        <div class="lieu-cat">${lieu.cat}</div>
+        <div class="lieu-nom">${lieu.nom}</div>
+        <div class="lieu-desc">${lieu.desc}</div>
+      </div>`;
+    item.addEventListener('click', () => {
+      activerLieu(lieu.id);
+      if (window.innerWidth <= 700) fermerPanneau();
+    });
+    liste.appendChild(item);
+  });
+}
+
+/* ════ FILTRES ════ */
+document.querySelectorAll('.filtre-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filtre-btn').forEach(b=>b.classList.remove('actif'));
+    btn.classList.add('actif');
+    const cat = btn.getAttribute('data-cat');
+    construireListe(cat);
+    LIEUX.forEach(lieu => {
+      const show = cat==='tous' || lieu.cat===cat;
+      if (show && !carte.hasLayer(marqueurs[lieu.id])) marqueurs[lieu.id].addTo(carte);
+      if (!show && carte.hasLayer(marqueurs[lieu.id])) carte.removeLayer(marqueurs[lieu.id]);
+    });
+  });
+});
+
+/* ════ MOBILE ════ */
+function togglePanneau() {
+  const panneau = document.getElementById('panneau');
+  const btn = document.getElementById('toggle-panneau');
+  const estOuvert = panneau.classList.toggle('ouvert');
+  btn.textContent = estOuvert ? '✕ Fermer' : '☰ Points d\'intérêt';
+}
+function fermerPanneau() {
+  document.getElementById('panneau').classList.remove('ouvert');
+  document.getElementById('toggle-panneau').textContent = '☰ Points d\'intérêt';
+}
+document.getElementById('carte').addEventListener('click', () => {
+  if (window.innerWidth <= 700) fermerPanneau();
+});
+
+/* ════ INIT ════ */
+construireListe('tous');
+setTimeout(() => { activerLieu('basilique'); carte.invalidateSize(); }, 600);
+window.addEventListener('resize', () => setTimeout(() => carte.invalidateSize(), 200));
+
+L.circle([48.6942, 6.1791], {
+  radius: 350, color:'#AEB784', fillColor:'#AEB784',
+  fillOpacity: 0.06, weight: 1, dashArray:'4 6'
+}).addTo(carte);
+</script>
+
+<!-- Navbar injectée dynamiquement -->
+<script defer src="../assets/js/nav.js"></script>
+
+</body>
+</html>

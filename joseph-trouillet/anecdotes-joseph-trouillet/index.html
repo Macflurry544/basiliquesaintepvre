@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anecdotes — Monseigneur Trouillet — Basilique Saint-Epvre</title>
+  <!-- SEO -->
+  <meta name="description" content="Anecdotes et récits sur la vie de Monseigneur Trouillet, prêtre lorrain et personnage historique lié à la Basilique Saint-Epvre de Nancy au XIXe siècle.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1A3263">
+  <link rel="canonical" href="https://macflurry544.github.io/joseph-trouillet/anecdotes-joseph-trouillet/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://macflurry544.github.io/joseph-trouillet/anecdotes-joseph-trouillet/">
+  <meta property="og:title"       content="Anecdotes — Monseigneur Trouillet — Basilique Saint-Epvre">
+  <meta property="og:description" content="Anecdotes et récits sur la vie de Monseigneur Trouillet, figure de la Basilique Saint-Epvre de Nancy.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Anecdotes — Monseigneur Trouillet">
+  <meta name="twitter:description" content="Anecdotes sur la vie de Monseigneur Trouillet, figure de la Basilique Saint-Epvre à Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/nav.css">
+
+  <style>
+
+    /* ─────────────────────────────────────────
+       RESET & VARIABLES
+    ───────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream:     #E8E2DB;
+      --cream-2:   #FAB95B;
+      --sage:      #547792;
+      --olive:     #1A3263;
+      --olive-rgb: 65, 67, 27;
+      --font-titre: 'Young Serif', Georgia, serif;
+      --font-texte: 'Bitter', Georgia, serif;
+    }
+
+    /* ─────────────────────────────────────────
+       BASE
+    ───────────────────────────────────────── */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--olive);
+      font-family: var(--font-texte);
+      font-size: 16px;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* grain discret en fond de page */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ─────────────────────────────────────────
+       CONTENEUR PRINCIPAL
+    ───────────────────────────────────────── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 7rem 2rem 8rem;
+    }
+
+    /* ─────────────────────────────────────────
+       LIEN RETOUR
+    ───────────────────────────────────────── */
+    .retour {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.1s;
+      transition: opacity 0.2s;
+    }
+    .retour:hover { opacity: 0.85 !important; }
+
+    .retour svg {
+      width: 18px;
+      height: 8px;
+      overflow: visible;
+    }
+    .retour svg line,
+    .retour svg polyline {
+      stroke: var(--olive);
+      stroke-width: 1.2;
+      fill: none;
+    }
+
+    /* ─────────────────────────────────────────
+       EN-TÊTE DE PAGE
+    ───────────────────────────────────────── */
+    .surtitre {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.45);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.25s;
+    }
+
+    .titre-page {
+      font-family: var(--font-titre);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.06;
+      color: var(--olive);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.4s;
+    }
+
+    .sous-titre-page {
+      font-family: var(--font-texte);
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(var(--olive-rgb), 0.55);
+      margin-top: 1rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.55s;
+    }
+
+    .trait {
+      width: 48px;
+      height: 1px;
+      background: var(--sage);
+      margin: 2.5rem 0 3.5rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.65s;
+    }
+
+    /* ─────────────────────────────────────────
+       PHRASE D'INTRODUCTION
+    ───────────────────────────────────────── */
+    .intro {
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(var(--olive-rgb), 0.7);
+      font-weight: 400;
+      font-style: italic;
+      border-left: 2px solid var(--sage);
+      padding-left: 1.5rem;
+      max-width: 640px;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.75s;
+    }
+
+    /* ─────────────────────────────────────────
+       SOMMAIRE
+    ───────────────────────────────────────── */
+    .sommaire {
+      background-color: var(--cream-2);
+      padding: 2.5rem 3rem;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.85s;
+    }
+
+    .sommaire-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.45);
+      margin-bottom: 1.5rem;
+    }
+
+    .sommaire ol {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .sommaire li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+    }
+
+    .sommaire .num {
+      font-family: var(--font-titre);
+      font-size: 0.75rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      min-width: 1.8rem;
+    }
+
+    .sommaire a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--olive);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      line-height: 1.6;
+      transition: border-color 0.2s;
+    }
+    .sommaire a:hover {
+      border-color: rgba(var(--olive-rgb), 0.35);
+    }
+
+    /* ─────────────────────────────────────────
+       BLOCS ANECDOTES
+    ───────────────────────────────────────── */
+    .anecdote {
+      padding: 3.5rem 3rem;
+      margin-bottom: 2px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .anecdote.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* alternance de fond */
+    .anecdote:nth-child(odd)  { background-color: var(--cream-2); }
+    .anecdote:nth-child(even) { background-color: var(--cream); border: 1px solid rgba(var(--olive-rgb), 0.08); }
+
+    /* numéro fantôme décoratif */
+    .anecdote::after {
+      content: attr(data-num);
+      font-family: var(--font-titre);
+      font-size: 8rem;
+      color: rgba(var(--olive-rgb), 0.04);
+      position: absolute;
+      right: 2rem;
+      bottom: -1rem;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .anecdote-entete {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .anecdote-num {
+      font-family: var(--font-titre);
+      font-size: 0.75rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      padding-top: 0.55rem;
+      letter-spacing: 0.05em;
+    }
+
+    .anecdote-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: var(--olive);
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* zone de texte */
+    .anecdote-texte {
+      font-size: 16px;
+      line-height: 1.95;
+      color: rgba(var(--olive-rgb), 0.72);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* espacement entre paragraphes */
+    .anecdote-texte p + p {
+      margin-top: 1.2rem;
+    }
+
+    /* citation optionnelle */
+    .anecdote-texte blockquote {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--sage);
+      font-style: italic;
+      color: rgba(var(--olive-rgb), 0.6);
+    }
+
+    /* ─────────────────────────────────────────
+       PIED DE PAGE
+    ───────────────────────────────────────── */
+    .pied {
+      margin-top: 7rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 1s;
+    }
+
+    .pied-nom {
+      font-family: var(--font-titre);
+      font-size: 1.1rem;
+      color: rgba(var(--olive-rgb), 0.15);
+      letter-spacing: 0.06em;
+      user-select: none;
+    }
+
+    .pied-lieu {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.28);
+      font-weight: 500;
+    }
+
+    /* ─────────────────────────────────────────
+       ANIMATION
+    ───────────────────────────────────────── */
+    @keyframes apparition {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE MOBILE
+    ───────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .page             { padding: 4rem 1.5rem 6rem; }
+      .anecdote         { padding: 2.5rem 1.5rem; }
+      .anecdote::after  { display: none; }
+      .sommaire         { padding: 2rem 1.5rem; }
+      .pied             { flex-direction: column; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ════ LIEN RETOUR ════════════════════════════════════ -->
+  <a href="/joseph-trouillet/" class="retour">
+    <svg viewBox="0 0 18 8" aria-hidden="true">
+      <polyline points="6,1 1,4 6,7"/>
+      <line x1="1" y1="4" x2="17" y2="4"/>
+    </svg>
+    Basilique Saint-Epvre
+  </a>
+
+  <!-- ════ EN-TÊTE ════════════════════════════════════════ -->
+  <span class="surtitre">Histoire · Figures marquantes</span>
+  <h1 class="titre-page">Monseigneur<br>Trouillet</h1>
+  <p class="sous-titre-page">Anecdotes &amp; récits</p>
+  <div class="trait"></div>
+
+  <!-- ════ INTRODUCTION ═══════════════════════════════════ -->
+  <p class="intro">
+    Quelques récits savoureux et éclairants sur la personnalité de
+    Monseigneur Trouillet, figure marquante de la Basilique Saint-Epvre
+    et de la vie religieuse nancéienne.
+  </p>
+
+  <!-- ════ SOMMAIRE ═══════════════════════════════════════ -->
+  <nav class="sommaire" aria-label="Sommaire">
+    <span class="sommaire-label">Sommaire</span>
+    <ol>
+      <li><span class="num">01</span><a href="#anecdote-1">L'Empereur d'Allemagne à Saint-Epvre</a></li>
+      <li><span class="num">02</span><a href="#anecdote-2">Votre bénédiction, Monseigneur !</a></li>
+      <li><span class="num">03</span><a href="#anecdote-3">En diligence</a></li>
+      <li><span class="num">04</span><a href="#anecdote-4">Au corps de garde</a></li>
+      <li><span class="num">05</span><a href="#anecdote-5">Généreux malgré lui</a></li>
+      <li><span class="num">06</span><a href="#anecdote-6">Vingt francs par tête</a></li>
+      <li><span class="num">07</span><a href="#anecdote-7">Service pour Mgr Trouillet</a></li>
+      <li><span class="num">08</span><a href="#anecdote-8">L'Héritage de Mgr Trouillet</a></li>
+      <li><span class="num">09</span><a href="#anecdote-9">Un mot de l'Empereur d'Autriche</a></li>
+      <li><span class="num">10</span><a href="#anecdote-10">Le feu à Saint-Epvre</a></li>
+    </ol>
+  </nav>
+
+  <!-- ════ ANECDOTES ══════════════════════════════════════ -->
+
+  <!-- ANECDOTE 01 -->
+  <article class="anecdote" id="anecdote-1" data-num="01">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">01</span>
+      <h2 class="anecdote-titre">L'Empereur d'Allemagne<br>à Saint-Epvre</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Au mois de mars 1871, le roi de Prusse, qui se trouvait à Nancy, témoigna le désir de visiter l'église Saint-Epvre, dont il avait entendu parler depuis longtemps, ainsi que de son prodigieux curé. Un officier d'état-major courut aussitôt à la cure afin de prévenir l'abbé Trouillet de se tenir prêt le lendemain matin à telle heure, pour faire au roi de Prusse les honneurs de son église. M. Trouillet ne répondit rien, mais lorsque le roi de Prusse et sa suite se présentèrent le lendemain à la cure, il avait négligé intentionnellement de les attendre, et s'était déjà rendu à son église.</p>
+      <p>Le roi de Prusse, suivi de plusieurs généraux et de hauts personnages, s'en vint donc seul à Saint-Epvre, où le curé priait à sa stalle habituelle. Lorsque le cortège entra à l'église, il ne leva même pas les yeux, et laissa se morfondre quelque temps les ennemis de la France. Quand ses prières furent terminées, il se leva sans affectation et se dirigea vers les visiteurs ni plus ni moins poliment que lorsqu'il s'agissait de l'un de ses paroissiens.</p>
+      <p>Ici, la légende commence. On a raconté, par exemple, que l'abbé Trouillet aurait conduit, sans en avoir l'air, le roi de Prusse devant le vitrail offert par Napoléon III et l'impératrice Eugénie et lui aurait dit :</p>
+      <blockquote>Sire, l'empereur Napoléon III est votre prisonnier et ne peut, pour cette raison, acquitter ses dettes envers mon église. Ce vitrail n'est pas payé. Or, il était de règle, autrefois, dans les combats entre loyaux chevaliers, que le vainqueur acquittât les dettes du vaincu. Sire, j'ai dit.</blockquote>
+      <p>Et la légende rapporte encore que l'empereur d'Allemagne n'aurait rien répondu, mais que quelques jours après, il aurait levé l'interdiction qui pesait à la frontière sur l'entrée en France de vitraux provenant d'Autriche et destinés à l'église Saint-Epvre. Nulle part, nous n'avons pu avoir confirmation de cette anecdote, qui nous paraît avoir été inventée à plaisir. La première partie seule est véridique. Si nous l'avons rapportée toute entière, c'est afin de prémunir le public contre bien d'autres histoires que l'on ne manquera pas de raconter sur le curé de Saint-Epvre, qui n'a cependant pas besoin de la légende pour prendre place dans l'histoire…</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 02 -->
+  <article class="anecdote" id="anecdote-2" data-num="02">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">02</span>
+      <h2 class="anecdote-titre">Votre bénédiction,<br>Monseigneur !</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Se trouvant dans le Midi, l'abbé Trouillet va trouver un évêque et lui demande à brûle-pourpoint un secours pécuniaire pour son église. L'évêque refuse, prétextant des besoins de son diocèse. La chose lui est absolument impossible.</p>
+      <blockquote>Oh ! Monseigneur, ne dites pas cela, c'est un mensonge ! — Comment cela ? fait l'évêque étonné. — Tenez, Monseigneur, voulez-vous parier vingt francs que vous pouvez me donner quelque chose sans qu'il vous en coûte beaucoup pour votre diocèse. — Oh ! volontiers, je suis certain de gagner. — Et moi aussi, Monseigneur !</blockquote>
+      <p>Là-dessus l'abbé Trouillet se jette aux pieds du prélat : <em>« Donnez-moi votre bénédiction, Monseigneur ! »</em> L'évêque rit beaucoup du subterfuge, donna les vingt francs et quelque chose en plus.</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 03 -->
+  <article class="anecdote" id="anecdote-3" data-num="03">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">03</span>
+      <h2 class="anecdote-titre">En diligence</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>— Quand je quêtais pour ma basilique, mes bons amis, nous racontait un jour Mgr Trouillet, je n'avais très souvent pas un sou sur moi. J'avais toujours confiance dans le bon Dieu, mais plus d'une fois, malgré cela, j'ai été bien embarrassé.</p>
+      <p>Un jour, tenez, j'allais à Bordeaux en diligence. J'espérais, comme cela arrivait souvent, trouver dans l'intérieur quelques âmes charitables qui paieraient ma place. Ce jour-là, il n'y avait pas âme humaine, mes bons amis. Je grimpe alors auprès du cocher et je me mets à lui parler de la pluie et du beau temps. Je lui raconte que mes parents avaient des chevaux et je lui prends des mains les rênes et le fouet que je faisais claquer comme un vrai postillon, mes amis. Je l'amadouais, je le flattais, je le chauffais, mais le moment était proche où il me faudrait bien lui déclarer que je ne pouvais lui payer ma place. Ça m'ennuyait beaucoup, mes amis.</p>
+      <p>Eh bien, quand je lui fis cet aveu, savez-vous ce que fit l'excellent homme ? Il m'offrit de me prêter de l'argent. C'était beau, mes amis, j'étais très touché. Lorsque je racontai l'histoire au cardinal Donnet, il lui paya trois fois mon voyage. Ça prouve qu'un bienfait est toujours récompensé, mes bons amis.</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 04 -->
+  <article class="anecdote" id="anecdote-4" data-num="04">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">04</span>
+      <h2 class="anecdote-titre">Au corps de garde</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Lorsque Mgr Trouillet était vicaire à Lunéville et aumônier de l'hôpital, il lui arrivait parfois de recevoir à sa table quelques invités. Son plus grand plaisir était, une fois le déjeuner fini, de conduire ses convives à l'hôpital au milieu des fiévreux et des typhoïdiques. Il fallait voir la grimace de quelques-uns, à ce dessert inattendu. Mais lui, heureux de se trouver au milieu des troupiers, allait de l'un à l'autre, les réconfortant par de bonnes paroles.</p>
+      <p>S'il assistait à un dîner, il ne manquait jamais de faire main basse sur les cigares et les cigarettes. <em>« Cela fera bien plus de plaisir à mes soldats malades qu'à vous »</em>, disait-il aux invités. Et ce gâteau-là, oh ! ce serait bien dommage de le manger : je vais l'emporter pour mes malades.</p>
+      <p>Pendant tout le cours de sa vie, il manifestait, du reste, une grande satisfaction chaque fois qu'il se trouvait avec des soldats. Lorsqu'il s'en allait quêtant à travers la France entière, il lui arrivait, les trois quarts du temps, de descendre la nuit au corps de garde afin de ne pas dépenser inutilement, disait-il, de l'argent à l'hôtel.</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 05 -->
+  <article class="anecdote" id="anecdote-5" data-num="05">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">05</span>
+      <h2 class="anecdote-titre">Généreux malgré lui</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Pressées par la faim et la misère, deux pauvrettes, portant chacune un bébé malingre et chétif sur les bras, s'en vinrent sonner à la porte du presbytère et demander l'aumône. Malheureusement, ce jour-là, il était absolument sans le sou.</p>
+      <blockquote>Mes braves femmes, allez de ma part chez mon boulanger, et dites-lui de vous donner deux miches de pain.</blockquote>
+      <p>À quelque temps de là, il rencontre dans la rue le boulanger, qui lui réclame le montant des six livres de pain.</p>
+      <blockquote>Comment ! ce n'est pas possible, mon bon ami, vous venez me réclamer cette bagatelle ? Je vous ai dit de donner du pain à de pauvres gens, c'est vrai, mais je ne vous ai pas dit de le vendre ! C'est une bonne œuvre que vous avez faite là, mon bon ami, Dieu vous en tiendra compte ! Au revoir, mon bon ami.</blockquote>
+      <p>Devant la mine si drôle et si réjouie de Mgr Trouillet, le boulanger ne put s'empêcher de rire, et l'affaire en resta là.</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 06 -->
+  <article class="anecdote" id="anecdote-6" data-num="06">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">06</span>
+      <h2 class="anecdote-titre">Vingt francs par tête</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Plus d'une fois, Mgr Trouillet connut les angoisses du débiteur et fit connaissance avec les huissiers. Saint-Epvre, entre autres, lui valut plus d'une fois leurs visites. Un jour qu'il était talonné par des fournisseurs et des entrepreneurs qui lui avaient donné rendez-vous à la maison de cure pour toucher leurs factures, Mgr Trouillet se grattait désespérément la tête.</p>
+      <p>Il se rappela qu'il était invité à dîner le soir même chez M. de M. Il se rend donc chez lui bien avant l'heure indiquée, et amène la conversation sur le dîner qui va avoir lieu.</p>
+      <blockquote>Vous avez sans doute beaucoup de monde à dîner, nous serons nombreux à table ? — Une vingtaine de personnes, monsieur le curé. — Vingt personnes, mon bon ami, oh ! ça va vous coûter bien cher ! Combien par personne, à peu près ? — Une vingtaine de francs environ. — Eh bien ! écoutez, mon bon ami. Je n'ai pas faim aujourd'hui, ôtez mon couvert et donnez-moi ces vingt francs-là. Ça me fera bien plus de plaisir !</blockquote>
+      <p>On lui donna aussitôt les vingt francs, mais on le garda à dîner. Au dessert, il se vengea en faisant une nouvelle quête. Le lendemain, entrepreneurs et fournisseurs étaient payés.</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 07 -->
+  <article class="anecdote" id="anecdote-7" data-num="07">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">07</span>
+      <h2 class="anecdote-titre">Service pour<br>Mgr Trouillet</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>On lit dans l'Espérance : Jeudi, à 8 heures, un service solennel a été célébré à Nancy, dans la chapelle des Frères, rue Callot, pour le repos de l'âme de Mgr Trouillet, généreux bienfaiteur des Écoles chrétiennes de la ville.</p>
+      <p>La messe a été chantée par M. l'abbé Vulmont, directeur de la Maison des Apprentis. L'orgue était tenu par M. Kling, organiste de Saint-Epvre. Outre la communauté des Frères, présente au grand complet, un certain nombre des principaux amis de la Maison se sont fait un devoir d'assister à la cérémonie.</p>
+      <p>On sait que l'École supérieure des Frères est une des fondations importantes de Mgr Trouillet. La décoration de leur chapelle est encore l'une des œuvres dues à sa munificence.</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 08 -->
+  <article class="anecdote" id="anecdote-8" data-num="08">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">08</span>
+      <h2 class="anecdote-titre">L'Héritage de<br>Mgr Trouillet</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Au moment où la Grande Armée marchait sur la Russie, la mère de Mgr Trouillet, une brave et courageuse femme, fit le trajet à pied de Lixheim à Berlin, remplaçant un de ses frères, réquisitionné comme convoyeur et empêché par la maladie de remplir cette tâche. C'est la même femme qui, le jour de ses noces, n'ayant pas un sou vaillant et épousant un homme aussi pauvre qu'elle, sacrifia un de ses jupons noirs pour en confectionner à son fiancé le pantalon de cérémonie.</p>
+      <p>Il faut croire que le ciel bénit l'union de ces deux personnes, car, lorsque le père vint à mourir, il laissa à son fils une petite fortune. Le premier soin de Mgr Trouillet, qui n'était qu'un gaspilleur lorsqu'il s'agissait de servir Dieu, fut de l'employer à acheter le terrain sur lequel il construisit l'église Saint-Maur de Lunéville. Les quelques cent francs y passèrent en entier. Lorsqu'il eut tout dépensé, il se fit mendiant…</p>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 09 -->
+  <article class="anecdote" id="anecdote-9" data-num="09">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">09</span>
+      <h2 class="anecdote-titre">Un mot de l'Empereur<br>d'Autriche</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Voici une anecdote que Mgr Trouillet aimait à raconter :</p>
+      <blockquote>Un jour — il y a longtemps de cela — me trouvant au palais impérial, à Vienne, je cherchais à voir l'empereur d'Autriche pour lui demander de l'argent. Je n'allais jamais le voir que pour cela. Du reste, quand il me voyait, il ne me demandait jamais ce qui lui procurait l'honneur de ma visite. Sa Majesté ne le savait que trop.</blockquote>
+      <p>Ce jour-là, il causait avec son médecin particulier dans son cabinet et je trouvai qu'il causait bien longtemps. Je n'ai jamais aimé faire antichambre, aussi, j'allais, je venais, je toussais, bref, je m'impatientais, lorsque tout à coup, la porte s'ouvre, et l'empereur, m'apercevant :</p>
+      <blockquote>Ah ! je ne m'étonne plus, c'est M. Trouillet qui fait tout ce tapage. Tenez, docteur, puisque vous êtes là, auscultez-le donc un peu : il doit avoir la fièvre pour se démener ainsi.</blockquote>
+      <p>Ne sachant où l'empereur voulait en venir, je me laisse faire, et je tends la main. Le docteur me tâte le pouls, me fait tousser, m'ausculte dans le dos et dans la poitrine. Cela m'ennuyait beaucoup, mes amis, car je venais de faire un long voyage et mon linge n'était pas frais. Quand le médecin eut fini :</p>
+      <blockquote>Sire, dit-il, M. le curé est taillé pour vivre vingt ans encore. — Sapristi, fait l'Empereur, si longtemps que ça ! je suis ruiné !</blockquote>
+    </div>
+  </article>
+
+  <!-- ANECDOTE 10 -->
+  <article class="anecdote" id="anecdote-10" data-num="10">
+    <div class="anecdote-entete">
+      <span class="anecdote-num">10</span>
+      <h2 class="anecdote-titre">Le feu à<br>Saint-Epvre</h2>
+    </div>
+    <div class="anecdote-texte">
+      <p>Il y a de cela huit ou dix ans, le feu se déclara un beau matin vers les 4 heures à la toiture de Saint-Epvre où des ouvriers avaient travaillé la veille à souder la couverture métallique. On ne savait comment annoncer la fatale nouvelle à Mgr Trouillet. On se décida enfin à aller le trouver à la cure où il était déjà debout. On s'attendait à le voir crier, gesticuler.</p>
+      <p>Pas du tout. Calme et digne, il alla se prosterner devant l'autel et se mit à invoquer Dieu. Quelques instants après, l'incendie était éteint et Mgr Trouillet se relevait sans avoir donné le moindre signe de crainte ou de terreur pour sa basilique.</p>
+      <p>Ce prêtre avait la foi innée : c'est elle qui lui fit accomplir des miracles !</p>
+    </div>
+  </article>
+
+  <!-- ════ PIED DE PAGE ═══════════════════════════════════ -->
+  <div class="pied">
+    <span class="pied-nom">Saint-Epvre</span>
+    <span class="pied-lieu">Nancy · Lorraine · France</span>
+  </div>
+
+</div>
+
+<script>
+  /* Animation des anecdotes au scroll */
+  const blocs = document.querySelectorAll('.anecdote');
+  const observateur = new IntersectionObserver(function(entrees) {
+    entrees.forEach(function(entree) {
+      if (entree.isIntersecting) {
+        entree.target.classList.add('visible');
+        observateur.unobserve(entree.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  blocs.forEach(function(bloc) {
+    observateur.observe(bloc);
+  });
+</script>
+
+<script defer src="../../assets/js/nav.js"></script>
+</body>
+</html>

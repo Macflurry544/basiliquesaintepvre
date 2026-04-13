@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presse de l'époque — Basilique Saint-Epvre de Nancy</title>
+  <!-- SEO -->
+  <meta name="description" content="Revue de presse ancienne sur la construction et la vie de la Basilique Saint-Epvre à Nancy. Archives journalistiques du XIXe et XXe siècle.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#BF4646">
+  <link rel="canonical" href="https://macflurry544.github.io/presse/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://macflurry544.github.io/presse/">
+  <meta property="og:title"       content="Presse de l'époque — Basilique Saint-Epvre de Nancy">
+  <meta property="og:description" content="Archives de presse du XIXe et XXe siècle sur la construction et la vie de la Basilique Saint-Epvre à Nancy.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Presse de l'époque — Basilique Saint-Epvre">
+  <meta name="twitter:description" content="Archives de presse du XIXe et XXe siècle sur la Basilique Saint-Epvre à Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #7EACB5;
+      --cream-2:   #FFF4EA;
+      --sage:      #EDDCC6;
+      --olive:     #BF4646;
+      --olive-rgb: 65, 67, 27;
+      --font-titre: 'Young Serif', Georgia, serif;
+      --font-texte: 'Bitter', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--olive);
+      font-family: var(--font-texte);
+      font-size: 16px;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 7rem 2rem 8rem;
+    }
+
+    /* ── RETOUR ─────────────────────────── */
+    .retour {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.1s;
+      transition: opacity 0.2s;
+    }
+    .retour:hover { opacity: 0.85 !important; }
+    .retour svg { width: 18px; height: 8px; overflow: visible; }
+    .retour svg line, .retour svg polyline { stroke: var(--olive); stroke-width: 1.2; fill: none; }
+
+    /* ── EN-TÊTE ────────────────────────── */
+    .surtitre {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.45);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.25s;
+    }
+
+    .titre-page {
+      font-family: var(--font-titre);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.06;
+      color: var(--olive);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.4s;
+    }
+
+    .sous-titre-page {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(var(--olive-rgb), 0.55);
+      margin-top: 1rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.55s;
+    }
+
+    .trait {
+      width: 48px;
+      height: 1px;
+      background: var(--sage);
+      margin: 2.5rem 0 3.5rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.65s;
+    }
+
+    /* ── INTRO ──────────────────────────── */
+    .intro {
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(var(--olive-rgb), 0.7);
+      font-weight: 400;
+      font-style: italic;
+      border-left: 2px solid var(--sage);
+      padding-left: 1.5rem;
+      max-width: 640px;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.75s;
+    }
+
+    /* ── SOMMAIRE ───────────────────────── */
+    .sommaire {
+      background-color: var(--cream-2);
+      padding: 2.5rem 3rem;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.85s;
+    }
+
+    .sommaire-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.45);
+      margin-bottom: 1.5rem;
+    }
+
+    .sommaire ol { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+
+    .sommaire li { display: flex; align-items: baseline; gap: 0.8rem; }
+
+    .sommaire .num {
+      font-family: var(--font-titre);
+      font-size: 0.75rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      min-width: 1.8rem;
+    }
+
+    .sommaire a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--olive);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      line-height: 1.6;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .sommaire a:hover { border-color: rgba(var(--olive-rgb), 0.35); }
+
+    /* ── ARTICLES ───────────────────────── */
+    .article {
+      padding: 3.5rem 3rem;
+      margin-bottom: 2px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .article.visible { opacity: 1; transform: translateY(0); }
+
+    .article:nth-child(odd)  { background-color: var(--cream-2); }
+    .article:nth-child(even) { background-color: var(--cream); border: 1px solid rgba(var(--olive-rgb), 0.08); }
+
+    .article::after {
+      content: attr(data-num);
+      font-family: var(--font-titre);
+      font-size: 8rem;
+      color: rgba(var(--olive-rgb), 0.04);
+      position: absolute;
+      right: 2rem;
+      bottom: -1rem;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .article-entete {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .article-num {
+      font-family: var(--font-titre);
+      font-size: 0.75rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      padding-top: 0.55rem;
+      letter-spacing: 0.05em;
+    }
+
+    .article-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: var(--olive);
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-source {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    .article-texte {
+      font-size: 16px;
+      line-height: 1.95;
+      color: rgba(var(--olive-rgb), 0.72);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-texte p + p { margin-top: 1.2rem; }
+
+    .article-texte blockquote {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--sage);
+      font-style: italic;
+      color: rgba(var(--olive-rgb), 0.6);
+      line-height: 1.8;
+    }
+
+    .article-note {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: rgba(var(--olive-rgb), 0.4);
+      border-top: 1px solid rgba(var(--olive-rgb), 0.08);
+      padding-top: 1rem;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── POÈME ──────────────────────────── */
+    .poeme {
+      font-family: var(--font-titre);
+      font-size: 1rem;
+      line-height: 2;
+      color: rgba(var(--olive-rgb), 0.72);
+      font-style: italic;
+      padding-left: 2rem;
+      border-left: 2px solid var(--sage);
+      margin: 1rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poeme-auteur {
+      display: block;
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 1rem;
+    }
+
+    /* ── PIED ───────────────────────────── */
+    .pied {
+      margin-top: 7rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 1s;
+    }
+
+    .pied-nom {
+      font-family: var(--font-titre);
+      font-size: 1.1rem;
+      color: rgba(var(--olive-rgb), 0.15);
+      letter-spacing: 0.06em;
+      user-select: none;
+    }
+
+    .pied-lieu {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.28);
+      font-weight: 500;
+    }
+
+    /* ── ANIMATION ──────────────────────── */
+    @keyframes apparition {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ─────────────────────── */
+    @media (max-width: 600px) {
+      .page          { padding: 4rem 1.5rem 6rem; }
+      .article       { padding: 2.5rem 1.5rem; }
+      .article::after { display: none; }
+      .sommaire      { padding: 2rem 1.5rem; }
+      .pied          { flex-direction: column; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- RETOUR -->
+  <a href="https://www.basiliquesaintepvre.com" class="retour">
+    <svg viewBox="0 0 18 8" aria-hidden="true">
+      <polyline points="6,1 1,4 6,7"/>
+      <line x1="1" y1="4" x2="17" y2="4"/>
+    </svg>
+    Basilique Saint-Epvre
+  </a>
+
+  <!-- EN-TÊTE -->
+  <span class="surtitre">Archives · XIXe – XXe siècle</span>
+  <h1 class="titre-page">Presse<br>de l'époque</h1>
+  <p class="sous-titre-page">Extraits de journaux lorrains relatifs à la Basilique Saint-Epvre</p>
+  <div class="trait"></div>
+
+  <!-- INTRO -->
+  <p class="intro">
+    Ces pages rassemblent une sélection d'articles de presse, d'anecdotes et de récits méconnus autour de l'histoire de la basilique. Issus principalement du <em>Journal de la Meurthe</em>, du <em>Patriote</em> et d'autres journaux lorrains de la seconde moitié du XIXe siècle, ils témoignent de la vie de la basilique et de ses figures marquantes.
+  </p>
+
+  <!-- SOMMAIRE -->
+  <nav class="sommaire" aria-label="Sommaire">
+    <span class="sommaire-label">Sommaire</span>
+    <ol>
+      <li><span class="num">01</span><a data-cible="article-1">Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</a></li>
+      <li><span class="num">02</span><a data-cible="article-2">Les derniers jours de Mgr Trouillet</a></li>
+      <li><span class="num">03</span><a data-cible="article-3">Mort de Mgr Trouillet</a></li>
+      <li><span class="num">04</span><a data-cible="article-4">Les locataires de la tour de Saint-Epvre</a></li>
+      <li><span class="num">05</span><a data-cible="article-5">Installation du curé de Saint-Epvre</a></li>
+      <li><span class="num">06</span><a data-cible="article-6">Un pieux coup de pied</a></li>
+      <li><span class="num">07</span><a data-cible="article-7">Installation du nouveau curé de Saint-Epvre</a></li>
+      <li><span class="num">08</span><a data-cible="article-8">Vente mobilière de Mgr Trouillet</a></li>
+      <li><span class="num">09</span><a data-cible="article-9">Anniversaire de Mgr Trouillet</a></li>
+      <li><span class="num">10</span><a data-cible="article-10">Sonnets lorrains — Saint-Epvre</a></li>
+      <li><span class="num">11</span><a data-cible="article-11">Monographie de Saint-Epvre</a></li>
+      <li><span class="num">12</span><a data-cible="article-12">Statue de Mgr Trouillet</a></li>
+      <li><span class="num">13</span><a data-cible="article-13">La messe du 21 janvier à Nancy</a></li>
+    </ol>
+  </nav>
+
+
+  <!-- ═══ ARTICLE 01 ═══════════════════════════════════════ -->
+  <article class="article" id="article-1" data-num="01">
+    <div class="article-entete">
+      <span class="article-num">01</span>
+      <div>
+        <h2 class="article-titre">Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</h2>
+        <span class="article-source">Le Patriote · 12 et 18 février 1886</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Hier a eu lieu, à Saint-Epvre, le service religieux annoncé pour le repos de l'âme de Mme la comtesse de Chambord. Mgr Trouillet officiait lui-même. Tous les piliers étaient voilés de noir. Un catafalque entouré de cierges et orné de magnifiques couronnes blanches, offertes par les dames de Nancy, se dressait au-devant de l'autel. Une foule nombreuse remplissait la nef.</p>
+      <p>Les places d'honneur étaient occupées par les principaux membres de l'ancien comité royaliste. Aux personnes qui composaient l'assistance et qui appartenaient à toutes les nuances de l'opinion conservatrice s'étaient jointes un grand nombre de dames, mues par un pieux souvenir envers la mémoire de Mme la comtesse de Chambord.</p>
+      <p>Pendant la messe, chantée par la maîtrise, M. Hellé, maître de chapelle, a fait entendre le <em>Pie Jesu</em> de Stradella. À onze heures, le service se terminait, laissant dans le souvenir de tous l'impression d'une manifestation touchante et solennelle par sa simplicité, par son recueillement et par la pensée pieuse qui l'inspirait.</p>
+      <p class="article-note">* Service commémoratif.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 02 ═══════════════════════════════════════ -->
+  <article class="article" id="article-2" data-num="02">
+    <div class="article-entete">
+      <span class="article-num">02</span>
+      <div>
+        <h2 class="article-titre">Les derniers jours de Mgr Trouillet</h2>
+        <span class="article-source">La Meurthe · Mars 1887</span>
+      </div>
+    </div>
+    <div class="article-texte">
+
+      <p><strong>La santé de M. Trouillet</strong></p>
+      <p>Nous n'avions pas cru devoir, par égard pour la santé même de Mgr Trouillet, mentionner hier une indisposition dont l'éminent curé souffre depuis samedi et qui le contraint à garder le lit. Mgr Trouillet avait ressenti les premières atteintes de cette indisposition samedi soir. Une crise plus vive l'avait obligé pendant le sermon de dimanche matin à quitter l'église. Son énergie aidant, il avait pu toutefois revenir presque immédiatement du presbytère à Saint-Epvre pour assister à la dernière partie de la messe et sa présence avait heureusement rassuré ses paroissiens.</p>
+      <p>Une note parue hier matin dans deux journaux de Nancy a occasionné pendant toute la journée d'hier de nombreuses démarches de Nancéiens venus de tous les points de la ville pour témoigner de leur sollicitude au malade. La consultation qui a eu lieu hier, à cinq heures, n'a point révélé d'aggravation sensible dans l'état de Mgr Trouillet, qui a passé une nuit calme et dont la tranquillité d'esprit est entière. Il est permis d'augurer qu'un repos absolu de quelques jours viendra rendre au malade ses forces précieuses.</p>
+      <p class="article-note">La Meurthe, 16 mars 1887.</p>
+
+      <p style="margin-top:2rem;"><strong>Mercredi à jeudi</strong></p>
+      <p>Mgr Trouillet a bien reposé pendant la nuit de mercredi à jeudi. Malheureusement, ce profond sommeil est une preuve d'un très grand état de faiblesse. Mercredi soir, trois médecins se sont réunis en consultation au presbytère de Saint-Epvre et leur avis est que la situation du vénérable curé, âgé aujourd'hui de 78 ans, est désespérée.</p>
+      <p>À la suite de cette consultation, quelques amis intimes de Mgr Trouillet lui ont laissé entrevoir la gravité de son état. À ce moment, le vaillant curé parlait de se lever le lendemain matin pour aller dire sa messe. C'est avec la plus grande résignation qu'il a appris cette nouvelle, déclarant qu'il était prêt à paraître devant Dieu. Quelques instants après, son confesseur habituel lui administrait les derniers sacrements.</p>
+      <p>Jusqu'à une heure avancée de la nuit, une quantité innombrable de visiteurs se sont succédé au presbytère. Toutes les classes de la société se trouvaient réunies à la porte et dans la petite cour du presbytère.</p>
+
+      <p style="margin-top:2rem;"><strong>Jeudi à vendredi</strong></p>
+      <p>La nuit de jeudi à vendredi a été bonne. Les médecins ont déclaré jeudi soir que les poumons étaient dégagés, qu'il y avait un mieux relatif et que, si ce mieux persiste ce matin, le rétablissement du malade est fort possible. Quant à Mgr Trouillet, il continue à s'occuper, au grand désespoir de ceux qui l'entourent, de sa basilique et de ses messes.</p>
+
+      <p style="margin-top:2rem;"><strong>Vendredi à samedi</strong></p>
+      <p>La nuit de vendredi à samedi a été mauvaise. La paralysie est stationnaire et les poumons ont une tendance à se rengorger. Un hoquet convulsif n'a pas quitté le malade de toute la nuit. Mgr Trouillet conserve toute sa lucidité d'esprit ; toutefois, sa parole est moins nette et, à certains moments, on a peine à le comprendre. À plusieurs reprises, le vénérable curé a déclaré de la façon la plus résignée qu'il sentait bien qu'il allait mourir.</p>
+
+      <p style="margin-top:2rem;"><strong>Amélioration</strong></p>
+      <p>Une amélioration très sensible s'est produite dans la santé de Mgr Trouillet. Les trois médecins qui procèdent à l'examen des symptômes ont été unanimes à constater de très heureux progrès, et ont même permis que, dans la journée, on transporte le malade sur une chaise longue. Son visage a repris son aspect normal. La fièvre a cessé. Le hoquet nerveux a entièrement disparu. Le malade n'a d'autre préoccupation que de reprendre promptement toutes ses fonctions paroissiales.</p>
+      <p>Nous avons nous-mêmes assisté au plaisir que l'avis des médecins a causé au frère du malade, M. Jacob Trouillet, un vénérable vieillard de 80 ans, accouru de Lunéville en apprenant la crise que traversait son frère.</p>
+
+      <p style="margin-top:2rem;"><strong>Mardi 15, 3 heures de l'après-midi</strong></p>
+      <p>Le mieux n'a pas persisté. Le hoquet a reparu et certaines idées fixes, notamment celle de se lever, le tourmentent. La nuit de mardi à mercredi a été très agitée. La parole devient tout à fait difficile. Des sangsues ont été posées hier à la nuque du malade, qui conserve en général toute sa lucidité, mais qui délire fréquemment.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 03 ═══════════════════════════════════════ -->
+  <article class="article" id="article-3" data-num="03">
+    <div class="article-entete">
+      <span class="article-num">03</span>
+      <div>
+        <h2 class="article-titre">Mort de Mgr Trouillet</h2>
+        <span class="article-source">La Meurthe · 12 avril 1887</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Nous recevons à l'instant une triste nouvelle que nos bulletins quotidiens sur la santé de Mgr Trouillet laissaient malheureusement pressentir.</p>
+      <p>Le digne curé de Saint-Epvre s'est éteint vendredi à 4 h 1/2 du matin, après une agonie de dix heures, confiant en la bonté du Dieu qu'il a servi si dignement, et dont le saint Viatique avait fortifié son cœur contre les angoisses de la dernière heure.</p>
+      <p>L'émotion profonde causée par sa maladie, les marques de sollicitude unanime dont son chevet a été assiégé dès que l'on a pu pressentir la fatale issue de cette crise, témoignent des sentiments de vénération qu'il inspirait à tous ceux qui l'ont connu et aimé. La liste de ceux qu'il a obligés est si grande ! Ne s'étend-elle point à tous les rangs de la société, depuis les plus humbles conditions de la population lorraine jusqu'aux plus hautes dignités de l'épiscopat français, de la prélature romaine, des cours européennes ?</p>
+      <blockquote>Et cependant, quelle existence plus modeste, plus régulière que celle de ce prêtre, de ce simple curé de paroisse, mort absolument pauvre, après avoir administré, pour la seule gloire de Dieu, des millions dont lui seul a su le nombre !</blockquote>
+      <p>Sa vie se résume en trois lignes. Le bien qu'il a fait ne pourrait se dire en plusieurs volumes.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 04 ═══════════════════════════════════════ -->
+  <article class="article" id="article-4" data-num="04">
+    <div class="article-entete">
+      <span class="article-num">04</span>
+      <div>
+        <h2 class="article-titre">Les locataires de la tour de Saint-Epvre</h2>
+        <span class="article-source">La Meurthe · 1887</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Sous ce titre, je veux désigner deux espèces d'oiseaux qui ont fait élection de domicile dans la tour et dans la basilique de Saint-Epvre. Depuis quelques années, tour et clochetons étaient habités par des carnivores que l'on appelle vulgairement chasserot, mais que le naturaliste désigne sous le nom d'épervier. Jusqu'à l'année dernière, ils avaient vécu tranquilles, sans voisins de même espèce, quand est venu un couple de corneilles. Les éperviers avaient le haut de la tour et les corneilles les clochetons.</p>
+      <p>Cette première année s'était bien passée, à part quelques disputes. Mais cette année ce n'est pas la même chose ; les locataires sont plus nombreux. Le couple de corneilles a eu deux pontes de six corneilles chacune : mâle, femelle et douze petits font quatorze corneilles. Tous se font entendre, par leurs cris agaçants, tous les jours à cinq heures du matin.</p>
+      <p>Il y a quelques jours, il fallait les voir se disputant le terrain. C'était un spectacle très amusant. Aujourd'hui, le calme renaît. On voit l'épervier occuper la même rosace que la corneille occupait l'année dernière, et la corneille faire le nid de l'épervier. Cela montre qu'ils sont plus sensés que bien des gens de notre siècle…</p>
+      <p>Depuis quelques jours, chaque couple travaille à faire son nid. Il faut voir avec quelle ardeur ces oiseaux vont chercher les matériaux pour le tresser. Il y a deux jours, ils rapportaient des branches assez grosses, longues de 30 à 40 centimètres. J'en ai vu casser des branches de sapin ; j'en ai vu aussi sur les arbres de la place Lafayette et à la Pépinière.</p>
+      <p>C'est vraiment un beau coup d'œil. J'engage les personnes qui désirent en jouir à se mettre sur la place Carrière, sur la place des Dames ou sur la place Saint-Epvre, et à bâiller… aux corneilles !</p>
+      <p class="article-note">Un Amateur.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 05 ═══════════════════════════════════════ -->
+  <article class="article" id="article-5" data-num="05">
+    <div class="article-entete">
+      <span class="article-num">05</span>
+      <div>
+        <h2 class="article-titre">Installation du curé de Saint-Epvre</h2>
+        <span class="article-source">1887</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>C'est lundi dernier, fête de l'Assomption, que le successeur de Mgr Trouillet, à Saint-Epvre, a été solennellement installé par M. le vicaire général Jambois, au milieu d'un grand concours de clergé et de notabilités nancéiennes.</p>
+      <p>Dans un discours fort élevé et très patriotique, le chanoine Briot a rappelé la mémoire de son inoubliable prédécesseur, de cet homme extraordinaire qui a bien aimé sa patrie, et qui est entré vivant dans la légende du pays lorrain ; il a évoqué les souvenirs glorieux de l'ancien et du nouveau Saint-Epvre, puis les jours d'épreuve de la France qui n'a pas, a-t-il ajouté, de province plus chère que la Lorraine, puisque c'est d'abord la terre des vaillants et qu'ensuite elle porte au flanc une blessure toujours saignante.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 06 ═══════════════════════════════════════ -->
+  <article class="article" id="article-6" data-num="06">
+    <div class="article-entete">
+      <span class="article-num">06</span>
+      <div>
+        <h2 class="article-titre">Un pieux coup de pied</h2>
+      </div>
+    </div>
+    <div class="article-texte">
+      <blockquote>— Encore un autel neuf ! Où prends-tu l'argent ?<br>
+      — Je ne le prends pas, mon cher. Je le reçois.<br>
+      — Il faut convenir que tu as dans ta paroisse des âmes bien généreuses et qui ont le porte-monnaie facile.<br>
+      — Ni généreuses, ni faciles.<br>
+      — Alors comment fais-tu ?<br>
+      — C'est un peu mon secret… Ma fortune vient d'un coup de pied.</blockquote>
+
+      <p>J'ai parmi mes paroissiennes une grande dame très pieuse, qui est en même temps très vive. Elle a la main leste et le pied comme la main. On ne compte plus les domestiques mâles qu'elle a frappés dans un moment de colère.</p>
+      <p>L'été dernier, je reçois d'elle un petit billet parfumé : <em>« M. le curé, ma chapelle est terminée. Voulez-vous bien venir l'inaugurer ? Votre chambre est prête. »</em> Me voilà installé dans une belle chambre bleue dont la porte s'ouvre sur un long corridor.</p>
+      <p>Vers le soir, pris du besoin de me déraidir les jambes, j'avise ce corridor comme promenoir. Il faisait nuit. Me voilà donc arpentant le parquet, en déroulant tranquillement les grains de mon chapelet. <em>Ave Maria, gratia plena.</em> J'en étais à <em>plena</em> lorsque je ressentis soudain une secousse formidable. Je me crus enlevé de terre au bout d'un pied nerveux qui m'entrait dans les parties grasses dont notre divin Créateur a pourvu la partie postérieure de nos personnes. Je me retourne, furieux. J'aperçois, la jambe en l'air, dans l'attitude de la stupéfaction la plus profonde… mon hôtesse !</p>
+      <blockquote>— Comment, M. le curé, c'est vous ? Il fallait donc le dire. Je ne vous savais pas là. Il fait si sombre. C'est cet imbécile de Jean qui est cause de tout.<br>
+      — Pardon, madame, ce n'est pas le pied de Jean qui a laissé cette empreinte à ma soutane.<br>
+      — Je compte sur votre discrétion.<br>
+      — Et moi sur votre bienfaisance pour mon église.</blockquote>
+
+      <p>Elle me quitta en me donnant la main. Depuis, elle m'a donné bien autre chose. C'est à elle que je dois la restauration de mon église. Cependant, elle commence à se faire tirer l'oreille. Aussi, dernièrement, quand je lui demandais un portail neuf, elle me dit en souriant : <em>« Je vois ce que c'est, l'abbé. Vous voudriez bien encore un coup de pied. »</em></p>
+      <p class="article-note">J. K.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 07 ═══════════════════════════════════════ -->
+  <article class="article" id="article-7" data-num="07">
+    <div class="article-entete">
+      <span class="article-num">07</span>
+      <div>
+        <h2 class="article-titre">Installation du nouveau curé de Saint-Epvre</h2>
+        <span class="article-source">La Meurthe · 21 août 1887</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Nous avons parlé, le lendemain même, de l'installation de M. l'abbé Briot, curé de Saint-Epvre. Voici en quels termes la <em>Semaine religieuse</em> en fait mention : C'est lundi dernier, en la fête de l'Assomption de la Sainte Vierge, qu'a eu lieu cette imposante cérémonie. C'est M. Jambois, vicaire général, qui a présenté le nouveau curé aux fidèles de Saint-Epvre.</p>
+      <p>Après avoir accompli les rites sacrés, M. le vicaire général, du haut de la chaire, a rendu hommage à l'ancien pasteur, Mgr Trouillet, puis a fait l'histoire de la nomination de M. l'abbé Briot, des difficultés qu'elle a suscitées et des raisons pour lesquelles Monseigneur a cru devoir la maintenir. Il a ensuite tracé le portrait du bon curé que M. Briot s'efforcera de réaliser.</p>
+      <p>Après l'Évangile, M. Briot est monté en chaire. Il a rappelé, avec une grande émotion, les œuvres prodigieuses de Mgr Trouillet ; il a remercié MM. les vicaires de leur zèle, puis il a montré comment il comprenait le ministère de curé dans une grande paroisse et dans les temps actuels. En terminant, dans une touchante péroraison, le nouveau curé s'est consacré avec ses paroissiens au Cœur de Jésus et à la Très Sainte Vierge. On nous rapporte que l'impression produite par cet éloquent discours a été très bonne.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 08 ═══════════════════════════════════════ -->
+  <article class="article" id="article-8" data-num="08">
+    <div class="article-entete">
+      <span class="article-num">08</span>
+      <div>
+        <h2 class="article-titre">Vente mobilière de Mgr Trouillet</h2>
+        <span class="article-source">L'Espérance · 1887</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>La vente des objets mobiliers provenant de la succession de Mgr Trouillet s'est terminée vendredi par un produit de plus de onze mille francs. Le mobilier proprement dit n'entre dans cette somme que pour une très faible part, car il était de la dernière simplicité. Ce qui a fait de l'argent, ce sont les dons offerts au vénérable curé, notamment à l'occasion de ses noces d'or, et sa cave alimentée par les dons de la reconnaissance.</p>
+      <p>Des amis se sont disputé à titre de souvenirs les quelques bibelots du défunt. Un petit crucifix de bois sans valeur artistique est monté jusqu'à 80 francs. Un tableautin de saint Joseph brodé en soie s'est vendu 61 francs. Un encrier en argent, un crucifix en bronze argenté, une tête de Christ de Barbedienne, une vierge en ivoire et un tableau ont été achetés séparément par une même personne pour le prix total de 914 francs. La canne a été payée 45 francs, le grand bréviaire 42 francs.</p>
+      <p>Le fauteuil habituel du premier maçon de la chrétienté, un bien pauvre meuble, a atteint le prix de 73 francs. Les Trappistes, ces enfants gâtés de Mgr Trouillet, prévenus trop tard de la vente, ont fait racheter le lit de leur bienfaiteur.</p>
+      <p>Enfin, un Israélite a acheté tous les exemplaires restant de la relation des Noces d'or du bon curé, environ 1 500, et il les a écoulés ce matin en un clin d'œil, sur la place du Marché. Le peuple lorrain conserve pieusement le souvenir de cette grande mémoire.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 09 ═══════════════════════════════════════ -->
+  <article class="article" id="article-9" data-num="09">
+    <div class="article-entete">
+      <span class="article-num">09</span>
+      <div>
+        <h2 class="article-titre">Anniversaire de Mgr Trouillet</h2>
+        <span class="article-source">Journal de La Meurthe · 22 mai 1888</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Lundi 20 mars, un service anniversaire pour le repos de l'âme de Mgr Joseph Trouillet a été célébré solennellement à Saint-Epvre. Le souvenir du prélat défunt est trop fortement ancré dans la mémoire de ses paroissiens pour que la date du 18 mars, jour de sa mort, n'éveille pas dans le clergé lorrain de profonds regrets.</p>
+      <p>Un catafalque magnifique et revêtu de décorations pieuses se dressait au milieu de la nef. Le tombeau de Mgr Trouillet avait été également orné pour cette solennité. Le clergé diocésain était représenté par M. Voinot, vicaire général, par M. l'abbé Krick, neveu de Mgr Trouillet, par MM. les curés de Nancy et des doyennés du diocèse. M. le curé Briot a dit la messe de Requiem, chantée par les enfants des Frères. Les assistants ont, après l'absoute, défilé devant le tombeau pour donner l'eau bénite à la dépouille mortelle du vénéré prélat.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 10 ═══════════════════════════════════════ -->
+  <article class="article" id="article-10" data-num="10">
+    <div class="article-entete">
+      <span class="article-num">10</span>
+      <div>
+        <h2 class="article-titre">Sonnets lorrains — Saint-Epvre</h2>
+      </div>
+    </div>
+    <div class="article-texte">
+      <div class="poeme">
+        Hors la cathédrale gothique,<br>
+        D'ordinaire, dans la cité,<br>
+        Tout est neuf, ou du moins gratté ;<br>
+        Tout est blanc, sinon son portique.<br>
+        <br>
+        Au pied de la tour fantastique<br>
+        De plus souvent on a planté,<br>
+        Des hôtels sans diversité,<br>
+        D'un alignement symétrique.<br>
+        <br>
+        Mais ici, près du duc René,<br>
+        Au cœur d'un quartier suranné<br>
+        Resplendit l'église nouvelle.<br>
+        <br>
+        Avec leurs grands murs tout fêlés<br>
+        Les maisons gardent autour d'elle<br>
+        L'aspect des siècles écoulés.
+        <span class="poeme-auteur">Léon Barat</span>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 11 ═══════════════════════════════════════ -->
+  <article class="article" id="article-11" data-num="11">
+    <div class="article-entete">
+      <span class="article-num">11</span>
+      <div>
+        <h2 class="article-titre">Monographie de Saint-Epvre</h2>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Nous apprenons que le Père Eugène, religieux trappiste de l'abbaye de Notre-Dame des Neiges, a terminé l'importante monographie de la Basilique Saint-Epvre de Nancy. Cet ouvrage de grand luxe avait été demandé au savant religieux par Mgr Trouillet, qui s'était engagé à en payer les frais de publication, et versa à ce sujet 30 000 francs.</p>
+      <p>Le Père Eugène fut pendant plus d'une année le commensal du curé de Saint-Epvre, et durant ce temps recueillit sur place tous les matériaux et documents pour son œuvre considérable. Le manuscrit est aujourd'hui terminé ; reste la grosse question de publication. Un tel ouvrage, publié avec de splendides phototypies et des chromolithographies nombreuses, n'aura guère accès que dans les bibliothèques publiques et sur les rayons des amateurs lorrains.</p>
+      <p>La monographie de la Basilique Saint-Epvre aura le même format que l'ouvrage de M. Auguin sur la Cathédrale de Nancy, et sera illustrée de nombreuses vignettes. Un tel ouvrage fera grand honneur à notre pays ; reste à trouver, pour en hâter la publication, les 300 souscripteurs nécessaires.</p>
+      <p class="article-note">E. B.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 12 ═══════════════════════════════════════ -->
+  <article class="article" id="article-12" data-num="12">
+    <div class="article-entete">
+      <span class="article-num">12</span>
+      <div>
+        <h2 class="article-titre">Statue de Mgr Trouillet</h2>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Nous apprenons que la statue de marbre blanc de Mgr Trouillet, le regretté curé de Saint-Epvre, est en cours d'exécution à l'école des Beaux-Arts à Paris. Le bloc de marbre, on le sait, a été donné, sur les instances de M. Roger Marx et en faveur de son ami Bussières.</p>
+      <p>La mise au point est bien avancée ; M. Bussières, dans un court séjour à Paris, a tout préparé pour la station assez longue qu'il fera durant l'hiver à son atelier de Paris. M. Bussières a tiré un parti habile des quelques observations faites par les visiteurs, lors de son exposition, et le jeune artiste nous prépare pour l'an prochain une œuvre de mérite.</p>
+    </div>
+  </article>
+
+
+  <!-- ═══ ARTICLE 13 ═══════════════════════════════════════ -->
+  <article class="article" id="article-13" data-num="13">
+    <div class="article-entete">
+      <span class="article-num">13</span>
+      <div>
+        <h2 class="article-titre">La messe du 21 janvier à Nancy</h2>
+        <span class="article-source">Messe commémorative de la mort du roi Louis XVI</span>
+      </div>
+    </div>
+    <div class="article-texte">
+      <p>Avant-hier a eu lieu, à Saint-Epvre, une pieuse et émouvante cérémonie : la messe commémorative de la mort du roi Louis XVI. Cette tradition, conservée religieusement à Nancy du vivant du comte de Chambord par le parti royaliste, a été soigneusement perpétuée par M. le comte de Paris.</p>
+      <p>Il semble qu'elle emprunte aujourd'hui aux douleurs de l'exil qui frappent la famille royale une importance et une solennité exceptionnelles. Un devoir plus impérieux s'impose à tous les membres du grand parti monarchique : affirmer en cette occasion non seulement leur réprobation du crime odieux commis par la Convention, mais leur respect pour la grande tradition d'unité monarchique.</p>
+      <p>Au pied de l'autel où s'unissent dans une même prière tous ceux qui portent vivant au cœur l'amour du pays, la pensée s'élève vers Celui qui préside aux destinées des peuples. C'est à Dieu, maître de l'avenir, que s'adressent les vœux ardents de tous ceux qui gardent en sa justice une confiance absolue.</p>
+      <p>Rien dans cette solennité qui ressemble aux bruyantes manifestations des partis. Tout y est émouvant comme le recueillement, silencieux comme la prière, grand et simple comme un acte de pure conscience.</p>
+      <p>Et c'est dans cette commune pensée qu'un nombre considérable de catholiques remplissaient avant-hier la vaste nef de Saint-Epvre. Dans cette communauté de regrets et d'espérances, il eût été difficile de distinguer une trace des dissentiments dont les malheurs du présent ont effacé jusqu'au dernier souvenir. Jamais pareille affluence n'avait été vue dans les mêmes circonstances.</p>
+    </div>
+  </article>
+
+
+  <!-- PIED -->
+  <div class="pied">
+    <span class="pied-nom">Saint-Epvre</span>
+    <span class="pied-lieu">Nancy · Lorraine · France</span>
+  </div>
+
+</div>
+
+<script>
+  /* Navigation sommaire — compatible Google Sites iframe */
+  document.querySelectorAll('.sommaire a[data-cible]').forEach(function(lien) {
+    lien.addEventListener('click', function(e) {
+      e.preventDefault();
+      var cible = document.getElementById(this.getAttribute('data-cible'));
+      if (cible) {
+        cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* Animation au scroll */
+  var blocs = document.querySelectorAll('.article');
+  var obs = new IntersectionObserver(function(entrees) {
+    entrees.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  blocs.forEach(function(b) { obs.observe(b); });
+</script>
+
+</body>
+</html>

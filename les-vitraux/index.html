@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Vitraux — Basilique Saint-Epvre</title>
+  <!-- SEO -->
+  <meta name="description" content="Découvrez les vitraux remarquables de la Basilique Saint-Epvre à Nancy, chef-d'œuvre du XIXe siècle illustrant l'histoire de la Lorraine et de la foi catholique.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#432323">
+  <link rel="canonical" href="https://macflurry544.github.io/les-vitraux/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://macflurry544.github.io/les-vitraux/">
+  <meta property="og:title"       content="Les Vitraux — Basilique Saint-Epvre">
+  <meta property="og:description" content="Vitraux du XIXe siècle de la Basilique Saint-Epvre de Nancy — un patrimoine artistique exceptionnel illustrant l'histoire de la Lorraine.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Les Vitraux — Basilique Saint-Epvre">
+  <meta name="twitter:description" content="Vitraux du XIXe siècle, patrimoine artistique exceptionnel de la Basilique Saint-Epvre à Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/nav.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #E0D9D9; --cream-2: #5A9690; --sage: #2F5755; --olive: #432323; --olive-rgb: 67, 35, 35;
+      --font-titre: 'Young Serif', Georgia, serif; --font-texte: 'Bitter', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--cream); color: var(--olive); font-family: var(--font-texte); font-size: 16px; font-weight: 500; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+
+    /* HERO */
+    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+    .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; z-index: 0; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.78) 80%, rgba(0,0,0,0.92) 100%); z-index: 1; }
+    .hero-contenu { position: relative; z-index: 2; padding: 4rem 4rem 5rem; max-width: 860px; }
+    .hero-retour { position: absolute; top: 2.5rem; left: 4rem; z-index: 3; display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s; }
+    .hero-retour:hover { color: rgba(255,255,255,0.95); }
+    .hero-retour svg { width: 16px; height: 7px; overflow: visible; }
+    .hero-retour svg line, .hero-retour svg polyline { stroke: currentColor; stroke-width: 1.2; fill: none; }
+    .hero-surtitre { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+    .hero-titre { font-family: var(--font-titre); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.05; color: #fff; letter-spacing: -0.01em; text-shadow: 0 2px 30px rgba(0,0,0,0.4); opacity: 0; animation: fadeUp 0.9s ease forwards 0.45s; }
+    .hero-sous-titre { font-size: clamp(0.85rem, 1.5vw, 1rem); font-style: italic; font-weight: 400; color: rgba(255,255,255,0.6); margin-top: 1.1rem; line-height: 1.6; text-shadow: 0 1px 6px rgba(0,0,0,0.4); opacity: 0; animation: fadeUp 0.9s ease forwards 0.6s; }
+    .hero-chiffres { display: flex; gap: 3px; margin-top: 2.5rem; opacity: 0; animation: fadeUp 0.9s ease forwards 0.75s; }
+    .hero-chiffre { background: rgba(255,255,255,0.1); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.12); padding: 1rem 1.8rem; text-align: center; }
+    .hero-chiffre-val { font-family: var(--font-titre); font-size: 1.8rem; color: #fff; display: block; line-height: 1; margin-bottom: 0.3rem; }
+    .hero-chiffre-lab { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+
+    /* PAGE */
+    .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 5rem 2rem 8rem; }
+    .intro { font-size: 15px; line-height: 1.9; color: rgba(var(--olive-rgb), 0.7); font-weight: 400; font-style: italic; border-left: 2px solid var(--sage); padding-left: 1.5rem; max-width: 680px; margin-bottom: 4rem; opacity: 0; animation: apparition 0.9s ease forwards 0.2s; }
+
+    /* FILTRES */
+    .filtres-wrapper { position: sticky; top: 0; z-index: 10; background-color: var(--cream); padding: 1rem 0 1.2rem; margin-bottom: 3rem; border-bottom: 1px solid rgba(var(--olive-rgb), 0.1); opacity: 0; animation: apparition 0.8s ease forwards 0.35s; }
+    .filtres-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(var(--olive-rgb), 0.4); display: block; margin-bottom: 0.75rem; }
+    .filtres { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .filtre-btn { font-family: var(--font-texte); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--olive); background: none; border: 1px solid rgba(var(--olive-rgb), 0.2); padding: 0.4rem 0.9rem; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .filtre-btn:hover { background-color: rgba(var(--olive-rgb), 0.07); border-color: rgba(var(--olive-rgb), 0.4); }
+    .filtre-btn.actif { background-color: var(--olive); color: var(--cream); border-color: var(--olive); }
+    .filtre-count { font-size: 0.6rem; font-weight: 700; opacity: 0.5; background: rgba(var(--olive-rgb), 0.1); border-radius: 20px; padding: 0.1rem 0.4rem; line-height: 1.4; }
+    .filtre-btn.actif .filtre-count { background: rgba(255,255,255,0.15); opacity: 0.8; }
+
+    /* ZONES */
+    .zone-titre { font-family: var(--font-titre); font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(var(--olive-rgb), 0.35); padding: 2.5rem 0 1rem; border-top: 1px solid rgba(var(--olive-rgb), 0.1); margin-top: 1rem; }
+    .zone-titre:first-of-type { border-top: none; padding-top: 0; }
+
+    /* LIGNE VITRAIL */
+    .vitrail-ligne { display: grid; grid-template-columns: 3rem 1fr auto; gap: 0 1.5rem; align-items: start; padding: 1.4rem 0; border-bottom: 1px solid rgba(var(--olive-rgb), 0.08); transition: background 0.15s; }
+    .vitrail-ligne:hover { background-color: rgba(var(--olive-rgb), 0.025); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
+    .vitrail-num { font-family: var(--font-titre); font-size: 0.75rem; color: var(--sage); padding-top: 0.25rem; letter-spacing: 0.05em; }
+    .vitrail-saints { font-family: var(--font-titre); font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--olive); line-height: 1.3; margin-bottom: 0.35rem; }
+    .vitrail-donateur { font-size: 0.82rem; font-style: italic; color: rgba(var(--olive-rgb), 0.55); line-height: 1.5; }
+    .vitrail-note { font-size: 0.78rem; color: rgba(var(--olive-rgb), 0.45); margin-top: 0.3rem; line-height: 1.5; }
+    .vitrail-groupe.masque { display: none; }
+
+    /* BOUTON VOIR — fond sombre, bien lisible, large sur mobile */
+    .vitrail-photo-btn { flex-shrink: 0; background: var(--olive); border: none; color: var(--cream); font-family: var(--font-texte); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.65rem 1rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; margin-top: 0.2rem; display: flex; align-items: center; gap: 0.4rem; min-width: 70px; justify-content: center; }
+    .vitrail-photo-btn:hover { background: #2a1515; }
+    .vitrail-photo-btn.pas-de-photo { background: none; border: 1px solid rgba(var(--olive-rgb), 0.15); color: rgba(var(--olive-rgb), 0.25); cursor: default; pointer-events: none; }
+    .vitrail-photo-btn svg { width: 12px; height: 8px; overflow: visible; flex-shrink: 0; }
+    .vitrail-photo-btn svg path, .vitrail-photo-btn svg circle { stroke: currentColor; stroke-width: 1.3; fill: none; }
+
+    /* LIGHTBOX */
+    .lightbox { position: fixed; inset: 0; z-index: 100; background-color: rgba(0,0,0,0.94); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .lightbox.ouverte { opacity: 1; pointer-events: all; }
+    .lightbox-fermer { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); font-family: var(--font-texte); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.5rem 0.9rem; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+    .lightbox-fermer:hover { color: #fff; border-color: rgba(255,255,255,0.7); }
+    .lightbox-compteur { position: absolute; top: 1.7rem; left: 1.5rem; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); }
+    .lightbox-img-wrap { max-width: min(560px, 90vw); max-height: 62vh; display: flex; align-items: center; justify-content: center; }
+    .lightbox-img-wrap img { max-width: 100%; max-height: 62vh; object-fit: contain; display: block; transition: opacity 0.2s ease; }
+    .lightbox-img-wrap img.chargement { opacity: 0; }
+    .lightbox-legende { margin-top: 1.2rem; text-align: center; max-width: 540px; }
+    .lightbox-num { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.4rem; display: block; }
+    .lightbox-saints { font-family: var(--font-titre); font-size: clamp(1rem, 2vw, 1.4rem); color: #fff; line-height: 1.3; margin-bottom: 0.4rem; }
+    .lightbox-don { font-size: 0.82rem; font-style: italic; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    .lightbox-credit { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-top: 0.5rem; display: block; }
+    .lightbox-nav { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .lightbox-nav-btn { background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.55); font-family: var(--font-texte); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.55rem 1.1rem; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+    .lightbox-nav-btn:hover { color: #fff; border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+    .lightbox-nav-btn svg { width: 14px; height: 6px; overflow: visible; }
+    .lightbox-nav-btn svg line, .lightbox-nav-btn svg polyline { stroke: currentColor; stroke-width: 1.2; fill: none; }
+
+    /* CRÉDITS */
+    .credits { margin-top: 6rem; padding: 2.5rem 3rem; background-color: rgba(var(--olive-rgb), 0.06); border: 1px solid rgba(var(--olive-rgb), 0.1); }
+    .credits-titre { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(var(--olive-rgb), 0.45); display: block; margin-bottom: 1rem; }
+    .credits-texte { font-size: 0.85rem; line-height: 1.8; color: rgba(var(--olive-rgb), 0.65); font-weight: 400; }
+    .credits-texte strong { font-weight: 600; color: var(--olive); }
+    .credits-texte a { color: var(--olive); border-bottom: 1px solid rgba(var(--olive-rgb), 0.3); text-decoration: none; }
+    .credits-texte a:hover { border-color: var(--olive); }
+
+    /* PIED */
+    .pied { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(var(--olive-rgb), 0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .pied-nom { font-family: var(--font-titre); font-size: 1.1rem; color: rgba(var(--olive-rgb), 0.12); letter-spacing: 0.06em; user-select: none; }
+    .pied-lieu { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(var(--olive-rgb), 0.28); font-weight: 500; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes apparition { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero-contenu { padding: 3rem 1.5rem 4rem; }
+      .hero-retour { left: 1.5rem; top: 1.5rem; }
+      .hero-chiffres { flex-direction: column; gap: 2px; }
+      .hero-chiffre { padding: 0.8rem 1.5rem; text-align: left; display: flex; align-items: center; gap: 1rem; }
+      .hero-chiffre-val { font-size: 1.4rem; margin-bottom: 0; }
+      .page { padding: 3.5rem 1.5rem 6rem; }
+      .vitrail-ligne { grid-template-columns: 2.5rem 1fr; grid-template-rows: auto auto; }
+      .vitrail-photo-btn { grid-column: 2; grid-row: 2; margin-top: 0.8rem; width: 100%; padding: 0.8rem 1rem; font-size: 0.75rem; }
+      .filtres-wrapper { position: static; }
+      .credits { padding: 2rem 1.5rem; }
+      .pied { flex-direction: column; align-items: flex-start; }
+      .lightbox-compteur { display: none; }
+      .lightbox { padding: 1rem; }
+      .lightbox-img-wrap { max-height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-fermer" id="lbFermer">✕ Fermer</button>
+  <span class="lightbox-compteur" id="lbCompteur"></span>
+  <div class="lightbox-img-wrap">
+    <img id="lbImg" src="" alt="">
+  </div>
+  <div class="lightbox-legende">
+    <span class="lightbox-num" id="lbNum"></span>
+    <p class="lightbox-saints" id="lbSaints"></p>
+    <p class="lightbox-don" id="lbDon"></p>
+    <span class="lightbox-credit">© Denis Krieger · mesvitrauxfavoris.fr</span>
+  </div>
+  <div class="lightbox-nav">
+    <button class="lightbox-nav-btn" id="lbPrev">
+      <svg viewBox="0 0 14 6"><polyline points="5,1 1,3 5,5"/><line x1="1" y1="3" x2="13" y2="3"/></svg>Précédent
+    </button>
+    <button class="lightbox-nav-btn" id="lbNext">
+      Suivant<svg viewBox="0 0 14 6"><line x1="1" y1="3" x2="13" y2="3"/><polyline points="9,1 13,3 9,5"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-photo" src="https://lh3.googleusercontent.com/d/1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK" alt="Rosace Ouest — Basilique Saint-Epvre" loading="eager" fetchpriority="high">
+  <div class="hero-overlay"></div>
+  <a href="/" class="hero-retour">
+    <svg viewBox="0 0 16 7"><polyline points="5,1 1,3.5 5,6"/><line x1="1" y1="3.5" x2="15" y2="3.5"/></svg>
+    Basilique Saint-Epvre
+  </a>
+  <div class="hero-contenu">
+    <span class="hero-surtitre">Patrimoine · Art sacré</span>
+    <h1 class="hero-titre">Les Vitraux</h1>
+    <p class="hero-sous-titre">Soixante-quatorze verrières · Ateliers Carl Geyling (Vienne) &amp; Maréchal (Metz)</p>
+    <div class="hero-chiffres">
+      <div class="hero-chiffre"><span class="hero-chiffre-val">74</span><span class="hero-chiffre-lab">Verrières</span></div>
+      <div class="hero-chiffre"><span class="hero-chiffre-val">1875</span><span class="hero-chiffre-lab">Consécration</span></div>
+      <div class="hero-chiffre"><span class="hero-chiffre-val">2</span><span class="hero-chiffre-lab">Ateliers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE -->
+<div class="page">
+
+  <p class="intro">
+    Ils sont au nombre de soixante-quatorze. "L'effet de ces verrières richement émaillées, s'harmonisant avec l'architecture et les peintures de l'édifice, est à la fois grandiose, saisissant, mystérieux même. Tous sont des dons — certains de familles lorraines, d'autres de souverains d'Europe. Deux d'entre eux sortent des ateliers Maréchal, de Metz ; les autres proviennent de la Maison Carl Geyling, de Vienne." Hogard, René (1876–1955).
+  </p>
+
+  <!-- FILTRES -->
+  <div class="filtres-wrapper">
+    <span class="filtres-label">Filtrer par zone</span>
+    <div class="filtres" id="filtres">
+      <button class="filtre-btn actif" data-zone="tout">Tous <span class="filtre-count">69</span></button>
+      <button class="filtre-btn" data-zone="nef-gauche">Nef lat. gauche <span class="filtre-count">8</span></button>
+      <button class="filtre-btn" data-zone="transept-gauche">Transept gauche <span class="filtre-count">2</span></button>
+      <button class="filtre-btn" data-zone="deambulatoire">Déambulatoire &amp; Chapelles <span class="filtre-count">18</span></button>
+      <button class="filtre-btn" data-zone="transept-droit">Transept droit <span class="filtre-count">2</span></button>
+      <button class="filtre-btn" data-zone="nef-droite">Nef lat. droite <span class="filtre-count">8</span></button>
+      <button class="filtre-btn" data-zone="choeur">Grande nef · Chœur <span class="filtre-count">31</span></button>
+    </div>
+  </div>
+
+  <!-- NEF GAUCHE -->
+  <div class="vitrail-groupe" data-zone="nef-gauche">
+    <p class="zone-titre">Nef latérale gauche</p>
+    <div class="vitrail-ligne"><span class="vitrail-num">01</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Léon IX · Pie IX</p><p class="vitrail-donateur">Vitrail posé du vivant du vénérable pontife ; dû à la générosité d'un prince étranger ayant désiré garder l'anonymat.</p><p class="vitrail-note">Armes des Mastai-Ferretti, nom patronymique de S. S. Pie IX.</p></div><button class="vitrail-photo-btn" data-img="1SJLGKQ1NN2ihmz453oJWROe4S-qvoaN3" data-num="01" data-saints="Saint Léon IX · Pie IX" data-don="Don d'un prince étranger anonyme · Armes des Mastai-Ferretti"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">02</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Gérard · Saint Jean l'Évangéliste</p><p class="vitrail-donateur">Don de M. le curé Simon, mis à exécution par M. Breton, légataire universel.</p><p class="vitrail-note">Armes de Toul à la partie supérieure.</p></div><button class="vitrail-photo-btn" data-img="19P2LSu545EQSZNjR4VOsGJ1iSYxU0Sra" data-num="02" data-saints="Saint Gérard · Saint Jean l'Évangéliste" data-don="Don du curé Simon · Armes de Toul"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">03</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Antoine de Padoue · Saint Maur</p><p class="vitrail-donateur">Donné par Mgr Trouillet.</p><p class="vitrail-note">Armes de Nancy dans la rose supérieure.</p></div><button class="vitrail-photo-btn" data-img="1iH2l03LFQo7xGUNR1xaeRhZqoUpJf0D4" data-num="03" data-saints="Saint Antoine de Padoue · Saint Maur" data-don="Donné par Mgr Trouillet · Armes de Nancy"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">04</span><div class="vitrail-corps"><p class="vitrail-saints">Saint François de Sales · Saint Charles Borromée</p><p class="vitrail-donateur">Don de M. le chanoine Charles Le Bègue de Girmont, curé de Saint-Nicolas-de-Port.</p><p class="vitrail-note">Armes de Saint-Nicolas-de-Port.</p></div><button class="vitrail-photo-btn" data-img="1T4KqmutN7a13yo94Z6Qo_b8oil0D_4MF" data-num="04" data-saints="Saint François de Sales · Saint Charles Borromée" data-don="Don du chanoine Le Bègue de Girmont"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">05</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Louis, roi de France · Sainte Eugénie</p><p class="vitrail-donateur">Donné par Napoléon III, empereur des Français, et l'Impératrice Eugénie.</p><p class="vitrail-note">Armes de l'Empire en haut du vitrail. En 1871, l'Empereur Guillaume d'Allemagne, de passage à Nancy, demanda à Mgr Trouillet si ce vitrail avait été payé. « Non, Majesté, répondit celui-ci, et c'est vous qui en êtes cause ! »</p></div><button class="vitrail-photo-btn" data-img="15bQaJ-Yu9T1n9lQK5rqxdRBip5sDgD0U" data-num="05" data-saints="Saint Louis · Sainte Eugénie" data-don="Don de Napoléon III et l'Impératrice Eugénie · Armes de l'Empire"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">06</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Marguerite · Saint Édouard III</p><p class="vitrail-donateur">Offert par la famille de Warren. Ateliers Maréchal, Metz.</p></div><button class="vitrail-photo-btn" data-img="1XM1Lr4MhFPbsP1l1jzh0avIBJqIdk6xX" data-num="06" data-saints="Sainte Marguerite · Saint Édouard III" data-don="Famille de Warren · Ateliers Maréchal, Metz"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">07</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Geneviève · Saint Antonin</p><p class="vitrail-donateur">Offert par la famille de Margerie.</p><p class="vitrail-note">Armes des familles Jacquin de Margerie et de Chebran de Lespinarts.</p></div><button class="vitrail-photo-btn" data-img="1cn1doYfmF-5Ratf8EkkQqO8XyhGzdF7x" data-num="07" data-saints="Sainte Geneviève · Saint Antonin" data-don="Famille de Margerie"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">08</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Alexandre · Saint Henri II · Saint Mathias · Saint Gabriel</p><p class="vitrail-donateur">Don de la famille de Ligniville, l'une des quatre illustres Maisons de Lorraine.</p><p class="vitrail-note">Armes : losangé d'or et de sable.</p></div><button class="vitrail-photo-btn" data-img="14TQiPDy9XghjuuehVQsfipTCjY2fXVZt" data-num="08" data-saints="Saint Alexandre · Saint Henri II · Saint Mathias · Saint Gabriel" data-don="Famille de Ligniville · Armes : losangé d'or et de sable"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+  </div>
+
+  <!-- TRANSEPT GAUCHE -->
+  <div class="vitrail-groupe" data-zone="transept-gauche">
+    <p class="zone-titre">Transept gauche</p>
+    <div class="vitrail-ligne"><span class="vitrail-num">09</span><div class="vitrail-corps"><p class="vitrail-saints">La Très Sainte Vierge · Saint Bernard</p><p class="vitrail-donateur">Offert par Mgr Roess, évêque de Strasbourg, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1TT54fVyotGZLqRXG2LDWJmTQp5pq2_F4" data-num="09" data-saints="La Très Sainte Vierge · Saint Bernard" data-don="Mgr Roess, évêque de Strasbourg"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">10</span><div class="vitrail-corps"><p class="vitrail-saints">Vitrail commémoratif de la victoire de René II (1477)</p><p class="vitrail-donateur">Offert par les Dames et Demoiselles de la paroisse Saint-Epvre.</p><p class="vitrail-note">Inscription : « Année 1870-1871 : l'ancienne Lorraine 1477-1508 ». Deux anges, une Madone, le duc René II tenant un étendard au milieu duquel figure l'Annonciation. Photo non disponible.</p></div><button class="vitrail-photo-btn pas-de-photo" data-num="10"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>—</button></div>
+  </div>
+
+  <!-- DÉAMBULATOIRE -->
+  <div class="vitrail-groupe" data-zone="deambulatoire">
+    <p class="zone-titre">Déambulatoire &amp; Chapelles rayonnantes</p>
+    <div class="vitrail-ligne"><span class="vitrail-num">11</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Joseph · Saint Antoine de Padoue</p><p class="vitrail-donateur">Offert par la famille Colin de Bénaville, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1yjtSA51lp-Fnyb5z8R1sl5tA41v4_aNX" data-num="11" data-saints="Saint Joseph · Saint Antoine de Padoue" data-don="Famille Colin de Bénaville"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">12</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Alexandre · Saint Jacques le Majeur</p><p class="vitrail-donateur">Offert par M. le Comte de Lambel et sa femme, née Marie-Anne-Joséphine de Bonin de la Bonninière de Beaumont, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1nEtqcCeOvtBB2h5x6sfVcgfej_4kFH9Y" data-num="12" data-saints="Saint Alexandre · Saint Jacques le Majeur" data-don="Comte de Lambel"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">13</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Jean Népomucène</p><p class="vitrail-donateur">Offert par MM. les Vicaires de l'ancienne et de la nouvelle église Saint-Epvre.</p></div><button class="vitrail-photo-btn" data-img="1PdwvuZCFEc2CgsLouXwY2rxqWvoLW5R2" data-num="13" data-saints="Saint Jean Népomucène" data-don="Vicaires de Saint-Epvre"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">14</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Michel, archange</p><p class="vitrail-donateur">Offert par M. l'abbé Poirot du Cellier, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1jYKl1lrJZbqTG3vID6zbqiUzUzAk0q0t" data-num="14" data-saints="Saint Michel, archange" data-don="M. l'abbé Poirot du Cellier"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">15</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Joseph d'Arimathie</p><p class="vitrail-donateur">Donateur : M. l'abbé Poirot du Cellier.</p></div><button class="vitrail-photo-btn" data-img="1KD4k6mvvl-6-UgL-B6v0BLQFb50i2KmI" data-num="15" data-saints="Saint Joseph d'Arimathie" data-don="M. l'abbé Poirot du Cellier"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">16</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Louis de Gonzague</p><p class="vitrail-donateur">Offert par M. de Margerie, en souvenir de ses enfants.</p></div><button class="vitrail-photo-btn" data-img="1fweiMPnIJ3Pi7Qhji-2LZsFvVRW0SdDt" data-num="16" data-saints="Saint Louis de Gonzague" data-don="M. de Margerie"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">17</span><div class="vitrail-corps"><p class="vitrail-saints">Notre-Dame du Scapulaire · Saint Cœur de Marie</p><p class="vitrail-donateur">Donné par les Demoiselles de la Congrégation de saint Pierre Fourier, sous la direction de Mlle de Chevilly.</p></div><button class="vitrail-photo-btn" data-img="1RiC8-K2pXU7Ej-pCVbiBwoOjf4ryZGML" data-num="17" data-saints="Notre-Dame du Scapulaire · Saint Cœur de Marie" data-don="Congrégation de saint Pierre Fourier"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">18</span><div class="vitrail-corps"><p class="vitrail-saints">L'Annonciation de la Sainte Vierge</p><p class="vitrail-donateur">Donné par Mme de Gonneville, née Fourier de Bacourt, descendante de la famille de saint Pierre Fourier.</p><p class="vitrail-note">Écussons : Harivel de Gonneville · Martel de Janville · Fourier de Bacourt · Riquetti de Mirabeau.</p></div><button class="vitrail-photo-btn" data-img="1UTgz_zoaGaoSeVKLfQeTM8DSAkwdefxH" data-num="18" data-saints="L'Annonciation de la Sainte Vierge" data-don="Mme de Gonneville, née Fourier de Bacourt"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">19</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Augustin, évêque et docteur</p><p class="vitrail-donateur">Le donateur semble être un ecclésiastique dont le nom n'a pu être découvert malgré toutes les recherches.</p></div><button class="vitrail-photo-btn" data-img="1Z7a6QR7A7PLXIjkOfIBcGlLG99Ae2tYG" data-num="19" data-saints="Saint Augustin" data-don="Donateur ecclésiastique inconnu"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">20</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Georges · Saint Louis · Saint Martial</p><p class="vitrail-donateur">Écussons des trois donateurs : Cardinal Foulon, ancien évêque de Nancy ; Mgr Darboy, archevêque de Paris ; Cardinal Lavigerie, ancien évêque de Nancy, primat d'Afrique.</p></div><button class="vitrail-photo-btn" data-img="1uyaeyA5MFJv4O_BMLahMvc-rtT2-HYr7" data-num="20" data-saints="Saint Georges · Saint Louis · Saint Martial" data-don="Cardinal Foulon · Mgr Darboy · Cardinal Lavigerie"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">22</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Joseph, époux de la Sainte Vierge</p><p class="vitrail-donateur">Offert par Mgr Trouillet.</p></div><button class="vitrail-photo-btn" data-img="1OGDD0fBpH4ZaK4zzbtHthz0UB2728Mfz" data-num="22" data-saints="Saint Joseph, époux de la Sainte Vierge" data-don="Mgr Trouillet"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">23</span><div class="vitrail-corps"><p class="vitrail-saints">Mort de Saint Joseph</p><p class="vitrail-donateur">Même donateur : Mgr Trouillet.</p></div><button class="vitrail-photo-btn" data-img="1ECCPS_pV-Y6cTiU9tmpf4yrlcnltU5Sq" data-num="23" data-saints="Mort de Saint Joseph" data-don="Mgr Trouillet"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">24</span><div class="vitrail-corps"><p class="vitrail-saints">La Sainte Famille</p><p class="vitrail-donateur">Donné par M. et Mmes de Caumont et Mézières-Monsigny, le 18 septembre 1872.</p></div><button class="vitrail-photo-btn" data-img="1Dyyj3C-ZatXTxUprBF77VjFsCZW_KFTw" data-num="24" data-saints="La Sainte Famille" data-don="M. et Mmes de Caumont et Mézières-Monsigny (1872)"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">25</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Prosper</p><p class="vitrail-donateur">Donné par Mme la Baronne Rolland de Malleloy, en souvenir de son mari le Baron Prosper Rolland de Malleloy, dont les armes sont figurées sur le vitrail.</p></div><button class="vitrail-photo-btn" data-img="1x4e53oClbOcc47o0cvxCDAJxg0d_fM4L" data-num="25" data-saints="Saint Prosper" data-don="Baronne Rolland de Malleloy"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">26</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Geneviève, patronne de Paris</p><p class="vitrail-donateur">Donné par Mme Duportal de Goasmeur, née Baronne Daurier. Armes des Duportal de Goasmeur.</p></div><button class="vitrail-photo-btn" data-img="1vaW4jXt5QJ623Vqr0se0vPEtCXxyolbc" data-num="26" data-saints="Sainte Geneviève" data-don="Mme Duportal de Goasmeur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">27</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Germain l'Auxerrois</p><p class="vitrail-donateur">Don de Mme la Baronne Duportal, avec les armes de la famille Daurier.</p></div><button class="vitrail-photo-btn" data-img="1XAfystlTOYp7_MyzZqwMUOo6UNwIIm_1" data-num="27" data-saints="Saint Germain l'Auxerrois" data-don="Mme la Baronne Duportal"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">28</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Vincent de Paul · Saint Stéphane</p><p class="vitrail-donateur">Offert par Mlle de Ravinel et plusieurs dames de ses amies, en souvenir du baron de Ravinel, président de la Fabrique de Saint-Epvre.</p><p class="vitrail-note">Ce vitrail a valu à M. Geyling la médaille d'or à l'Exposition de Gratz.</p></div><button class="vitrail-photo-btn" data-img="1xWHYIqTDvhEHkzlb2k1vZmyboXbuHvyN" data-num="28" data-saints="Saint Vincent de Paul · Saint Stéphane" data-don="Mlle de Ravinel · Médaille d'or Exposition de Gratz (Geyling)"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">29</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Paul, apôtre · Sainte Barbe</p><p class="vitrail-donateur">Offert par la famille Le Duchat, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1VFWIfUP-GqVeHU19aCermK_11oYUjFZS" data-num="29" data-saints="Saint Paul · Sainte Barbe" data-don="Famille Le Duchat"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+  </div>
+
+  <!-- TRANSEPT DROIT -->
+  <div class="vitrail-groupe" data-zone="transept-droit">
+    <p class="zone-titre">Transept droit</p>
+    <div class="vitrail-ligne"><span class="vitrail-num">30</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Epvre visitant les captifs</p><p class="vitrail-donateur">Donné par la confrérie du Saint-Sacrement et des Morts. Installé sous la présidence de M. Pierson.</p></div><button class="vitrail-photo-btn" data-img="1t3MhZCYY31OHcmMsdp-4T8U2Zi5FTS6p" data-num="30" data-saints="Saint Epvre visitant les captifs" data-don="Confrérie du Saint-Sacrement et des Morts"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">31</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Jeanne de Valois · Saint Pierre Fourier</p><p class="vitrail-donateur">Écussons aux armes des deux donateurs : M. L. Roxard de la Salle et Mme, née Fourier de Bacourt.</p></div><button class="vitrail-photo-btn" data-img="182eXCB95AJcGgJMgDwT3gSyVo2J5rhkR" data-num="31" data-saints="Sainte Jeanne de Valois · Saint Pierre Fourier" data-don="M. L. Roxard de la Salle et Mme Fourier de Bacourt"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+  </div>
+
+  <!-- NEF DROITE -->
+  <div class="vitrail-groupe" data-zone="nef-droite">
+    <p class="zone-titre">Nef latérale droite</p>
+    <div class="vitrail-ligne"><span class="vitrail-num">32</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Joseph · Saint Pierre, chef des Apôtres</p><p class="vitrail-donateur">Don de Mgr Delalle, évêque de Rodez, autrefois vicaire général du diocèse de Nancy, dont les armes sont figurées.</p></div><button class="vitrail-photo-btn" data-img="1XyMRdQSSECryCkpcLyC7aFq-0A4ITjul" data-num="32" data-saints="Saint Joseph · Saint Pierre" data-don="Mgr Delalle, évêque de Rodez"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">33</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Monique · Saint André · Saint Dominique · Sainte Isabelle</p><p class="vitrail-donateur">Offert par la famille de M. Besval. Orné d'un écusson aux armes de Mme de l'Héraule, sa fille.</p></div><button class="vitrail-photo-btn" data-img="1Iy_ScN5gLyfqy6XPYmbMk8XDk7dnPPJg" data-num="33" data-saints="Sainte Monique · Saint André · Saint Dominique · Sainte Isabelle" data-don="Famille de M. Besval"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">34</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Epvre, évêque de Toul · Sainte Aprône, sa sœur</p><p class="vitrail-donateur">Armes de Mgr Turinaz, évêque de Nancy et de Toul (1882–1918).</p><p class="vitrail-note">Remplace le vitrail représentant saint Henri II et saint Gabriel, complètement détruit au cours de la guerre. Ateliers Gruber, Nancy.</p></div><button class="vitrail-photo-btn" data-img="1MOmomwdnNcki9ghaq_9lSAZoprxG5fxo" data-num="34" data-saints="Saint Epvre · Sainte Aprône" data-don="Mgr Turinaz · Ateliers Gruber (Nancy) · Remplace le vitrail détruit"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">35</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Odile, patronne de l'Alsace · Saint Nicolas, patron de la Lorraine</p><p class="vitrail-donateur">Rappelle le souvenir du général de Castelnau et du maréchal Foch. Armes de Mgr de la Celle.</p><p class="vitrail-note">Remplace le vitrail offert en 1866 par François-Joseph et l'impératrice d'Autriche, détruit durant la guerre. Ateliers Gruber, Nancy.</p></div><button class="vitrail-photo-btn" data-img="1U5VdhDh0fqjRRFPicvkZBEd4OIp88mXo" data-num="35" data-saints="Sainte Odile · Saint Nicolas" data-don="Général de Castelnau · Maréchal Foch · Mgr de la Celle"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">36</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Ferdinand · Sainte Marguerite</p><p class="vitrail-donateur">Don du Comte et de la Comtesse O'Gorman, dont il porte les armes. Armes de Mgr Ruch à la partie supérieure.</p></div><button class="vitrail-photo-btn" data-img="1rlqfLFBIfvLLTQZfIMeTcyADVS_Is6RT" data-num="36" data-saints="Saint Ferdinand · Sainte Marguerite" data-don="Comte et Comtesse O'Gorman"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">37</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Hubert · Sainte Anne</p><p class="vitrail-donateur">Don de la famille Gille. Armes de Pont-à-Mousson en haut du vitrail.</p></div><button class="vitrail-photo-btn" data-img="169gin7RXBU2PQcGQ5tk7Wf9c2tIEmpsR" data-num="37" data-saints="Saint Hubert · Sainte Anne" data-don="Famille Gille · Armes de Pont-à-Mousson"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">38</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Pauline · Saint Léopold</p><p class="vitrail-donateur">Don de la famille de Gondrecourt, dont les armes sont représentées dans le vitrail.</p></div><button class="vitrail-photo-btn" data-img="183h461tBMvqUjbI6bLIRc5CeHCIQ9wFd" data-num="38" data-saints="Sainte Pauline · Saint Léopold" data-don="Famille de Gondrecourt"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">39</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Ferdinand III, roi de Léon et de Castille · Sainte Madeleine</p><p class="vitrail-donateur">Don de S. E. le Cardinal Donnet, archevêque de Bordeaux, ancien coadjuteur de Nancy, dont les armes figurent dans le vitrail.</p></div><button class="vitrail-photo-btn" data-img="18MgEEtjZaRzRb3b_hfcVDEizerIoIJIa" data-num="39" data-saints="Saint Ferdinand III · Sainte Madeleine" data-don="Cardinal Donnet, archevêque de Bordeaux"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+  </div>
+
+  <!-- CHŒUR -->
+  <div class="vitrail-groupe" data-zone="choeur">
+    <p class="zone-titre">Grande nef · Clair-étage · Chœur</p>
+    <div class="vitrail-ligne"><span class="vitrail-num">40</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Matthieu · Saint Luc</p><p class="vitrail-donateur">Donateurs inconnus.</p></div><button class="vitrail-photo-btn" data-img="1KEAT4h8_qZKe5xPQVMbztOyl2l1EA7Nl" data-num="40" data-saints="Saint Matthieu · Saint Luc" data-don="Donateurs inconnus"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">41</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Thaddée · Saint Simon</p><p class="vitrail-donateur">Donateurs inconnus.</p></div><button class="vitrail-photo-btn" data-img="1UgcsdoiJQlRgCNCEJJTxPEXUhOGhb_G7" data-num="41" data-saints="Saint Thaddée · Saint Simon" data-don="Donateurs inconnus"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">42</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Ambroise · Saint Cyprien</p><p class="vitrail-donateur">Donateurs inconnus.</p></div><button class="vitrail-photo-btn" data-img="1TiVekNVSmJspxisCyPIMkFraG0SBPH6K" data-num="42" data-saints="Saint Ambroise · Saint Cyprien" data-don="Donateurs inconnus"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">43</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Jérôme · Saint Jean, apôtre</p><p class="vitrail-donateur">Donateurs inconnus.</p></div><button class="vitrail-photo-btn" data-img="1OU_Nrn5K7lVXVG2gjFnFrnYVhdgOzZ_Y" data-num="43" data-saints="Saint Jérôme · Saint Jean" data-don="Donateurs inconnus"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">44</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Étienne, premier roi de Hongrie · Saint Frédéric</p><p class="vitrail-donateur">Donateurs inconnus.</p></div><button class="vitrail-photo-btn" data-img="1Bnik9tWyd6AUp7VaHXbCeR53iufti_gn" data-num="44" data-saints="Saint Étienne · Saint Frédéric" data-don="Donateurs inconnus"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">45</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Jean-Baptiste · Saint Charles Borromée</p><p class="vitrail-donateur">Donné par M. le Vicomte et Mme la Vicomtesse de Montauban. Armes figurées à la partie supérieure.</p></div><button class="vitrail-photo-btn" data-img="1pUdvjW5b7htNL_GbpJsDkksb2lwGSeVd" data-num="45" data-saints="Saint Jean-Baptiste · Saint Charles Borromée" data-don="Vicomte et Vicomtesse de Montauban"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">47</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Philippe · Saint Barthélemy</p><p class="vitrail-donateur">Donateur inconnu.</p></div><button class="vitrail-photo-btn" data-img="1_TJK0UIb9YVYLymkUlcwW0kkTEpvWf_N" data-num="47" data-saints="Saint Philippe · Saint Barthélemy" data-don="Donateur inconnu"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">Rosace Est</span><div class="vitrail-corps"><p class="vitrail-saints">Rosace Est</p><p class="vitrail-donateur">Offerte par M. Morey, architecte de la Basilique.</p><p class="vitrail-note">Huit saints dans les arcatures : St Arsène, Ste Madeleine, St Matthieu, Ste Thérèse, Ste Reine, St Jean-Baptiste, St Prosper, Ste Mathilde. Médaillons : M. Morey (droite) · M. Geyling, verrier à Vienne (gauche).</p></div><button class="vitrail-photo-btn" data-img="1pNcBBEowFrNwzFBEcPAgYMqDccPUG6qU" data-num="Rosace Est" data-saints="Rosace Est" data-don="Offerte par M. Morey, architecte"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">49</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Christine · Saint Radulphe · Saint Raymond de Pennafort · Saint Maurice</p><p class="vitrail-donateur">Don du Baron Guerrier de Dumast et de sa femme, née Baronne Buquet.</p></div><button class="vitrail-photo-btn" data-img="1k_0flL4iQDzPgccbt9nRJtF5JM5x8NV9" data-num="49" data-saints="Sainte Christine · Saint Radulphe · Saint Raymond · Saint Maurice" data-don="Baron Guerrier de Dumast"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">50</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Paul, apôtre · Sainte Hélène, reine</p><p class="vitrail-donateur">Offert par Mlle Guerre de Sainte-Odile, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1NgyiVjwUNn6i_0UGQlupxxbG_bhfim1N" data-num="50" data-saints="Saint Paul · Sainte Hélène" data-don="Mlle Guerre de Sainte-Odile"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">51</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Gabriel, archange · Sainte Jeanne de Chantal</p><p class="vitrail-donateur">Don de M. le Baron de Kesling et de sa femme, née Baronne du Prel, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1hiR4V3UzMpdr2mu3y4zarBOkQHFyaJQ1" data-num="51" data-saints="Saint Gabriel · Sainte Jeanne de Chantal" data-don="Baron de Kesling et Baronne du Prel"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">52</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Pauline · Saint Jean-Baptiste</p><p class="vitrail-donateur">Offert par M. Alexandre de Bonneval et sa femme, née Martin de Julvécourt. Armes des deux familles représentées.</p></div><button class="vitrail-photo-btn" data-img="1YitzkOvrDlkWH30lQWh27W6DWTRafN2q" data-num="52" data-saints="Sainte Pauline · Saint Jean-Baptiste" data-don="M. Alexandre de Bonneval"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">53</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Françoise Romaine · Saint Félix · Sainte Clémentine</p><p class="vitrail-donateur">Donné par la famille Boiselle de Saint-Aubin.</p></div><button class="vitrail-photo-btn" data-img="1CCKsJ-JJGgyi99uCSO84aAOhgLjUjGCx" data-num="53" data-saints="Sainte Françoise Romaine · Saint Félix · Sainte Clémentine" data-don="Famille Boiselle de Saint-Aubin"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">54</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Thérèse · Saint Marcel · Sainte Germaine Cousin</p><p class="vitrail-donateur">Offert par M. Pierson, président du Conseil de Fabrique, et ses petits-enfants Marcel, Germaine et Thérèse Maure (1872).</p></div><button class="vitrail-photo-btn" data-img="1evEbRFiqUN7jSJmnrdQi02S4q1-imCgX" data-num="54" data-saints="Sainte Thérèse · Saint Marcel · Sainte Germaine Cousin" data-don="M. Pierson et petits-enfants (1872)"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">55</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Colomban · Saint Patrice · Saint Mansuy</p><p class="vitrail-donateur">Offert par M. Ellis O'Gorman, lieutenant-colonel au service d'Autriche, chevalier de l'ordre de Malte. Écussons des O'Gorman et des de Lambertye.</p></div><button class="vitrail-photo-btn pas-de-photo" data-num="55"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>—</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">56</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Alexandre · Sainte Augusta · Saint Théodore</p><p class="vitrail-donateur">Offert par la famille de Ludres, orné de quatre écussons.</p></div><button class="vitrail-photo-btn pas-de-photo" data-num="56"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>—</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">57</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Louis · Saint Michel · Saint Hyacinthe</p><p class="vitrail-donateur">Offert par la famille de Nicéville, dont les armes y sont représentées.</p></div><button class="vitrail-photo-btn" data-img="1sb-T3955TnA7v6v8GihUgqQkOlAD7CCw" data-num="57" data-saints="Saint Louis · Saint Michel · Saint Hyacinthe" data-don="Famille de Nicéville"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">58</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Henri · Saint Maurice</p><p class="vitrail-donateur">Offert par Mme Chevalier. Armes de Toul représentées.</p></div><button class="vitrail-photo-btn" data-img="1eFOdXWjaT-vWWTsZNBP7wgtfEEa2peov" data-num="58" data-saints="Saint Henri · Saint Maurice" data-don="Mme Chevalier · Armes de Toul"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">59</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Laurent, diacre · L'Assomption de la Sainte Vierge</p><p class="vitrail-donateur">Donné par les familles de Mardigny et de Zincourt, dont les armes se voient dans la rosace.</p></div><button class="vitrail-photo-btn" data-img="1p0XVRbMfMXfHf9Lfnmo173j6n0EL3oSb" data-num="59" data-saints="Saint Laurent · L'Assomption" data-don="Familles de Mardigny et de Zincourt"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">60</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Adélaïde, impératrice · Sainte Jeanne d'Arc</p><p class="vitrail-donateur">Offert par M. de Haldat du Lys et Mme, née Clémence-Adèle de Miscault. Armes des deux familles représentées.</p></div><button class="vitrail-photo-btn" data-img="17ehazo6wEAYE6tdeBMaVzRTPAlA3JmHe" data-num="60" data-saints="Sainte Adélaïde · Sainte Jeanne d'Arc" data-don="M. de Haldat du Lys et Mme de Miscault"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">61</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Alexis · Sainte Anne</p><p class="vitrail-donateur">Offert par M. le Vicomte de Roquefeuil et Mme, née Fourier de Bacourt, dont il porte les armes.</p></div><button class="vitrail-photo-btn" data-img="1_mslsHpXBO61PxOhUJvO1-q1rWiFbtT_" data-num="61" data-saints="Saint Alexis · Sainte Anne" data-don="Vicomte de Roquefeuil et Mme Fourier de Bacourt"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">Rosace Ouest</span><div class="vitrail-corps"><p class="vitrail-saints">Rosace Ouest</p><p class="vitrail-donateur">Vitrail offert par M. Jacquemin, entrepreneur des travaux de la Basilique.</p><p class="vitrail-note">Huit saints : St Claude, St Remi, St Charles Borromée, St François de Sales, St Léon, St Lucien, St René, Bse Marguerite de Lorraine. Médaillon droite : M. Jacquemin. Médaillon gauche : portrait de Mgr Turinaz (depuis 1918).</p></div><button class="vitrail-photo-btn" data-img="1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK" data-num="Rosace Ouest" data-saints="Rosace Ouest" data-don="Offerte par M. Jacquemin, entrepreneur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">63</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Eugène · Sainte Marthe</p><p class="vitrail-donateur">Offert par le Comte et la Comtesse de Montureux, à l'occasion de la première communion de leur fils Arthur. Armes des Bourcier de Montureux et des de Louvencourt.</p></div><button class="vitrail-photo-btn" data-img="1NMO3QoQPLOguXJPopKrT9zay-d-2jT6w" data-num="63" data-saints="Saint Eugène · Sainte Marthe" data-don="Comte et Comtesse de Montureux"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">64</span><div class="vitrail-corps"><p class="vitrail-saints">Bienheureux Benoît-Joseph Labre · Bienheureuse Marguerite-Marie Alacoque</p><p class="vitrail-donateur">Offert par cotisations. Souvenir du pèlerinage de Paray-le-Monial (12 juin 1873).</p></div><button class="vitrail-photo-btn" data-img="1g2RNudKo4NUKPgWJQ_iP9c8fw28anGqt" data-num="64" data-saints="Bx Benoît-Joseph Labre · Bse Marguerite-Marie Alacoque" data-don="Cotisations · Pèlerinage de Paray-le-Monial 1873"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">65</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Marguerite · Sainte Sophie</p><p class="vitrail-donateur">Sans nom de donateur.</p></div><button class="vitrail-photo-btn" data-img="1Tmk670CyNdELp1134hyi5URfYWYgPuRd" data-num="65" data-saints="Sainte Marguerite · Sainte Sophie" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">65 bis</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Marguerite · Sainte Sophie — vue complémentaire</p><p class="vitrail-donateur">Seconde photographie du même vitrail.</p></div><button class="vitrail-photo-btn" data-img="14RH-UqfjvH91BZrH_apMX4z10q1c2XTW" data-num="65 bis" data-saints="Sainte Marguerite · Sainte Sophie (vue complémentaire)" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">66</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Élisabeth de Hongrie · Sainte Thérèse</p><p class="vitrail-donateur">Sans nom de donateur.</p></div><button class="vitrail-photo-btn" data-img="1vwZG5eqdyX2cqb9q8UBay1VIM7VGlHWK" data-num="66" data-saints="Sainte Élisabeth · Sainte Thérèse" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">67</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Venceslas · Saint Stanislas</p><p class="vitrail-donateur">Sans nom de donateur.</p></div><button class="vitrail-photo-btn" data-img="1y9kC_eacZbVw4Fesx9lHCs0ipOj5MlZ3" data-num="67" data-saints="Saint Venceslas · Saint Stanislas" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">68</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Mélanie · Sainte Éléonore</p><p class="vitrail-donateur">Sans nom de donateur.</p></div><button class="vitrail-photo-btn" data-img="11xKd9bEcbGDRQg0w_8W1Lcqln8Ts-xbu" data-num="68" data-saints="Sainte Mélanie · Sainte Éléonore" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">69</span><div class="vitrail-corps"><p class="vitrail-saints">Saint Marc, évangéliste · Saint Jacques le Mineur</p><p class="vitrail-donateur">Sans nom de donateur.</p></div><button class="vitrail-photo-btn" data-img="1-C5A6MBnzYmWoeaS4eD9_S5_zFLFjeDG" data-num="69" data-saints="Saint Marc · Saint Jacques le Mineur" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+    <div class="vitrail-ligne"><span class="vitrail-num">70</span><div class="vitrail-corps"><p class="vitrail-saints">Sainte Berthe · Sainte Clotilde, reine de France</p><p class="vitrail-donateur">Sans nom de donateur.</p></div><button class="vitrail-photo-btn" data-img="1FGGly0M9_wdnp_YY4cqyCLGk9v0MYF0z" data-num="70" data-saints="Sainte Berthe · Sainte Clotilde" data-don="Sans nom de donateur"><svg viewBox="0 0 14 9"><path d="M1 4.5 C3 1.5 11 1.5 13 4.5 C11 7.5 3 7.5 1 4.5Z"/><circle cx="7" cy="4.5" r="1.8"/></svg>Voir</button></div>
+  </div>
+
+  <!-- CRÉDITS -->
+  <div class="credits">
+    <span class="credits-titre">Crédits</span>
+    <p class="credits-texte">
+      <strong>Photographies :</strong> Denis Krieger (<a href="https://www.mesvitrauxfavoris.fr" target="_blank" rel="noopener">mesvitrauxfavoris.fr</a>), utilisées avec son aimable autorisation. Remerciements à Denis Krieger pour ses échanges et ses précieux conseils.<br><br>
+      <strong>Sources :</strong> Document de René Hogard (1876–1955), publié en 1931. Éditeur : Imprimerie Vagner, Nancy.
+    </p>
+  </div>
+
+  <div class="pied">
+    <span class="pied-nom">Saint-Epvre</span>
+    <span class="pied-lieu">Nancy · Lorraine · France</span>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var filtres = document.querySelectorAll('.filtre-btn');
+  var groupes = document.querySelectorAll('.vitrail-groupe');
+  filtres.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var zone = this.getAttribute('data-zone');
+      filtres.forEach(function(b) { b.classList.remove('actif'); });
+      this.classList.add('actif');
+      groupes.forEach(function(g) {
+        if (zone === 'tout' || g.getAttribute('data-zone') === zone) g.classList.remove('masque');
+        else g.classList.add('masque');
+      });
+    });
+  });
+
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbNum = document.getElementById('lbNum');
+  var lbSaints = document.getElementById('lbSaints');
+  var lbDon = document.getElementById('lbDon');
+  var lbCompteur = document.getElementById('lbCompteur');
+  var lbFermer = document.getElementById('lbFermer');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var diapos = []; var idx = 0;
+
+  function construire() { diapos = Array.from(document.querySelectorAll('.vitrail-photo-btn:not(.pas-de-photo)')); }
+
+  function afficher(i) {
+    var btn = diapos[i];
+    lbImg.classList.add('chargement');
+    lbImg.onload = function() { lbImg.classList.remove('chargement'); };
+    lbImg.src = 'https://lh3.googleusercontent.com/d/' + btn.getAttribute('data-img');
+    lbImg.alt = btn.getAttribute('data-saints');
+    lbNum.textContent = 'Vitrail n° ' + btn.getAttribute('data-num');
+    lbSaints.textContent = btn.getAttribute('data-saints');
+    lbDon.textContent = btn.getAttribute('data-don');
+    lbCompteur.textContent = (i + 1) + ' / ' + diapos.length;
+    idx = i;
+  }
+
+  function ouvrir(i) { construire(); afficher(i); lb.classList.add('ouverte'); document.body.style.overflow = 'hidden'; }
+  function fermer() { lb.classList.remove('ouverte'); document.body.style.overflow = ''; lbImg.src = ''; }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.vitrail-photo-btn:not(.pas-de-photo)');
+    if (!btn) return;
+    construire(); var i = diapos.indexOf(btn); ouvrir(i >= 0 ? i : 0);
+  });
+
+  lbFermer.addEventListener('click', fermer);
+  lb.addEventListener('click', function(e) { if (e.target === lb) fermer(); });
+  lbPrev.addEventListener('click', function() { construire(); afficher((idx - 1 + diapos.length) % diapos.length); });
+  lbNext.addEventListener('click', function() { construire(); afficher((idx + 1) % diapos.length); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') fermer();
+    if (!lb.classList.contains('ouverte')) return;
+    if (e.key === 'ArrowLeft') { construire(); afficher((idx - 1 + diapos.length) % diapos.length); }
+    if (e.key === 'ArrowRight') { construire(); afficher((idx + 1) % diapos.length); }
+  });
+})();
+</script>
+<script defer src="../assets/js/nav.js"></script>
+</body>
+</html>

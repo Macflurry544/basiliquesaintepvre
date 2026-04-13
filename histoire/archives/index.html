@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archives &amp; Bibliographie — Basilique Saint-Epvre de Nancy</title>
+  <!-- SEO -->
+  <meta name="description" content="Archives et bibliographie sur la Basilique Saint-Epvre de Nancy. Documents numérisés, sources historiques et références académiques sur ce patrimoine lorrain.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#8E1616">
+  <link rel="canonical" href="https://macflurry544.github.io/histoire/archives/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://macflurry544.github.io/histoire/archives/">
+  <meta property="og:title"       content="Archives &amp; Bibliographie — Basilique Saint-Epvre de Nancy">
+  <meta property="og:description" content="Documents numérisés, sources historiques et références académiques sur la Basilique Saint-Epvre à Nancy.">
+  <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <meta property="og:locale"      content="fr_FR">
+  <meta property="og:site_name"   content="Basilique Saint-Epvre">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Archives — Basilique Saint-Epvre de Nancy">
+  <meta name="twitter:description" content="Documents numérisés et sources historiques sur la Basilique Saint-Epvre de Nancy.">
+  <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/nav.css">
+
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #F8EEDF;
+      --cream-2:   #E8C999;
+      --sage:      #8E1616;
+      --olive:     #000000;
+      --olive-rgb: 65, 67, 27;
+      --font-titre: 'Young Serif', Georgia, serif;
+      --font-texte: 'Bitter', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--olive);
+      font-family: var(--font-texte);
+      font-size: 16px;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-top: var(--nav-h, 64px);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ─────────────────────────────────────────
+       CONTENEUR
+    ───────────────────────────────────────── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 7rem 2rem 8rem;
+    }
+
+    /* ─────────────────────────────────────────
+       RETOUR
+    ───────────────────────────────────────── */
+    .retour {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.1s;
+      transition: opacity 0.2s;
+    }
+    .retour:hover { opacity: 0.7 !important; }
+    .retour svg { width: 18px; height: 8px; overflow: visible; }
+    .retour svg line, .retour svg polyline { stroke: var(--olive); stroke-width: 1.2; fill: none; }
+
+    /* ─────────────────────────────────────────
+       EN-TÊTE
+    ───────────────────────────────────────── */
+    .surtitre {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.45);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.25s;
+    }
+
+    .titre-page {
+      font-family: var(--font-titre);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.06;
+      color: var(--olive);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.4s;
+    }
+
+    .sous-titre-page {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(var(--olive-rgb), 0.55);
+      margin-top: 1rem;
+      line-height: 1.6;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.55s;
+    }
+
+    .trait {
+      width: 48px;
+      height: 1px;
+      background: var(--sage);
+      margin: 2.5rem 0 3.5rem;
+      opacity: 0;
+      animation: apparition 0.8s ease forwards 0.65s;
+    }
+
+    /* ─────────────────────────────────────────
+       INTRO
+    ───────────────────────────────────────── */
+    .intro {
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(var(--olive-rgb), 0.7);
+      font-weight: 400;
+      font-style: italic;
+      border-left: 2px solid var(--sage);
+      padding-left: 1.5rem;
+      max-width: 640px;
+      margin-bottom: 5rem;
+      opacity: 0;
+      animation: apparition 0.9s ease forwards 0.75s;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION ARCHIVES
+    ───────────────────────────────────────── */
+    .section-archives {
+      margin-bottom: 2px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section-archives.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.35);
+      display: block;
+      padding: 2.5rem 0 1.2rem;
+      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
+      margin-top: 0.5rem;
+    }
+
+    .section-label:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       CARTE DOCUMENT
+    ───────────────────────────────────────── */
+    .doc-carte {
+      background-color: var(--cream-2);
+      padding: 2.5rem 3rem;
+      margin-bottom: 2px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: background 0.2s;
+    }
+
+    .doc-carte:nth-child(even) {
+      background-color: var(--cream);
+      border: 1px solid rgba(var(--olive-rgb), 0.08);
+    }
+
+    /* filigrane décoratif */
+    .doc-carte::after {
+      content: '—';
+      font-family: var(--font-titre);
+      font-size: 6rem;
+      color: rgba(var(--olive-rgb), 0.03);
+      position: absolute;
+      right: 2rem;
+      bottom: -0.5rem;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .doc-type {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .doc-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--olive);
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .doc-desc {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(var(--olive-rgb), 0.62);
+      font-weight: 400;
+      max-width: 580px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* bouton accès */
+    .doc-lien {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(var(--olive-rgb), 0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, opacity 0.2s;
+      align-self: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+    .doc-lien:hover {
+      border-color: var(--olive);
+      opacity: 0.75;
+    }
+
+    .doc-lien svg { width: 10px; height: 10px; overflow: visible; flex-shrink: 0; }
+    .doc-lien svg line, .doc-lien svg polyline { stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* ─────────────────────────────────────────
+       BLOC NOTE / CONSULTATION SUR PLACE
+    ───────────────────────────────────────── */
+    .bloc-note {
+      background-color: var(--olive);
+      color: var(--cream);
+      padding: 3rem;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .bloc-note.visible { opacity: 1; transform: translateY(0); }
+
+    .bloc-note::before {
+      content: '✦';
+      font-size: 6rem;
+      color: rgba(248,243,225,0.04);
+      position: absolute;
+      right: 2rem;
+      top: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .bloc-note-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .bloc-note-titre {
+      font-family: var(--font-titre);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .bloc-note-texte {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: rgba(248,243,225,0.7);
+      font-weight: 400;
+      max-width: 560px;
+    }
+
+    .bloc-note-lien {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.8rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(248,243,225,0.35);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .bloc-note-lien:hover { border-color: var(--cream); }
+    .bloc-note-lien svg { width: 10px; height: 10px; overflow: visible; flex-shrink: 0; }
+    .bloc-note-lien svg line,
+    .bloc-note-lien svg polyline { stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+    /* ─────────────────────────────────────────
+       BLOC MAJ
+    ───────────────────────────────────────── */
+    .bloc-maj {
+      background-color: var(--cream-2);
+      padding: 1.5rem 2rem;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .bloc-maj.visible { opacity: 1; transform: translateY(0); }
+
+    .bloc-maj-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .bloc-maj-texte {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: rgba(var(--olive-rgb), 0.5);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────
+       PIED
+    ───────────────────────────────────────── */
+    .pied {
+      margin-top: 7rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .pied-nom {
+      font-family: var(--font-titre);
+      font-size: 1.1rem;
+      color: rgba(var(--olive-rgb), 0.12);
+      letter-spacing: 0.06em;
+      user-select: none;
+    }
+
+    .pied-lieu {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(var(--olive-rgb), 0.28);
+      font-weight: 500;
+    }
+
+    /* ─────────────────────────────────────────
+       ANIMATION
+    ───────────────────────────────────────── */
+    @keyframes apparition {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .page      { padding: 4rem 1.5rem 6rem; }
+      .doc-carte { padding: 2rem 1.5rem; }
+      .bloc-note { padding: 2rem 1.5rem; }
+      .pied      { flex-direction: column; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- RETOUR -->
+  <a href="/histoire/" class="retour">
+    <svg viewBox="0 0 18 8"><polyline points="6,1 1,4 6,7"/><line x1="1" y1="4" x2="17" y2="4"/></svg>
+    Basilique Saint-Epvre
+  </a>
+
+  <!-- EN-TÊTE -->
+  <span class="surtitre">Ressources · Documentation</span>
+  <h1 class="titre-page">Archives<br>&amp; Bibliographie</h1>
+  <p class="sous-titre-page">Sources historiques et documents de référence sur la basilique Saint-Epvre</p>
+  <div class="trait"></div>
+
+  <!-- INTRO -->
+  <p class="intro">
+    Cette page rassemble les principales sources documentaires accessibles pour approfondir l'histoire de la basilique Saint-Epvre de Nancy. Les ouvrages numérisés sont consultables en ligne ; certains documents originaux sont également disponibles sur rendez-vous dans les archives de la région.
+  </p>
+
+
+  <!-- ═══ DOCUMENTS NUMÉRISÉS ══════════════════════════ -->
+  <div class="section-archives">
+
+    <span class="section-label">Documents numérisés — consultables en ligne</span>
+
+    <!-- DOC 1 -->
+    <div class="doc-carte">
+      <span class="doc-type">Guide · Gallica / BnF</span>
+      <h2 class="doc-titre">Petit Guide de la Basilique</h2>
+      <p class="doc-desc">
+        Guide de visite de la Basilique Saint-Epvre, numérisé par la Bibliothèque nationale de France et consultable librement sur Gallica.
+      </p>
+      <a href="https://gallica.bnf.fr/ark:/12148/bpt6k9621518j.r=monographie%20de%20la%20basilique%20saint%20epvre?rk=42918;4"
+         class="doc-lien" target="_blank" rel="noopener">
+        Consulter sur Gallica
+        <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+      </a>
+    </div>
+
+    <!-- DOC 2 -->
+    <div class="doc-carte">
+      <span class="doc-type">Discours · Gallica / BnF</span>
+      <h2 class="doc-titre">Panégyrique de saint Epvre</h2>
+      <p class="doc-desc">
+        Discours prononcé à l'occasion de la fête du patron de la basilique, numérisé par la Bibliothèque nationale de France.
+      </p>
+      <a href="https://gallica.bnf.fr/ark:/12148/bpt6k6457093c.r=Monographie%20de%20la%20basilique%20saint%20epvre?rk=64378;0"
+         class="doc-lien" target="_blank" rel="noopener">
+        Consulter sur Gallica
+        <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+      </a>
+    </div>
+
+    <!-- DOC 3 -->
+    <div class="doc-carte">
+      <span class="doc-type">Ouvrage · Internet Archive</span>
+      <h2 class="doc-titre">Monographie de la Basilique Saint-Epvre</h2>
+      <p class="doc-desc">
+        Monographie complète de la basilique, numérisée et disponible sur Internet Archive. Ouvrage de référence pour l'étude architecturale et historique de l'édifice.
+      </p>
+      <a href="https://archive.org/details/gri_33125013355942"
+         class="doc-lien" target="_blank" rel="noopener">
+        Consulter sur Internet Archive
+        <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+      </a>
+    </div>
+
+    <!-- DOC 4 -->
+    <div class="doc-carte">
+      <span class="doc-type">Document · Bibliothèque numérique de Metz</span>
+      <h2 class="doc-titre">La vérité sur la reconstruction de la basilique Saint-Epvre</h2>
+      <p class="doc-desc">
+        Document relatant les circonstances et les controverses autour de la reconstruction de la basilique, consultable sur la bibliothèque numérique LiMédia.
+      </p>
+      <a href="https://galeries.limedia.fr/ark:/31124/d66lx9l7czf50x5d/p7"
+         class="doc-lien" target="_blank" rel="noopener">
+        Consulter sur LiMédia
+        <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- ═══ FONDS D'ARCHIVES ═════════════════════════════ -->
+  <div class="section-archives">
+
+    <span class="section-label">Fonds d'archives en ligne</span>
+
+    <!-- FOND WIENER -->
+    <div class="doc-carte">
+      <span class="doc-type">Fonds d'archives · Société d'histoire de la Lorraine</span>
+      <h2 class="doc-titre">Fonds Wiener</h2>
+      <p class="doc-desc">
+        Le fonds Wiener, conservé par la Société d'histoire de la Lorraine et du Musée Lorrain, constitue l'une des sources documentaires les plus riches pour l'histoire religieuse et culturelle de Nancy et de la Lorraine. Il comprend de nombreux documents relatifs à la basilique Saint-Epvre.
+      </p>
+      <a href="https://www.societe-histoire-lorraine.com/choix-wiener"
+         class="doc-lien" target="_blank" rel="noopener">
+        Accéder au fonds Wiener
+        <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- ═══ BLOC MISE À JOUR ══════════════════════════════ -->
+  <div class="bloc-maj">
+    <div class="bloc-maj-dot"></div>
+    <p class="bloc-maj-texte">Cette page est régulièrement mise à jour au fur et à mesure des nouvelles découvertes documentaires.</p>
+  </div>
+
+
+  <!-- ═══ BLOC CONSULTATION SUR PLACE ══════════════════ -->
+  <div class="bloc-note">
+    <span class="bloc-note-label">Consultation sur place</span>
+    <h3 class="bloc-note-titre">Vous souhaitez aller plus loin ?</h3>
+    <p class="bloc-note-texte">
+      De nombreux documents originaux relatifs à la basilique Saint-Epvre ne sont pas encore numérisés et ne sont consultables que sur place. N'hésitez pas à prendre rendez-vous auprès de la Bibliothèque Stanislas de Nancy ou des archives départementales pour accéder aux fonds locaux.
+    </p>
+    <a href="https://www.reseau-colibris.fr/iguana/www.main.cls?surl=bibliotheque_stanislas"
+       class="bloc-note-lien" target="_blank" rel="noopener">
+      Bibliothèque Stanislas de Nancy
+      <svg viewBox="0 0 10 10"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="4,1 9,1 9,6"/></svg>
+    </a>
+  </div>
+
+
+  <!-- PIED -->
+  <div class="pied">
+    <span class="pied-nom">Saint-Epvre</span>
+    <span class="pied-lieu">Nancy · Lorraine · France</span>
+  </div>
+
+</div>
+
+<script>
+  var blocs = document.querySelectorAll('.section-archives, .bloc-note, .bloc-maj');
+  var obs = new IntersectionObserver(function(entrees) {
+    entrees.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  blocs.forEach(function(b) { obs.observe(b); });
+</script>
+
+<script defer src="../../assets/js/nav.js"></script>
+</body>
+</html>

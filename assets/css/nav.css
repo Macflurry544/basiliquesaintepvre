@@ -54,7 +54,13 @@
   transition:
     background   0.5s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow   0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow   0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform    0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rétractée hors écran (scroll down) */
+.nav.nav-hidden {
+  transform: translateX(-50%) translateY(calc(-100% - 20px));
 }
 
 /* Après scroll ou pages sans hero — verre clair */

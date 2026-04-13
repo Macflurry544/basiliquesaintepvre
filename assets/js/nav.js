@@ -77,10 +77,50 @@
   /* ── État initial ─────────────────────────────────────────────── */
   if (!hasHero) nav.classList.add('scrolled');
 
-  /* ── Scroll ───────────────────────────────────────────────────── */
+  /* ── Scroll : opacité + rétractation intelligente ────────────── */
+  var lastScrollY  = window.scrollY;
+  var ticking      = false;
+  var HIDE_AFTER   = 80;   // px avant d'activer le masquage
+  var DELTA        = 6;    // mouvement minimal pour déclencher (anti-tremblement)
+
+  function onScroll() {
+    var currentY = window.scrollY;
+    var delta    = currentY - lastScrollY;
+
+    // Basculer fond opaque (seulement sur pages avec hero)
+    if (hasHero) {
+      nav.classList.toggle('scrolled', currentY > 60);
+    }
+
+    // Anti-flickering : ignorer micro-mouvements
+    if (Math.abs(delta) < DELTA) {
+      lastScrollY = currentY;
+      ticking = false;
+      return;
+    }
+
+    // En haut de page → toujours visible
+    if (currentY <= HIDE_AFTER) {
+      nav.classList.remove('nav-hidden');
+    } else if (delta > 0) {
+      // Scroll DOWN → cacher (sauf si menu ouvert)
+      if (!menu.classList.contains('open')) {
+        nav.classList.add('nav-hidden');
+      }
+    } else {
+      // Scroll UP → montrer
+      nav.classList.remove('nav-hidden');
+    }
+
+    lastScrollY = currentY;
+    ticking = false;
+  }
+
   window.addEventListener('scroll', function () {
-    if (!hasHero) return;
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
   }, { passive: true });
 
   /* ── Menu fullscreen ──────────────────────────────────────────── */

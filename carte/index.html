@@ -16,12 +16,17 @@
   <meta property="og:description" content="Carte interactive du quartier Saint-Epvre à Nancy.">
   <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
   <meta property="og:locale"      content="fr_FR">
-  <meta name="twitter:card"       content="summary_large_image">
+  <meta property="og:site_name"      content="Basilique Saint-Epvre">
+  <meta name="twitter:card"          content="summary_large_image">
+  <meta name="twitter:title"         content="Carte — Quartier Saint-Epvre · Nancy">
+  <meta name="twitter:description"   content="Carte interactive du quartier Saint-Epvre à Nancy — patrimoine, accès et itinéraires.">
+  <meta name="twitter:image"         content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
@@ -280,6 +285,35 @@
       .leaflet-popup { margin-bottom: 1rem; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Map",
+    "name": "Carte — Quartier Saint-Epvre · Nancy",
+    "url": "https://basiliquesaintepvre.com/carte/",
+    "description": "Carte interactive du quartier Saint-Epvre à Nancy. Points d'intérêt, patrimoine, accès et itinéraires autour de la Basilique Saint-Epvre.",
+    "inLanguage": "fr",
+    "isPartOf": { "@id": "https://basiliquesaintepvre.com/" },
+    "about": {
+      "@type": "LandmarksOrHistoricalBuildings",
+      "name": "Basilique Saint-Epvre",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Place Saint-Epvre",
+        "addressLocality": "Nancy",
+        "postalCode": "54000",
+        "addressCountry": "FR"
+      }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://basiliquesaintepvre.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Carte", "item": "https://basiliquesaintepvre.com/carte/" }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 

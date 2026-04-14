@@ -18,7 +18,11 @@
   <meta property="og:description" content="Ouverture le samedi de 16h30 à 18h30. Confessions et visites libres. Lieu de prière ouvert à tous.">
   <meta property="og:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
   <meta property="og:locale"      content="fr_FR">
-  <meta name="twitter:card"       content="summary_large_image">
+  <meta property="og:site_name"      content="Basilique Saint-Epvre">
+  <meta name="twitter:card"          content="summary_large_image">
+  <meta name="twitter:title"         content="Horaires d'ouverture — Basilique Saint-Epvre">
+  <meta name="twitter:description"   content="Ouverture le samedi de 16h30 à 18h30. Confessions et visites libres. Lieu de prière ouvert à tous à Nancy.">
+  <meta name="twitter:image"         content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -218,6 +222,27 @@
       .page-closing { flex-direction: column; align-items: flex-start; }
     }
   </style>
+  <!-- Données structurées JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Basilique Saint-Epvre",
+    "url": "https://basiliquesaintepvre.com/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Place Saint-Epvre",
+      "addressLocality": "Nancy",
+      "postalCode": "54000",
+      "addressCountry": "FR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 48.6939, "longitude": 6.1788 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "16:30", "closes": "18:30" }
+    ],
+    "image": "https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n"
+  }
+  </script>
 </head>
 <body>
 

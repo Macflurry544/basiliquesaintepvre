@@ -86,58 +86,61 @@
        • inactivité ≥ 800ms   → IDLE, garder dernier état (rien changer)
      ═══════════════════════════════════════════════════════════════ */
 
-  var lastScrollY   = window.scrollY;   // position au dernier event
-  var lastDirection = 'up';             // direction courante
-  var idleTimer     = null;             // timer inactivité
-  var ticking       = false;            // rAF gate anti-double
+  /* ═══════════════════════════════════════════════════════════════
+     SCROLL — compact ↔ étendu, jamais invisible
+     • TOP PAGE        → étendu
+     • Scroll DOWN     → compact
+     • Scroll UP       → étendu
+     • IDLE ≥ 800ms    → garder état courant
+     ═══════════════════════════════════════════════════════════════ */
 
-  function showNav() {
-    nav.classList.remove('nav-hidden');
-    nav.classList.add('nav-visible');
+  var lastScrollY   = window.scrollY;
+  var lastDirection = 'up';
+  var idleTimer     = null;
+  var ticking       = false;
+
+  function compactNav() {
+    nav.classList.add('compact');
   }
 
-  function hideNav() {
-    nav.classList.add('nav-hidden');
-    nav.classList.remove('nav-visible');
+  function expandNav() {
+    nav.classList.remove('compact');
   }
 
   function onScroll() {
     var currentY  = window.scrollY;
     var direction = currentY > lastScrollY ? 'down' : 'up';
 
-    /* ── Fond opaque (pages avec hero seulement) ───────────────── */
+    /* Fond opaque sur pages avec hero */
     if (hasHero) {
       nav.classList.toggle('scrolled', currentY > 60);
     }
 
-    /* ── TOP PAGE : toujours visible, priorité absolue ─────────── */
+    /* TOP PAGE → étendu absolu */
     if (currentY === 0) {
-      showNav();
+      expandNav();
       lastScrollY   = currentY;
       lastDirection = direction;
       ticking       = false;
       return;
     }
 
-    /* ── DIRECTION prime sur tout ───────────────────────────────── */
-    if (direction !== lastDirection || direction === 'down') {
-      if (direction === 'down' && !menu.classList.contains('open')) {
-        hideNav();
+    /* Direction prime, sauf si menu ouvert */
+    if (!menu.classList.contains('open')) {
+      if (direction === 'down') {
+        compactNav();
       } else if (direction === 'up') {
-        showNav();
+        expandNav();
       }
-      lastDirection = direction;
     }
 
-    lastScrollY = currentY;
-    ticking     = false;
+    lastDirection = direction;
+    lastScrollY   = currentY;
+    ticking       = false;
 
-    /* ── IDLE : reset timer, ne rien faire à l'expiration ──────── */
+    /* IDLE : conserver l'état sans rien changer */
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(function () {
-      // IDLE — la navbar reste dans son dernier état
-      // (aucune action volontaire)
-    }, 800);
+    idleTimer = setTimeout(function () { /* état stable */ }, 800);
   }
 
   window.addEventListener('scroll', function () {

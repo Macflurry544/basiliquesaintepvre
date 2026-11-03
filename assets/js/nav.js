@@ -12,20 +12,27 @@
     { href: '/contact/',             label: 'Contact' },
   ];
 
-  var MOBILE_LINKS = [
-    { href: '/',                              label: 'Accueil' },
-    { href: '/histoire/',                     label: 'Histoire' },
-    { href: '/les-grandes-orgues/',          label: 'Grandes Orgues' },
-    { href: '/les-vitraux/',                  label: 'Vitraux' },
-    { href: '/les-cloches/',                  label: 'Cloches' },
-    { href: '/photos/',                       label: 'Photos' },
-    { href: '/joseph-trouillet/',             label: 'Joseph Trouillet' },
-    { href: '/presse/',                       label: 'Presse' },
-    { href: '/carte/',                        label: 'Carte' },
-    { href: '/histoire/archives/',            label: 'Archives' },
-    { href: '/sauvegarde-et-restauration/',   label: 'Sauvegarde' },
-    { href: '/horaires-douverture/',          label: "Horaires d'ouverture" },
-    { href: '/contact/',                      label: 'Contact' },
+  /* Menu mobile : 3 rubriques, une seule affichée à la fois */
+  var MOBILE_GROUPS = [
+    { title: 'Découvrir', links: [
+      { href: '/histoire/',           label: 'Histoire' },
+      { href: '/les-grandes-orgues/', label: 'Grandes Orgues' },
+      { href: '/les-vitraux/',        label: 'Vitraux' },
+      { href: '/les-cloches/',        label: 'Cloches' },
+      { href: '/photos/',             label: 'Photos' },
+    ]},
+    { title: 'Visiter', links: [
+      { href: '/',                     label: 'Accueil' },
+      { href: '/horaires-douverture/', label: "Horaires d'ouverture" },
+      { href: '/carte/',               label: 'Carte' },
+      { href: '/contact/',             label: 'Contact' },
+    ]},
+    { title: 'Patrimoine', links: [
+      { href: '/joseph-trouillet/',           label: 'Joseph Trouillet' },
+      { href: '/histoire/archives/',          label: 'Archives' },
+      { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },
+      { href: '/presse/',                     label: 'Presse' },
+    ]},
   ];
 
   var path = window.location.pathname;
@@ -42,9 +49,29 @@
     return '<li><a href="' + l.href + '"' + cls + '>' + l.label + '</a></li>';
   }).join('');
 
-  var mobileItems = MOBILE_LINKS.map(function (l) {
-    var cls = isActive(l.href) ? ' class="active"' : '';
-    return '<a href="' + l.href + '"' + cls + '>' + l.label + '</a>';
+  /* Le lien actif le plus précis gagne (/histoire/archives/ plutôt que /histoire/) */
+  var activeHref = '';
+  MOBILE_GROUPS.forEach(function (g) {
+    g.links.forEach(function (l) {
+      if (isActive(l.href) && l.href.length > activeHref.length) activeHref = l.href;
+    });
+  });
+  var startGroup = 0;
+  MOBILE_GROUPS.forEach(function (g, i) {
+    g.links.forEach(function (l) { if (l.href === activeHref) startGroup = i; });
+  });
+
+  var mobileTabs = MOBILE_GROUPS.map(function (g, i) {
+    return '<button class="nav-tab" role="tab" id="navTab' + i + '" aria-controls="navPanel' + i + '" data-i="' + i + '">' + g.title + '</button>';
+  }).join('');
+
+  var mobilePanels = MOBILE_GROUPS.map(function (g, i) {
+    return '<div class="nav-panel" role="tabpanel" id="navPanel' + i + '" aria-labelledby="navTab' + i + '">'
+      + g.links.map(function (l, j) {
+          var cls = l.href === activeHref ? ' class="active"' : '';
+          return '<a href="' + l.href + '"' + cls + ' style="--k:' + j + '">' + l.label + '</a>';
+        }).join('')
+      + '</div>';
   }).join('');
 
   var closeSVG =
@@ -64,7 +91,10 @@
     + '</nav>'
     + '<div class="nav-fullscreen" id="navFullscreen" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">'
     +   '<button class="nav-fullscreen-close" id="navClose" aria-label="Fermer le menu">' + closeSVG + '</button>'
-    +   '<nav class="nav-fullscreen-links" aria-label="Menu mobile">' + mobileItems + '</nav>'
+    +   '<nav class="nav-fullscreen-links" aria-label="Menu mobile">'
+    +     '<div class="nav-tabs" role="tablist">' + mobileTabs + '<span class="nav-tab-ink" aria-hidden="true"></span></div>'
+    +     '<div class="nav-panels"><div class="nav-track">' + mobilePanels + '</div></div>'
+    +   '</nav>'
     + '</div>';
 
   document.body.insertAdjacentHTML('afterbegin', navHTML);
@@ -158,7 +188,8 @@
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    var firstLink = menu.querySelector('a');
+    showGroup(current);
+    var firstLink = panels[current].querySelector('a');
     if (firstLink) setTimeout(function () { firstLink.focus(); }, 40);
   }
 
@@ -170,6 +201,47 @@
     document.body.style.overflow = '';
     burger.focus();
   }
+
+  /* ── Rubriques du menu mobile ─────────────────────────────────── */
+  var tabs   = menu.querySelectorAll('.nav-tab');
+  var panels = menu.querySelectorAll('.nav-panel');
+  var track  = menu.querySelector('.nav-track');
+  var ink    = menu.querySelector('.nav-tab-ink');
+  var current = startGroup;
+
+  function showGroup(i) {
+    current = Math.max(0, Math.min(MOBILE_GROUPS.length - 1, i));
+    track.style.transform = 'translateX(' + (-100 * current) + '%)';
+    tabs.forEach(function (t, k) {
+      t.setAttribute('aria-selected', String(k === current));
+      t.tabIndex = k === current ? 0 : -1;
+    });
+    panels.forEach(function (p, k) {
+      p.classList.toggle('shown', k === current);
+      p.setAttribute('aria-hidden', String(k !== current));
+      p.querySelectorAll('a').forEach(function (a) { a.tabIndex = k === current ? 0 : -1; });
+    });
+    var t = tabs[current];
+    ink.style.width = t.offsetWidth + 'px';
+    ink.style.transform = 'translateX(' + t.offsetLeft + 'px)';
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { showGroup(+t.dataset.i); });
+  });
+
+  /* Glisser à gauche / à droite pour changer de rubrique */
+  var touchX = null, touchY = null;
+  track.addEventListener('touchstart', function (e) {
+    touchX = e.touches[0].clientX; touchY = e.touches[0].clientY;
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    var dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) showGroup(current + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
 
   burger.addEventListener('click', openMenu);
   closeBtn.addEventListener('click', closeMenu);

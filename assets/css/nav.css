@@ -91,7 +91,7 @@
 
 /* ── Logo ─────────────────────────────────────────────────────────── */
 .nav-logo {
-  font-family: var(--font-display, var(--font-titre, 'Young Serif', Georgia, serif));
+  font-family: var(--font-display, var(--font-titre, 'Uncial Antiqua', Georgia, serif));
   font-size: 0.9rem;
   font-weight: 400;
   color: var(--txt-on-dark-active);

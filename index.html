@@ -271,6 +271,19 @@
   .intro-text { font-size: 16px; line-height: 1.9; color: var(--olive); font-weight: 500; }
   .intro-text strong { font-weight: 700; }
 
+  /* SHOWCASE */
+  .showcase { background-color: var(--cream); padding: 0 2rem 8rem; }
+  .showcase-figure { max-width: 1100px; margin: 0 auto; }
+  .showcase-figure img {
+    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.35);
+  }
+  .showcase-figure figcaption {
+    margin-top: 1.25rem; text-align: center; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: rgba(var(--olive-rgb),0.55);
+  }
+  @media (prefers-reduced-motion: reduce) { video.hero-photo { display: none; } .hero { background: #000 url(/assets/video/basilique-hero-poster.jpg) center/cover; } }
+
   /* FEATURES */
   .features { background-color: var(--cream-2); padding: 8rem 2rem; }
   .features-inner { max-width: 1100px; margin: 0 auto; }
@@ -423,13 +436,15 @@
 
 <!-- ══ HERO ══════════════════════════════════════════════════ -->
 <section class="hero">
-  <img
+  <video
     class="hero-photo"
-    src="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n"
-    alt="Vue de la Basilique Saint-Epvre de Nancy"
-    loading="eager"
-    fetchpriority="high"
+    autoplay muted loop playsinline preload="auto"
+    poster="/assets/video/basilique-hero-poster.jpg"
+    aria-hidden="true"
   >
+    <source src="/assets/video/basilique-hero.webm" type="video/webm">
+    <source src="/assets/video/basilique-hero.mp4" type="video/mp4">
+  </video>
   <div class="hero-overlay"></div>
 
   <div class="hero-rule"></div>
@@ -471,6 +486,20 @@
       Érigée entre <strong>1864 et 1871</strong> par l'architecte Prosper Morey, la Basilique Saint-Epvre est un chef-d'œuvre du <strong>néo-gothique lorrain</strong>. Dominant la place éponyme au cœur médiéval de Nancy, elle séduit par ses vitraux, ses dentelles de pierre et ses grandes orgues. Plus qu'un simple chef-d'œuvre architectural, elle est un <strong>lieu de culte catholique</strong>, ouvert à tous pour la prière, le silence et la contemplation.
     </p>
   </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══ SHOWCASE ═══════════════════════════════════════════════ -->
+<section class="showcase">
+  <figure class="showcase-figure reveal">
+    <img
+      src="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n"
+      alt="Vue de la Basilique Saint-Epvre de Nancy"
+      loading="lazy"
+    >
+    <figcaption>La basilique depuis la place Saint-Epvre</figcaption>
+  </figure>
 </section>
 
 <div class="section-divider"></div>
@@ -603,5 +632,8 @@
 </script>
 
 <script defer src="assets/js/nav.js"></script>
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function(){});
+</script>
 </body>
 </html>

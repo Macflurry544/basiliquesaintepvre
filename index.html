@@ -424,6 +424,8 @@
     .feature-card  { padding: 2.5rem 2rem; }
   }
   @media (max-width: 600px) {
+    /* La statue de René II glisse de ~67 % à ~56 % de la largeur pendant la vidéo : on cadre entre les deux */
+    .hero-photo { object-position: 63% center; }
     .hero-buttons { flex-direction: column; align-items: center; width: 100%; }
     .btn { width: 100%; max-width: 320px; text-align: center; }
     .hero-overlay {
@@ -633,6 +635,22 @@
 
 <script defer src="assets/js/nav.js?v=3"></script>
 <script>
+  // Sur téléphone, le cadrage suit la statue de René II, qui glisse vers la gauche pendant la vidéo
+  (function () {
+    var v = document.querySelector('video.hero-photo');
+    var mq = window.matchMedia('(max-width: 600px)');
+    if (!v) return;
+    var DEBUT = 69, FIN = 58.5; // position horizontale (%) qui centre la statue au début et à la fin
+    (function suivre() {
+      if (mq.matches && v.duration) {
+        var p = v.currentTime / v.duration;
+        v.style.objectPosition = (DEBUT + (FIN - DEBUT) * p).toFixed(2) + '% center';
+      } else if (!mq.matches) {
+        v.style.objectPosition = '';
+      }
+      requestAnimationFrame(suivre);
+    })();
+  })();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function(){});
 </script>
 </body>

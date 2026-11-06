@@ -29,6 +29,7 @@
 
   <!-- Navbar partagée -->
   <link rel="stylesheet" href="../assets/css/nav.css?v=3">
+  <link rel="stylesheet" href="../assets/css/site.css?v=1">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -326,22 +327,12 @@
 </head>
 <body>
 
-  <!-- Bandeau construction — apparaît sous la navbar -->
-  <div class="bandeau-construction" role="status" aria-live="polite">
-    <span class="bc-icone">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-      </svg>
-    </span>
-    <span class="bc-texte"><strong>Page en construction</strong> — Le contenu sera disponible prochainement</span>
-  </div>
-
   <!-- Hero -->
   <section class="hero">
     <div class="hero-photo-fallback"></div>
     <div class="hero-pattern"></div>
     <img class="hero-photo"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Nancy_-_Basilique_Saint-Epvre_%2801%29.jpg/1280px-Nancy_-_Basilique_Saint-Epvre_%2801%29.jpg"
+      src="../assets/img/parvisbasiliquesaintepvre.jpeg"
       alt="La Basilique Saint-Epvre à Nancy"
       loading="eager" fetchpriority="high"
       onerror="this.style.opacity='0'">
@@ -361,15 +352,15 @@
       <p class="hero-sous-titre">Dix siècles d'histoire · Duché de Lorraine · De la paroisse médiévale à la basilique néo-gothique</p>
       <div class="hero-chiffres">
         <div class="hero-chiffre">
-          <span class="hero-chiffre-val">X<sup style="font-size:1.2rem">e</sup></span>
-          <span class="hero-chiffre-lab">Origines</span>
+          <span class="hero-chiffre-val">1080</span>
+          <span class="hero-chiffre-lab">Fondation</span>
         </div>
         <div class="hero-chiffre">
           <span class="hero-chiffre-val">87 m</span>
           <span class="hero-chiffre-lab">Beffroi</span>
         </div>
         <div class="hero-chiffre">
-          <span class="hero-chiffre-val">1875</span>
+          <span class="hero-chiffre-val">1871</span>
           <span class="hero-chiffre-lab">Consécration</span>
         </div>
         <div class="hero-chiffre">
@@ -388,147 +379,139 @@
   <!-- Contenu -->
   <div class="page">
 
-    <div class="construction-bloc">
-      <div class="construction-icone-grande">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M8 30 C8 22 14 14 24 13 C34 14 40 22 40 30 Z" stroke-width="1.5"/>
-          <rect x="6" y="30" width="36" height="5" rx="1"/>
-          <line x1="24" y1="13" x2="24" y2="7"/>
-          <line x1="16" y1="15" x2="12" y2="10"/>
-          <line x1="32" y1="15" x2="36" y2="10"/>
-          <rect x="14" y="37" width="20" height="7" rx="1"/>
-          <line x1="18" y1="40" x2="30" y2="40"/>
-          <line x1="18" y1="42" x2="26" y2="42"/>
-        </svg>
-      </div>
-      <span class="construction-surtitre">Page en préparation</span>
-      <h2 class="construction-titre">Cette page est en construction</h2>
-      <div class="construction-separateur"></div>
-      <p class="construction-texte">
-        Nous travaillons à la rédaction d'un contenu complet sur l'histoire de la Basilique Saint-Epvre — des origines médiévales à la reconstruction du XIX<sup>e</sup> siècle. Revenez bientôt.
-      </p>
-      <div class="construction-separateur"></div>
-      <span class="construction-eta">Bientôt disponible</span>
-    </div>
-
-    <p class="intro">
-      La Basilique Saint-Epvre est l'une des plus importantes églises néo-gothiques de Lorraine. Érigée en lieu et place d'une ancienne paroisse plusieurs fois remaniée, elle fut reconstruite entre 1864 et 1875 selon les plans de l'architecte Prosper Morey, dans un style gothique inspiré des grandes cathédrales rhénanes. Son beffroi de 87 mètres domine la vieille ville de Nancy.
+    <p class="intro lettrine">
+      Trois églises se sont succédé sur la place Saint-Epvre. La première naît avec la paroisse au XI<sup>e</sup> siècle, la deuxième s'élève en gothique flamboyant au temps des ducs de Lorraine, la troisième est la basilique que l'on connaît, voulue par un curé obstiné et financée par les souverains de toute l'Europe.
     </p>
 
-    <div class="epoques">
-      <div class="epoque-carte" data-siecle="X">
-        <span class="epoque-siecle">X<sup>e</sup> – XII<sup>e</sup> siècle</span>
-        <div class="epoque-nom">Origines médiévales</div>
-        <p class="epoque-desc">Les premières mentions d'un lieu de culte dédié à saint Epvre, évêque de Toul, dans la cité naissante de Nancy.</p>
-        <span class="epoque-placeholder">Contenu à venir</span>
-      </div>
-      <div class="epoque-carte" data-siecle="XV">
-        <span class="epoque-siecle">XV<sup>e</sup> – XVII<sup>e</sup> siècle</span>
-        <div class="epoque-nom">Sous les Ducs de Lorraine</div>
-        <p class="epoque-desc">L'église paroissiale au cœur de la cour lorraine, entre patronage ducal et enrichissements successifs — vitraux, cloches et mobilier.</p>
-        <span class="epoque-placeholder">Contenu à venir</span>
-      </div>
-      <div class="epoque-carte" data-siecle="XIX">
-        <span class="epoque-siecle">XIX<sup>e</sup> siècle</span>
-        <div class="epoque-nom">La grande reconstruction</div>
-        <p class="epoque-desc">Démolition de l'ancienne église en 1867 et construction de la basilique actuelle par Prosper Morey, consacrée le 7 juillet 1875.</p>
-        <span class="epoque-placeholder">Contenu à venir</span>
-      </div>
-      <div class="epoque-carte" data-siecle="XX">
-        <span class="epoque-siecle">XX<sup>e</sup> siècle</span>
-        <div class="epoque-nom">Guerres &amp; restaurations</div>
-        <p class="epoque-desc">Les deux guerres mondiales, les réquisitions, les restaurations successives et l'obtention du titre de basilique mineure.</p>
-        <span class="epoque-placeholder">Contenu à venir</span>
-      </div>
+    <div class="frise">
+
+      <section class="chapitre" id="moyen-age">
+        <div class="chapitre-tete">
+          <span class="chapitre-siecle">XI<sup>e</sup> – XV<sup>e</sup> siècle</span>
+          <h2>La paroisse des origines</h2>
+          <p>Au cœur de la cité naissante, la plus ancienne paroisse de Nancy.</p>
+        </div>
+        <ol class="jalons">
+          <li class="jalon">
+            <span class="jalon-date">1080</span>
+            <h3>Le duc Thierry II fonde la paroisse</h3>
+            <p>Le duc de Lorraine établit une église paroissiale dédiée à saint Epvre, évêque de Toul au début du VI<sup>e</sup> siècle. Ses reliques reposent aujourd'hui dans le maître-autel. Jusqu'à la fin du XIX<sup>e</sup> siècle, on dit parfois « Saint-Épure ».</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1436</span>
+            <h3>Une église gothique flamboyante</h3>
+            <p>Entre 1436 et 1451, l'église est entièrement reconstruite. Son clocher, point le plus haut de la ville médiévale, sert aussi de tour de guet au-dessus des remparts.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1477</span>
+            <h3>La bataille de Nancy</h3>
+            <p>René II, duc de Lorraine, défait Charles le Téméraire sous les murs de la ville. Sa statue équestre, œuvre de Mathias Schiff, domine depuis les années 1880 la fontaine de la place, face à la basilique.</p>
+          </li>
+        </ol>
+      </section>
+
+      <figure class="immersif">
+        <img src="../assets/video/basilique-hero-poster.jpg" alt="La statue de René II devant la façade de la basilique" loading="lazy">
+        <blockquote>
+          <p>La troisième église de la place, et la plus haute.</p>
+          <cite>Flèche de 87 mètres</cite>
+        </blockquote>
+      </figure>
+
+      <section class="chapitre" id="reconstruction">
+        <div class="chapitre-tete">
+          <span class="chapitre-siecle">1862 – 1875</span>
+          <h2>La grande reconstruction</h2>
+          <p>Treize ans pour élever une cathédrale néo-gothique au cœur de la Ville-Vieille.</p>
+        </div>
+        <ol class="jalons">
+          <li class="jalon">
+            <span class="jalon-date">1862</span>
+            <h3>Le concours</h3>
+            <p>La ville ouvre un concours pour une nouvelle église. Le projet de Léopold Gigout remporte la médaille d'or, mais le conseil municipal confie finalement le chantier à Prosper Morey, l'architecte qu'appuie le maire Henri Buquet.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1863</span>
+            <h3>L'ancienne église disparaît</h3>
+            <p>Le projet est approuvé le 19 avril et Morey expose ses plans au Salon. L'église du XV<sup>e</sup> siècle est démolie et les fondations creusées dans l'année.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1864</span>
+            <h3>La première pierre</h3>
+            <p>En mai 1864, la première pierre de la nouvelle église est posée.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1865</span>
+            <h3>L'abbé Trouillet quête pour son église</h3>
+            <p>Joseph Trouillet, futur Monseigneur, lance une collecte qui touchera les plus grandes cours d'Europe. Napoléon III et l'impératrice Eugénie offrent des vitraux ; Pie IX envoie 25 m² de dallage antique de la via Appia.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1867</span>
+            <h3>L'empereur sur le chantier</h3>
+            <p>Le 22 octobre, François-Joseph I<sup>er</sup> d'Autriche, descendant des ducs de Lorraine, visite le chantier. Il offre le grand escalier du parvis et un vitrail. La même année, l'orgue de Joseph Merklin reçoit une médaille d'or à l'Exposition universelle de Paris.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1867–1877</span>
+            <h3>Plus de 2 300 m² de vitraux</h3>
+            <p>Les ateliers viennois de Carl Geyling posent 82 verrières ; le maître verrier lorrain Maréchal en ajoute deux.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1871</span>
+            <h3>La consécration</h3>
+            <p>Mgr Joseph-Alfred Foulon, évêque de Nancy, consacre l'église. Le maître-autel est l'œuvre du sculpteur alsacien Théophile Klem.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1874</span>
+            <h3>Basilique mineure</h3>
+            <p>Le 26 novembre, le pape Pie IX élève Saint-Epvre au rang de basilique. Les travaux s'achèvent l'année suivante.</p>
+          </li>
+        </ol>
+        <div class="mesures">
+          <div><b>87 m</b><span>Flèche</span></div>
+          <div><b>84 m</b><span>Longueur de la nef</span></div>
+          <div><b>24 m</b><span>Hauteur sous voûte</span></div>
+        </div>
+      </section>
+
+      <section class="chapitre" id="xxe-siecle">
+        <div class="chapitre-tete">
+          <span class="chapitre-siecle">1914 – aujourd'hui</span>
+          <h2>Blessures et renaissances</h2>
+          <p>Bombardements, tempête, restaurations : la basilique traverse le siècle.</p>
+        </div>
+        <ol class="jalons">
+          <li class="jalon">
+            <span class="jalon-date">1914</span>
+            <h3>Les bombes du dirigeable</h3>
+            <p>Dans la nuit du 25 au 26 septembre, un dirigeable allemand bombarde la Ville-Vieille. La toiture est touchée et près de la moitié des vitraux est détruite ; Jacques Gruber, maître de l'École de Nancy, dirige leur reconstitution.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1916</span>
+            <h3>Hommage à l'architecte</h3>
+            <p>Mgr Trouillet fait poser dans la basilique une plaque à la mémoire de Prosper Morey.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1996</span>
+            <h3>L'Oratoire</h3>
+            <p>La paroisse est confiée à la congrégation de l'Oratoire de saint Philippe Néri.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1999</span>
+            <h3>Monument historique</h3>
+            <p>La basilique est inscrite aux monuments historiques. En décembre, la tempête l'endommage ; avec la pollution, elle rend nécessaire une vaste campagne de restauration. L'orgue avait été restauré en 1992, l'orgue de chœur le sera en 2009.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">2013</span>
+            <h3>Le dernier empereur</h3>
+            <p>Le 15 décembre, une relique du bienheureux Charles I<sup>er</sup> de Habsbourg-Lorraine est transférée dans la basilique, un siècle et demi après la visite de François-Joseph.</p>
+          </li>
+        </ol>
+      </section>
+
     </div>
 
-    <article class="section" id="section-1">
-      <div class="section-inner" data-num="01">
-        <div class="section-entete">
-          <span class="section-num">01</span>
-          <h2 class="section-titre">Les origines<br>médiévales</h2>
-        </div>
-        <span class="badge-avenir">À rédiger</span>
-        <div class="section-texte" style="margin-top:1.5rem;">
-          <p>Le contenu détaillé de cette section est en cours de recherche et de rédaction. Il abordera les premières mentions de l'église Saint-Epvre dans les archives médiévales, le rôle de saint Epvre dans la fondation du christianisme lorrain, et l'évolution du site religieux jusqu'au bas Moyen Âge.</p>
-          <div class="section-texte-placeholder" style="margin-top:1.5rem; opacity:0.5;">
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="section" id="section-2">
-      <div class="section-inner" data-num="02">
-        <div class="section-entete">
-          <span class="section-num">02</span>
-          <h2 class="section-titre">L'église sous<br>les Ducs de Lorraine</h2>
-        </div>
-        <span class="badge-avenir">À rédiger</span>
-        <div class="section-texte" style="margin-top:1.5rem;">
-          <p>Cette section traitera du rôle de l'ancienne église Saint-Epvre sous la protection des ducs de Lorraine, des donations, des embellissements successifs et de son lien avec la cour ducale de Nancy au cours des XV<sup>e</sup>, XVI<sup>e</sup> et XVII<sup>e</sup> siècles.</p>
-          <div class="section-texte-placeholder" style="margin-top:1.5rem; opacity:0.5;">
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="section" id="section-3">
-      <div class="section-inner" data-num="03">
-        <div class="section-entete">
-          <span class="section-num">03</span>
-          <h2 class="section-titre">La reconstruction<br>du XIX<sup style="font-size:1rem">e</sup> siècle</h2>
-        </div>
-        <span class="badge-avenir">À rédiger</span>
-        <div class="section-texte" style="margin-top:1.5rem;">
-          <p>La démolition de l'ancienne église en 1867, le concours d'architecture, les plans de Prosper Morey, le financement des travaux par la Ville de Nancy et les fidèles, la pose de la première pierre le 29 mai 1864, et la consécration solennelle du 7 juillet 1875 seront développés ici.</p>
-          <div class="section-texte-placeholder" style="margin-top:1.5rem; opacity:0.5;">
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="section" id="section-4">
-      <div class="section-inner" data-num="04">
-        <div class="section-entete">
-          <span class="section-num">04</span>
-          <h2 class="section-titre">Le titre<br>de Basilique</h2>
-        </div>
-        <span class="badge-avenir">À rédiger</span>
-        <div class="section-texte" style="margin-top:1.5rem;">
-          <p>Cette section expliquera les conditions dans lesquelles la Basilique a reçu le titre pontifical de basilique mineure, sa signification canonique et liturgique, ainsi que les cérémonies qui ont marqué cette reconnaissance de Rome.</p>
-          <div class="section-texte-placeholder" style="margin-top:1.5rem; opacity:0.5;">
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-            <div class="ligne-placeholder"></div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Lien Archives & Bibliographie -->
-    <div style="margin-top:4rem; padding:2.5rem; background:rgba(var(--olive-rgb),0.04); border:1px solid rgba(var(--olive-rgb),0.09); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
-      <div>
-        <div style="font-family:var(--font-titre);font-size:1.05rem;color:var(--olive);margin-bottom:0.35rem;">Archives &amp; Bibliographie</div>
-        <div style="font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(var(--olive-rgb),0.42);font-weight:500;">Sources · Documents numérisés · Références</div>
-      </div>
-      <a href="/histoire/archives/" style="display:inline-flex;align-items:center;gap:0.6rem;font-family:var(--font-texte);font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;color:var(--olive);border:1px solid rgba(var(--olive-rgb),0.25);padding:0.7rem 1.4rem;transition:background 0.2s,border-color 0.2s;" onmouseover="this.style.background='rgba(var(--olive-rgb),0.06)';this.style.borderColor='rgba(var(--olive-rgb),0.45)'" onmouseout="this.style.background='';this.style.borderColor='rgba(var(--olive-rgb),0.25)'">
-        Consulter →
-      </a>
+    <div class="sources">
+      Sources : article « Basilique Saint-Epvre de Nancy » de Wikipédia et archives municipales de Nancy. Certaines dates restent à confirmer auprès des archives de la paroisse.
     </div>
 
     <div class="pied">
@@ -552,6 +535,7 @@
 
   <!-- Navbar injectée dynamiquement -->
   <script defer src="../assets/js/nav.js?v=3"></script>
+  <script defer src="../assets/js/site.js?v=1"></script>
 
 </body>
 </html>

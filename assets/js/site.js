@@ -103,13 +103,14 @@
   });
 
   // Surligneur pastel sur les mots importants, comme passé au feutre
+  var surlignes = [];
   var PASTELS = ['#f7e3a1', '#cfe6f5', '#d9eccd', '#f6d3dc', '#e2d7f3'];
   $$('article strong, article b, .timeline strong, .frise strong, .intro strong, main p strong').forEach(function (m, k) {
     if (m.closest('h1, h2, h3, .hero, .nav, .l-sheet') || m.classList.contains('l-surligne')) return;
     m.classList.add('l-surligne');
+    if (clair(getComputedStyle(m).color)) m.classList.add('sur-fonce');
     m.style.setProperty('--sl', PASTELS[k % PASTELS.length]);
-    m.style.setProperty('--d', '0.35s');
-    if (!io || reduit) m.classList.add('in'); else io.observe(m);
+    surlignes.push(m);
   });
 
   // Compteurs : 1576, 87 m, ~1 570 kg…
@@ -205,8 +206,13 @@
     var m = rgb.match(/\d+(\.\d+)?/g); if (!m) return false;
     return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) > 150;
   }
-  $$('.hero *, .page *, main *, article, section *').forEach(function (e) {
-    if (e.closest('.nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
+  function fonce(rgb) {
+    var m = rgb.match(/\d+(\.\d+)?/g); if (!m) return false;
+    var alpha = m.length > 3 ? parseFloat(m[3]) : 1;
+    return alpha > 0.5 && !clair(rgb);
+  }
+  $$('.page *, main *, article, section *').forEach(function (e) {
+    if (e.closest('.hero, .mesures, .nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
     var cs = getComputedStyle(e);
     var bords = ['Top', 'Right', 'Bottom', 'Left'].filter(function (c) { return parseFloat(cs['border' + c + 'Width']) > 0 && cs['border' + c + 'Style'] !== 'none'; }).length;
     var r = e.getBoundingClientRect();
@@ -214,8 +220,11 @@
     if (bords < 3 && !fond) return;
     if (parseFloat(cs.borderTopLeftRadius) > 6 || r.width < 60 || r.height < 40 || r.width > window.innerWidth * 0.94) return;
     if (e.closest('.l-glass')) return;
+    // Fond d'origine foncé ou texte clair : verre teinté sombre, pour garder le texte lisible
+    // (lu avant d'ajouter la classe, car getComputedStyle suit les changements)
+    var sombre = (fond && fonce(cs.backgroundColor)) || clair(cs.color);
     e.classList.add('l-glass');
-    if (clair(cs.color)) e.classList.add('sombre');
+    if (sombre) e.classList.add('sombre');
   });
 
   /* ── Rail le long des sections (même effet que la frise) ────────── */
@@ -224,10 +233,19 @@
     if (!h) return null;
     s.classList.add('l-rail');
     var sr = s.getBoundingClientRect(), hr = h.getBoundingClientRect();
-    var rx = Math.max(8, hr.left - sr.left - 28);
-    s.style.setProperty('--rx', rx + 'px');
+    // Le rail passe à gauche de tout le contenu (titre, texte, encadrés), jamais dessus
+    var gauche = hr.left;
+    $$('p, blockquote, figure, ul, ol, table, div', s).forEach(function (c) {
+      var r = c.getBoundingClientRect();
+      if (r.width > 0 && r.width < sr.width - 4) gauche = Math.min(gauche, r.left);
+    });
+    var marge = gauche - sr.left;
+    if (marge < 40) {
+      s.style.paddingLeft = (parseFloat(getComputedStyle(s).paddingLeft) + 44 - marge) + 'px';
+      marge = 44;
+    }
+    s.style.setProperty('--rx', Math.round(marge - 22) + 'px');
     s.style.setProperty('--ry', Math.max(8, hr.top - sr.top + 14) + 'px');
-    if (hr.left - sr.left < 36) s.style.paddingLeft = (parseFloat(getComputedStyle(s).paddingLeft) + 30) + 'px', s.style.setProperty('--rx', '10px');
     var ligne = el('span', 'l-rail-ligne'), fillR = el('span', 'l-rail-fill'), point = el('span', 'l-rail-point');
     s.appendChild(ligne); s.appendChild(fillR); s.appendChild(point);
     if (io && !reduit) io.observe(s); else s.classList.add('in');
@@ -292,6 +310,13 @@
       });
     }
 
+    // Surligneur piloté par le scroll : le trait avance quand le mot monte de 88 % à 55 % de l'écran
+    surlignes.forEach(function (m) {
+      var t = m.getBoundingClientRect().top;
+      var p = reduit ? 1 : Math.max(0, Math.min(1, (vh * 0.88 - t) / (vh * 0.33)));
+      m.style.backgroundSize = (p * 100).toFixed(1) + '% 100%';
+      m.classList.toggle('in', p > 0.6);
+    });
     rails.forEach(function (r) {
       var b = r.s.getBoundingClientRect();
       var top = parseFloat(r.s.style.getPropertyValue('--ry')) || 10;

@@ -83,6 +83,8 @@ body.lecture {
 .l-orn.in path, .l-orn.in line, .l-orn.in circle { stroke-dashoffset: 0; }
 .l-orn .croix { transition-delay: 0.5s; color: var(--l-lapis); transform: scale(0.7); transform-origin: 200px 34px; }
 .l-orn .croix line { stroke-width: 3.2; stroke-linecap: butt; }
+.l-orn { color: var(--l-lapis); }
+.l-orn > svg > line { stroke-width: 2.6; }
 
 /* ── Apparitions au scroll ───────────────────────────────────────── */
 .rv {
@@ -219,8 +221,8 @@ body.lecture {
 .immersif cite { display: block; text-align: center; margin-top: 1rem; font-family: var(--l-texte); font-style: normal; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75; }
 
 /* Chiffres clés */
-.mesures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--l-line); border: 1px solid var(--l-line); margin: 3rem 0 0; }
-.mesures div { background: var(--l-paper); padding: 2rem 1.2rem; text-align: center; display: grid; gap: 0.4rem; }
+.mesures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 4rem 0 0; }
+.mesures div { padding: 1.4rem 0 0; border-top: 2px solid var(--l-lapis); text-align: left; display: grid; gap: 0.5rem; }
 .mesures b { font-family: var(--l-titre); font-weight: 400; font-size: clamp(2rem, 6vw, 3.4rem); color: var(--l-lapis); font-variant-numeric: tabular-nums; }
 .mesures span { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--l-soft); }
 @media (max-width: 560px) { .mesures { grid-template-columns: 1fr; } }
@@ -233,16 +235,21 @@ body.lecture {
   background-image: linear-gradient(transparent 52%, var(--sl, #f7e3a1) 52%, var(--sl, #f7e3a1) 90%, transparent 90%);
   background-repeat: no-repeat;
   background-size: 0% 100%;
-  transition: background-size 0.9s cubic-bezier(0.65, 0, 0.35, 1);
-  transition-delay: var(--d, 0s);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   padding: 0 0.08em;
 }
-.l-surligne.in { background-size: 100% 100%; }
+/* Sur fond foncé, le texte surligné passe en encre foncée pour rester lisible */
+.l-surligne.sur-fonce {
+  transition: color 0.3s ease;
+  background-image: linear-gradient(var(--sl, #f7e3a1), var(--sl, #f7e3a1));
+  border-radius: 3px;
+  padding: 0.05em 0.2em;
+}
+.l-surligne.sur-fonce.in { color: #10202e !important; }
 
 /* ── Liquid glass ────────────────────────────────────────────────── */
-.l-glass, .l-toc-panel, .l-toc-btn, .mesures > div {
+.l-glass, .l-toc-panel, .l-toc-btn {
   background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.18)) !important;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -256,7 +263,7 @@ body.lecture {
   outline: none !important;
 }
 .l-glass.sombre, .l-toc-btn {
-  background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04)) !important;
+  background: linear-gradient(135deg, rgba(33,52,72,0.82), rgba(20,30,44,0.72)) !important;
   border-color: rgba(255,255,255,0.26) !important;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.35),
@@ -264,8 +271,8 @@ body.lecture {
     0 12px 32px rgba(0,0,0,0.25) !important;
 }
 .l-toc-btn { background-color: rgba(20,28,40,0.55) !important; }
+.hero .l-glass.sombre { background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04)) !important; }
 .l-glass::before, .l-glass::after { border-radius: inherit; }
-.mesures { background: none; border: 0; gap: 14px; }
 
 /* ── Rail de lecture le long des sections ────────────────────────── */
 .l-rail { position: relative; }

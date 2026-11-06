@@ -56,22 +56,13 @@
       if (isActive(l.href) && l.href.length > activeHref.length) activeHref = l.href;
     });
   });
-  var startGroup = 0;
-  MOBILE_GROUPS.forEach(function (g, i) {
-    g.links.forEach(function (l) { if (l.href === activeHref) startGroup = i; });
-  });
-
-  var mobileTabs = MOBILE_GROUPS.map(function (g, i) {
-    return '<button class="nav-tab" role="tab" id="navTab' + i + '" aria-controls="navPanel' + i + '" data-i="' + i + '">' + g.title + '</button>';
-  }).join('');
-
-  var mobilePanels = MOBILE_GROUPS.map(function (g, i) {
-    return '<div class="nav-panel" role="tabpanel" id="navPanel' + i + '" aria-labelledby="navTab' + i + '">'
-      + g.links.map(function (l, j) {
-          var cls = l.href === activeHref ? ' class="active"' : '';
-          return '<a href="' + l.href + '"' + cls + ' style="--k:' + j + '">' + l.label + '</a>';
-        }).join('')
-      + '</div>';
+  /* Menu mobile : une seule liste, dans l'ordre des rubriques */
+  var mobileItems = [];
+  MOBILE_GROUPS.forEach(function (g) { g.links.forEach(function (l) { mobileItems.push(l); }); });
+  mobileItems.sort(function (a, b) { return a.href === '/' ? -1 : b.href === '/' ? 1 : 0; });
+  var mobileList = mobileItems.map(function (l, j) {
+    var cls = l.href === activeHref ? ' class="active"' : '';
+    return '<a href="' + l.href + '"' + cls + ' style="--k:' + j + '">' + l.label + '</a>';
   }).join('');
 
   var closeSVG =
@@ -92,8 +83,7 @@
     + '<div class="nav-fullscreen" id="navFullscreen" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">'
     +   '<button class="nav-fullscreen-close" id="navClose" aria-label="Fermer le menu">' + closeSVG + '</button>'
     +   '<nav class="nav-fullscreen-links" aria-label="Menu mobile">'
-    +     '<div class="nav-tabs" role="tablist">' + mobileTabs + '<span class="nav-tab-ink" aria-hidden="true"></span></div>'
-    +     '<div class="nav-panels"><div class="nav-track">' + mobilePanels + '</div></div>'
+    +     mobileList
     +   '</nav>'
     + '</div>';
 
@@ -188,8 +178,7 @@
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    showGroup(current);
-    var firstLink = panels[current].querySelector('a');
+    var firstLink = menu.querySelector('.nav-fullscreen-links a');
     if (firstLink) setTimeout(function () { firstLink.focus(); }, 40);
   }
 
@@ -202,48 +191,13 @@
     burger.focus();
   }
 
-  /* ── Rubriques du menu mobile ─────────────────────────────────── */
-  var tabs   = menu.querySelectorAll('.nav-tab');
-  var panels = menu.querySelectorAll('.nav-panel');
-  var track  = menu.querySelector('.nav-track');
-  var ink    = menu.querySelector('.nav-tab-ink');
-  var current = startGroup;
-
-  function showGroup(i) {
-    current = Math.max(0, Math.min(MOBILE_GROUPS.length - 1, i));
-    track.style.transform = 'translateX(' + (-100 * current) + '%)';
-    tabs.forEach(function (t, k) {
-      t.setAttribute('aria-selected', String(k === current));
-      t.tabIndex = k === current ? 0 : -1;
-    });
-    panels.forEach(function (p, k) {
-      p.classList.toggle('shown', k === current);
-      p.setAttribute('aria-hidden', String(k !== current));
-      p.querySelectorAll('a').forEach(function (a) { a.tabIndex = k === current ? 0 : -1; });
-    });
-    var t = tabs[current];
-    ink.style.width = t.offsetWidth + 'px';
-    ink.style.transform = 'translateX(' + t.offsetLeft + 'px)';
-  }
-
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () { showGroup(+t.dataset.i); });
+  burger.addEventListener('click', function () {
+    if (menu.classList.contains('open')) closeMenu(); else openMenu();
   });
-
-  /* Glisser à gauche / à droite pour changer de rubrique */
-  var touchX = null, touchY = null;
-  track.addEventListener('touchstart', function (e) {
-    touchX = e.touches[0].clientX; touchY = e.touches[0].clientY;
-  }, { passive: true });
-  track.addEventListener('touchend', function (e) {
-    if (touchX === null) return;
-    var dx = e.changedTouches[0].clientX - touchX;
-    var dy = e.changedTouches[0].clientY - touchY;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) showGroup(current + (dx < 0 ? 1 : -1));
-    touchX = null;
+  // Toucher en dehors de la liste la referme
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) closeMenu();
   });
-
-  burger.addEventListener('click', openMenu);
   closeBtn.addEventListener('click', closeMenu);
 
   menu.querySelectorAll('a').forEach(function (a) {

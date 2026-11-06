@@ -283,7 +283,7 @@
     return alpha > 0.5 && !clair(rgb);
   }
   $$('.page *, main *, article, section *').forEach(function (e) {
-    if (e.closest('.hero, .mesures, .sommaire, .filtres-wrapper, .credits, .nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
+    if (e.closest('.hero, .mesures, .sommaire, .filtres-wrapper, .credits, .h-mercredi, .h-info, .h-etat, .nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
     var cs = getComputedStyle(e);
     var bords = ['Top', 'Right', 'Bottom', 'Left'].filter(function (c) { return parseFloat(cs['border' + c + 'Width']) > 0 && cs['border' + c + 'Style'] !== 'none'; }).length;
     var r = e.getBoundingClientRect();

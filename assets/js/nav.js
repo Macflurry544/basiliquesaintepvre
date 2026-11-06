@@ -62,7 +62,7 @@
   mobileItems.sort(function (a, b) { return a.href === '/' ? -1 : b.href === '/' ? 1 : 0; });
   var mobileList = mobileItems.map(function (l, j) {
     var cls = l.href === activeHref ? ' class="active"' : '';
-    return '<a href="' + l.href + '"' + cls + ' style="--k:' + j + '">' + l.label + '</a>';
+    return '<a href="' + l.href + '"' + cls + ' style="--k:' + j + '"><span>' + l.label + '</span></a>';
   }).join('');
 
   var closeSVG =
@@ -80,6 +80,7 @@
     +     '<span></span><span></span><span></span>'
     +   '</button>'
     + '</nav>'
+    + '<div class="nav-voile" id="navVoile" aria-hidden="true"></div>'
     + '<div class="nav-fullscreen" id="navFullscreen" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">'
     +   '<button class="nav-fullscreen-close" id="navClose" aria-label="Fermer le menu">' + closeSVG + '</button>'
     +   '<nav class="nav-fullscreen-links" aria-label="Menu mobile">'
@@ -93,6 +94,7 @@
   var burger   = document.getElementById('navBurger');
   var menu     = document.getElementById('navFullscreen');
   var closeBtn = document.getElementById('navClose');
+  var voile    = document.getElementById('navVoile');
   var hasHero  = !!document.querySelector('.hero');
 
   /* ── État initial ─────────────────────────────────────────────── */
@@ -174,6 +176,7 @@
   /* ── Menu fullscreen ──────────────────────────────────────────── */
   function openMenu() {
     menu.classList.add('open');
+    voile.classList.add('open');
     menu.setAttribute('aria-hidden', 'false');
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
@@ -184,6 +187,7 @@
 
   function closeMenu() {
     menu.classList.remove('open');
+    voile.classList.remove('open');
     menu.setAttribute('aria-hidden', 'true');
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');

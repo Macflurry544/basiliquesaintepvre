@@ -201,6 +201,77 @@
     window.scrollTo({ top: cible.getBoundingClientRect().top + window.scrollY - 90, behavior: reduit ? 'auto' : 'smooth' });
   });
 
+  /* ── Sommaire des pages : grands numéros détourés ─────────────── */
+  $$('.sommaire').forEach(function (som) {
+    som.classList.add('l-som');
+    $$('li', som).forEach(function (li, k) {
+      var a = li.querySelector('a'), num = li.querySelector('.num');
+      if (!a) return;
+      var titre = a.innerHTML;
+      a.innerHTML = '<i>' + (num ? num.textContent.trim() : String(k + 1).padStart(2, '0')) + '</i><em>' + titre + '</em><b aria-hidden="true">→</b>';
+      if (!a.getAttribute('href')) a.setAttribute('href', '#' + (a.dataset.cible || ''));
+      if (num) num.remove();
+      li.style.setProperty('--k', k);
+    });
+    if (io && !reduit) io.observe(som); else som.classList.add('in');
+  });
+
+  /* ── Filtres de la page Vitraux : onglets soulignés ─────────────── */
+  $$('.filtres').forEach(function (barre) {
+    var rail = el('div', 'filtres-rail');
+    barre.parentNode.insertBefore(rail, barre);
+    rail.appendChild(barre);
+    var ink = el('span', 'filtres-ink');
+    barre.appendChild(ink);
+    var suite = el('div', 'filtres-suite', '<button type="button" aria-label="Voir les zones suivantes">→</button>');
+    rail.appendChild(suite);
+    suite.querySelector('button').addEventListener('click', function () {
+      interagi = true;
+      barre.scrollBy({ left: barre.clientWidth * 0.7, behavior: reduit ? 'auto' : 'smooth' });
+    });
+    function placer() {
+      var b = barre.querySelector('.filtre-btn.actif') || barre.querySelector('.filtre-btn');
+      if (!b) return;
+      ink.style.width = b.offsetWidth + 'px';
+      ink.style.transform = 'translateX(' + b.offsetLeft + 'px)';
+    }
+    function bords() {
+      var max = barre.scrollWidth - barre.clientWidth;
+      rail.classList.toggle('fin', barre.scrollLeft >= max - 4);
+      rail.classList.toggle('debut-cache', barre.scrollLeft > 4);
+    }
+    var interagi = false;
+    rail.addEventListener('pointerdown', function () { interagi = true; });
+    barre.addEventListener('click', function (e) {
+      interagi = true;
+      var b = e.target.closest('.filtre-btn');
+      if (!b) return;
+      // laisse la page appliquer le filtre, puis déplace le trait et amène l'onglet à gauche, hors de la flèche
+      setTimeout(function () {
+        placer();
+        barre.scrollTo({ left: Math.max(0, b.offsetLeft - 12), behavior: reduit ? 'auto' : 'smooth' });
+      }, 0);
+    });
+    barre.addEventListener('scroll', bords, { passive: true });
+    window.addEventListener('resize', function () { placer(); bords(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placer(); bords(); });
+    placer(); bords();
+
+    // Au premier affichage, la barre glisse un peu vers la droite puis revient : on comprend qu'il y a une suite
+    if (!reduit && barre.scrollWidth > barre.clientWidth + 4 && io) {
+      var vu = new IntersectionObserver(function (e) {
+        if (!e[0].isIntersecting) return;
+        vu.disconnect();
+        setTimeout(function () {
+          if (interagi) return;
+          barre.scrollTo({ left: 90, behavior: 'smooth' });
+          setTimeout(function () { if (!interagi) barre.scrollTo({ left: 0, behavior: 'smooth' }); }, 700);
+        }, 600);
+      }, { threshold: 0.6 });
+      vu.observe(barre);
+    }
+  });
+
   /* ── Liquid glass sur les blocs carrés ─────────────────────────── */
   function clair(rgb) {
     var m = rgb.match(/\d+(\.\d+)?/g); if (!m) return false;
@@ -212,7 +283,7 @@
     return alpha > 0.5 && !clair(rgb);
   }
   $$('.page *, main *, article, section *').forEach(function (e) {
-    if (e.closest('.hero, .mesures, .nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
+    if (e.closest('.hero, .mesures, .sommaire, .filtres-wrapper, .credits, .nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
     var cs = getComputedStyle(e);
     var bords = ['Top', 'Right', 'Bottom', 'Left'].filter(function (c) { return parseFloat(cs['border' + c + 'Width']) > 0 && cs['border' + c + 'Style'] !== 'none'; }).length;
     var r = e.getBoundingClientRect();

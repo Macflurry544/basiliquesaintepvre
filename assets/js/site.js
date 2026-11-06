@@ -13,28 +13,15 @@
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; }
 
   /* ── Ornements SVG ─────────────────────────────────────────────── */
-  // Croix de Lorraine encadrée de deux arcs brisés
+  // Croix de Lorraine entre deux barres
   var ORNEMENT =
-    '<svg viewBox="0 0 400 60" aria-hidden="true">'
-    + '<line x1="10" y1="34" x2="150" y2="34"/>'
-    + '<path d="M150 34 Q170 34 176 14"/>'
-    + '<line x1="390" y1="34" x2="250" y2="34"/>'
-    + '<path d="M250 34 Q230 34 224 14"/>'
-    + '<g class="croix"><line x1="200" y1="4" x2="200" y2="56"/>'
-    + '<line x1="191" y1="16" x2="209" y2="16"/>'
-    + '<line x1="186" y1="27" x2="214" y2="27"/>'
-    + '<circle cx="200" cy="44" r="3"/></g>'
+    '<svg viewBox="0 0 400 66" aria-hidden="true">'
+    + '<line x1="40" y1="34" x2="168" y2="34"/>'
+    + '<g class="croix"><line x1="200" y1="12" x2="200" y2="60"/>'
+    + '<line x1="190" y1="28" x2="210" y2="28"/>'
+    + '<line x1="184" y1="40" x2="216" y2="40"/></g>'
+    + '<line x1="232" y1="34" x2="360" y2="34"/>'
     + '</svg>';
-
-  // Rosace : 12 lobes + cercles concentriques
-  function rosace() {
-    var s = '<svg class="l-rosace" viewBox="-100 -100 200 200" aria-hidden="true"><circle r="98"/><circle r="72"/><circle r="22"/><circle r="10"/>';
-    for (var i = 0; i < 12; i++) {
-      var a = i * 30;
-      s += '<g transform="rotate(' + a + ')"><path d="M0 -22 Q18 -50 0 -72 Q-18 -50 0 -22"/><circle cy="-85" r="11"/><line y1="-72" y2="-98"/></g>';
-    }
-    return s + '</svg>';
-  }
 
   /* ── Barre de progression ──────────────────────────────────────── */
   var progress = el('div', 'l-progress');
@@ -115,6 +102,16 @@
     animer(cible, 'rv-img');
   });
 
+  // Surligneur pastel sur les mots importants, comme passé au feutre
+  var PASTELS = ['#f7e3a1', '#cfe6f5', '#d9eccd', '#f6d3dc', '#e2d7f3'];
+  $$('article strong, article b, .timeline strong, .frise strong, .intro strong, main p strong').forEach(function (m, k) {
+    if (m.closest('h1, h2, h3, .hero, .nav, .l-sheet') || m.classList.contains('l-surligne')) return;
+    m.classList.add('l-surligne');
+    m.style.setProperty('--sl', PASTELS[k % PASTELS.length]);
+    m.style.setProperty('--d', '0.35s');
+    if (!io || reduit) m.classList.add('in'); else io.observe(m);
+  });
+
   // Compteurs : 1576, 87 m, ~1 570 kg…
   $$('.hero-chiffre-val, .mesures b').forEach(function (n) {
     if (reduit || n.children.length) return;
@@ -157,11 +154,6 @@
   var hero = document.querySelector('.hero');
   var heroImg = hero && hero.querySelector('.hero-photo, img');
   var heroContenu = hero && hero.querySelector('.hero-contenu, .hero-content, h1');
-  var ros = null;
-  if (hero && !reduit) {
-    hero.insertAdjacentHTML('beforeend', rosace());
-    ros = hero.querySelector('.l-rosace');
-  }
   var immersifs = $$('.immersif img');
 
   /* ── Sommaire ──────────────────────────────────────────────────── */
@@ -177,7 +169,7 @@
     return { bloc: bloc, id: bloc.id, texte: texte };
   });
 
-  var toc, tocLiens = [], fill, btn, btnNum, btnTxt, sheet, veil, sheetLiens = [];
+  var toc, tocLiens = [], fill, sheet, veil;
   if (entrees.length >= 3) {
     toc = el('nav', 'l-toc');
     toc.setAttribute('aria-label', 'Sommaire de la page');
@@ -194,24 +186,6 @@
     });
     panel.appendChild(ol); toc.appendChild(panel); body.appendChild(toc);
 
-    btn = el('button', 'l-toc-btn', '<b></b><em></em>');
-    btn.type = 'button';
-    btn.setAttribute('aria-label', 'Ouvrir le sommaire');
-    btnNum = btn.querySelector('b'); btnTxt = btn.querySelector('em');
-    veil = el('div', 'l-veil');
-    sheet = el('div', 'l-sheet');
-    sheet.setAttribute('role', 'dialog');
-    sheet.setAttribute('aria-label', 'Sommaire');
-    sheet.innerHTML = '<h3>Sommaire</h3><ol></ol>';
-    entrees.forEach(function (e, k) {
-      var li = el('li'), a = el('a');
-      a.href = '#' + e.id; a.textContent = e.texte; a.style.setProperty('--k', k);
-      a.addEventListener('click', fermerSheet);
-      li.appendChild(a); sheet.querySelector('ol').appendChild(li); sheetLiens.push(a);
-    });
-    body.appendChild(btn); body.appendChild(veil); body.appendChild(sheet);
-    btn.addEventListener('click', function () { sheet.classList.add('open'); veil.classList.add('open'); });
-    veil.addEventListener('click', fermerSheet);
   }
   function fermerSheet() { if (sheet) { sheet.classList.remove('open'); veil.classList.remove('open'); } }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fermerSheet(); });
@@ -226,10 +200,73 @@
     window.scrollTo({ top: cible.getBoundingClientRect().top + window.scrollY - 90, behavior: reduit ? 'auto' : 'smooth' });
   });
 
+  /* ── Liquid glass sur les blocs carrés ─────────────────────────── */
+  function clair(rgb) {
+    var m = rgb.match(/\d+(\.\d+)?/g); if (!m) return false;
+    return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) > 150;
+  }
+  $$('.hero *, .page *, main *, article, section *').forEach(function (e) {
+    if (e.closest('.nav, .nav-fullscreen, .l-toc, .l-sheet, .egg-carte, .l-orn') || /^(IMG|SVG|INPUT|TEXTAREA|SELECT|BUTTON|A|LI|SPAN|SUP|BR|PATH|LINE|CIRCLE|IFRAME|VIDEO|HR)$/i.test(e.tagName)) return;
+    var cs = getComputedStyle(e);
+    var bords = ['Top', 'Right', 'Bottom', 'Left'].filter(function (c) { return parseFloat(cs['border' + c + 'Width']) > 0 && cs['border' + c + 'Style'] !== 'none'; }).length;
+    var r = e.getBoundingClientRect();
+    var fond = cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent' && cs.backgroundImage === 'none';
+    if (bords < 3 && !fond) return;
+    if (parseFloat(cs.borderTopLeftRadius) > 6 || r.width < 60 || r.height < 40 || r.width > window.innerWidth * 0.94) return;
+    if (e.closest('.l-glass')) return;
+    e.classList.add('l-glass');
+    if (clair(cs.color)) e.classList.add('sombre');
+  });
+
+  /* ── Rail le long des sections (même effet que la frise) ────────── */
+  var rails = sections.filter(function (s) { return !s.classList.contains('chapitre'); }).map(function (s) {
+    var h = s.querySelector('h2');
+    if (!h) return null;
+    s.classList.add('l-rail');
+    var sr = s.getBoundingClientRect(), hr = h.getBoundingClientRect();
+    var rx = Math.max(8, hr.left - sr.left - 28);
+    s.style.setProperty('--rx', rx + 'px');
+    s.style.setProperty('--ry', Math.max(8, hr.top - sr.top + 14) + 'px');
+    if (hr.left - sr.left < 36) s.style.paddingLeft = (parseFloat(getComputedStyle(s).paddingLeft) + 30) + 'px', s.style.setProperty('--rx', '10px');
+    var ligne = el('span', 'l-rail-ligne'), fillR = el('span', 'l-rail-fill'), point = el('span', 'l-rail-point');
+    s.appendChild(ligne); s.appendChild(fillR); s.appendChild(point);
+    if (io && !reduit) io.observe(s); else s.classList.add('in');
+    return { s: s, f: fillR };
+  }).filter(Boolean);
+
+  /* ── Chronologie des cloches ───────────────────────────────────── */
+  var CLOCHE_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">'
+    + '<path class="onde" d="M3 6 Q1 11 3 16"/><path class="onde" d="M21 6 Q23 11 21 16"/>'
+    + '<path d="M12 2.5 v1.5"/><path d="M6 17 C6 9 8 5 12 5 C16 5 18 9 18 17 Z" fill="currentColor" fill-opacity="0.12"/>'
+    + '<path d="M4.5 17.2 h15"/><circle cx="12" cy="19.6" r="1.6" fill="currentColor"/></svg>';
+  var tlFills = $$('.timeline').map(function (tl) {
+    var titre = tl.parentElement && tl.parentElement.querySelector('.timeline-titre');
+    if (titre) {
+      titre.insertAdjacentHTML('afterbegin', CLOCHE_SVG.replace(/class="onde"/g, 'class="onde" style="display:none"'));
+      animer(titre);
+    }
+    var f = el('span', 'tl-fill'); tl.insertBefore(f, tl.firstChild);
+    $$('.timeline-item', tl).forEach(function (it, k) {
+      var b = el('button', 'tl-cloche', CLOCHE_SVG);
+      b.type = 'button';
+      var date = it.querySelector('.timeline-date');
+      b.setAttribute('aria-label', 'Faire sonner la cloche' + (date ? ' — ' + date.textContent : ''));
+      it.insertBefore(b, it.firstChild);
+      b.addEventListener('click', function () {
+        // Plus l'événement est ancien, plus la cloche est grave
+        cloche(it.classList.contains('majeur') ? 174.6 : 220 + k * 22);
+        b.classList.remove('sonne'); void b.offsetWidth; b.classList.add('sonne');
+      });
+      if (!io || reduit) it.classList.add('in'); else io.observe(it);
+    });
+    return { ol: tl, t: f };
+  });
+
   /* ── Frise : trait qui avance ──────────────────────────────────── */
   var frises = $$('.jalons').map(function (ol) {
     var t = el('span', 'trait'); ol.insertBefore(t, ol.firstChild); return { ol: ol, t: t };
-  });
+  }).concat(tlFills);
 
   /* ── Boucle de scroll unique ───────────────────────────────────── */
   var tick = false;
@@ -247,7 +284,6 @@
           heroContenu.style.opacity = String(Math.max(0, 1 - y / (vh * 0.75)));
         }
       }
-      if (ros && y < vh * 1.4) ros.style.transform = 'rotate(' + (y * 0.08).toFixed(2) + 'deg)';
       immersifs.forEach(function (img) {
         var r = img.parentElement.getBoundingClientRect();
         if (r.bottom < 0 || r.top > vh) return;
@@ -256,6 +292,11 @@
       });
     }
 
+    rails.forEach(function (r) {
+      var b = r.s.getBoundingClientRect();
+      var top = parseFloat(r.s.style.getPropertyValue('--ry')) || 10;
+      r.f.style.height = Math.max(0, Math.min(b.height - top, vh * 0.6 - b.top - top)) + 'px';
+    });
     frises.forEach(function (f) {
       var r = f.ol.getBoundingClientRect();
       var h = Math.max(0, Math.min(r.height, vh * 0.6 - r.top));
@@ -268,12 +309,8 @@
       var debut = entrees[0].bloc.getBoundingClientRect().top;
       var montrer = debut < vh * 0.8;
       toc.classList.toggle('on', montrer);
-      btn.classList.toggle('on', montrer && y < max - 40);
       tocLiens.forEach(function (a, k) { a.classList.toggle('on', k === actif); a.classList.toggle('lu', k < actif); });
-      sheetLiens.forEach(function (a, k) { a.classList.toggle('on', k === actif); });
       var k = Math.max(0, actif);
-      btnNum.textContent = (k + 1) + '/' + entrees.length;
-      btnTxt.textContent = entrees[k].texte;
       if (tocLiens[k]) {
         var li = tocLiens[k];
         fill.style.height = Math.max(0, li.offsetTop + li.offsetHeight / 2 - 10) + 'px';

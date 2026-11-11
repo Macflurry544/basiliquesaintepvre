@@ -62,14 +62,14 @@
   <!-- ══ FONTS ══════════════════════════════════════════════════ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/nav.css?v=5">
 
 <style>
   /* Maquette d'accueil : la vidéo naît dans une baie en ogive sur fond bordeaux,
      la baie s'ouvre au défilement jusqu'à remplir l'écran, puis le grand titre monte. */
   :root { --bordeaux: #4a1518; --navy: #213448; --blanc: #fff; --papier: #fbf9f5; --gris: #59626e; --filet: rgba(33,52,72,.18);
-    --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif; }
+    --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --grot: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'EB Garamond', Georgia, serif; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.7; }
   a { color: inherit; }
@@ -80,13 +80,13 @@
   .scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
   .scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
     /* le quadrilobe à six lobes de l'oculus du pignon, simplifié */
-    --w: 62vmin;
+    --w: 100vmin;
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center 52% / var(--w) var(--w) no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center 52% / var(--w) var(--w) no-repeat; }
   .entete { position: absolute; left: 0; right: 0; top: 0; padding: 5.6rem 22px 0; text-align: center; color: var(--blanc); transition: opacity .3s; }
   .entete .rosace { width: 42px; height: 42px; margin: 0 auto .5rem; }
   .entete small { display: block; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: .85; }
-  .badge { position: absolute; left: 50%; bottom: 7vh; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: .4rem; color: var(--blanc); font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; transition: opacity .3s; }
+  .badge { position: absolute; left: 50%; bottom: 7vh; font-weight: 600; font-size: .95rem !important; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: .4rem; color: var(--blanc); font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; transition: opacity .3s; }
   .badge svg { animation: descend 2s ease-in-out infinite; }
   @keyframes descend { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
   /* Grand titre qui monte d'une ligne, coupé en bas comme un mot gravé qui sort du sol */
@@ -178,6 +178,14 @@
     .liste a { grid-template-columns: 90px 1fr auto; gap: 1rem; } .liste .fl { font-size: 2rem; }
   }
   @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } .badge svg, .defile span { animation: none; } }
+
+  /* Typographie moderne, un peu brutaliste : grotesque en capitales pour les titres et les repères,
+     Garamond conservé pour le texte courant (l'ancien sous le moderne). */
+  .titre h1, .geant, .bienvenue h2, .defile, .ouvert b, .liste h3, .bloc h3, .colonnes h3, .pied b { font-family: var(--grot); font-weight: 500; text-transform: uppercase; letter-spacing: -.035em; line-height: .9; }
+  .liste h3, .colonnes h3, .bloc.mince h3 { text-transform: none; letter-spacing: -.02em; line-height: 1.05; }
+  .badge, .ouvert small, .liste small, .colonnes small, .etiquette, .titre-lien a, .bienvenue a, .pied span, .boutons a { font-family: var(--grot); }
+  .boutons a { font-weight: 600; }
+  .titre p { font-family: var(--texte); }
 </style>
 </head>
 <body>
@@ -192,7 +200,7 @@
     <div class="entete">
       <div class="orn rosace" style="--src:url(/assets/ornements/rosace-p.svg?v=2)"></div>
     </div>
-    <div class="badge"><span>Scroll</span><svg width="22" height="40" viewBox="0 0 22 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M11 2v34"/><path d="M2 27q9 0 9 11q0-11 9-11"/></svg></div>
+    <div class="badge"><span>Scroll</span><svg width="22" height="40" viewBox="0 0 22 40" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M11 2v34"/><path d="M2 27q9 0 9 11q0-11 9-11"/></svg></div>
     <div class="titre">
       <span class="fente"><h1>Saint-Epvre</h1></span>
       <p>Basilique néo-gothique, au cœur de la Ville-Vieille de Nancy.</p>
@@ -283,7 +291,7 @@
       var o = ease(Math.min(1, p / .6));            // ouverture de la baie
       var t = ease(Math.max(0, (p - .55) / .45));   // montée du titre
       var mob = innerWidth < 760;
-      v.style.setProperty('--w', 'calc(' + lerp(mob ? 80 : 62, 0, o) + 'vmin + ' + lerp(0, 330, o) + 'vmax)');
+      v.style.setProperty('--w', 'calc(' + lerp(mob ? 118 : 100, 0, o) + 'vmin + ' + lerp(0, 330, o) + 'vmax)');
       ent.style.opacity = badge.style.opacity = 1 - Math.min(1, p * 4);
       sc.style.setProperty('--ty', (100 - t * 100) + '%');
       sc.style.setProperty('--op', t);

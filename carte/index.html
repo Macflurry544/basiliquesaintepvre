@@ -25,7 +25,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
   <!-- Leaflet -->
@@ -284,7 +284,35 @@
       .leaflet-control-zoom { margin-bottom: 4.5rem !important; margin-right: 0.8rem !important; }
       .leaflet-popup { margin-bottom: 1rem; }
     }
-  </style>
+  
+    /* ══ Refonte : bordeaux, bleu marine, blanc ; grotesque pour les titres ══ */
+    body { font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif !important; }
+    .panneau { background: #fbf9f5 !important; }
+    .panneau-header { background: #4a1518 !important; color: #fff !important; padding-top: 6rem !important; }
+    .panneau-header * { color: #fff !important; }
+    .panneau-retour { display: none !important; }
+    .panneau-surtitre, .panneau-sous-titre { font-family: 'Familjen Grotesk', Arial, sans-serif !important; font-style: normal !important; opacity: .85; }
+    .panneau-titre { font: 500 clamp(2.4rem, 4vw, 3.4rem)/.9 'Familjen Grotesk', Arial, sans-serif !important; text-transform: uppercase; letter-spacing: -.04em !important; margin: .6rem 0 !important; }
+    .filtre-btn { font-family: 'Familjen Grotesk', Arial, sans-serif !important; border-radius: 999px !important; border: 1px solid rgba(33,52,72,.3) !important; background: #fff !important; color: #213448 !important; }
+    .filtre-btn.actif { background: #213448 !important; color: #fff !important; border-color: #213448 !important; }
+    .lieu-item { border-bottom: 1px solid rgba(33,52,72,.14) !important; }
+    .lieu-item.actif { background: #fff !important; }
+    .lieu-item.actif::before { background: #4a1518 !important; }
+    .lieu-icone { border-radius: 50% !important; font: 600 .85rem 'Familjen Grotesk', Arial, sans-serif !important; }
+    .lieu-cat { font-family: 'Familjen Grotesk', Arial, sans-serif !important; color: #59626e !important; }
+    .lieu-nom { font: 500 1.15rem/1.15 'Familjen Grotesk', Arial, sans-serif !important; color: #213448 !important; letter-spacing: -.01em; }
+    .lieu-desc { color: #59626e !important; }
+    .panneau-pied { background: #4a1518 !important; }
+    .panneau-pied * { color: #fff !important; font-family: 'Familjen Grotesk', Arial, sans-serif !important; }
+    .panneau-pied-nom { text-transform: uppercase; font-weight: 600 !important; letter-spacing: -.02em; }
+    .popup-titre { font: 500 1.4rem/1.05 'Familjen Grotesk', Arial, sans-serif !important; text-transform: uppercase; letter-spacing: -.02em; color: #213448 !important; }
+    .popup-cat, .popup-distance { font-family: 'Familjen Grotesk', Arial, sans-serif !important; color: #59626e !important; }
+    .popup-sep { background: #4a1518 !important; }
+    .popup-nav { background: #4a1518 !important; color: #fff !important; border-radius: 999px !important; font-family: 'Familjen Grotesk', Arial, sans-serif !important; }
+    .leaflet-popup-content-wrapper { border-radius: 18px !important; background: #fff !important; }
+    .toggle-panneau { background: #4a1518 !important; color: #fff !important; border-radius: 999px !important; font-family: 'Familjen Grotesk', Arial, sans-serif !important; }
+    .leaflet-tile-pane { filter: grayscale(1) contrast(.85) brightness(1.08); }
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -337,19 +365,19 @@
 
     <div class="filtres" id="filtres">
       <button class="filtre-btn actif" data-cat="tous">
-        <span class="dot" style="background:#DDA853"></span> Tous
+        <span class="dot" style="background:#fff;border:1px solid #213448"></span> Tous
       </button>
       <button class="filtre-btn" data-cat="religieux">
-        <span class="dot" style="background:#183B4E"></span> Religieux
+        <span class="dot" style="background:#4a1518"></span> Religieux
       </button>
       <button class="filtre-btn" data-cat="patrimoine">
-        <span class="dot" style="background:#27548A"></span> Patrimoine
+        <span class="dot" style="background:#213448"></span> Patrimoine
       </button>
       <button class="filtre-btn" data-cat="pratique">
-        <span class="dot" style="background:#DDA853"></span> Pratique
+        <span class="dot" style="background:#59626e"></span> Pratique
       </button>
       <button class="filtre-btn" data-cat="restauration">
-        <span class="dot" style="background:#2e7a6e"></span> Restauration
+        <span class="dot" style="background:#8a8f96"></span> Restauration
       </button>
     </div>
 
@@ -388,38 +416,40 @@ function ouvrirNavigation(lat, lng, nom) {
 
 /* ════ DONNÉES ════ */
 const LIEUX = [
-  { id:'basilique',        nom:'Basilique Saint-Epvre',                   cat:'religieux',    emoji:'⛪', couleur:'#183B4E', lat:48.69596145417472, lng:6.179900228505444,  desc:'Basilique néo-gothique consacrée en 1875. Beffroi de 87 m, 9 cloches historiques. Œuvre de Prosper Morey.',         detail:'La plus imposante église néo-gothique de Lorraine. Classée monument historique.',                                          distance:'Point de référence' },
-  { id:'musee-lorrain',    nom:'Palais Ducal · Musée Lorrain',            cat:'patrimoine',   emoji:'🏰', couleur:'#27548A', lat:48.697271536449676, lng:6.179294049254174,  desc:'Ancien palais des Ducs de Lorraine, aujourd\'hui Musée Lorrain. Porterie gothique flamboyant (XVIe s.).',           detail:'L\'un des rares palais ducaux médiévaux conservés en France. Porterie de 1512.',                                           distance:'≈ 150 m de la basilique' },
-  { id:'eglise-cordeliers',nom:'Église des Cordeliers',                   cat:'religieux',    emoji:'⛪', couleur:'#183B4E', lat:48.69760367414451,  lng:6.178998070345293,  desc:'Chapelle ducale funéraire. Gisants des Ducs de Lorraine. Rotonde Renaissance remarquable.',                            detail:'Nécropole des Ducs de Lorraine. La rotonde Renaissance abrite les tombeaux de la famille ducale.',                         distance:'≈ 200 m de la basilique' },
-  { id:'oratoire',         nom:'Oratoire Saint-Philippe-Néri',            cat:'religieux',    emoji:'🕍', couleur:'#183B4E', lat:48.697059508666996, lng:6.177195255652328,  desc:'Oratoire baroque du XVIIe siècle, rattaché à la congrégation de l\'Oratoire. Façade remarquable.',                   detail:'Fondé au XVIIe siècle par les Pères de l\'Oratoire. Témoignage du baroque lorrain en pleine vieille ville.',               distance:'≈ 200 m de la basilique' },
-  { id:'cathedrale',       nom:'Cathédrale Notre-Dame-de-l\'Annonciation',cat:'religieux',    emoji:'⛪', couleur:'#183B4E', lat:48.69151429593662,  lng:6.185850449968589,  desc:'Cathédrale baroque du XVIIIe siècle. Trésor de la cathédrale, reliques de saint Nicolas.',                             detail:'Chef-d\'œuvre du baroque lorrain, construite entre 1703 et 1742. Abrite un trésor exceptionnel.',                          distance:'≈ 700 m de la basilique' },
-  { id:'grande-rue',       nom:'Grande Rue',                              cat:'patrimoine',   emoji:'🏛', couleur:'#27548A', lat:48.696855358777846, lng:6.179668759169878,  desc:'Axe historique de la vieille ville, bordé de façades XVIIe–XVIIIe siècles.',                                           detail:'Artère principale de la vieille ville. Relie la basilique Saint-Epvre à la place Stanislas.',                              distance:'≈ 100 m de la basilique' },
-  { id:'place-stanislas',  nom:'Place Stanislas',                         cat:'patrimoine',   emoji:'⭐', couleur:'#27548A', lat:48.6931,            lng:6.1833,             desc:'Chef-d\'œuvre du XVIIIe siècle. Classée UNESCO en 1983. Grilles en fer forgé de Jean Lamour.',                          detail:'L\'une des plus belles places d\'Europe. Commandée par Stanislas Leszczynski, duc de Lorraine.',                           distance:'≈ 500 m de la basilique' },
-  { id:'porte-craffe',     nom:'Porte de la Craffe',                      cat:'patrimoine',   emoji:'🏰', couleur:'#27548A', lat:48.69973,           lng:6.17720,            desc:'Porte médiévale du XIVe siècle. L\'une des mieux conservées de Lorraine. Vestige des fortifications.',                   detail:'Construite vers 1350, elle défendait l\'entrée nord de la vieille ville. Tours rondes caractéristiques.',                  distance:'≈ 450 m de la basilique' },
-  { id:'parking-indigo',   nom:'Parking Indigo Léopold',                  cat:'pratique',     emoji:'🅿', couleur:'#DDA853', lat:48.69665620041898,  lng:6.174671053759983,  desc:'Parking couvert à proximité de la vieille ville. Accès piéton à la basilique en 5 min.',                                detail:'Le stationnement le plus pratique pour visiter le quartier Saint-Epvre à pied.',                                            distance:'≈ 400 m de la basilique' },
-  { id:'office-tourisme',  nom:'Office de Tourisme de Nancy',             cat:'pratique',     emoji:'ℹ', couleur:'#DDA853', lat:48.693017060556095, lng:6.183084140137937,  desc:'Visites guidées, brochures, plans de la ville. Ouvert 7j/7 en saison.',                                                 detail:'Propose des audioguides et des circuits thématiques dans la vieille ville et ses alentours.',                               distance:'≈ 500 m de la basilique' },
-  { id:'arc-here',         nom:'Arc Héré',                                cat:'patrimoine',   emoji:'🏛', couleur:'#27548A', lat:48.694462837854424, lng:6.18265621566205,   desc:'Arc de triomphe de 1754 dédié à Louis XV. Relie la place Stanislas à la place de la Carrière.',                          detail:'Œuvre d\'Emmanuel Héré, constituant avec la place Stanislas un ensemble classé UNESCO.',                                    distance:'≈ 450 m de la basilique' }
+  { id:'basilique',        nom:'Basilique Saint-Epvre',                   cat:'religieux',    emoji:'⛪', couleur:'#4a1518', lat:48.69596145417472, lng:6.179900228505444,  desc:'Basilique néo-gothique consacrée en 1875. Beffroi de 87 m, 9 cloches historiques. Œuvre de Prosper Morey.',         detail:'La plus imposante église néo-gothique de Lorraine. Classée monument historique.',                                          distance:'Point de référence' },
+  { id:'musee-lorrain',    nom:'Palais Ducal · Musée Lorrain',            cat:'patrimoine',   emoji:'🏰', couleur:'#213448', lat:48.697271536449676, lng:6.179294049254174,  desc:'Ancien palais des Ducs de Lorraine, aujourd\'hui Musée Lorrain. Porterie gothique flamboyant (XVIe s.).',           detail:'L\'un des rares palais ducaux médiévaux conservés en France. Porterie de 1512.',                                           distance:'≈ 150 m de la basilique' },
+  { id:'eglise-cordeliers',nom:'Église des Cordeliers',                   cat:'religieux',    emoji:'⛪', couleur:'#4a1518', lat:48.69760367414451,  lng:6.178998070345293,  desc:'Chapelle ducale funéraire. Gisants des Ducs de Lorraine. Rotonde Renaissance remarquable.',                            detail:'Nécropole des Ducs de Lorraine. La rotonde Renaissance abrite les tombeaux de la famille ducale.',                         distance:'≈ 200 m de la basilique' },
+  { id:'oratoire',         nom:'Oratoire Saint-Philippe-Néri',            cat:'religieux',    emoji:'🕍', couleur:'#4a1518', lat:48.697059508666996, lng:6.177195255652328,  desc:'Oratoire baroque du XVIIe siècle, rattaché à la congrégation de l\'Oratoire. Façade remarquable.',                   detail:'Fondé au XVIIe siècle par les Pères de l\'Oratoire. Témoignage du baroque lorrain en pleine vieille ville.',               distance:'≈ 200 m de la basilique' },
+  { id:'cathedrale',       nom:'Cathédrale Notre-Dame-de-l\'Annonciation',cat:'religieux',    emoji:'⛪', couleur:'#4a1518', lat:48.69151429593662,  lng:6.185850449968589,  desc:'Cathédrale baroque du XVIIIe siècle. Trésor de la cathédrale, reliques de saint Nicolas.',                             detail:'Chef-d\'œuvre du baroque lorrain, construite entre 1703 et 1742. Abrite un trésor exceptionnel.',                          distance:'≈ 700 m de la basilique' },
+  { id:'grande-rue',       nom:'Grande Rue',                              cat:'patrimoine',   emoji:'🏛', couleur:'#213448', lat:48.696855358777846, lng:6.179668759169878,  desc:'Axe historique de la vieille ville, bordé de façades XVIIe–XVIIIe siècles.',                                           detail:'Artère principale de la vieille ville. Relie la basilique Saint-Epvre à la place Stanislas.',                              distance:'≈ 100 m de la basilique' },
+  { id:'place-stanislas',  nom:'Place Stanislas',                         cat:'patrimoine',   emoji:'⭐', couleur:'#213448', lat:48.6931,            lng:6.1833,             desc:'Chef-d\'œuvre du XVIIIe siècle. Classée UNESCO en 1983. Grilles en fer forgé de Jean Lamour.',                          detail:'L\'une des plus belles places d\'Europe. Commandée par Stanislas Leszczynski, duc de Lorraine.',                           distance:'≈ 500 m de la basilique' },
+  { id:'porte-craffe',     nom:'Porte de la Craffe',                      cat:'patrimoine',   emoji:'🏰', couleur:'#213448', lat:48.69973,           lng:6.17720,            desc:'Porte médiévale du XIVe siècle. L\'une des mieux conservées de Lorraine. Vestige des fortifications.',                   detail:'Construite vers 1350, elle défendait l\'entrée nord de la vieille ville. Tours rondes caractéristiques.',                  distance:'≈ 450 m de la basilique' },
+  { id:'parking-indigo',   nom:'Parking Indigo Léopold',                  cat:'pratique',     emoji:'🅿', couleur:'#59626e', lat:48.69665620041898,  lng:6.174671053759983,  desc:'Parking couvert à proximité de la vieille ville. Accès piéton à la basilique en 5 min.',                                detail:'Le stationnement le plus pratique pour visiter le quartier Saint-Epvre à pied.',                                            distance:'≈ 400 m de la basilique' },
+  { id:'office-tourisme',  nom:'Office de Tourisme de Nancy',             cat:'pratique',     emoji:'ℹ', couleur:'#59626e', lat:48.693017060556095, lng:6.183084140137937,  desc:'Visites guidées, brochures, plans de la ville. Ouvert 7j/7 en saison.',                                                 detail:'Propose des audioguides et des circuits thématiques dans la vieille ville et ses alentours.',                               distance:'≈ 500 m de la basilique' },
+  { id:'arc-here',         nom:'Arc Héré',                                cat:'patrimoine',   emoji:'🏛', couleur:'#213448', lat:48.694462837854424, lng:6.18265621566205,   desc:'Arc de triomphe de 1754 dédié à Louis XV. Relie la place Stanislas à la place de la Carrière.',                          detail:'Œuvre d\'Emmanuel Héré, constituant avec la place Stanislas un ensemble classé UNESCO.',                                    distance:'≈ 450 m de la basilique' }
 ];
 
 /* ════ CARTE ════ */
 const carte = L.map('carte', {
   center: [48.6955, 6.1785], zoom: 16, zoomControl: false, attributionControl: true
 });
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
-  subdomains: 'abcd', maxZoom: 19
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 19
 }).addTo(carte);
 L.control.zoom({ position: 'bottomright' }).addTo(carte);
 
 /* ════ MARQUEURS ════ */
 function creerIcone(lieu, estActif) {
-  const taille = lieu.id === 'basilique' ? 44 : 34;
+  const base = lieu.id === 'basilique', taille = base ? 54 : 34, n = LIEUX.indexOf(lieu) + 1;
+  const fond = estActif ? '#fff' : lieu.couleur, encre = estActif ? lieu.couleur : '#fff';
+  const dedans = base
+    ? `<span style="width:30px;height:30px;background:${encre};-webkit-mask:url(/assets/ornements/rosace-p.svg?v=2) center/contain no-repeat;mask:url(/assets/ornements/rosace-p.svg?v=2) center/contain no-repeat"></span>`
+    : `<span style="font:600 .9rem 'Familjen Grotesk',Arial,sans-serif;color:${encre}">${String(n).padStart(2,'0')}</span>`;
   return L.divIcon({
     className: '',
-    html: `<div style="width:${taille}px;height:${taille}px;background:${lieu.couleur};border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 14px rgba(0,0,0,0.25);border:2px solid rgba(255,255,255,0.6);">
-      <span style="transform:rotate(45deg);font-size:${lieu.id==='basilique'?'1.1rem':'0.8rem'};line-height:1;">${lieu.emoji}</span>
-    </div>`,
-    iconSize: [taille, taille], iconAnchor: [taille/2, taille], popupAnchor: [0, -taille-4]
+    html: `<div style="width:${taille}px;height:${taille}px;background:${fond};border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -6px rgba(33,52,72,.6);border:2px solid ${estActif ? lieu.couleur : '#fff'};">${dedans}</div>`,
+    iconSize: [taille, taille], iconAnchor: [taille/2, taille/2], popupAnchor: [0, -taille/2 - 6]
   });
 }
 
@@ -475,7 +505,7 @@ function construireListe(filtre) {
     item.className = 'lieu-item' + (lieuActif===lieu.id ? ' actif' : '');
     item.id = 'lieu-'+lieu.id;
     item.innerHTML = `
-      <div class="lieu-icone" style="background:${lieu.couleur}20;color:${lieu.couleur}">${lieu.emoji}</div>
+      <div class="lieu-icone" style="background:${lieu.couleur};color:#fff">${String(LIEUX.indexOf(lieu)+1).padStart(2,'0')}</div>
       <div class="lieu-infos">
         <div class="lieu-cat">${lieu.cat}</div>
         <div class="lieu-nom">${lieu.nom}</div>
@@ -525,7 +555,7 @@ setTimeout(() => { activerLieu('basilique'); carte.invalidateSize(); }, 600);
 window.addEventListener('resize', () => setTimeout(() => carte.invalidateSize(), 200));
 
 L.circle([48.6942, 6.1791], {
-  radius: 350, color:'#AEB784', fillColor:'#AEB784',
+  radius: 350, color:'#4a1518', fillColor:'#4a1518',
   fillOpacity: 0.06, weight: 1, dashArray:'4 6'
 }).addTo(carte);
 </script>

@@ -25,7 +25,7 @@
   <meta name="twitter:image"       content="https://lh3.googleusercontent.com/d/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=7">
   <style>
     /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
@@ -34,7 +34,7 @@
     :root {
       --bordeaux: #4a1518; --navy: #213448; --blanc: #ffffff; --papier: #fbf9f5;
       --gris: #59626e; --filet: rgba(33,52,72,.18);
-      --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif;
+      --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'EB Garamond', Georgia, serif;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -200,7 +200,7 @@
     @media (max-width: 560px) { .arcades { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; } .arcade { flex: 0 0 62%; scroll-snap-align: start; } .arcade .baie { height: 320px; flex: none; } }
 
     /* ── Éventail : photos déployées en arc autour d'une phrase ── */
-    .eventail { position: relative; margin: 2.4rem 0 1.6rem; height: 430px; }
+    .eventail { position: relative; margin: 2.4rem 0 1.6rem; height: 430px; overflow-x: clip; }
     .eventail .carte { position: absolute; left: 50%; top: 0; width: 150px; aspect-ratio: 3 / 4; margin-left: -75px; border-radius: 14px; background: var(--papier) center / cover no-repeat; border: 5px solid var(--blanc);
       box-shadow: 0 14px 28px -16px rgba(33,52,72,.55); transform-origin: 50% 230%; transform: rotate(0deg); transition: transform 1.2s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms); }
     .eventail.vu .carte { transform: rotate(var(--r)); }
@@ -237,6 +237,73 @@
     .apparait { opacity: 0; translate: 0 16px; transition: opacity .9s ease, translate .9s ease; }
     .apparait.vu { opacity: 1; translate: 0 0; }
     @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+
+    :root { --oculus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E"); }
+    /* ══ Nouveau style (comme l'accueil) : grotesque capitale, aplats bordeaux, l'ancien gardé dans les gravures ══ */
+    .ouverture { background: var(--bordeaux); color: var(--blanc); padding-bottom: 4rem; }
+    .ouverture .courant { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.3); }
+    .ouverture h1 { color: var(--blanc); font-weight: 500; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; font-size: clamp(3.4rem, 12.5vw, 11rem); }
+    .ouverture .sous { color: rgba(255,255,255,.85); }
+    .ouverture .orgue { color: var(--blanc); }
+    .ouverture figcaption { color: rgba(255,255,255,.7); }
+    .chapitre h2, .presse h2 { font-weight: 500; text-transform: uppercase; letter-spacing: -.035em; line-height: .95; font-size: clamp(2.2rem, 6vw, 4.2rem); }
+    .ouv-num { font-weight: 500; letter-spacing: -.04em; font-size: clamp(4rem, 11vw, 6.5rem); }
+    .ouv-lib, .cartouche, .fj-clavier h3, th, .chiffres small, .presse cite, .courant { font-family: var(--titre); }
+    .sommaire a::before { font-weight: 600; }
+    .fj-texte b { font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; }
+    .eventail .phrase q { font-weight: 500; text-transform: uppercase; letter-spacing: -.03em; }
+    .pied b { font-weight: 600; text-transform: uppercase; letter-spacing: -.03em; font-size: clamp(2.4rem, 9vw, 5rem); }
+    /* Chiffres : bande bordeaux pleine largeur, nombres géants */
+    .chiffres { position: relative; padding-top: 4rem; padding-bottom: 4rem; margin-top: 4rem; color: var(--blanc); background: var(--bordeaux); box-shadow: 0 0 0 100vmax var(--bordeaux); clip-path: inset(0 -100vmax); }
+    .chiffres > div { border-color: rgba(255,255,255,.3); }
+    .chiffres small { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.5); }
+    .chiffres b { color: var(--blanc); font-weight: 500; letter-spacing: -.04em; font-size: clamp(2.8rem, 7vw, 5.6rem); }
+    /* Arcades : l'oculus à six lobes de l'accueil remplace l'ogive */
+    .arcade .baie { -webkit-mask: var(--oculus) center / contain no-repeat !important; mask: var(--oculus) center / contain no-repeat !important; flex: none; aspect-ratio: 1; height: auto; }
+    .arcades { height: auto; align-items: flex-start; }
+
+    /* ── Carrousel des jeux ── */
+    .facade-jeux { display: block; margin: 2.6rem 0 1rem; }
+    .cj-tete { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .cj-onglets { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cj-onglet { font: 500 .95rem/1 var(--titre); text-transform: uppercase; letter-spacing: .02em; padding: .7rem 1.1rem; border-radius: 999px; border: 1px solid var(--navy); background: none; color: var(--navy); cursor: pointer; display: inline-flex; gap: .5rem; align-items: center; }
+    .cj-onglet small { font-size: .78rem; opacity: .6; }
+    .cj-onglet[aria-selected="true"] { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+    .cj-fleches { display: flex; gap: .5rem; }
+    .cj-fleches button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); font-size: 1.4rem; cursor: pointer; transition: background .25s, color .25s; }
+    .cj-fleches button:hover { background: var(--navy); color: var(--blanc); }
+    .cj-info { margin: 1.2rem 0 1rem !important; font-family: var(--titre); font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+    /* la piste déborde de la colonne jusqu'aux bords de l'écran */
+    .cj-piste { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin: 0 calc(50% - 50vw); --g: max(22px, calc((100vw - 740px) / 2 + 22px)); padding: 6px var(--g) 24px; scroll-padding-left: var(--g); }
+    .cj-piste::-webkit-scrollbar { display: none; }
+    .cj { flex: 0 0 min(300px, 78vw); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--blanc); border: 1px solid var(--filet); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 34px -26px rgba(33,52,72,.5);
+      opacity: 0; translate: 40px 0; transition: background .35s, color .35s; }
+    .cj-piste.vu .cj { opacity: 1; translate: 0 0; transition: background .35s, color .35s, opacity .6s ease calc(var(--i) * 50ms), translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 50ms); }
+    .cj-dessin { position: relative; height: 270px; display: flex; align-items: flex-end; justify-content: center; padding: 18px 0 0; background: var(--papier); border-bottom: 1px solid var(--filet); }
+    .cj-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; transition: color .35s; }
+    .cj-dessin em { position: absolute; top: 14px; right: 16px; font-style: normal; font: 600 1.4rem/1 var(--titre); color: var(--bordeaux); letter-spacing: -.02em; }
+    .cj-texte { padding: 1.2rem 1.3rem 1.5rem; flex: 1; }
+    .cj-texte small { font: 500 .8rem var(--titre); letter-spacing: .14em; color: var(--gris); }
+    .cj-texte h4 { margin: .25rem 0 .6rem; font: 500 1.7rem/1 var(--titre); text-transform: uppercase; letter-spacing: -.03em; color: var(--navy); }
+    .cj-texte p { margin: 0 !important; font-size: 1.02rem; line-height: 1.5; color: var(--gris); }
+    .cj:hover { background: var(--bordeaux); }
+    .cj:hover .cj-texte h4, .cj:hover .cj-texte p, .cj:hover .cj-texte small { color: var(--blanc); }
+    .cj:hover .cj-dessin { background: #5a1c20; border-color: transparent; }
+    .cj:hover .cj-dessin .orn, .cj:hover .cj-dessin em { color: var(--blanc); }
+    @media (prefers-reduced-motion: reduce) { .cj, .cj-piste.vu .cj { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Sommaire : liste numérotée à flèches, sans cadre ── */
+    .sommaire { border: 0; outline: 0; background: none; padding: 0; margin: 4rem auto 1rem; }
+    .sommaire .cartouche { display: block; margin: 0 0 1rem; padding: 0; border: 0; box-shadow: none; background: none; font: 600 .85rem var(--titre); letter-spacing: .2em; color: var(--bordeaux); }
+    .sommaire ol { margin: 0; border-top: 2px solid var(--navy); }
+    .sommaire li { border-bottom: 1px solid var(--filet); }
+    .sommaire a { display: grid; grid-template-columns: 3.4rem 1fr auto; align-items: center; gap: .8rem; padding: 1rem 0; font: 500 clamp(1.1rem, 2.6vw, 1.5rem)/1.15 var(--titre); text-transform: uppercase; letter-spacing: -.02em; transition: color .25s, padding .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a::before { content: counter(s, decimal-leading-zero); min-width: 0; font: 500 .9rem var(--titre); color: var(--gris); letter-spacing: .08em; }
+    .sommaire a::after { content: '→'; border: 0; transform: none; order: 0; flex: none; font-size: 1.5rem; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a span { order: 0; }
+    .sommaire a:hover { color: var(--bordeaux); padding-left: .6rem; }
+    .sommaire a:hover::after { transform: translateX(6px); }
   </style>
   <script type="application/ld+json">
   {
@@ -359,7 +426,7 @@
     <p class="argument">Quarante-quatre jeux, trois claviers et un pédalier — Le buffet de Prosper Morey — La machine Barker.</p>
     <p>Le grand orgue compte <strong>44 jeux</strong> répartis sur trois claviers manuels et un pédalier indépendant.</p>
     <div class="facade-jeux" data-orgue="grand" aria-label="Composition du grand orgue"></div>
-    <p class="jeux-note">Composition du grand orgue : un panneau par jeu, décalé selon sa taille en pieds. Survolez ou touchez un jeu pour l'entendre décrit. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p>
+    <p class="jeux-note">Composition du grand orgue : un clavier par onglet, une carte par jeu, le tuyau dessiné à l'échelle de sa taille en pieds. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p>
     <p>La console, de style néo-gothique, est indépendante. Le buffet, dessiné par l'architecte Prosper Morey, adopte le style néo-gothique flamboyant de la basilique. La transmission est entièrement mécanique suspendue, assistée d'une <strong>machine Barker</strong>, dispositif pneumatique breveté en 1839, pour alléger le toucher.</p>
     <div class="arcades">
       <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/tribune.jpg)" role="img" aria-label="Le grand orgue sur la tribune occidentale"></div><figcaption><b>La tribune</b>Le buffet de Prosper Morey, au revers de la façade.</figcaption></figure>
@@ -399,7 +466,7 @@
     <p>Le meuble est entièrement en chêne verni. Les tuyaux de façade, en étain, avec écussons rapportés et relevés en ogive, sont répartis sur trois côtés ; le dernier côté coïncide avec la face arrière du maître-autel.</p>
     <p>L'orgue de chœur n'a connu qu'une transformation, vers 1911, par Kühn. Dans les années 1990, alors qu'il venait d'être classé monument historique, un homme sans abri s'y était réfugié et la tuyauterie fut gravement endommagée. L'instrument a été restauré en 2009 et a retrouvé son fonctionnement d'origine.</p>
     <div class="facade-jeux" data-orgue="choeur" aria-label="Composition de l'orgue de chœur"></div>
-    <p class="jeux-note">Composition de l'orgue de chœur. Survolez ou touchez un jeu pour l'entendre décrit. Dessins de tuyaux d'Audsley (1905).</p>
+    <p class="jeux-note">Composition de l'orgue de chœur. Dessins de tuyaux d'Audsley (1905).</p>
   </section>
 
   <section class="chapitre col apparait" id="organistes">
@@ -497,33 +564,34 @@
     // hauteur du panneau selon la taille du jeu (32′ le plus haut) ; mixtures et timbres : hauteur moyenne
     var H = { 32: 100, 16: 86, 8: 70, 4: 56, 3: 50, 2: 44, 0: 50 };
     function pieds(p) { return p ? p + '′' : 'plusieurs rangs'; }
+    // Carrousel : un onglet par clavier, une grande carte par jeu
     document.querySelectorAll('.facade-jeux').forEach(function (bloc) {
-      var html = '', i = 0;
-      ORGUES[bloc.dataset.orgue].forEach(function (c) {
-        html += '<div class="fj-clavier"><h3>' + c[0] + ' <small>' + c[1] + '</small></h3><div class="fj-rang">';
-        c[2].forEach(function (j) {
+      var claviers = ORGUES[bloc.dataset.orgue];
+      var onglets = claviers.map(function (c, k) {
+        return '<button type="button" class="cj-onglet" role="tab" aria-selected="' + (k === 0) + '" data-k="' + k + '">' + c[0] + '<small>' + c[2].length + '</small></button>';
+      }).join('');
+      bloc.innerHTML = '<div class="cj-tete"><div class="cj-onglets" role="tablist">' + onglets + '</div>'
+        + '<div class="cj-fleches"><button type="button" class="cj-prec" aria-label="Jeu précédent">←</button><button type="button" class="cj-suiv" aria-label="Jeu suivant">→</button></div></div>'
+        + '<p class="cj-info"></p><div class="cj-piste" tabindex="0"></div>';
+      var piste = bloc.querySelector('.cj-piste'), info = bloc.querySelector('.cj-info');
+      function montre(k) {
+        var c = claviers[k];
+        bloc.querySelectorAll('.cj-onglet').forEach(function (o, n) { o.setAttribute('aria-selected', n === k); });
+        info.textContent = c[0] + ' · ' + c[1];
+        piste.innerHTML = c[2].map(function (j, n) {
           var f = F[j[2]], pi = j[2] === 'clochette' ? 'timbre' : pieds(j[1]);
-          html += '<button type="button" class="fj" style="--hp:' + H[j[1]] + '%;--i:' + (i++) + '" aria-expanded="false">' +
-            '<span class="fj-tuyau orn" style="--src:url(' + D + f[0] + '.svg)" aria-hidden="true"></span>' +
-            '<span class="fj-texte"><b>' + j[0] + '</b><p>' + f[1] + '</p></span>' +
-            '<span class="fj-nom">' + j[0] + '<span>' + pi + '</span></span></button>';
-        });
-        html += '</div></div>';
-      });
-      bloc.innerHTML = html;
-    });
-    // un seul panneau ouvert par rangée ; survol sur ordinateur, toucher sur téléphone
-    function ouvre(fj) {
-      fj.parentNode.querySelectorAll('.fj.ouvert').forEach(function (o) { if (o !== fj) { o.classList.remove('ouvert'); o.setAttribute('aria-expanded', 'false'); } });
-      fj.classList.add('ouvert'); fj.setAttribute('aria-expanded', 'true');
-    }
-    document.querySelectorAll('.fj').forEach(function (fj) {
-      fj.addEventListener('mouseenter', function () { if (matchMedia('(hover: hover)').matches) ouvre(fj); });
-      fj.addEventListener('click', function () { if (fj.classList.contains('ouvert') && !matchMedia('(hover: hover)').matches) { fj.classList.remove('ouvert'); fj.setAttribute('aria-expanded', 'false'); } else ouvre(fj); });
-      fj.addEventListener('focus', function () { ouvre(fj); });
-    });
-    document.querySelectorAll('.fj-rang').forEach(function (r) {
-      r.addEventListener('mouseleave', function () { r.querySelectorAll('.fj.ouvert').forEach(function (o) { o.classList.remove('ouvert'); o.setAttribute('aria-expanded', 'false'); }); });
+          return '<article class="cj" style="--i:' + n + '">'
+            + '<div class="cj-dessin"><span class="orn" style="--src:url(' + D + f[0] + '.svg);height:' + H[j[1]] + '%" aria-hidden="true"></span><em>' + pi + '</em></div>'
+            + '<div class="cj-texte"><small>' + String(n + 1).padStart(2, '0') + '</small><h4>' + j[0] + '</h4><p>' + f[1] + '</p></div></article>';
+        }).join('');
+        piste.scrollLeft = 0;
+        piste.classList.remove('vu'); void piste.offsetWidth; piste.classList.add('vu');
+      }
+      bloc.querySelectorAll('.cj-onglet').forEach(function (o) { o.addEventListener('click', function () { montre(+o.dataset.k); }); });
+      function pas() { var c = piste.querySelector('.cj'); return c ? c.offsetWidth + 20 : 300; }
+      bloc.querySelector('.cj-prec').addEventListener('click', function () { piste.scrollBy({ left: -pas(), behavior: 'smooth' }); });
+      bloc.querySelector('.cj-suiv').addEventListener('click', function () { piste.scrollBy({ left: pas(), behavior: 'smooth' }); });
+      montre(0);
     });
     // la façade se dresse quand elle arrive à l'écran
     if ('IntersectionObserver' in window) {

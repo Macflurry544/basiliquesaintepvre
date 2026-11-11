@@ -79,15 +79,16 @@
   .ouverture { position: relative; height: 260vh; background: var(--bordeaux); }
   .scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
   .scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    --w: 34vw; --h: 66vh;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") center 58% / var(--w) var(--h) no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") center 58% / var(--w) var(--h) no-repeat; }
+    /* le quadrilobe à six lobes de l'oculus du pignon, simplifié */
+    --w: 62vmin;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center 52% / var(--w) var(--w) no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center 52% / var(--w) var(--w) no-repeat; }
   .entete { position: absolute; left: 0; right: 0; top: 0; padding: 5.6rem 22px 0; text-align: center; color: var(--blanc); transition: opacity .3s; }
   .entete .rosace { width: 42px; height: 42px; margin: 0 auto .5rem; }
   .entete small { display: block; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: .85; }
   .badge { position: absolute; left: 50%; bottom: 7vh; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: .4rem; color: var(--blanc); font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; transition: opacity .3s; }
-  .badge i { width: 1px; height: 38px; background: currentColor; animation: descend 1.8s ease-in-out infinite; transform-origin: top; }
-  @keyframes descend { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+  .badge svg { animation: descend 2s ease-in-out infinite; }
+  @keyframes descend { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
   /* Grand titre qui monte d'une ligne, coupé en bas comme un mot gravé qui sort du sol */
   .titre { position: absolute; left: 0; right: 0; bottom: 8vh; text-align: center; color: var(--blanc); pointer-events: none; }
   .titre .fente { display: block; overflow: hidden; padding-top: .1em; }
@@ -172,12 +173,11 @@
   .apparait { opacity: 0; translate: 0 24px; transition: opacity 1s ease, translate 1s cubic-bezier(.22,1,.36,1); }
   .apparait.vu { opacity: 1; translate: 0 0; }
   @media (max-width: 760px) {
-    .scene video { --w: 70vw; }
     .ouvert .deux, .boutons, .blocs.deux, .blocs.trois { grid-template-columns: 1fr; }
     .ouvert .deux > div + div { border-left: 0; border-top: 1px solid rgba(255,255,255,.4); padding-top: 2.4rem; }
     .liste a { grid-template-columns: 90px 1fr auto; gap: 1rem; } .liste .fl { font-size: 2rem; }
   }
-  @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } .badge i, .defile span { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } .badge svg, .defile span { animation: none; } }
 </style>
 </head>
 <body>
@@ -191,9 +191,8 @@
     <div class="voile"></div>
     <div class="entete">
       <div class="orn rosace" style="--src:url(/assets/ornements/rosace-p.svg?v=2)"></div>
-      <small>Nancy · Place Saint-Epvre</small>
     </div>
-    <div class="badge"><span>Descendre</span><i></i></div>
+    <div class="badge"><span>Scroll</span><svg width="22" height="40" viewBox="0 0 22 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M11 2v34"/><path d="M2 27q9 0 9 11q0-11 9-11"/></svg></div>
     <div class="titre">
       <span class="fente"><h1>Saint-Epvre</h1></span>
       <p>Basilique néo-gothique, au cœur de la Ville-Vieille de Nancy.</p>
@@ -284,8 +283,7 @@
       var o = ease(Math.min(1, p / .6));            // ouverture de la baie
       var t = ease(Math.max(0, (p - .55) / .45));   // montée du titre
       var mob = innerWidth < 760;
-      v.style.setProperty('--w', lerp(mob ? 70 : 34, 190, o) + 'vw');
-      v.style.setProperty('--h', lerp(66, 230, o) + 'vh');
+      v.style.setProperty('--w', 'calc(' + lerp(mob ? 80 : 62, 0, o) + 'vmin + ' + lerp(0, 330, o) + 'vmax)');
       ent.style.opacity = badge.style.opacity = 1 - Math.min(1, p * 4);
       sc.style.setProperty('--ty', (100 - t * 100) + '%');
       sc.style.setProperty('--op', t);

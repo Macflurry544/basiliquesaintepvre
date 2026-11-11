@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/nav.css?v=7">
+  <link rel="stylesheet" href="../assets/css/nav.css?v=8">
   <style>
     /* ══ Bibliographie — une étagère de vrais livres ══
        Chaque source est un dos de livre debout. Au survol, le livre s'ouvre de biais et montre sa couverture ;
@@ -196,7 +196,7 @@
   <p class="sources">Couvertures numérisées par le Getty Research Institute et Google (Internet Archive) ; gravures de Prosper Morey (Wikimedia Commons). Domaine public.</p>
 </footer>
 
-<script src="../assets/js/nav.js?v=7"></script>
+<script src="../assets/js/nav.js?v=10"></script>
 <script>
   (function () {
     var IMG = '../assets/img/biblio/';
@@ -257,6 +257,39 @@
           ref: 'Gravure d\'époque : l\'orgue destiné à Saint-Epvre dans la Galerie des machines, au Champ-de-Mars.',
           texte: 'La gravure qui ouvre la page des orgues, vectorisée trait pour trait.',
           pages: [['Grandes orgues', '/les-grandes-orgues/']] }
+      ] }
+,
+      { titre: 'Archives en ligne', note: 'documents numérisés, fonds à consulter', livres: [
+        { id: 'petit-guide', c: 'bordeaux', w: 30, h: 250, court: 'Petit guide', auteur: 'Gallica',
+          titre: 'Petit guide de la basilique',
+          ref: 'Guide de visite de la basilique Saint-Epvre. Numérisé par la Bibliothèque nationale de France.',
+          texte: 'Le guide que l\'on remettait aux visiteurs : un parcours de l\'édifice, de la façade au chœur.',
+          lien: 'https://gallica.bnf.fr/ark:/12148/bpt6k9621518j', lienTxt: 'Lire sur Gallica',
+          pages: [['Histoire', '/histoire/']] },
+        { id: 'panegyrique', c: 'clair', w: 26, h: 230, court: 'Panégyrique', auteur: 'Gallica',
+          titre: 'Panégyrique de saint Epvre',
+          ref: 'Discours prononcé pour la fête du patron de la basilique. Numérisé par la Bibliothèque nationale de France.',
+          texte: 'Un sermon à la gloire de saint Epvre, évêque de Toul, dont les reliques reposent dans le maître-autel.',
+          lien: 'https://gallica.bnf.fr/ark:/12148/bpt6k6457093c', lienTxt: 'Lire sur Gallica',
+          pages: [['Histoire', '/histoire/']] },
+        { id: 'monographie-2', c: 'navy', w: 54, h: 330, court: 'Monographie', auteur: '2ᵉ exemplaire',
+          titre: 'Monographie de la basilique (second exemplaire)',
+          ref: 'Autre exemplaire numérisé de la Monographie de 1890, sur Internet Archive.',
+          texte: 'Un second exemplaire de l\'ouvrage de référence, utile quand des planches manquent ou sont abîmées dans le premier.',
+          lien: 'https://archive.org/details/gri_33125013355942', lienTxt: 'Lire sur Internet Archive',
+          pages: [['Histoire', '/histoire/']] },
+        { id: 'verite', c: 'clair', w: 34, h: 270, court: 'La vérité', auteur: 'LiMédia',
+          titre: 'La vérité sur la reconstruction de la basilique Saint-Epvre',
+          ref: 'Document numérisé par la bibliothèque numérique LiMédia (Metz).',
+          texte: 'Les circonstances et les controverses de la reconstruction : le concours, le choix de Prosper Morey, le financement.',
+          lien: 'https://galeries.limedia.fr/ark:/31124/d66lx9l7czf50x5d/p7', lienTxt: 'Lire sur LiMédia',
+          pages: [['Histoire', '/histoire/']] },
+        { id: 'wiener', c: 'bordeaux', w: 48, h: 310, court: 'Fonds Wiener', auteur: 'Archives',
+          titre: 'Fonds Wiener',
+          ref: 'Société d\'histoire de la Lorraine et du Musée lorrain.',
+          texte: 'L\'une des sources les plus riches sur l\'histoire religieuse de Nancy, avec de nombreux documents sur Saint-Epvre. D\'autres documents originaux ne sont consultables que sur place, à la Bibliothèque Stanislas ou aux archives départementales.',
+          lien: 'https://www.societe-histoire-lorraine.com/choix-wiener', lienTxt: 'Accéder au fonds',
+          pages: [['Histoire', '/histoire/']] }
       ] }
     ];
 

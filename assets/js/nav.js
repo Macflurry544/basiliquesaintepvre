@@ -29,7 +29,6 @@
     ]},
     { title: 'Patrimoine', links: [
       { href: '/joseph-trouillet/',           label: 'Joseph Trouillet' },
-      { href: '/histoire/archives/',          label: 'Archives' },
       { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },
       { href: '/presse/',                     label: 'Presse' },
       { href: '/bibliographie/',              label: 'Bibliographie' },
@@ -199,7 +198,17 @@
   }, { passive: true });
 
   /* ── Menu fullscreen ──────────────────────────────────────────── */
+  // le cercle du menu part du bouton rond : position recalculée au chargement, au redimensionnement et au défilement
+  function placeOrigine() {
+    var r = burger.getBoundingClientRect();
+    menu.style.setProperty('--ox', (r.left + r.width / 2) + 'px'); menu.style.setProperty('--oy', (r.top + r.height / 2) + 'px');
+  }
+  placeOrigine();
+  window.addEventListener('resize', placeOrigine);
+  window.addEventListener('scroll', function () { if (!menu.classList.contains('open')) placeOrigine(); }, { passive: true });
+
   function openMenu() {
+    placeOrigine();
     menu.classList.add('open');
     voile.classList.add('open');
     menu.setAttribute('aria-hidden', 'false');

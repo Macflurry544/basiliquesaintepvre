@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/nav.css?v=7">
+  <link rel="stylesheet" href="../assets/css/nav.css?v=8">
   <style>
     /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
        Trois couleurs : bordeaux, bleu marine, blanc (jamais bordeaux et bleu marine côte à côte).
@@ -430,6 +430,23 @@
     .bande-texte .table-cloches { overflow-x: auto; display: block; }
     .bande-texte { min-width: 0; }
     .bande-texte table { display: block; overflow-x: auto; max-width: 100%; }
+    /* Tableau comparatif en cartes */
+    .cloches { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin: 2rem 0 1.4rem; }
+    .cloche { position: relative; background: #fff; color: var(--navy); border: 1px solid var(--filet); border-radius: 18px; padding: 1.4rem 1.4rem 1.3rem; box-shadow: 0 14px 28px -24px rgba(33,52,72,.5); }
+    .cloche-poids { font: 500 clamp(2rem, 3.6vw, 2.8rem)/1 var(--titre); letter-spacing: -.04em; color: var(--bordeaux); }
+    .cloche-poids small { font-size: .45em; letter-spacing: 0; margin-left: .25em; color: var(--gris); }
+    .cloche-poids .nd { font: 500 1rem var(--titre); color: var(--gris); letter-spacing: 0; }
+    .cloche-barre { height: 4px; background: rgba(33,52,72,.1); border-radius: 4px; margin: .9rem 0 1.1rem; overflow: hidden; }
+    .cloche-barre span { display: block; height: 100%; background: var(--bordeaux); border-radius: 4px; }
+    .cloche h4 { margin: 0; font: 500 1.3rem/1.15 var(--titre); letter-spacing: -.015em; }
+    .cloche-sous { margin: .2rem 0 0 !important; font-size: .95rem; color: var(--gris); }
+    .cloche dl { display: grid; grid-template-columns: auto 1fr; gap: .3rem .9rem; margin: 1rem 0 0; font-size: .95rem; }
+    .cloche dt { font: 600 .72rem var(--titre); letter-spacing: .14em; text-transform: uppercase; color: var(--gris); padding-top: .2rem; }
+    .cloche dd { margin: 0; }
+    .cloche-note { position: absolute; top: 1.2rem; right: 1.2rem; padding: .3rem .7rem; border-radius: 999px; background: var(--navy); color: #fff; font: 600 .8rem var(--titre); }
+    li.avec-ico { list-style: none; position: relative; padding-left: 2.6rem; margin-bottom: 1rem; }
+    li.avec-ico .ico { position: absolute; left: 0; top: .05em; width: 1.7rem; height: 1.7rem; color: inherit; }
+    ul:has(> li.avec-ico) { padding-left: 0; }
 </style>
 </head>
 <body>
@@ -503,54 +520,37 @@
         <span class="b-num">IV</span>
         <h2>Tableau comparatif des cloches</h2>
         
-        <table class="table-cloches">
-            <thead>
-              <tr>
-                <th>Nom / fonction</th>
-                <th>Année</th>
-                <th>Fondeur</th>
-                <th>Poids approx.</th>
-                <th>Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Grosse cloche (bourdon)</td>
-                <td>1591 / refondue 1747</td>
-                <td>Jean de Laître (1591) · Burel, Bassigny (1747)</td>
-                <td>≈ 1 570 kg</td>
-                <td>Fa♯2</td>
-              </tr>
-              <tr>
-                <td>Cloche du beffroi</td>
-                <td>1576</td>
-                <td>Jehan de Challegny</td>
-                <td>≈ 1 574 kg</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Grand timbre d'horloge</td>
-                <td>1751</td>
-                <td>J.-F. Despois, Nancy</td>
-                <td>≈ 1 045 kg</td>
-                <td>Do♯3</td>
-              </tr>
-              <tr>
-                <td>Petit timbre d'horloge</td>
-                <td>1562</td>
-                <td>Inconnu</td>
-                <td>≈ 720 kg</td>
-                <td>Mi♭3</td>
-              </tr>
-              <tr>
-                <td>Cloches de volée (×5)</td>
-                <td>XIXᵉ – XXᵉ s.</td>
-                <td>Ateliers budapestois (partiel)</td>
-                <td>Non documenté</td>
-                <td>Volée complète</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="cloches"><article class="cloche">
+  <div class="cloche-poids">≈ 1 570<small>kg</small></div>
+  <div class="cloche-barre"><span style="width:100%"></span></div>
+  <h4>Grosse cloche</h4><p class="cloche-sous">Le bourdon</p>
+  <dl><dt>Année</dt><dd>1591 · refondue en 1747</dd><dt>Fondeur</dt><dd>Jean de Laître (1591) · Burel, Bassigny (1747)</dd></dl>
+  <span class="cloche-note">Fa♯2</span>
+</article><article class="cloche">
+  <div class="cloche-poids">≈ 1 574<small>kg</small></div>
+  <div class="cloche-barre"><span style="width:100%"></span></div>
+  <h4>Cloche du beffroi</h4>
+  <dl><dt>Année</dt><dd>1576</dd><dt>Fondeur</dt><dd>Jehan de Challegny</dd></dl>
+  
+</article><article class="cloche">
+  <div class="cloche-poids">≈ 1 045<small>kg</small></div>
+  <div class="cloche-barre"><span style="width:66%"></span></div>
+  <h4>Grand timbre d'horloge</h4>
+  <dl><dt>Année</dt><dd>1751</dd><dt>Fondeur</dt><dd>J.-F. Despois, Nancy</dd></dl>
+  <span class="cloche-note">Do♯3</span>
+</article><article class="cloche">
+  <div class="cloche-poids">≈ 720<small>kg</small></div>
+  <div class="cloche-barre"><span style="width:46%"></span></div>
+  <h4>Petit timbre d'horloge</h4>
+  <dl><dt>Année</dt><dd>1562</dd><dt>Fondeur</dt><dd>Fondeur inconnu</dd></dl>
+  <span class="cloche-note">Mi♭3</span>
+</article><article class="cloche">
+  <div class="cloche-poids"><span class="nd">poids non documenté</span></div>
+  <div class="cloche-barre"><span style="width:0%"></span></div>
+  <h4>Cloches de volée</h4><p class="cloche-sous">Cinq cloches</p>
+  <dl><dt>Année</dt><dd>XIXᵉ – XXᵉ siècle</dd><dt>Fondeur</dt><dd>Ateliers budapestois (en partie)</dd></dl>
+  <span class="cloche-note">Volée complète</span>
+</article></div>
           <p class="note-bas">Sources : Léon Germain (1889) ; Deblaye (1868) ; archives de la Société d'histoire de la Lorraine.</p>
       </div>
     </div>
@@ -598,11 +598,11 @@
         <p>Les cloches de Saint-Epvre rythment la vie liturgique nancéienne selon plusieurs traditions :</p>
 
           <ul>
-            <li><strong>L'Angélus</strong> — sonné chaque jour (matin, midi, soir) grâce au système automatisé.</li>
-            <li><strong>Offices dominicaux et grandes fêtes</strong> — Noël, Pâques et les grandes solennités déclenchent la volée complète des huit cloches pour annoncer l'office.</li>
-            <li><strong>La consécration</strong> — les cloches sonnent manuellement afin que tout le quartier sache à quel moment a lieu la consécration eucharistique.</li>
-            <li><strong>Funérailles et glas</strong> — un glas solennel est joué la veille ou le jour même des obsèques.</li>
-            <li><strong>Commémorations nationales</strong> — depuis 2018, chaque 11 novembre à 11h, les cloches de la basilique participent à l'hommage national aux morts pour la France (réseau des cloches de Lorraine).</li>
+            <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><strong>L'Angélus</strong> — sonné chaque jour (matin, midi, soir) grâce au système automatisé.</li>
+            <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10.5 20.5a1.6 1.6 0 0 0 3 0"/><path d="M12 3v2"/></svg><strong>Offices dominicaux et grandes fêtes</strong> — Noël, Pâques et les grandes solennités déclenchent la volée complète des huit cloches pour annoncer l'office.</li>
+            <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10l-1 6a4 4 0 0 1-8 0z"/><path d="M12 14v5"/><path d="M8.5 20h7"/></svg><strong>La consécration</strong> — les cloches sonnent manuellement afin que tout le quartier sache à quel moment a lieu la consécration eucharistique.</li>
+            <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M7 8h10"/></svg><strong>Funérailles et glas</strong> — un glas solennel est joué la veille ou le jour même des obsèques.</li>
+            <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4h11l-2 4 2 4H6"/></svg><strong>Commémorations nationales</strong> — depuis 2018, chaque 11 novembre à 11h, les cloches de la basilique participent à l'hommage national aux morts pour la France (réseau des cloches de Lorraine).</li>
           </ul>
 
           <p style="margin-top:1.2rem;">L'installation électrique moderne permet de jouer les carillons horaires et l'angélus même en l'absence de sonneur. Cependant, les plus anciennes cloches résonnent à la main pour les grands offices, offrant un timbre plus vivant que la sonnerie automatique.</p>
@@ -611,7 +611,7 @@
   </section>
   <section class="bande b-bordeaux" id="section-6">
     <div class="bande-grille">
-      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya.jpg)" role="img" aria-label="L'intérieur de la basilique"></div><p class="visuel-leg">L'intérieur de la basilique</p></div>
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya.jpg)" role="img" aria-label="La flèche vue depuis les toits"></div><p class="visuel-leg">La flèche vue depuis les toits</p></div>
       <div class="bande-texte">
         <span class="b-num">VII</span>
         <h2>Évolution au fil du temps</h2>
@@ -686,6 +686,6 @@
     document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=7"></script>
+<script defer src="../assets/js/nav.js?v=10"></script>
 </body>
 </html>

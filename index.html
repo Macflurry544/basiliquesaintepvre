@@ -63,7 +63,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/nav.css?v=7">
+  <link rel="stylesheet" href="assets/css/nav.css?v=8">
 
 <style>
   /* Maquette d'accueil : la vidéo naît dans une baie en ogive sur fond bordeaux,
@@ -207,6 +207,12 @@
   .pied { background: var(--bordeaux) !important; color: #fff; padding: 4rem 22px 4.5rem !important; }
   .pied b, .pied span { color: #fff !important; } .pied span { opacity: .75; }
   .pied .orn { color: #fff !important; }
+  /* Écran tactile : section simple d'une hauteur d'écran, plus de position collante */
+  .ouverture.tactile { height: var(--sh, 100svh); }
+  .ouverture.tactile .scene { position: relative; }
+  .ouverture.tactile .titre h1 { transition: translate 1.2s cubic-bezier(.22,1,.36,1); }
+  .ouverture.tactile .titre p, .ouverture.tactile .voile { transition: opacity 1s ease .3s; }
+  .ouverture.tactile .scene.titre-visible { --ty: 0%; --op: 1; }
 </style>
 </head>
 <body>
@@ -299,7 +305,7 @@
   <span>Nancy · Lorraine · France</span>
 </footer>
 
-<script src="/assets/js/nav.js?v=7"></script>
+<script src="/assets/js/nav.js?v=10"></script>
 <script>
   (function () {
     var sec = document.getElementById('ouverture'), v = sec.querySelector('video'), sc = sec.querySelector('.scene');
@@ -327,7 +333,23 @@
       sc.style.setProperty('--ty', (100 - t * 100) + '%');
       sc.style.setProperty('--op', t);
     }
-    var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true });  maj();
+    // Sur écran tactile, rien ne dépend plus du défilement (c'est ce qui faisait trembler la vidéo) :
+    // l'oculus s'ouvre tout seul après le chargement, puis le titre monte. La section n'est plus collante.
+    if (matchMedia('(hover: none)').matches) {
+      sec.classList.add('tactile');
+      var base = Math.max(Math.min(VW, VH) * 1.25, Math.max(VW, VH) * .64) * 3, fin = Math.max(VW, VH) * 3.4 * 3 / base;
+      cache.style.width = cache.style.height = base + 'px';
+      cache.style.transform = 'scale(1)';
+      setTimeout(function () {
+        cache.style.transition = 'transform 2.4s cubic-bezier(.65,0,.35,1), opacity .4s ease 2.3s';
+        cache.style.transform = 'scale(' + fin.toFixed(3) + ')'; cache.style.opacity = 0;
+        ent.style.transition = badge.style.transition = 'opacity .6s';
+        ent.style.opacity = 0;
+        setTimeout(function () { sc.classList.add('titre-visible'); badge.style.opacity = 0; }, 2000);
+      }, 900);
+    } else {
+      var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true });  maj();
+    }
 
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.apparait').forEach(function (e) { io.observe(e); });

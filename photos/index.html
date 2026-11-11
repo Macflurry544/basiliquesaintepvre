@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/nav.css?v=7">
+  <link rel="stylesheet" href="../assets/css/nav.css?v=8">
   <link rel="stylesheet" href="../assets/css/site.css?v=20">
 
   <style>
@@ -653,7 +653,29 @@
       .lb-prev, .lb-next { display: none; }
       .pied { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
     }
-  </style>
+      /* ── Refonte galerie ── */
+    .hero { cursor: auto !important; }
+    .cursor-dot { display: none !important; }
+    .hero-meta { position: absolute !important; left: 0 !important; right: 0; bottom: 7vh !important; max-width: none !important; text-align: center; padding: 0 22px; }
+    .hero-eyebrow, .hero-rule, .hero-sous { display: none !important; }
+    .hero-titre { font-size: clamp(3.4rem, 13vw, 9rem) !important; margin: 0 !important; }
+    /* photos sans bordure ni cadre */
+    .ed-cell, .ed-cell img, .archive img, .arch-item, .arch-item img, .l-glass { border: 0 !important; outline: 0 !important; box-shadow: none !important; background: none !important; }
+    /* fermer : grande croix épaisse */
+    .lb-fermer { width: 64px; height: 64px; padding: 14px !important; border: 0 !important; background: none !important; color: #fff !important; display: grid; place-items: center; }
+    .lb-fermer svg { width: 100%; height: 100%; }
+    .lb-img { border: 0 !important; padding: 0 !important; background: none !important; box-shadow: none !important; border-radius: 10px; }
+    .lb-fermer:hover { transform: rotate(90deg); transition: transform .35s; }
+    /* Ouverture comme l'accueil : un cache bordeaux percé de l'oculus s'agrandit, puis le titre monte */
+    .hero .hero-img { -webkit-mask: none !important; mask: none !important; }
+    .hero .cache { position: absolute; left: 50%; top: 46%; translate: -50% -50%; color: #4a1518; pointer-events: none; z-index: 4; will-change: transform;
+      transition: transform 2.4s cubic-bezier(.65,0,.35,1), opacity .4s ease 2.3s; }
+    .hero .cache svg { width: 100%; height: 100%; display: block; }
+    .hero .hero-meta { z-index: 6; }
+    .hero .hero-titre { translate: 0 40px; opacity: 0; transition: translate 1.2s cubic-bezier(.22,1,.36,1), opacity 1s ease; text-shadow: 0 6px 40px rgba(0,0,0,.35); }
+    .hero.ouverte .hero-titre { translate: 0 0; opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .hero .cache { display: none; } .hero .hero-titre { translate: none; opacity: 1; } }
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -672,11 +694,11 @@
 <body>
 
 <!-- Curseur personnalisé -->
-<div class="cursor-dot" id="cursorDot"></div>
 
 <!-- ════ LIGHTBOX ════════════════════════════════════════ -->
+<div class="cursor-dot" id="cursorDot" hidden></div>
 <div class="lb" id="lb">
-  <button class="lb-fermer" id="lbFermer">✕ Fermer</button>
+  <button class="lb-fermer" id="lbFermer" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></button>
   <span class="lb-compteur" id="lbCpt"></span>
   <div class="lb-zone">
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Précédente">
@@ -708,11 +730,11 @@
     Basilique Saint-Epvre
   </a>
 
+  <div class="cache" aria-hidden="true"><svg viewBox="-150 -150 300 300" preserveAspectRatio="xMidYMid slice"><defs><mask id="oculus"><rect x="-150" y="-150" width="300" height="300" fill="#fff"/><g fill="#000"><circle r="31"/><circle cx="0.00" cy="-33.00" r="15"/><circle cx="28.58" cy="-16.50" r="15"/><circle cx="28.58" cy="16.50" r="15"/><circle cx="0.00" cy="33.00" r="15"/><circle cx="-28.58" cy="16.50" r="15"/><circle cx="-28.58" cy="-16.50" r="15"/></g></mask></defs><rect x="-150" y="-150" width="300" height="300" fill="currentColor" mask="url(#oculus)"/></svg></div>
   <div class="hero-meta">
     <span class="hero-eyebrow">Photographies</span>
     <h1 class="hero-titre">Galerie</h1>
     <div class="hero-rule"></div>
-    <p class="hero-sous">La basilique en images</p>
   </div>
 
   <div class="hero-scroll">
@@ -1060,8 +1082,21 @@
 
 })();
 </script>
-<script defer src="../assets/js/nav.js?v=7"></script>
+<script defer src="../assets/js/nav.js?v=10"></script>
   <script defer src="../assets/js/site.js?v=21"></script>
 <script src="/assets/js/refonte.js?v=2"></script>
+<script>
+  // Ouverture de la galerie : l'oculus bordeaux s'ouvre tout seul, comme à l'entrée du site
+  (function () {
+    var hero = document.querySelector('.hero'), cache = hero && hero.querySelector('.cache'); if (!cache) return;
+    var VW = innerWidth, VH = innerHeight;
+    var base = Math.max(Math.min(VW, VH) * 1.1, Math.max(VW, VH) * .6) * 3, fin = Math.max(VW, VH) * 3.4 * 3 / base;
+    cache.style.width = cache.style.height = base + 'px';
+    setTimeout(function () {
+      cache.style.transform = 'scale(' + fin.toFixed(3) + ')'; cache.style.opacity = 0;
+      setTimeout(function () { hero.classList.add('ouverte'); }, 1800);
+    }, 700);
+  })();
+</script>
 </body>
 </html>

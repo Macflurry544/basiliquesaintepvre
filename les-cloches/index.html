@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   
   <!-- SEO Meta Tags -->
   <title>Les Cloches de la Basilique Saint-Epvre | Patrimoine Historique Nancy</title>
@@ -34,849 +34,476 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=7">
-  <link rel="stylesheet" href="../assets/css/site.css?v=20">
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
+       Trois couleurs : bordeaux, bleu marine, blanc (jamais bordeaux et bleu marine côte à côte).
+       Ornements : gravures d'époque vectorisées (assets/ornements). */
     :root {
-      --cream:     #EAE0CF;
-      --cream-2:   #94B4C1;
-      --sage:      #547792;
-      --olive:     #213448;
-      --olive-rgb: 33, 52, 72;
-      --font-display: 'Uncial Antiqua', Georgia, serif;
-      --font-body:    'EB Garamond', Georgia, serif;
-      --nav-h: 64px;
+      --bordeaux: #4a1518; --navy: #213448; --blanc: #ffffff; --papier: #fbf9f5;
+      --gris: #59626e; --filet: rgba(33,52,72,.18);
+      --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
     }
-
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.75; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
 
-    body {
-      background-color: var(--cream);
-      color: var(--olive);
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 500;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    /* Ornement : boîte colorée découpée par la gravure vectorisée */
+    .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+
+    .col { max-width: 740px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+
+    /* Titre courant, comme en haut des pages du livre */
+    .courant { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); border-bottom: 1px solid var(--filet); padding-bottom: .5rem; }
+
+    /* ── Ouverture : la gravure de l'orgue de 1867 ── */
+    .ouverture { position: relative; padding: 6.5rem 0 2.5rem; text-align: center; overflow: hidden; }
+    .ouverture .courant { max-width: 740px; margin: 0 auto 2.6rem; }
+    .ouverture h1 { font-family: var(--titre); font-weight: 400; font-size: clamp(2.6rem, 7.5vw, 4.8rem); line-height: 1.02; margin: 0; color: var(--navy); }
+    .ouverture .sous { margin: .9rem auto 0; max-width: 34ch; font-style: italic; color: var(--gris); font-size: 1.12rem; line-height: 1.5; }
+    .ouverture figure { margin: 2.6rem auto 0; max-width: 700px; }
+    .ouverture .orgue { width: 100%; aspect-ratio: 1790 / 1910; color: var(--navy); }
+    .ouverture figcaption { margin-top: .8rem; font-size: .95rem; font-style: italic; color: var(--gris); }
+
+    /* Bandeau de ferronnerie : croix de Lorraine et alérions */
+    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-position: center; mask-position: center; margin: 2.5rem 0; }
+
+    /* ── Chapeau avec lettrine ornée ── */
+    .chapeau { padding: 1rem 0 1rem; display: flow-root; }
+    .chapeau p { margin: 0; font-size: 1.28rem; line-height: 1.72; }
+    .lettrine { float: left; width: clamp(120px, 26vw, 190px); aspect-ratio: 1360 / 2550; margin: .35rem 1.2rem .4rem 0; color: var(--bordeaux);
+      /* le texte épouse la forme en L de la lettrine, comme dans la monographie */
+      shape-outside: polygon(0 0, calc(100% + 1.2rem) 0, calc(100% + 1.2rem) 58%, calc(36% + 1rem) 58%, calc(36% + 1rem) 100%, 0 100%); }
+
+    /* ── Sommaire en cartouche ── */
+    .sommaire { margin: 3rem auto 1rem; padding: 2rem 2rem 1.6rem; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 5px; background: var(--blanc); }
+    .sommaire .cartouche { margin-top: -2.95rem; }
+    .sommaire ol { list-style: none; margin: 1rem 0 0; padding: 0; counter-reset: s; }
+    .sommaire li { counter-increment: s; }
+    .sommaire a { display: flex; align-items: baseline; gap: .6rem; padding: .35rem 0; text-decoration: none; font-size: 1.12rem; }
+    .sommaire a::before { content: counter(s, upper-roman) '.'; min-width: 2.6rem; font-family: var(--titre); color: var(--bordeaux); font-size: .95rem; }
+    .sommaire a::after { content: ''; flex: 1; border-bottom: 1px dotted var(--filet); transform: translateY(-.3em); order: 2; }
+    .sommaire a span { order: 1; }
+    .sommaire a:hover { color: var(--bordeaux); }
+
+    /* Cartouche aux coins coupés, comme « CHAPITRE PREMIER » dans la monographie */
+    .cartouche { display: table; margin: 0 auto; padding: .4rem 1.5rem; background: var(--papier); color: var(--bordeaux); font-size: .82rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      border: 1.5px solid currentColor; box-shadow: inset 0 0 0 3px var(--papier), inset 0 0 0 4px currentColor; }
+
+
+    /* ── Ouverture de chapitre : double filet à rosace, grand chiffre romain ──
+       Animation : les deux filets se déroulent depuis la rosace, qui tourne d'un quart de tour,
+       puis le chiffre et le titre apparaissent. */
+    .ouv { position: relative; text-align: center; color: var(--bordeaux); }
+    .ouv-filet { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .ouv-filet::before, .ouv-filet::after { content: ''; flex: 1; border-top: 3px double currentColor; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .25s; }
+    .ouv-filet::before { transform-origin: right center; }
+    .ouv-filet::after { transform-origin: left center; }
+    .ouv-filet .orn { flex: none; width: 36px; height: 36px; opacity: 0; transform: rotate(-90deg) scale(.6); transition: opacity .7s ease, transform 1.2s cubic-bezier(.22,1,.36,1); }
+    .ouv-num { display: block; font-family: var(--titre); font-size: clamp(3.4rem, 9vw, 4.4rem); line-height: 1; opacity: 0; translate: 0 12px; transition: opacity .9s ease .7s, translate .9s ease .7s; }
+    .ouv-lib { display: block; margin-top: .4rem; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: 0; transition: opacity .9s ease .9s; }
+    .vu .ouv-filet::before, .vu .ouv-filet::after { transform: scaleX(1); }
+    .vu .ouv-filet .orn { opacity: 1; transform: none; }
+    .vu .ouv-num { opacity: 1; translate: 0 0; }
+    .vu .ouv-lib { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .ouv-filet::before, .ouv-filet::after, .ouv-filet .orn, .ouv-num, .ouv-lib { transform: none; opacity: 1; translate: none; transition: none; }
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
+    /* ── Chapitres ── */
+    .chapitre { position: relative; padding: 5rem 0 1rem; }
+    .chapitre .croquis { position: absolute; left: 50%; top: 1.2rem; translate: -50% 0; width: 260px; aspect-ratio: 1270 / 1257; color: var(--navy); opacity: .07; pointer-events: none; }
+    .chapitre h2 { position: relative; text-align: center; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.7rem); line-height: 1.12; margin: .7rem 0 .9rem; }
+    .chapitre .argument { position: relative; text-align: center; font-size: 1.04rem; font-style: italic; line-height: 1.55; color: var(--gris); margin: 0 auto 2.4rem; max-width: 46ch; padding-top: .9rem; border-top: 1px solid var(--filet); }
+    .chapitre p { margin: 0 0 1.15em; }
+    .chapitre strong { font-weight: 600; color: var(--bordeaux); }
+
+    /* Figures : double filet, légende et numéro comme dans le livre */
+    figure.planche { margin: 2.4rem 0; text-align: center; }
+    figure.planche img { width: 100%; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 4px; }
+    figure.planche figcaption { margin-top: 1rem; font-size: .98rem; color: var(--gris); }
+    figure.planche figcaption i { display: block; font-size: .85rem; margin-top: .1rem; }
+    .duo-fig { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    @media (max-width: 560px) { .duo-fig { grid-template-columns: 1fr; } }
+
+    /* Encadré bordeaux sur papier : le moment fort */
+    .fort { margin: 2.6rem 0; padding: 2rem 2rem 1.8rem; background: var(--bordeaux); color: var(--blanc); text-align: center; outline: 1px solid var(--bordeaux); outline-offset: 5px; }
+    .fort .orn { width: 46px; height: 46px; margin: 0 auto .8rem; color: var(--blanc); }
+    .fort p { margin: 0; font-size: 1.18rem; line-height: 1.65; }
+    .fort strong { color: var(--blanc); font-weight: 700; }
+
+    /* Tableaux */
+    table { width: 100%; border-collapse: collapse; margin: 1.6rem 0 2rem; font-size: 1.02rem; }
+    caption { caption-side: bottom; margin-top: .6rem; font-size: .9rem; font-style: italic; color: var(--gris); }
+    th { text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bordeaux); padding: .5rem .5rem; border-top: 2px solid var(--navy); border-bottom: 1px solid var(--navy); }
+    td { padding: .6rem .5rem; border-bottom: 1px solid var(--filet); vertical-align: top; }
+    tfoot td { font-weight: 700; border-top: 1px solid var(--navy); border-bottom: 2px solid var(--navy); }
+    .tab-scroll { overflow-x: auto; }
+
+    ul.innovations { margin: 1rem 0 1.6rem; padding: 0; list-style: none; }
+    ul.innovations li { display: grid; grid-template-columns: 22px 1fr; gap: .8rem; padding: .45rem 0; }
+    ul.innovations .orn, .organistes .orn { width: 18px; height: 18px; margin-top: .45rem; color: var(--bordeaux); }
+
+    /* Organistes */
+    .organistes { list-style: none; margin: 1.4rem 0; padding: 0; }
+    .organistes li { display: grid; grid-template-columns: 22px 1fr auto; gap: .9rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--filet); }
+    .organistes b { font-weight: 600; font-size: 1.12rem; }
+    .organistes span { font-variant-numeric: tabular-nums; color: var(--gris); font-size: .98rem; text-align: right; }
+    .organistes li.actuelle { background: var(--bordeaux); color: var(--blanc); padding: .9rem; margin: .5rem 0; border: 0; outline: 1px solid var(--bordeaux); outline-offset: 4px; }
+    .organistes li.actuelle .orn { color: var(--blanc); }
+    .organistes li.actuelle span { color: #ecd9d9; }
+
+
+    /* ── Les jeux : une façade de panneaux, comme les tuyaux d'un buffet ──
+       Chaque clavier est une rangée de panneaux hauts et étroits, décalés selon la taille du jeu.
+       Le panneau survolé (ou touché) s'élargit et révèle la description du son. */
+    .facade-jeux { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4rem; margin: 2.2rem 0 1rem; }
+    .fj-clavier { min-width: 0; }
+    .fj-clavier h3 { display: flex; align-items: center; gap: .8rem; margin: 0 0 1rem; font-family: var(--texte); font-weight: 600; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bordeaux); }
+    .fj-clavier h3::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
+    .fj-clavier h3 small { font-weight: 400; letter-spacing: .06em; text-transform: none; color: var(--gris); font-size: .95rem; }
+    .fj-rang { display: flex; align-items: flex-end; gap: 8px; height: 380px; overflow-x: auto; overflow-y: hidden; padding: 4px 4px 8px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+    .fj { position: relative; flex: 0 0 74px; height: var(--hp); display: flex; flex-direction: column; align-items: center; padding: 10px 8px 0; background: var(--blanc); border: 1px solid var(--filet); border-radius: 16px; box-shadow: 0 10px 24px -18px rgba(33,52,72,.35); cursor: pointer; scroll-snap-align: start; overflow: hidden;
+      transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s ease, color .35s ease; color: var(--navy); text-align: left; font: inherit; }
+    .fj:focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+    .fj.ouvert .fj-nom { border-top-color: rgba(255,255,255,.35); }
+    .fj-tuyau { flex: 1; width: 100%; min-height: 0; color: inherit; -webkit-mask-position: center bottom; mask-position: center bottom; transition: opacity .3s; }
+    .fj-nom { flex: none; width: calc(100% + 16px); margin-top: 8px; padding: .45rem .3rem .6rem; border-top: 1px solid var(--filet); text-align: center; font-size: .82rem; font-weight: 600; line-height: 1.15; }
+    .fj-nom span { display: block; font-weight: 400; font-size: .78rem; opacity: .75; font-variant-numeric: tabular-nums; }
+    .fj-texte { position: absolute; left: 92px; right: 14px; top: 14px; bottom: 64px; display: flex; flex-direction: column; justify-content: center; gap: .5rem; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+    .fj-texte b { font-family: var(--titre); font-weight: 400; font-size: 1.25rem; line-height: 1.1; }
+    .fj-texte p { margin: 0; font-size: .95rem; line-height: 1.45; }
+    .fj.ouvert { flex-basis: min(300px, 78vw); background: var(--bordeaux); color: var(--blanc); border-color: var(--bordeaux); box-shadow: 0 18px 34px -18px rgba(74,21,24,.55); }
+    .fj.ouvert .fj-tuyau { flex: 1; width: 64px; align-self: flex-start; }
+    .fj.ouvert .fj-texte { opacity: 1; transition-delay: .2s; }
+    /* apparition : les panneaux montent l'un après l'autre */
+    .fj { translate: 0 30px; opacity: 0; }
+    .vu .fj { translate: 0 0; opacity: 1; transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s, color .35s, translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms), opacity .6s ease calc(var(--i) * 60ms); }
+    @media (max-width: 560px) { .fj-rang { height: 330px; } .fj { flex-basis: 70px; } .fj-texte { left: 84px; } .fj-nom { font-size: .7rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; } }
+    @media (prefers-reduced-motion: reduce) { .fj, .vu .fj { translate: none; opacity: 1; transition: none; } }
+
+
+    /* ── Grands chiffres, en colonnes numérotées comme une page de magazine ── */
+    .chiffres { max-width: 1100px; margin: 4.5rem auto 1rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .chiffres > div { padding: 0 1.4rem; border-left: 1px solid var(--filet); }
+    .chiffres > div:first-child { border-left: 0; padding-left: 0; }
+    .chiffres small { display: block; font-size: .78rem; letter-spacing: .2em; color: var(--gris); font-variant-numeric: tabular-nums; padding-bottom: .5rem; margin-bottom: .8rem; border-bottom: 1px solid var(--navy); }
+    .chiffres b { display: block; font-family: var(--titre); font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: .95; color: var(--bordeaux); white-space: nowrap; }
+    .chiffres span { display: block; margin-top: .7rem; font-size: 1.02rem; line-height: 1.45; }
+    .chiffres > div { opacity: 0; translate: 0 18px; transition: opacity .8s ease calc(var(--i) * 140ms), translate .8s ease calc(var(--i) * 140ms); }
+    .chiffres.vu > div { opacity: 1; translate: 0 0; }
+    @media (max-width: 720px) { .chiffres { grid-template-columns: 1fr 1fr; row-gap: 2.2rem; } .chiffres > div:nth-child(3) { border-left: 0; padding-left: 0; } }
+
+    /* ── Arcades : photos découpées en ogive, panneaux côte à côte qui s'élargissent ── */
+    .arcades { display: flex; gap: 14px; height: 440px; margin: 2.6rem 0 1rem; }
+    .arcade { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; margin: 0; transition: flex-grow .6s cubic-bezier(.22,1,.36,1); }
+    .arcade .baie { flex: 1; min-height: 0; background: var(--papier) center / cover no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+    .arcade figcaption { flex: none; min-height: 5.4em; padding-top: .7rem; font-size: .92rem; line-height: 1.35; color: var(--gris); border-top: 1px solid var(--navy); margin-top: .6rem; }
+    .arcade figcaption b { display: block; font-weight: 600; color: var(--navy); font-size: .98rem; }
+    .arcades:hover .arcade:hover, .arcade:focus-within { flex-grow: 2.2; }
+    @media (max-width: 560px) { .arcades { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; } .arcade { flex: 0 0 62%; scroll-snap-align: start; } .arcade .baie { height: 320px; flex: none; } }
+
+    /* ── Éventail : photos déployées en arc autour d'une phrase ── */
+    .eventail { position: relative; margin: 2.4rem 0 1.6rem; height: 430px; overflow-x: clip; }
+    .eventail .carte { position: absolute; left: 50%; top: 0; width: 150px; aspect-ratio: 3 / 4; margin-left: -75px; border-radius: 14px; background: var(--papier) center / cover no-repeat; border: 5px solid var(--blanc);
+      box-shadow: 0 14px 28px -16px rgba(33,52,72,.55); transform-origin: 50% 230%; transform: rotate(0deg); transition: transform 1.2s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms); }
+    .eventail.vu .carte { transform: rotate(var(--r)); }
+    .eventail .phrase { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; }
+    .eventail .phrase q { display: block; font-family: var(--titre); font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.15; color: var(--bordeaux); quotes: '« ' ' »'; }
+    .eventail .phrase span { display: block; margin-top: .6rem; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
+    @media (max-width: 560px) { .eventail { height: 380px; } .eventail .carte { width: 110px; margin-left: -55px; transform-origin: 50% 220%; } }
+    @media (prefers-reduced-motion: reduce) { .eventail .carte { transition: none; } .chiffres > div { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Les journaux : bande bleu marine pleine largeur ── */
+    .presse { position: relative; background: var(--navy); color: var(--blanc); padding: 5rem 0 4rem; margin-top: 4rem; overflow: hidden; }
+    .presse .croquis { position: absolute; right: -6%; top: 50%; translate: 0 -50%; width: min(620px, 80vw); aspect-ratio: 1790 / 1910; color: rgba(255,255,255,.06); pointer-events: none; }
+    .presse .cartouche { background: var(--navy); color: var(--blanc); }
+    .presse .ouv { color: var(--blanc); }
+    .presse .ouv-num, .presse .ouv-lib { color: var(--blanc); }
+    .presse h2 { text-align: center; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.6rem); margin: 1rem 0 2.6rem; }
+    .presse blockquote { position: relative; margin: 0 0 2.2rem; padding: 0 0 2.2rem; border-bottom: 1px solid rgba(255,255,255,.22); }
+    .presse blockquote:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+    .presse blockquote p { margin: 0; font-style: italic; font-size: 1.2rem; line-height: 1.62; }
+    .presse cite { display: block; margin-top: .7rem; font-style: normal; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: #c9d3de; }
+
+    /* ── Cul-de-lampe : l'ange à la banderole, sur papier ── */
+    .cul-de-lampe { padding: 4rem 22px 4.5rem; text-align: center; }
+    .cul-de-lampe .orn { width: min(340px, 78vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
+
+    /* ── Pied de page bordeaux ── */
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 3.2rem 22px calc(3.2rem + env(safe-area-inset-bottom, 0px)); }
+    .pied .orn { width: 36px; height: 140px; margin: 0 auto 1rem; color: var(--blanc); }
+    .pied b { display: block; font-family: var(--titre); font-weight: 400; font-size: 1.5rem; }
+    .pied span { font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+    .pied .sources { margin: 1.6rem auto 0; max-width: 60ch; font-size: .82rem; line-height: 1.6; opacity: .7; }
+
+    /* Apparition douce, sans plus */
+    .apparait { opacity: 0; translate: 0 16px; transition: opacity .9s ease, translate .9s ease; }
+    .apparait.vu { opacity: 1; translate: 0 0; }
+    @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+
+    :root { --oculus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E"); }
+    /* ══ Nouveau style (comme l'accueil) : grotesque capitale, aplats bordeaux, l'ancien gardé dans les gravures ══ */
+    .ouverture { background: var(--bordeaux); color: var(--blanc); padding-bottom: 4rem; }
+    .ouverture .courant { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.3); }
+    .ouverture h1 { color: var(--blanc); font-weight: 500; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; font-size: clamp(3.4rem, 12.5vw, 11rem); }
+    .ouverture .sous { color: rgba(255,255,255,.85); }
+    .ouverture .orgue { color: var(--blanc); }
+    .ouverture figcaption { color: rgba(255,255,255,.7); }
+    .chapitre h2, .presse h2 { font-weight: 500; text-transform: uppercase; letter-spacing: -.035em; line-height: .95; font-size: clamp(2.2rem, 6vw, 4.2rem); }
+    .ouv-num { font-weight: 500; letter-spacing: -.04em; font-size: clamp(4rem, 11vw, 6.5rem); }
+    .ouv-lib, .cartouche, .fj-clavier h3, th, .chiffres small, .presse cite, .courant { font-family: var(--titre); }
+    .sommaire a::before { font-weight: 600; }
+    .fj-texte b { font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; }
+    .eventail .phrase q { font-weight: 500; text-transform: uppercase; letter-spacing: -.03em; }
+    .pied b { font-weight: 600; text-transform: uppercase; letter-spacing: -.03em; font-size: clamp(2.4rem, 9vw, 5rem); }
+    /* Chiffres : bande bordeaux pleine largeur, nombres géants */
+    .chiffres { position: relative; padding-top: 4rem; padding-bottom: 4rem; margin-top: 4rem; color: var(--blanc); background: var(--bordeaux); box-shadow: 0 0 0 100vmax var(--bordeaux); clip-path: inset(0 -100vmax); }
+    .chiffres > div { border-color: rgba(255,255,255,.3); }
+    .chiffres small { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.5); }
+    .chiffres b { color: var(--blanc); font-weight: 500; letter-spacing: -.04em; font-size: clamp(2.8rem, 7vw, 5.6rem); }
+    /* Arcades : l'oculus à six lobes de l'accueil remplace l'ogive */
+    .arcade .baie { -webkit-mask: var(--oculus) center / contain no-repeat !important; mask: var(--oculus) center / contain no-repeat !important; flex: none; aspect-ratio: 1; height: auto; }
+    .arcades { height: auto; align-items: flex-start; }
+
+    /* ── Carrousel des jeux ── */
+    .facade-jeux { display: block; margin: 2.6rem 0 1rem; }
+    .cj-tete { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .cj-onglets { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cj-onglet { font: 500 .95rem/1 var(--titre); text-transform: uppercase; letter-spacing: .02em; padding: .7rem 1.1rem; border-radius: 999px; border: 1px solid var(--navy); background: none; color: var(--navy); cursor: pointer; display: inline-flex; gap: .5rem; align-items: center; }
+    .cj-onglet small { font-size: .78rem; opacity: .6; }
+    .cj-onglet[aria-selected="true"] { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+    .cj-fleches { display: flex; gap: .5rem; }
+    .cj-fleches button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); font-size: 1.4rem; cursor: pointer; transition: background .25s, color .25s; }
+    .cj-fleches button:hover { background: var(--navy); color: var(--blanc); }
+    .cj-info { margin: 1.2rem 0 1rem !important; font-family: var(--titre); font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+    /* la piste déborde de la colonne jusqu'aux bords de l'écran */
+    .cj-piste { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin: 0 calc(50% - 50vw); --g: max(22px, calc((100vw - 740px) / 2 + 22px)); padding: 6px var(--g) 24px; scroll-padding-left: var(--g); }
+    .cj-piste::-webkit-scrollbar { display: none; }
+    .cj { flex: 0 0 min(300px, 78vw); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--blanc); border: 1px solid var(--filet); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 34px -26px rgba(33,52,72,.5);
+      opacity: 0; translate: 40px 0; transition: background .35s, color .35s; }
+    .cj-piste.vu .cj { opacity: 1; translate: 0 0; transition: background .35s, color .35s, opacity .6s ease calc(var(--i) * 50ms), translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 50ms); }
+    .cj-dessin { position: relative; height: 270px; display: flex; align-items: flex-end; justify-content: center; padding: 18px 0 0; background: var(--papier); border-bottom: 1px solid var(--filet); }
+    .cj-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; transition: color .35s; }
+    .cj-dessin em { position: absolute; top: 14px; right: 16px; font-style: normal; font: 600 1.4rem/1 var(--titre); color: var(--bordeaux); letter-spacing: -.02em; }
+    .cj-texte { padding: 1.2rem 1.3rem 1.5rem; flex: 1; }
+    .cj-texte small { font: 500 .8rem var(--titre); letter-spacing: .14em; color: var(--gris); }
+    .cj-texte h4 { margin: .25rem 0 .6rem; font: 500 1.7rem/1 var(--titre); text-transform: uppercase; letter-spacing: -.03em; color: var(--navy); }
+    .cj-texte p { margin: 0 !important; font-size: 1.02rem; line-height: 1.5; color: var(--gris); }
+    .cj:hover { background: var(--bordeaux); }
+    .cj:hover .cj-texte h4, .cj:hover .cj-texte p, .cj:hover .cj-texte small { color: var(--blanc); }
+    .cj:hover .cj-dessin { background: #5a1c20; border-color: transparent; }
+    .cj:hover .cj-dessin .orn, .cj:hover .cj-dessin em { color: var(--blanc); }
+    @media (prefers-reduced-motion: reduce) { .cj, .cj-piste.vu .cj { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Sommaire : liste numérotée à flèches, sans cadre ── */
+    .sommaire { border: 0; outline: 0; background: none; padding: 0; margin: 4rem auto 1rem; }
+    .sommaire .cartouche { display: block; margin: 0 0 1rem; padding: 0; border: 0; box-shadow: none; background: none; font: 600 .85rem var(--titre); letter-spacing: .2em; color: var(--bordeaux); }
+    .sommaire ol { margin: 0; border-top: 2px solid var(--navy); }
+    .sommaire li { border-bottom: 1px solid var(--filet); }
+    .sommaire a { display: grid; grid-template-columns: 3.4rem 1fr auto; align-items: center; gap: .8rem; padding: 1rem 0; font: 500 clamp(1.1rem, 2.6vw, 1.5rem)/1.15 var(--titre); text-transform: uppercase; letter-spacing: -.02em; transition: color .25s, padding .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a::before { content: counter(s, decimal-leading-zero); min-width: 0; font: 500 .9rem var(--titre); color: var(--gris); letter-spacing: .08em; }
+    .sommaire a::after { content: '→'; border: 0; transform: none; order: 0; flex: none; font-size: 1.5rem; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a span { order: 0; }
+    .sommaire a:hover { color: var(--bordeaux); padding-left: .6rem; }
+    .sommaire a:hover::after { transform: translateX(6px); }
+    .pied .rosace-pied { width: 96px; height: 96px; }
+
+    /* ══ Organisation façon musée : lecture au défilement, chapitres en bandes empilées, jeux un par un ══ */
+    .lecture { max-width: 1240px; margin: 0 auto; padding: 6rem max(22px, env(safe-area-inset-left, 0px)) 5rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.7rem, 4.4vw, 3.6rem)/1.12 var(--titre); letter-spacing: -.025em; color: var(--navy); }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+
+    .bande { position: sticky; top: var(--st, 0px); padding: clamp(4rem, 9vh, 7rem) 0; min-height: 100vh; min-height: 100svh; }
+    .b-papier { background: var(--papier); color: var(--navy); }
+    .b-bordeaux { background: var(--bordeaux); color: var(--blanc); }
+    .b-navy { background: var(--navy); color: var(--blanc); }
+    .bande-grille { max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+    .visuel { position: sticky; top: 100px; }
+    .visuel-img { width: 100%; aspect-ratio: 1; background: center / cover no-repeat; }
+    .visuel-img.oculus { -webkit-mask: var(--oculus) center / contain no-repeat; mask: var(--oculus) center / contain no-repeat; }
+    .visuel-img.grav { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; aspect-ratio: 1790 / 1910; }
+    .visuel-leg { margin: .9rem 0 0; font: 400 .9rem var(--titre); opacity: .75; }
+    .visuel .eventail { margin: 0; }
+    .b-num { display: block; font: 500 clamp(5rem, 12vw, 9.5rem)/.8 var(--titre); letter-spacing: -.05em; }
+    .bande h2 { margin: 1.6rem 0 1rem; font: 500 clamp(2.2rem, 4.6vw, 3.8rem)/.98 var(--titre); letter-spacing: -.035em; text-transform: none; text-align: left; }
+    .bande .argument { text-align: left; margin: 0 0 1.8rem; padding: 0; border: 0; font: 400 1.15rem/1.45 var(--titre); font-style: normal; color: inherit; opacity: .8; max-width: none; }
+    .bande-texte p { margin: 0 0 1.1em; }
+    .bande strong { color: inherit; font-weight: 700; }
+    .b-bordeaux .fort, .b-navy .fort { background: var(--blanc); color: var(--bordeaux); outline-color: var(--blanc); }
+    .b-bordeaux .fort strong, .b-bordeaux .fort .orn { color: var(--bordeaux); }
+    .bande .innovations .orn, .bande .organistes .orn { color: var(--bordeaux); }
+    .bande-jeux { max-width: 1240px; margin: 4rem auto 0; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .bande-jeux .jeux-note { opacity: .75; font-size: .95rem; margin-top: 1.2rem; }
+    @media (max-width: 820px) {
+      .bande { min-height: 0; }
+      .bande-grille { grid-template-columns: 1fr; }
+      .visuel { position: relative; top: 0; max-width: 420px; }
     }
 
-    /* ─────────────────────────────────────────
-       HERO PHOTO
-    ───────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      position: relative;
-      overflow: hidden;
-      margin-top: var(--nav-h);
+    /* Jeux : une grande diapositive à la fois, flèches géantes de part et d'autre */
+    .diapo { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(.5rem, 3vw, 3rem); margin-top: 2rem; }
+    .diapo-fl { background: none; border: 0; color: inherit; cursor: pointer; padding: .5rem; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+    .diapo-fl svg { width: clamp(46px, 6vw, 84px); height: auto; display: block; }
+    .diapo-fl:hover { transform: translateX(var(--dx)); }
+    .diapo-prec { --dx: -6px; } .diapo-suiv { --dx: 6px; }
+    .diapo-fl:disabled { opacity: .25; cursor: default; transform: none; }
+    .diapo-cadre { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); min-height: 460px; background: var(--papier); color: var(--navy); border-radius: 20px; overflow: hidden; }
+    .diapo-dessin { display: flex; align-items: flex-end; justify-content: center; padding: 2rem 1rem 0; background: var(--blanc); border-right: 1px solid var(--filet); }
+    .diapo-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; }
+    .diapo-texte { padding: clamp(1.6rem, 4vw, 3.2rem); display: flex; flex-direction: column; justify-content: center; }
+    .diapo-texte small { font: 500 .9rem var(--titre); letter-spacing: .14em; color: var(--gris); text-transform: uppercase; }
+    .diapo-texte h4 { margin: .6rem 0 .3rem; font: 500 clamp(2.4rem, 5vw, 4.4rem)/.95 var(--titre); letter-spacing: -.04em; text-transform: uppercase; }
+    .diapo-texte em { font: 600 clamp(1.6rem, 3vw, 2.4rem) var(--titre); font-style: normal; color: var(--bordeaux); }
+    .diapo-texte p { margin: 1.2rem 0 0 !important; font-size: 1.2rem; line-height: 1.5; color: var(--navy); }
+    .diapo-cadre > * { animation: diapo .6s cubic-bezier(.22,1,.36,1); }
+    @keyframes diapo { from { opacity: 0; transform: translateX(var(--sens, 30px)); } }
+    .b-navy .cj-onglet, .b-bordeaux .cj-onglet { border-color: rgba(255,255,255,.6); color: var(--blanc); }
+    .b-navy .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--navy); border-color: var(--blanc); }
+    .b-bordeaux .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--bordeaux); border-color: var(--blanc); }
+    .cj-info { color: inherit !important; opacity: .7; }
+    @media (max-width: 700px) {
+      .diapo { grid-template-columns: 1fr 1fr; }
+      .diapo-cadre { grid-column: 1 / -1; grid-row: 1; grid-template-columns: 1fr; min-height: 0; }
+      .diapo-dessin { height: 240px; border-right: 0; border-bottom: 1px solid var(--filet); }
+      .diapo-prec { justify-self: start; } .diapo-suiv { justify-self: end; }
+    }
+    @media (prefers-reduced-motion: reduce) { .diapo-cadre > * { animation: none; } .lecture-texte span { transition: none; } }
+
+    /* Encadrés simples, sans double cadre */
+    .fort { outline: 0 !important; border-radius: 18px; }
+    .organistes li.actuelle { outline: 0; border-radius: 14px; padding: .9rem 1.1rem; }
+    .ouverture { padding-top: 8rem; }
+    /* Jeux : tuyau centré et agrandi dans son cadre */
+    .diapo-dessin { align-items: center; padding: 1.6rem; }
+    .diapo-dessin .orn { width: 100%; height: 100% !important; max-height: none !important; -webkit-mask-position: center; mask-position: center; transform: scale(var(--z, 1)); }
+
+    /* Au doigt : ce qui s'anime au survol s'anime quand l'élément passe au milieu de l'écran */
+    @media (hover: none) {
+      .sommaire a.actif { color: var(--bordeaux); padding-left: .6rem; }
+      .sommaire a.actif::after { transform: translateX(6px); }
     }
 
-    .hero-photo {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.08) 0%,
-        rgba(0,0,0,0.20) 40%,
-        rgba(0,0,0,0.72) 80%,
-        rgba(0,0,0,0.88) 100%
-      );
-      z-index: 1;
-    }
-
-    .hero-contenu {
-      position: relative;
-      z-index: 2;
-      padding: 4rem 4rem 5rem;
-      max-width: 900px;
-    }
-
-    .hero-retour {
-      position: absolute;
-      top: 2.5rem;
-      left: 4rem;
-      z-index: 3;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      transition: color 0.2s;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.1s;
-    }
-
-    .hero-retour:hover { color: rgba(255,255,255,0.95); }
-
-    .hero-retour svg { width: 16px; height: 7px; overflow: visible; }
-
-    .hero-retour svg line,
-    .hero-retour svg polyline { stroke: currentColor; stroke-width: 1.2; fill: none; }
-
-    .hero-surtitre {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.3s;
-    }
-
-    .hero-titre {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 1.05;
-      color: #fff;
-      letter-spacing: -0.01em;
-      text-shadow: 0 2px 30px rgba(0,0,0,0.4);
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards 0.45s;
-    }
-
-    .hero-sous-titre {
-      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-      font-style: italic;
-      font-weight: 400;
-      color: rgba(255,255,255,0.65);
-      margin-top: 1.2rem;
-      line-height: 1.6;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards 0.6s;
-    }
-
-    .hero-chiffres {
-      display: flex;
-      gap: 3px;
-      margin-top: 3rem;
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards 0.75s;
-    }
-
-    .hero-chiffre {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 1.2rem 2rem;
-      text-align: center;
-    }
-
-    .hero-chiffre-val {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      color: #fff;
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .hero-chiffre-lab {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2rem;
-      right: 4rem;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 1.1s;
-    }
-
-    .hero-scroll span {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      writing-mode: vertical-rl;
-    }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.45), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    /* ─────────────────────────────────────────
-       CONTENEUR PAGE
-    ───────────────────────────────────────── */
-    .page {
-      position: relative;
-      z-index: 1;
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 6rem 2rem 8rem;
-    }
-
-    /* ─────────────────────────────────────────
-       INTRO
-    ───────────────────────────────────────── */
-    .intro {
-      font-size: 16px;
-      line-height: 1.9;
-      color: rgba(var(--olive-rgb), 0.7);
-      font-weight: 400;
-      font-style: italic;
-      border-left: 2px solid var(--sage);
-      padding-left: 1.5rem;
-      max-width: 640px;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards 0.2s;
-    }
-
-    /* ─────────────────────────────────────────
-       SOMMAIRE
-    ───────────────────────────────────────── */
-    .sommaire {
-      background-color: var(--cream-2);
-      padding: 2.5rem 3rem;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards 0.35s;
-    }
-
-    .sommaire-label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      margin-bottom: 1.5rem;
-    }
-
-    .sommaire ol { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-
-    .sommaire li { display: flex; align-items: baseline; gap: 0.8rem; }
-
-    .sommaire .num {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      min-width: 1.8rem;
-    }
-
-    .sommaire a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--olive);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      line-height: 1.6;
-      transition: border-color 0.2s;
-      cursor: pointer;
-    }
-
-    .sommaire a:hover { border-color: rgba(var(--olive-rgb), 0.35); }
-
-    /* ─────────────────────────────────────────
-       TIMELINE
-    ───────────────────────────────────────── */
-    .timeline-wrapper {
-      margin-bottom: 5rem;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .timeline-wrapper.visible { opacity: 1; transform: translateY(0); }
-
-    .timeline-titre {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      display: block;
-      margin-bottom: 2rem;
-    }
-
-    .timeline {
-      position: relative;
-      padding-left: 2.2rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0.35rem;
-      top: 0.4rem;
-      bottom: 0.4rem;
-      width: 1px;
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        var(--sage) 8%,
-        var(--sage) 92%,
-        transparent
-      );
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -1.9rem;
-      top: 0.45rem;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--cream);
-      border: 2px solid var(--sage);
-      transition: background 0.2s;
-    }
-
-    .timeline-item.majeur::before {
-      width: 11px;
-      height: 11px;
-      left: -2.05rem;
-      top: 0.32rem;
-      background: var(--sage);
-      border-color: var(--olive);
-    }
-
-    .timeline-date {
-      font-family: var(--font-display);
-      font-size: 0.82rem;
-      color: var(--sage);
-      letter-spacing: 0.08em;
-    }
-
-    .timeline-texte {
-      font-size: 0.92rem;
-      line-height: 1.65;
-      color: rgba(var(--olive-rgb), 0.72);
-      font-weight: 400;
-    }
-
-    .timeline-texte strong {
-      color: var(--olive);
-      font-weight: 600;
-    }
-
-    /* ─────────────────────────────────────────
-       SECTIONS CONTENU
-    ───────────────────────────────────────── */
-    .section {
-      margin-bottom: 2px;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .section.visible { opacity: 1; transform: translateY(0); }
-
-    .section:nth-child(odd)  .section-inner { background-color: var(--cream-2); }
-
-    .section:nth-child(even) .section-inner { background-color: var(--cream); border: 1px solid rgba(var(--olive-rgb), 0.08); }
-
-    .section-inner {
-      padding: 3.5rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-inner::after {
-      content: attr(data-num);
-      font-family: var(--font-display);
-      font-size: 8rem;
-      color: rgba(var(--olive-rgb), 0.04);
-      position: absolute;
-      right: 2rem;
-      bottom: -1rem;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .section-entete {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .section-num {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      padding-top: 0.55rem;
-      letter-spacing: 0.05em;
-    }
-
-    .section-titre {
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      color: var(--olive);
-      line-height: 1.2;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-texte {
-      font-size: 16px;
-      line-height: 1.95;
-      color: rgba(var(--olive-rgb), 0.72);
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-texte p + p { margin-top: 1.2rem; }
-
-    .section-texte blockquote {
-      margin: 1.5rem 0;
-      padding: 1.2rem 1.5rem;
-      border-left: 2px solid var(--sage);
-      background-color: rgba(var(--olive-rgb), 0.03);
-      font-style: italic;
-      color: rgba(var(--olive-rgb), 0.6);
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-
-    .section-texte ul {
-      list-style: none;
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .section-texte ul li {
-      display: flex;
-      align-items: baseline;
-      gap: 0.6rem;
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .section-texte ul li::before {
-      content: '–';
-      color: var(--sage);
-      flex-shrink: 0;
-    }
-
-    .note-bas {
-      font-size: 0.78rem;
-      font-style: italic;
-      color: rgba(var(--olive-rgb), 0.45);
-      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
-      padding-top: 1rem;
-      margin-top: 1.5rem;
-      line-height: 1.6;
-    }
-
-    /* ─────────────────────────────────────────
-       TABLEAU DES CLOCHES
-    ───────────────────────────────────────── */
-    .table-cloches {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.5rem;
-      font-size: 0.85rem;
-      position: relative;
-      z-index: 1;
-      overflow-x: auto;
-      display: block;
-    }
-
-    .table-cloches thead tr { background-color: var(--olive); color: var(--cream); }
-
-    .table-cloches thead th {
-      padding: 0.75rem 1rem;
-      text-align: left;
-      font-weight: 600;
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .table-cloches tbody tr { border-bottom: 1px solid rgba(var(--olive-rgb), 0.08); }
-
-    .table-cloches tbody tr:nth-child(even) { background-color: rgba(var(--olive-rgb), 0.03); }
-
-    .table-cloches tbody td {
-      padding: 0.65rem 1rem;
-      color: rgba(var(--olive-rgb), 0.72);
-      line-height: 1.5;
-      vertical-align: top;
-    }
-
-    .table-cloches tbody td:first-child {
-      font-weight: 600;
-      color: var(--olive);
-      white-space: nowrap;
-    }
-
-    /* ─────────────────────────────────────────
-       BLOC INSCRIPTION (citation cloche)
-    ───────────────────────────────────────── */
-    .inscription {
-      background-color: var(--olive);
-      color: var(--cream);
-      padding: 2.5rem 3rem;
-      margin: 1.5rem 0;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .inscription::before {
-      content: '«';
-      font-family: var(--font-display);
-      font-size: 7rem;
-      color: rgba(248,243,225,0.05);
-      position: absolute;
-      top: -0.8rem;
-      left: 1.5rem;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .inscription-label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--sage);
-      display: block;
-      margin-bottom: 0.8rem;
-    }
-
-    .inscription blockquote {
-      font-family: var(--font-display);
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-      line-height: 1.7;
-      color: rgba(248,243,225,0.88);
-      font-style: italic;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ─────────────────────────────────────────
-       PIED DE PAGE
-    ───────────────────────────────────────── */
-    .pied {
-      margin-top: 7rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .pied-nom {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: rgba(var(--olive-rgb), 0.12);
-      letter-spacing: 0.06em;
-      user-select: none;
-    }
-
-    .pied-lieu {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.28);
-      font-weight: 500;
-    }
-
-    /* ─────────────────────────────────────────
-       ANIMATIONS
-    ───────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 0.9; }
-    }
-
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
-    @media (max-width: 860px) {
-      .nav { padding: 0 1.25rem; }
-    }
-
-    @media (max-width: 600px) {
-      .hero-contenu    { padding: 3rem 1.5rem 4rem; }
-      .hero-retour     { left: 1.5rem; top: 1.5rem; }
-      .hero-scroll     { right: 1.5rem; }
-      .hero-chiffres   { flex-direction: column; gap: 2px; }
-      .hero-chiffre    { padding: 1rem 1.5rem; text-align: left; display: flex; align-items: center; gap: 1rem; }
-      .hero-chiffre-val { font-size: 1.5rem; margin-bottom: 0; }
-      .page            { padding: 4rem 1.5rem 6rem; }
-      .section-inner   { padding: 2.5rem 1.5rem; }
-      .section-inner::after { display: none; }
-      .sommaire        { padding: 2rem 1.5rem; }
-      .inscription     { padding: 2rem 1.5rem; }
-      .pied            { flex-direction: column; align-items: flex-start; }
-    }
-
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Les Cloches de la Basilique Saint-Epvre",
-    "url": "https://basiliquesaintepvre.com/les-cloches/",
-    "description": "Découvrez les 9 cloches historiques de la Basilique Saint-Epvre à Nancy. Du XVIe siècle à nos jours, patrimoine campanaire, inscriptions latines et histoire de la Lorraine.",
-    "inLanguage": "fr",
-    "isPartOf": { "@id": "https://basiliquesaintepvre.com/" },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://basiliquesaintepvre.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Les Cloches", "item": "https://basiliquesaintepvre.com/les-cloches/" }
-      ]
-    }
-  }
-  </script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=8">
+    /* Sommaire sur téléphone : rien ne dépasse */
+    .sommaire { overflow: hidden; padding-left: max(22px, env(safe-area-inset-left, 0px)) !important; padding-right: max(22px, env(safe-area-inset-right, 0px)) !important; }
+    .sommaire a { grid-template-columns: 3.4rem minmax(0, 1fr) auto; }
+    .sommaire a span { min-width: 0; overflow-wrap: break-word; }
+    @media (max-width: 560px) { .sommaire a { grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .6rem; font-size: 1.05rem; } .sommaire a::after { font-size: 1.2rem; } }
+
+  /* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
+  .pied { display: flex; flex-direction: column; align-items: center; }
+  .pied > b { order: 1; } .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; } .pied > span { order: 3; } .pied .sources, .pied p { order: 4; }
+    /* Éventail : contenu dans sa colonne, sans images coupées */
+    .visuel .eventail { overflow: visible; height: 400px; }
+    .visuel .eventail .carte { width: 120px; margin-left: -60px; transform-origin: 50% 260%; }
+    @media (max-width: 560px) { .visuel .eventail { height: 340px; } .visuel .eventail .carte { width: 96px; margin-left: -48px; } }
+
+    /* ── Jalons de la frise ── */
+    .jalons { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid currentColor; }
+    .jalon { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.4rem; padding: 1.6rem 0; border-bottom: 1px solid rgba(127,127,127,.3); }
+    .jalon-date { font: 500 clamp(1.8rem, 3.2vw, 2.6rem)/1 var(--titre); letter-spacing: -.035em; }
+    .jalon-date { grid-row: span 2; } .jalon h3, .jalon p { grid-column: 2; }
+    .jalon h3 { margin: 0 0 .5rem; font: 500 1.35rem/1.2 var(--titre); letter-spacing: -.015em; }
+    .jalon p { margin: 0 !important; }
+    @media (max-width: 560px) { .jalon { grid-template-columns: 1fr; gap: .4rem; } .jalon-date { grid-row: auto; } .jalon h3, .jalon p { grid-column: 1; } }
+    .mesures { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2.6rem; text-align: center; }
+    .mesures > div + div { border-left: 1px solid rgba(255,255,255,.4); }
+    .mesures b { display: block; font: 500 clamp(2.2rem, 5vw, 3.6rem)/1 var(--titre); letter-spacing: -.04em; }
+    .mesures span { display: block; margin-top: .4rem; font: 500 .78rem var(--titre); letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+    .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
+    .table-scroll, .bande-texte table { width: 100%; }
+    .bande-texte table { border-collapse: collapse; margin: 1.6rem 0; font-size: .98rem; }
+    .bande-texte th { text-align: left; font: 600 .78rem var(--titre); letter-spacing: .14em; text-transform: uppercase; padding: .5rem .4rem; border-bottom: 2px solid currentColor; }
+    .bande-texte td { padding: .6rem .4rem; border-bottom: 1px solid rgba(127,127,127,.3); vertical-align: top; }
+    .inscription { margin: 1.4rem 0; padding: 1.4rem 1.6rem; border-radius: 18px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.25); }
+    .b-papier .inscription { background: #fff; border-color: var(--filet); }
+    .inscription-label { display: block; font: 600 .8rem var(--titre); letter-spacing: .16em; text-transform: uppercase; opacity: .75; margin-bottom: .6rem; }
+    .inscription blockquote { margin: 0; font: 500 1.15rem/1.45 var(--titre); letter-spacing: -.01em; }
+    .note-bas { font-size: .9rem; opacity: .75; }
+    .bande-texte .table-cloches { overflow-x: auto; display: block; }
+    .bande-texte { min-width: 0; }
+    .bande-texte table { display: block; overflow-x: auto; max-width: 100%; }
+</style>
 </head>
 <body>
 
-  <!-- ════ HERO ════════════════════════════════════════════ -->
-  <section class="hero">
+<header class="ouverture">
+  <div class="col">
+    <h1>Les cloches</h1>
+    <p class="sous">Neuf cloches de bronze, du XVIᵉ siècle à nos jours</p>
+  </div>
+</header>
 
-    <img
-      class="hero-photo"
-      src="/assets/img/site/1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh.jpg"
-      alt="La tour de la Basilique Saint-Epvre à Nancy - beffroi de 87 mètres avec cloches"
-      loading="eager"
-      fetchpriority="high"
-    >
+<div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
 
-    <div class="hero-overlay"></div>
+<main>
+  <section class="lecture"><p class="lecture-texte" aria-label="Le beffroi de la Basilique Saint-Epvre abrite neuf cloches en bronze dont les origines remontent au XVIᵉ siècle. Certaines proviennent de l'ancienne église détruite en 1867 ; d'autres furent fondues ou refondues pour la nouvelle basilique. Leurs inscriptions latines, transcrites par Léon Germain en 1889, constituent un témoignage exceptionnel de l'histoire religieuse et civile de Nancy. "><span>Le</span> <span>beffroi</span> <span>de</span> <span>la</span> <span>Basilique</span> <span>Saint-Epvre</span> <span>abrite</span> <span>neuf</span> <span>cloches</span> <span>en</span> <span>bronze</span> <span>dont</span> <span>les</span> <span>origines</span> <span>remontent</span> <span>au</span> <span>XVIᵉ</span> <span>siècle.</span> <span>Certaines</span> <span>proviennent</span> <span>de</span> <span>l'ancienne</span> <span>église</span> <span>détruite</span> <span>en</span> <span>1867</span> <span>;</span> <span>d'autres</span> <span>furent</span> <span>fondues</span> <span>ou</span> <span>refondues</span> <span>pour</span> <span>la</span> <span>nouvelle</span> <span>basilique.</span> <span>Leurs</span> <span>inscriptions</span> <span>latines,</span> <span>transcrites</span> <span>par</span> <span>Léon</span> <span>Germain</span> <span>en</span> <span>1889,</span> <span>constituent</span> <span>un</span> <span>témoignage</span> <span>exceptionnel</span> <span>de</span> <span>l'histoire</span> <span>religieuse</span> <span>et</span> <span>civile</span> <span>de</span> <span>Nancy.</span> <span></span></p></section>
 
-    <a href="/" class="hero-retour" aria-label="Retour à l'accueil">
-      <svg viewBox="0 0 16 7" aria-hidden="true">
-        <polyline points="5,1 1,3.5 5,6"/>
-        <line x1="1" y1="3.5" x2="15" y2="3.5"/>
-      </svg>
-      Basilique Saint-Epvre
-    </a>
-
-    <div class="hero-contenu">
-      <span class="hero-surtitre">Patrimoine · Campanologie</span>
-      <h1 class="hero-titre">Les Cloches</h1>
-      <p class="hero-sous-titre">Neuf cloches historiques · Beffroi de 87 mètres · Du XVIe siècle à nos jours</p>
-
-      <div class="hero-chiffres">
-        <div class="hero-chiffre">
-          <span class="hero-chiffre-val">9</span>
-          <span class="hero-chiffre-lab">Cloches</span>
-        </div>
-        <div class="hero-chiffre">
-          <span class="hero-chiffre-val">87 m</span>
-          <span class="hero-chiffre-lab">Hauteur du beffroi</span>
-        </div>
-        <div class="hero-chiffre">
-          <span class="hero-chiffre-val">1576</span>
-          <span class="hero-chiffre-lab">Plus ancienne cloche</span>
-        </div>
-        <div class="hero-chiffre">
-          <span class="hero-chiffre-val">~1 570 kg</span>
-          <span class="hero-chiffre-lab">Poids du bourdon</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-scroll">
-      <span>Descendre</span>
-      <div class="hero-scroll-line"></div>
-    </div>
-
+  <section class="chiffres apparait-ouv" aria-label="Les cloches en chiffres">
+    <div style="--i:0"><small>01</small><b>9</b><span>Cloches de bronze dans le beffroi.</span></div>
+    <div style="--i:1"><small>02</small><b>87&#8239;m</b><span>Hauteur du beffroi.</span></div>
+    <div style="--i:2"><small>03</small><b>1576</b><span>La plus ancienne cloche, de Jehan de Challegny.</span></div>
+    <div style="--i:3"><small>04</small><b>1&#8239;570</b><span>Kilos environ : le poids du bourdon.</span></div>
   </section>
 
+  <nav class="sommaire col apparait" aria-label="Sommaire">
+    <span class="cartouche">Sommaire</span>
+    <ol><li><a href="#chronologie"><span>Chronologie</span></a></li><li><a href="#section-1"><span>Historique des cloches</span></a></li><li><a href="#section-2"><span>Caractéristiques techniques</span></a></li><li><a href="#section-3"><span>Tableau comparatif des cloches</span></a></li><li><a href="#section-4"><span>Iconographie &amp; inscriptions</span></a></li><li><a href="#section-5"><span>Pratiques de sonnerie</span></a></li><li><a href="#section-6"><span>Évolution au fil du temps</span></a></li></ol>
+  </nav>
 
-  <!-- ════ CONTENU ════════════════════════════════════════ -->
-  <div class="page">
-
-    <!-- INTRODUCTION -->
-    <p class="intro">
-      Le beffroi de la Basilique Saint-Epvre abrite neuf cloches en bronze dont les origines remontent au XVIᵉ siècle. Certaines proviennent de l'ancienne église détruite en 1867 ; d'autres furent fondues ou refondues pour la nouvelle basilique. Leurs inscriptions latines, transcrites par Léon Germain en 1889, constituent un témoignage exceptionnel de l'histoire religieuse et civile de Nancy.
-    </p>
-
-    <!-- SOMMAIRE -->
-    <nav class="sommaire" aria-label="Sommaire">
-      <span class="sommaire-label">Sommaire</span>
-      <ol>
-        <li><span class="num">—</span><a data-cible="timeline">Chronologie</a></li>
-        <li><span class="num">01</span><a data-cible="section-1">Historique des cloches</a></li>
-        <li><span class="num">02</span><a data-cible="section-2">Caractéristiques techniques</a></li>
-        <li><span class="num">03</span><a data-cible="section-3">Tableau comparatif</a></li>
-        <li><span class="num">04</span><a data-cible="section-4">Iconographie &amp; inscriptions</a></li>
-        <li><span class="num">05</span><a data-cible="section-5">Pratiques de sonnerie</a></li>
-        <li><span class="num">06</span><a data-cible="section-6">Évolution au fil du temps</a></li>
-      </ol>
-    </nav>
-
-
-    <!-- ═══ TIMELINE ════════════════════════════════════ -->
-    <div class="timeline-wrapper" id="timeline">
-      <span class="timeline-titre">Chronologie</span>
-
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <span class="timeline-date">1562</span>
-          <p class="timeline-texte">Fonte du <strong>petit timbre d'horloge</strong> de l'ancienne église Saint-Epvre (≈ 720 kg).</p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-date">1576</span>
-          <p class="timeline-texte">Coulée de la <strong>cloche du beffroi</strong> par Jehan de Challegny — inscription : <em>« Jehan de Challegny ma faict, 1576 »</em>. Elle sera réinstallée lors de la reconstruction de la basilique.</p>
-        </div>
-
-        <div class="timeline-item majeur">
-          <span class="timeline-date">1591</span>
-          <p class="timeline-texte">Fonte de la <strong>grosse cloche</strong> — « la trompette effroyable du ciel » — par Jean de Laître et son frère Jacques à Clinchamp (Haute-Marne). Poids initial : 3 420 livres lorraines (≈ 1 570 kg). Elle porte les armes de Lorraine, du comte Jean de Salm et de la duchesse Charlotte.</p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-date">1747</span>
-          <p class="timeline-texte">La grosse cloche, <strong>brisée au XVIIIᵉ siècle</strong>, est refondue par la famille Burel, fondeurs lorrains du Bassigny (Bourmont).</p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-date">1751</span>
-          <p class="timeline-texte">Fonte du <strong>grand timbre d'horloge</strong> par Jean-François Despois à Nancy (≈ 1 045 kg). Inscription : <em>« Ave Maria gratia plena… Faict à Nancy par Jean-François Despois, fondeurs, 1751 »</em>.</p>
-        </div>
-
-        <div class="timeline-item majeur">
-          <span class="timeline-date">29 mai 1864</span>
-          <p class="timeline-texte">Pose de la <strong>première pierre</strong> de la nouvelle basilique Saint-Epvre.</p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-date">1864 – 1875</span>
-          <p class="timeline-texte">Reconstruction de la basilique et aménagement du nouveau beffroi. Les trois anciennes cloches de l'église détruite sont réinstallées ; de nouvelles cloches sont ajoutées pour compléter l'ensemble à 9 instruments. Des métallurgistes budapestois participent à la fonte de plusieurs nouvelles cloches.</p>
-        </div>
-
-        <div class="timeline-item majeur">
-          <span class="timeline-date">7 juillet 1875</span>
-          <p class="timeline-texte"><strong>Consécration</strong> de la Basilique Saint-Epvre. Le beffroi central de 87 m supporte désormais 8 cloches ; une 9ᵉ, plus petite, est dédiée à l'horloge.</p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-date">1889</span>
-          <p class="timeline-texte">Léon Germain transcrit les <strong>inscriptions complètes</strong> des cloches — source de référence toujours utilisée aujourd'hui.</p>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-date">1990</span>
-          <p class="timeline-texte"><strong>Restauration complète du beffroi</strong> : charpente, jougs et mécanismes remis en état pour assurer la sécurité et la bonne résonance des cloches.</p>
-        </div>
-
+  <section class="bande b-papier" id="chronologie">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh.jpg)" role="img" aria-label="Une cloche du beffroi"></div><p class="visuel-leg">Une cloche du beffroi</p></div>
+      <div class="bande-texte">
+        <span class="b-num">I</span>
+        <h2>Chronologie</h2>
+        <p class="argument">Du XVIᵉ siècle à la basilique</p>
+        <ol class="jalons"><li class="jalon"><span class="jalon-date">1562</span><p>Fonte du <strong>petit timbre d'horloge</strong> de l'ancienne église Saint-Epvre (≈ 720 kg).</p></li><li class="jalon"><span class="jalon-date">1576</span><p>Coulée de la <strong>cloche du beffroi</strong> par Jehan de Challegny — inscription : <em>« Jehan de Challegny ma faict, 1576 »</em>. Elle sera réinstallée lors de la reconstruction de la basilique.</p></li><li class="jalon"><span class="jalon-date">1591</span><p>Fonte de la <strong>grosse cloche</strong> — « la trompette effroyable du ciel » — par Jean de Laître et son frère Jacques à Clinchamp (Haute-Marne). Poids initial : 3 420 livres lorraines (≈ 1 570 kg). Elle porte les armes de Lorraine, du comte Jean de Salm et de la duchesse Charlotte.</p></li><li class="jalon"><span class="jalon-date">1747</span><p>La grosse cloche, <strong>brisée au XVIIIᵉ siècle</strong>, est refondue par la famille Burel, fondeurs lorrains du Bassigny (Bourmont).</p></li><li class="jalon"><span class="jalon-date">1751</span><p>Fonte du <strong>grand timbre d'horloge</strong> par Jean-François Despois à Nancy (≈ 1 045 kg). Inscription : <em>« Ave Maria gratia plena… Faict à Nancy par Jean-François Despois, fondeurs, 1751 »</em>.</p></li><li class="jalon"><span class="jalon-date">29 mai 1864</span><p>Pose de la <strong>première pierre</strong> de la nouvelle basilique Saint-Epvre.</p></li><li class="jalon"><span class="jalon-date">1864 – 1875</span><p>Reconstruction de la basilique et aménagement du nouveau beffroi. Les trois anciennes cloches de l'église détruite sont réinstallées ; de nouvelles cloches sont ajoutées pour compléter l'ensemble à 9 instruments. Des métallurgistes budapestois participent à la fonte de plusieurs nouvelles cloches.</p></li><li class="jalon"><span class="jalon-date">7 juillet 1875</span><p><strong>Consécration</strong> de la Basilique Saint-Epvre. Le beffroi central de 87 m supporte désormais 8 cloches ; une 9ᵉ, plus petite, est dédiée à l'horloge.</p></li><li class="jalon"><span class="jalon-date">1889</span><p>Léon Germain transcrit les <strong>inscriptions complètes</strong> des cloches — source de référence toujours utilisée aujourd'hui.</p></li><li class="jalon"><span class="jalon-date">1990</span><p><strong>Restauration complète du beffroi</strong> : charpente, jougs et mécanismes remis en état pour assurer la sécurité et la bonne résonance des cloches.</p></li></ol>
       </div>
     </div>
-
-
-    <!-- ═══ SECTION 01 ════════════════════════════════ -->
-    <article class="section" id="section-1">
-      <div class="section-inner" data-num="01">
-        <div class="section-entete">
-          <span class="section-num">01</span>
-          <h2 class="section-titre">Historique<br>des cloches</h2>
-        </div>
-        <div class="section-texte">
-          <p>L'ancienne église Saint-Epvre (détruite en 1867) possédait au moins trois cloches : le bourdon du clocher (environ 1 570 kg), un timbre d'horloge de 1751 et un second timbre de 1562. La cloche du clocher portait l'inscription en latin <em>« Jehan de Challegny ma faict, 1576 »</em>. Lors de la reconstruction de la basilique (1864–1875) et l'aménagement du nouveau beffroi, ces trois cloches furent réinstallées — portant le total à 9 cloches : 8 dans la tour centrale et 1 dédiée à l'horloge.</p>
+  </section>
+  <section class="bande b-bordeaux" id="section-1">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1oHDx7WGFwbSldaG8HEjzs5Y10mZ_4lxN.jpg)" role="img" aria-label="La façade et le beffroi"></div><p class="visuel-leg">La façade et le beffroi</p></div>
+      <div class="bande-texte">
+        <span class="b-num">II</span>
+        <h2>Historique des cloches</h2>
+        
+        <p>L'ancienne église Saint-Epvre (détruite en 1867) possédait au moins trois cloches : le bourdon du clocher (environ 1 570 kg), un timbre d'horloge de 1751 et un second timbre de 1562. La cloche du clocher portait l'inscription en latin <em>« Jehan de Challegny ma faict, 1576 »</em>. Lors de la reconstruction de la basilique (1864–1875) et l'aménagement du nouveau beffroi, ces trois cloches furent réinstallées — portant le total à 9 cloches : 8 dans la tour centrale et 1 dédiée à l'horloge.</p>
           <p>La plus imposante du nouvel ensemble est la grosse cloche, fondue en 1591 à Clinchamp (Haute-Marne) par Jean de Laître et son frère Jacques. Son inscription latine complète fait figurer le comte Jean de Salm, gouverneur de Nancy, et la duchesse Charlotte, épouse de Charles III. Ayant cassé au XVIIIᵉ siècle, elle fut refondue en 1747 par les Burel du Bassigny.</p>
           <p>D'autres cloches de la basilique ont été fondues ou refondues aux XIXᵉ et XXᵉ siècles. Les travaux de rénovation comportèrent même un nouveau système de montage des cloches, certaines étant coulées en Hongrie selon un opuscule technique de l'époque.</p>
-        </div>
       </div>
-    </article>
-
-
-    <!-- ═══ SECTION 02 ════════════════════════════════ -->
-    <article class="section" id="section-2">
-      <div class="section-inner" data-num="02">
-        <div class="section-entete">
-          <span class="section-num">02</span>
-          <h2 class="section-titre">Caractéristiques<br>techniques</h2>
-        </div>
-        <div class="section-texte">
-          <p><strong>Matériaux.</strong> Toutes les cloches sont en bronze campanaire — alliage classique d'environ 78 % de cuivre et 22 % d'étain, qui confère un son clair et durable. L'iconographie (bas-reliefs, armoiries, crucifix) et les inscriptions en lettres gothiques sont réalisées dans la masse du bronze lors de la fonte.</p>
+    </div>
+  </section>
+  <section class="bande b-papier" id="section-2">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg)" role="img" aria-label="Le beffroi au-dessus de la place"></div><p class="visuel-leg">Le beffroi au-dessus de la place</p></div>
+      <div class="bande-texte">
+        <span class="b-num">III</span>
+        <h2>Caractéristiques techniques</h2>
+        
+        <p><strong>Matériaux.</strong> Toutes les cloches sont en bronze campanaire — alliage classique d'environ 78 % de cuivre et 22 % d'étain, qui confère un son clair et durable. L'iconographie (bas-reliefs, armoiries, crucifix) et les inscriptions en lettres gothiques sont réalisées dans la masse du bronze lors de la fonte.</p>
           <p><strong>Poids et dimensions.</strong> La grosse cloche pèse environ 1 570 kg pour un diamètre d'environ 1,4 m. Le grand timbre d'horloge avoisine 1 045 kg et le petit timbre 720 kg. Les cinq autres cloches ont des diamètres de 0,6 à 1,0 m ; leurs poids exacts ne sont pas tous documentés.</p>
           <p><strong>Notes musicales.</strong> L'accord de la volée a été réglé à l'oreille pour éviter les dissonances entre cloches anciennes et nouvelles. La plupart sonnent les notes fa♯2 (bourdon), do♯3, mi♭3, constituant une mélodie liturgique cohérente.</p>
           <p><strong>Mécanique.</strong> Historiquement actionnées à la main via des roues à bascule, les cloches sont désormais dotées d'un système électromécanique permettant l'angélus automatique et les sonneries d'horloge. Les cérémonies majeures (messe solennelle, funérailles, commémorations) mobilisent encore des sonneries manuelles pour les volées complexes.</p>
-        </div>
       </div>
-    </article>
-
-
-    <!-- ═══ SECTION 03 ════════════════════════════════ -->
-    <article class="section" id="section-3">
-      <div class="section-inner" data-num="03">
-        <div class="section-entete">
-          <span class="section-num">03</span>
-          <h2 class="section-titre">Tableau comparatif<br>des cloches</h2>
-        </div>
-        <div class="section-texte">
-          <table class="table-cloches">
+    </div>
+  </section>
+  <section class="bande b-papier" id="section-3">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh.jpg)" role="img" aria-label="Le bronze des cloches"></div><p class="visuel-leg">Le bronze des cloches</p></div>
+      <div class="bande-texte">
+        <span class="b-num">IV</span>
+        <h2>Tableau comparatif des cloches</h2>
+        
+        <table class="table-cloches">
             <thead>
               <tr>
                 <th>Nom / fonction</th>
@@ -925,20 +552,17 @@
             </tbody>
           </table>
           <p class="note-bas">Sources : Léon Germain (1889) ; Deblaye (1868) ; archives de la Société d'histoire de la Lorraine.</p>
-        </div>
       </div>
-    </article>
-
-
-    <!-- ═══ SECTION 04 ════════════════════════════════ -->
-    <article class="section" id="section-4">
-      <div class="section-inner" data-num="04">
-        <div class="section-entete">
-          <span class="section-num">04</span>
-          <h2 class="section-titre">Iconographie<br>&amp; inscriptions</h2>
-        </div>
-        <div class="section-texte">
-          <p>Les cloches portent de riches gravures. Les textes ont été transcrits par Léon Germain en 1889 et constituent la source principale pour leur interprétation moderne.</p>
+    </div>
+  </section>
+  <section class="bande b-navy" id="section-4">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/18wVLuZQYIEpeDitgNRFDj7EavkOMXp6E.jpg)" role="img" aria-label="Les pinacles du beffroi"></div><p class="visuel-leg">Les pinacles du beffroi</p></div>
+      <div class="bande-texte">
+        <span class="b-num">V</span>
+        <h2>Iconographie &amp; inscriptions</h2>
+        
+        <p>Les cloches portent de riches gravures. Les textes ont été transcrits par Léon Germain en 1889 et constituent la source principale pour leur interprétation moderne.</p>
 
           <div class="inscription">
             <span class="inscription-label">Grosse cloche — 1591</span>
@@ -961,20 +585,17 @@
           </div>
 
           <p>On note que saint Epvre lui-même n'apparaît pas sur les cloches. Ce sont les commanditaires et saints patrons des donateurs qui sont mis à l'honneur : le comte Jean de Salm, gouverneur de Nancy, et la duchesse Charlotte, épouse de Charles III de Lorraine.</p>
-        </div>
       </div>
-    </article>
-
-
-    <!-- ═══ SECTION 05 ════════════════════════════════ -->
-    <article class="section" id="section-5">
-      <div class="section-inner" data-num="05">
-        <div class="section-entete">
-          <span class="section-num">05</span>
-          <h2 class="section-titre">Pratiques<br>de sonnerie</h2>
-        </div>
-        <div class="section-texte">
-          <p>Les cloches de Saint-Epvre rythment la vie liturgique nancéienne selon plusieurs traditions :</p>
+    </div>
+  </section>
+  <section class="bande b-papier" id="section-5">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK.jpg)" role="img" aria-label="La rosace ouest"></div><p class="visuel-leg">La rosace ouest</p></div>
+      <div class="bande-texte">
+        <span class="b-num">VI</span>
+        <h2>Pratiques de sonnerie</h2>
+        
+        <p>Les cloches de Saint-Epvre rythment la vie liturgique nancéienne selon plusieurs traditions :</p>
 
           <ul>
             <li><strong>L'Angélus</strong> — sonné chaque jour (matin, midi, soir) grâce au système automatisé.</li>
@@ -985,102 +606,86 @@
           </ul>
 
           <p style="margin-top:1.2rem;">L'installation électrique moderne permet de jouer les carillons horaires et l'angélus même en l'absence de sonneur. Cependant, les plus anciennes cloches résonnent à la main pour les grands offices, offrant un timbre plus vivant que la sonnerie automatique.</p>
-        </div>
       </div>
-    </article>
-
-
-    <!-- ═══ SECTION 06 ════════════════════════════════ -->
-    <article class="section" id="section-6">
-      <div class="section-inner" data-num="06">
-        <div class="section-entete">
-          <span class="section-num">06</span>
-          <h2 class="section-titre">Évolution<br>au fil du temps</h2>
-        </div>
-        <div class="section-texte">
-          <p><strong>Refontes.</strong> Outre le cas majeur de 1747, les cloches ont subi diverses restaurations. En 1867, lors du transfert depuis l'ancienne église, on réutilisa les trois cloches médiévales. Certaines cloches secondaires furent refondues au XIXᵉ et XXᵉ siècles — notamment par des fonderies hongroises selon Deblaye (1868).</p>
+    </div>
+  </section>
+  <section class="bande b-bordeaux" id="section-6">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya.jpg)" role="img" aria-label="L'intérieur de la basilique"></div><p class="visuel-leg">L'intérieur de la basilique</p></div>
+      <div class="bande-texte">
+        <span class="b-num">VII</span>
+        <h2>Évolution au fil du temps</h2>
+        
+        <p><strong>Refontes.</strong> Outre le cas majeur de 1747, les cloches ont subi diverses restaurations. En 1867, lors du transfert depuis l'ancienne église, on réutilisa les trois cloches médiévales. Certaines cloches secondaires furent refondues au XIXᵉ et XXᵉ siècles — notamment par des fonderies hongroises selon Deblaye (1868).</p>
           <p><strong>Périodes de guerre.</strong> Comme dans de nombreuses églises lorraines, plusieurs cloches ont risqué la fonte en métal de guerre, en 1917 lors de la réquisition allemande, puis en 1942 sous l'Occupation. Saint-Epvre semble avoir conservé l'essentiel de son installation : l'assemblage complet des 9 cloches est attesté après 1945. Aucune fonte de guerre n'est mentionnée dans les archives publiques de la basilique.</p>
           <p><strong>Modernisation.</strong> Au XXᵉ siècle, la volée fut adaptée à l'électrification : horloge et angélus furent automatisés. En 1990, une restauration complète du beffroi — charpente, jougs et mécanismes — assura la sécurité et la bonne résonance des cloches pour les décennies suivantes.</p>
-        </div>
       </div>
-    </article>
-
-
-    <!-- PIED -->
-    <div class="pied">
-      <span class="pied-nom">Saint-Epvre</span>
-      <span class="pied-lieu">Nancy · Lorraine · France</span>
     </div>
+  </section>
+</main>
 
-  </div><!-- fin .page -->
+<p class="sources-h">Sources : inscriptions relevées par Léon Germain (1889) ; archives paroissiales.</p>
 
+<div class="cul-de-lampe" aria-hidden="true">
+  <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=3)"></div>
+</div>
 
-  <!-- ════ STRUCTURED DATA (JSON-LD) ════════════════════ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Les Cloches de la Basilique Saint-Epvre",
-    "description": "Découvrez les 9 cloches historiques de la Basilique Saint-Epvre à Nancy. Du XVIe siècle à nos jours, patrimoine campanaire, inscriptions latines et histoire de la Lorraine.",
-    "url": "https://www.basiliquesaintepvre.com/les-cloches/",
-    "image": "https://basiliquesaintepvre.com/assets/img/site/1c64tk7rknlt_Qo5dvgfK5rCcKitNgbPh.jpg",
-    "datePublished": "2024-01-01",
-    "dateModified": "2026-03-24",
-    "author": {
-      "@type": "Organization",
-      "name": "Basilique Saint-Epvre",
-      "url": "https://www.basiliquesaintepvre.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Basilique Saint-Epvre",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.basiliquesaintepvre.com/assets/logo.png"
+<footer class="pied">
+  <div class="orn rosace-pied" style="--src:url(../assets/ornements/rosace-p.svg?v=2)" aria-hidden="true"></div>
+  <b>Saint-Epvre</b>
+  <span>Nancy · Lorraine · France</span>
+  </footer>
+
+<script>
+  // Apparition douce des blocs au défilement
+  (function () {
+    var els = document.querySelectorAll('.apparait, .apparait-ouv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('vu'); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<script>
+  (function () {
+    // Le chapeau se lit au défilement : les mots passent du gris au bleu marine
+    (function () {
+      var mots = document.querySelectorAll('.lecture-texte span'); if (!mots.length) return;
+      var bloc = document.querySelector('.lecture');
+      function maj() {
+        var r = bloc.getBoundingClientRect(), h = innerHeight;
+        var p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25)));
+        var lus = Math.round(p * mots.length);
+        mots.forEach(function (m, i) { m.classList.toggle('lu', i < lus); });
       }
-    },
-    "mainEntity": {
-      "@type": "Place",
-      "name": "Basilique Saint-Epvre",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Place Saint-Epvre",
-        "addressLocality": "Nancy",
-        "addressRegion": "Grand Est",
-        "postalCode": "54000",
-        "addressCountry": "FR"
-      },
-      "description": "Basilique historique de Nancy avec 9 cloches campanaires du XVIe au XXe siècle"
-    }
-  }
-  </script>
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
+      var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
+    })();
 
-  <script>
-    // ── Navigation sommaire — compatible Google Sites ──
-    document.querySelectorAll('.sommaire a[data-cible]').forEach(function(lien) {
-      lien.addEventListener('click', function(e) {
-        e.preventDefault();
-        var cible = document.getElementById(this.getAttribute('data-cible'));
-        if (cible) cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // ── Scroll reveal ──
-    var blocs = document.querySelectorAll('.section, .timeline-wrapper');
-    var obs = new IntersectionObserver(function(entrees) {
-      entrees.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.06 });
-
-    blocs.forEach(function(b) { obs.observe(b); });
-  </script>
-
-  <script defer src="../assets/js/nav.js?v=7"></script>
-  <script defer src="../assets/js/site.js?v=21"></script>
-<script src="/assets/js/refonte.js?v=2"></script>
+    // Bandes empilées : une bande plus haute que l'écran reste collée par le bas
+    (function () {
+      // hauteur d'écran figée (la barre d'adresse du téléphone ne doit pas faire sauter les bandes)
+      var VW = innerWidth, VH = innerHeight;
+      function cale() { document.querySelectorAll('.bande').forEach(function (b) { b.style.setProperty('--st', Math.min(0, VH - b.offsetHeight) + 'px'); }); }
+      addEventListener('resize', function () { if (Math.abs(innerWidth - VW) > 40) { VW = innerWidth; VH = innerHeight; } cale(); });
+      addEventListener('load', cale); cale();
+    })();
+    // la façade se dresse quand elle arrive à l'écran
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .2 });
+      document.querySelectorAll('.facade-jeux').forEach(function (b) { io.observe(b); });
+    } else document.querySelectorAll('.facade-jeux').forEach(function (b) { b.classList.add('vu'); });
+  })();
+</script>
+<script>
+  // Sur écran tactile, l'élément au centre de l'écran prend l'état « survolé »
+  (function () {
+    if (!matchMedia('(hover: none)').matches || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('actif', e.isIntersecting); }); }, { rootMargin: '-42% 0px -42% 0px' });
+    document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
+  })();
+</script>
+<script defer src="../assets/js/nav.js?v=7"></script>
 </body>
 </html>

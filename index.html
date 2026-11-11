@@ -76,13 +76,12 @@
   .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
 
   /* ── Ouverture ── */
-  .ouverture { position: relative; height: 260vh; background: var(--bordeaux); }
+  .ouverture { position: relative; height: 175vh; height: 175svh; background: var(--bordeaux); }
   .scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-  .scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    /* le quadrilobe à six lobes de l'oculus du pignon, simplifié */
-    --w: 100vmin;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center 52% / var(--w) var(--w) no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center 52% / var(--w) var(--w) no-repeat; }
+  .scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+  /* Cache bordeaux percé de l'oculus à six lobes : on l'agrandit par transform (GPU), la vidéo ne bouge pas */
+  .cache { position: absolute; left: 50%; top: 52%; width: var(--c, 300vmax); height: var(--c, 300vmax); translate: -50% -50%; color: var(--bordeaux); pointer-events: none; will-change: transform; transform-origin: center; }
+  .cache svg { width: 100%; height: 100%; display: block; }
   .entete { position: absolute; left: 0; right: 0; top: 0; padding: 5.6rem 22px 0; text-align: center; color: var(--blanc); transition: opacity .3s; }
   .entete .rosace { width: 42px; height: 42px; margin: 0 auto .5rem; }
   .entete small { display: block; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: .85; }
@@ -186,6 +185,14 @@
   .badge, .ouvert small, .liste small, .colonnes small, .etiquette, .titre-lien a, .bienvenue a, .pied span, .boutons a { font-family: var(--grot); }
   .boutons a { font-weight: 600; }
   .titre p { font-family: var(--texte); }
+
+  /* Les photos des blocs prennent l'oculus à six lobes ; elles éclosent à l'apparition et se resserrent sur la photo au survol */
+  .bloc .ogive { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E") center / contain no-repeat; aspect-ratio: 1 / 1 !important; width: min(440px, 88%) !important;
+    transform: scale(.55) rotate(-30deg); opacity: 0; transition: transform 1.3s cubic-bezier(.22,1,.36,1) .15s, opacity .8s ease .15s; background-size: cover; }
+  .bloc.vu .ogive { transform: none; opacity: 1; }
+  .bloc:hover .ogive { transform: scale(1.06); }
+  .blocs.trois .bloc .ogive { width: min(330px, 92%) !important; }
+  @media (prefers-reduced-motion: reduce) { .bloc .ogive, .bloc.vu .ogive, .bloc:hover .ogive { transform: none; opacity: 1; transition: none; } }
 </style>
 </head>
 <body>
@@ -196,6 +203,7 @@
       <source src="/assets/video/basilique-hero.webm" type="video/webm">
       <source src="/assets/video/basilique-hero.mp4" type="video/mp4">
     </video>
+    <div class="cache" aria-hidden="true"><svg viewBox="-150 -150 300 300" preserveAspectRatio="xMidYMid slice"><defs><mask id="oculus"><rect x="-150" y="-150" width="300" height="300" fill="#fff"/><g fill="#000"><circle r="31"/><circle cx="0.00" cy="-33.00" r="15"/><circle cx="28.58" cy="-16.50" r="15"/><circle cx="28.58" cy="16.50" r="15"/><circle cx="0.00" cy="33.00" r="15"/><circle cx="-28.58" cy="16.50" r="15"/><circle cx="-28.58" cy="-16.50" r="15"/></g></mask></defs><rect x="-150" y="-150" width="300" height="300" fill="currentColor" mask="url(#oculus)"/></svg></div>
     <div class="voile"></div>
     <div class="entete">
       <div class="orn rosace" style="--src:url(/assets/ornements/rosace-p.svg?v=2)"></div>
@@ -281,22 +289,26 @@
 <script>
   (function () {
     var sec = document.getElementById('ouverture'), v = sec.querySelector('video'), sc = sec.querySelector('.scene');
-    var ent = sec.querySelector('.entete'), badge = sec.querySelector('.badge');
+    var cache = sec.querySelector('.cache'), ent = sec.querySelector('.entete'), badge = sec.querySelector('.badge');
     var reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
     function lerp(a, b, t) { return a + (b - a) * t; }
     function ease(t) { return 1 - Math.pow(1 - t, 3); }
     function maj() {
       var total = sec.offsetHeight - innerHeight;
       var p = reduit ? 1 : Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total));
-      var o = ease(Math.min(1, p / .6));            // ouverture de la baie
+      var o = ease(Math.min(1, p / .55));            // ouverture de la baie
       var t = ease(Math.max(0, (p - .55) / .45));   // montée du titre
       var mob = innerWidth < 760;
-      v.style.setProperty('--w', 'calc(' + lerp(mob ? 118 : 100, 0, o) + 'vmin + ' + lerp(0, 330, o) + 'vmax)');
+      // l'oculus mesure 100 unités sur 300 : à l'échelle 1 il fait un tiers du cache
+      var base = Math.max(Math.min(innerWidth, innerHeight) * 1.25, Math.max(innerWidth, innerHeight) * .64) * 3, fin = Math.max(innerWidth, innerHeight) * 3.4 * 3 / base;
+      cache.style.width = cache.style.height = base + 'px';
+      cache.style.transform = 'scale(' + lerp(1, fin, o).toFixed(4) + ')';
+      cache.style.opacity = o > .985 ? 0 : 1;
       ent.style.opacity = badge.style.opacity = 1 - Math.min(1, p * 4);
       sc.style.setProperty('--ty', (100 - t * 100) + '%');
       sc.style.setProperty('--op', t);
     }
-    addEventListener('scroll', maj, { passive: true }); addEventListener('resize', maj); maj();
+    var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); addEventListener('resize', maj); maj();
 
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.apparait').forEach(function (e) { io.observe(e); });

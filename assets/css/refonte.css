@@ -50,3 +50,82 @@ html body blockquote p { font-family: var(--grot); font-weight: 500; letter-spac
 
 /* Barre de progression de lecture en bordeaux */
 html body .l-progress { background: var(--bordeaux); }
+
+
+/* ══════════ Mise en page commune (comme l'accueil et les orgues) ══════════ */
+html:root { --oculus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E"); --papier: #fbf9f5; }
+html body { background: var(--papier) !important; }
+html body .page { background: transparent; }
+
+/* ── Ouverture des pages à grande photo : fond bordeaux, photo dans l'oculus, titre géant blanc ── */
+html body .hero { background: var(--bordeaux) !important; min-height: 100vh; min-height: 100svh; }
+html body .hero .hero-pattern, html body .hero .hero-overlay, html body .hero .hero-photo-fallback, html body .hero .hero-retour, html body .hero .hero-scroll { display: none !important; }
+html body .hero .hero-photo { -webkit-mask: var(--oculus) center 42% / min(78vh, 92vw) no-repeat; mask: var(--oculus) center 42% / min(78vh, 92vw) no-repeat; filter: none !important; opacity: 1 !important; }
+html body .hero .hero-contenu { position: relative; z-index: 2; color: #fff; text-align: center; margin: 0 auto; padding-bottom: 6vh; }
+html body .hero h1, html body .hero .hero-titre { color: #fff !important; text-shadow: 0 6px 40px rgba(0,0,0,.35); }
+html body .hero .hero-surtitre, html body .hero .hero-sous-titre { color: rgba(255,255,255,.88) !important; font-family: var(--grot) !important; }
+html body .hero .hero-chiffres { justify-content: center; }
+html body .hero .hero-chiffre-val { font-family: var(--grot) !important; font-weight: 500; letter-spacing: -.03em; color: #fff !important; }
+html body .hero .hero-chiffre-lab { color: rgba(255,255,255,.75) !important; }
+
+/* ── Ouverture des pages de texte : bande bordeaux pleine largeur (construite par refonte.js) ── */
+.r-ouverture { position: relative; background: var(--bordeaux) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border: 0 !important; border-radius: 0 !important; color: #fff; text-align: left;
+  box-shadow: 0 0 0 100vmax var(--bordeaux); clip-path: inset(0 -100vmax); padding: 7rem 0 4rem; margin: -3rem 0 4rem; }
+.r-ouverture * { color: #fff !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+.r-ouverture { opacity: 1 !important; transform: none !important; }
+.r-ouverture::before, .r-ouverture::after { display: none !important; }
+.r-ouverture h1 { margin: .4rem 0 1.2rem !important; }
+.r-ouverture .trait, .r-ouverture .title-rule { display: none; }
+.r-ouverture .surtitre, .r-ouverture .sous-titre-page, .r-ouverture p { font-family: var(--grot) !important; font-style: normal !important; opacity: .85; }
+
+/* ── Sommaire : liste numérotée à flèches, sans cadre ── */
+html body nav.sommaire { border: 0 !important; background: none !important; box-shadow: none !important; padding: 0 !important; margin: 3rem 0 !important; }
+html body nav.sommaire .sommaire-label { display: block; font: 600 .85rem var(--grot); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); margin-bottom: 1rem; }
+html body nav.sommaire ol { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--navy); }
+html body nav.sommaire li { display: grid; grid-template-columns: 3.2rem minmax(0,1fr); align-items: center; gap: .6rem; padding: 1rem 0; border-bottom: 1px solid rgba(33,52,72,.18); }
+html body nav.sommaire li::after { display: none !important; }
+html body nav.sommaire a::after { flex: none; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+html body nav.sommaire li:hover a::after, html body nav.sommaire li.actif a::after { transform: translateX(6px); }
+html body nav.sommaire .num { font: 500 .9rem var(--grot) !important; color: #59626e !important; letter-spacing: .08em; }
+html body nav.sommaire a { font: 500 clamp(1.05rem, 2.4vw, 1.45rem)/1.15 var(--grot) !important; text-transform: uppercase; letter-spacing: -.02em; color: var(--navy) !important; cursor: pointer; text-decoration: none !important; display: flex !important; justify-content: space-between; align-items: center; gap: 1rem; }
+html body nav.sommaire li:hover a, html body nav.sommaire li.actif a { color: var(--bordeaux) !important; }
+
+/* ── Sections : bandes pleine largeur qui alternent blanc cassé / blanc, chiffre géant ── */
+html body article.section, html body article.anecdote, html body article.article, html body section.chapitre { position: relative; }
+html body article.section:nth-of-type(even), html body article.anecdote:nth-of-type(even), html body article.article:nth-of-type(even), html body section.chapitre:nth-of-type(even) {
+  background: #fff; box-shadow: 0 0 0 100vmax #fff; clip-path: inset(0 -100vmax); }
+html body .section-num, html body .anecdote-num, html body .article-num { display: block; font: 500 clamp(4rem, 10vw, 7.5rem)/.8 var(--grot) !important; letter-spacing: -.05em !important; color: var(--bordeaux) !important; opacity: 1 !important; }
+html body .section-entete, html body .anecdote-entete, html body .article-entete, html body .chapitre-tete { border: 0 !important; }
+html body .section-titre, html body .anecdote-entete h2, html body .article-entete h2, html body .chapitre-tete h2 { font-size: clamp(2rem, 5vw, 3.6rem) !important; color: var(--navy) !important; }
+html body .trait, html body .title-rule { background: var(--bordeaux) !important; }
+
+/* ── Encadrés : aplats arrondis, plus de doubles cadres ── */
+html body blockquote { border-left: 0 !important; }
+html body .inscription, html body .doc-carte, html body .temoignage, html body .bloc-note, html body .h-info, html body .usage-block, html body .disclaimer-block { outline: 0 !important; border-radius: 18px !important; }
+
+/* ── Pied de page : bande bordeaux avec la rosace ── */
+html body .pied, html body .page-closing { position: relative; background: var(--bordeaux); color: #fff; text-align: center; padding: 4rem 0 4.5rem !important; margin-top: 5rem !important;
+  box-shadow: 0 0 0 100vmax var(--bordeaux); clip-path: inset(0 -100vmax -100vmax); }
+html body .pied::before, html body .page-closing::before { content: ''; display: block; width: 90px; height: 90px; margin: 0 auto 1.2rem; background: #fff; -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
+html body .pied *, html body .page-closing * { color: #fff !important; }
+html body .pied-nom { display: block; font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--grot) !important; text-transform: uppercase; letter-spacing: -.03em; }
+html body .pied-lieu { display: block; margin-top: .8rem; font: 500 .85rem var(--grot) !important; letter-spacing: .24em; text-transform: uppercase; opacity: .75; }
+
+@media (hover: none) { html body nav.sommaire li.actif a { padding-left: .3rem; } }
+
+/* Plus d'animation mot par mot : les titres s'affichent d'un bloc */
+html body .w i, html body .w { opacity: 1 !important; transform: none !important; filter: none !important; animation: none !important; }
+/* Les sections ne changent plus de teinte au défilement : fonds blanc cassé / blanc */
+html body .section-inner, html body .anecdote-texte, html body .article-texte { background: transparent !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+html body .immersif { background: transparent !important; }
+
+/* L'ancien effet « verre dépoli » devient une simple carte : blanche, ou bordeaux pour les blocs sombres */
+html body .l-glass { background: #fff !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(33,52,72,.14) !important; border-radius: 18px !important; box-shadow: 0 14px 30px -24px rgba(33,52,72,.5) !important; color: var(--navy) !important; }
+html body .l-glass::before, html body .l-glass::after { display: none !important; }
+html body .l-glass.sombre { background: var(--bordeaux) !important; border-color: var(--bordeaux) !important; color: #fff !important; }
+html body .l-glass.sombre * { color: #fff !important; }
+html body .l-glass:not(.sombre) :is(p, span, li, strong, em, h2, h3, h4, cite, small) { color: var(--navy) !important; }
+html body .hero .hero-img { -webkit-mask: var(--oculus) center 42% / min(78vh, 92vw) no-repeat; mask: var(--oculus) center 42% / min(78vh, 92vw) no-repeat; filter: none !important; }
+html body .hero .hero-vignette { display: none !important; }
+html body .hero .hero-meta { position: relative; z-index: 2; color: #fff; }

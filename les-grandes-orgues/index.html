@@ -381,6 +381,12 @@
       .sommaire a.actif { color: var(--bordeaux); padding-left: .6rem; }
       .sommaire a.actif::after { transform: translateX(6px); }
     }
+
+    /* Sommaire sur téléphone : rien ne dépasse */
+    .sommaire { overflow: hidden; padding-left: max(22px, env(safe-area-inset-left, 0px)) !important; padding-right: max(22px, env(safe-area-inset-right, 0px)) !important; }
+    .sommaire a { grid-template-columns: 3.4rem minmax(0, 1fr) auto; }
+    .sommaire a span { min-width: 0; overflow-wrap: break-word; }
+    @media (max-width: 560px) { .sommaire a { grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .6rem; font-size: 1.05rem; } .sommaire a::after { font-size: 1.2rem; } }
 </style>
   <script type="application/ld+json">
   {

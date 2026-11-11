@@ -367,6 +367,14 @@
       .diapo-prec { justify-self: start; } .diapo-suiv { justify-self: end; }
     }
     @media (prefers-reduced-motion: reduce) { .diapo-cadre > * { animation: none; } .lecture-texte span { transition: none; } }
+
+    /* Encadrés simples, sans double cadre */
+    .fort { outline: 0 !important; border-radius: 18px; }
+    .organistes li.actuelle { outline: 0; border-radius: 14px; padding: .9rem 1.1rem; }
+    .ouverture { padding-top: 8rem; }
+    /* Jeux : tuyau centré et agrandi dans son cadre */
+    .diapo-dessin { align-items: center; padding: 1.6rem; }
+    .diapo-dessin .orn { width: 100%; height: 100% !important; max-height: none !important; -webkit-mask-position: center; mask-position: center; transform: scale(var(--z, 1)); }
 </style>
   <script type="application/ld+json">
   {
@@ -390,15 +398,11 @@
 <body>
 
 <header class="ouverture">
-  <div class="courant col"><span>Basilique Saint-Epvre</span><span>Les grandes orgues</span></div>
   <div class="col">
     <h1>Les grandes orgues</h1>
     <p class="sous">Merklin-Schütze, 1867 — médaille d'or de l'Exposition universelle de Paris</p>
   </div>
-  <figure class="col">
-    <div class="orn orgue" style="--src:url(../assets/ornements/orgue-1867.svg?v=2)" role="img" aria-label="Gravure : le grand orgue de Saint-Epvre exposé à Paris en 1867"></div>
-    <figcaption>L'orgue destiné à Saint-Epvre, exposé dans la Galerie des machines à Paris en 1867 (gravure d'époque).</figcaption>
-  </figure>
+
 </header>
 
 <div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
@@ -430,7 +434,7 @@
 
   <section class="bande b-papier" id="avant">
     <div class="bande-grille">
-      <div class="visuel"><div class="visuel-img" style="background-image:url(../assets/img/biblio/morey.jpg)" role="img" aria-label="Gravure de Prosper Morey"></div><p class="visuel-leg">Gravure de Prosper Morey, 1862-1864</p></div>
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(../assets/img/orgues/nef.jpg)" role="img" aria-label="Les grandes orgues vues de la nef"></div><p class="visuel-leg">Les grandes orgues vues de la nef</p></div>
       <div class="bande-texte">
         <span class="b-num">I</span>
         <h2>L'orgue avant la basilique</h2>
@@ -579,7 +583,7 @@
 </section>
 
 <div class="cul-de-lampe" aria-hidden="true">
-  <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=2)"></div>
+  <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=3)"></div>
 </div>
 
 <footer class="pied">
@@ -652,7 +656,7 @@
         bloc.querySelectorAll('.cj-onglet').forEach(function (o, i) { o.setAttribute('aria-selected', i === k); });
         info.textContent = c[0] + ' · ' + c[1];
         cadre.style.setProperty('--sens', (sens || 1) * 30 + 'px');
-        cadre.innerHTML = '<div class="diapo-dessin"><span class="orn" style="--src:url(' + D + f[0] + '.svg);height:' + (H[j[1]] * 4) + 'px;max-height:100%" aria-hidden="true"></span></div>'
+        cadre.innerHTML = '<div class="diapo-dessin"><span class="orn" style="--src:url(' + D + f[0] + '.svg)" aria-hidden="true"></span></div>'
           + '<div class="diapo-texte"><small>Jeu ' + (n + 1) + ' sur ' + c[2].length + '</small><h4>' + j[0] + '</h4><em>' + pi + '</em><p>' + f[1] + '</p></div>';
         prec.disabled = n === 0; suiv.disabled = n === c[2].length - 1;
       }

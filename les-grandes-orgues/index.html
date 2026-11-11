@@ -176,6 +176,40 @@
     @media (max-width: 560px) { .fj-rang { height: 330px; } .fj { flex-basis: 70px; } .fj-texte { left: 84px; } .fj-nom { font-size: .7rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; } }
     @media (prefers-reduced-motion: reduce) { .fj, .vu .fj { translate: none; opacity: 1; transition: none; } }
 
+
+    /* ── Grands chiffres, en colonnes numérotées comme une page de magazine ── */
+    .chiffres { max-width: 1100px; margin: 4.5rem auto 1rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .chiffres > div { padding: 0 1.4rem; border-left: 1px solid var(--filet); }
+    .chiffres > div:first-child { border-left: 0; padding-left: 0; }
+    .chiffres small { display: block; font-size: .78rem; letter-spacing: .2em; color: var(--gris); font-variant-numeric: tabular-nums; padding-bottom: .5rem; margin-bottom: .8rem; border-bottom: 1px solid var(--navy); }
+    .chiffres b { display: block; font-family: var(--titre); font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: .95; color: var(--bordeaux); white-space: nowrap; }
+    .chiffres span { display: block; margin-top: .7rem; font-size: 1.02rem; line-height: 1.45; }
+    .chiffres > div { opacity: 0; translate: 0 18px; transition: opacity .8s ease calc(var(--i) * 140ms), translate .8s ease calc(var(--i) * 140ms); }
+    .chiffres.vu > div { opacity: 1; translate: 0 0; }
+    @media (max-width: 720px) { .chiffres { grid-template-columns: 1fr 1fr; row-gap: 2.2rem; } .chiffres > div:nth-child(3) { border-left: 0; padding-left: 0; } }
+
+    /* ── Arcades : photos découpées en ogive, panneaux côte à côte qui s'élargissent ── */
+    .arcades { display: flex; gap: 14px; height: 440px; margin: 2.6rem 0 1rem; }
+    .arcade { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; margin: 0; transition: flex-grow .6s cubic-bezier(.22,1,.36,1); }
+    .arcade .baie { flex: 1; min-height: 0; background: var(--papier) center / cover no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+    .arcade figcaption { flex: none; min-height: 5.4em; padding-top: .7rem; font-size: .92rem; line-height: 1.35; color: var(--gris); border-top: 1px solid var(--navy); margin-top: .6rem; }
+    .arcade figcaption b { display: block; font-weight: 600; color: var(--navy); font-size: .98rem; }
+    .arcades:hover .arcade:hover, .arcade:focus-within { flex-grow: 2.2; }
+    @media (max-width: 560px) { .arcades { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; } .arcade { flex: 0 0 62%; scroll-snap-align: start; } .arcade .baie { height: 320px; flex: none; } }
+
+    /* ── Éventail : photos déployées en arc autour d'une phrase ── */
+    .eventail { position: relative; margin: 2.4rem 0 1.6rem; height: 430px; }
+    .eventail .carte { position: absolute; left: 50%; top: 0; width: 150px; aspect-ratio: 3 / 4; margin-left: -75px; border-radius: 14px; background: var(--papier) center / cover no-repeat; border: 5px solid var(--blanc);
+      box-shadow: 0 14px 28px -16px rgba(33,52,72,.55); transform-origin: 50% 230%; transform: rotate(0deg); transition: transform 1.2s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms); }
+    .eventail.vu .carte { transform: rotate(var(--r)); }
+    .eventail .phrase { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; }
+    .eventail .phrase q { display: block; font-family: var(--titre); font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.15; color: var(--bordeaux); quotes: '« ' ' »'; }
+    .eventail .phrase span { display: block; margin-top: .6rem; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
+    @media (max-width: 560px) { .eventail { height: 380px; } .eventail .carte { width: 110px; margin-left: -55px; transform-origin: 50% 220%; } }
+    @media (prefers-reduced-motion: reduce) { .eventail .carte { transition: none; } .chiffres > div { opacity: 1; translate: none; transition: none; } }
+
     /* ── Les journaux : bande bleu marine pleine largeur ── */
     .presse { position: relative; background: var(--navy); color: var(--blanc); padding: 5rem 0 4rem; margin-top: 4rem; overflow: hidden; }
     .presse .croquis { position: absolute; right: -6%; top: 50%; translate: 0 -50%; width: min(620px, 80vw); aspect-ratio: 1790 / 1910; color: rgba(255,255,255,.06); pointer-events: none; }
@@ -259,6 +293,14 @@
     </ol>
   </nav>
 
+
+  <section class="chiffres apparait-ouv" aria-label="L'orgue en chiffres">
+    <div style="--i:0"><small>01</small><b>1867</b><span>Médaille d'or à l'Exposition universelle de Paris.</span></div>
+    <div style="--i:1"><small>02</small><b>1869</b><span>Inauguré par Anton Bruckner, les 28 et 29 avril.</span></div>
+    <div style="--i:2"><small>03</small><b>44</b><span>Jeux, sur trois claviers et un pédalier.</span></div>
+    <div style="--i:3"><small>04</small><b>80&#8239;000</b><span>Francs-or : son prix estimé par <i>La Meurthe</i>.</span></div>
+  </section>
+
   <section class="chapitre col apparait" id="avant">
     <div class="ouv">
       <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
@@ -283,7 +325,7 @@
     </div>
     <p>Livré et installé en Lorraine peu après, le grand orgue de Saint-Epvre était alors à la pointe du progrès de la facture d'orgue.</p>
     <figure class="planche">
-      <img src="https://lh3.googleusercontent.com/d/1e9gniO4cAl-uJlxiPRboux_QOj8pHrom" alt="Le grand orgue Merklin-Schütze sur la tribune occidentale de la basilique" loading="lazy">
+      <img src="../assets/img/orgues/tribune.jpg" alt="Le grand orgue Merklin-Schütze sur la tribune occidentale de la basilique" loading="lazy">
       <figcaption>Le grand orgue Merklin-Schütze, tribune occidentale.<i>(fig. 1)</i></figcaption>
     </figure>
   </section>
@@ -297,6 +339,14 @@
     <p class="argument">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p>
     <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
     <p>L'Autrichien <strong>Anton Bruckner</strong>, alors âgé de 44 ans, surnommé « le ménestrel de Dieu » par Franz Liszt et organiste à la cour de François-Joseph, y fut invité comme artiste vedette. Choisi par l'empereur d'Autriche pour représenter son pays, il joua lors de ces concerts inauguraux.</p>
+    <div class="eventail apparait-ouv" aria-hidden="true">
+      <span class="carte" style="--r:-32deg;--i:0;background-image:url(../assets/img/orgues/nef.jpg)"></span>
+      <span class="carte" style="--r:-16deg;--i:1;background-image:url(../assets/img/orgues/tuyaux.jpg)"></span>
+      <span class="carte" style="--r:0deg;--i:2;background-image:url(../assets/img/orgues/tribune.jpg)"></span>
+      <span class="carte" style="--r:16deg;--i:3;background-image:url(../assets/img/orgues/clavier.jpg)"></span>
+      <span class="carte" style="--r:32deg;--i:4;background-image:url(../assets/img/orgues/voutes.jpg)"></span>
+      <p class="phrase"><q>Le ménestrel de Dieu</q><span>Anton Bruckner, selon Franz Liszt</span></p>
+    </div>
     <p>Les journaux locaux relatèrent qu'il éblouit le public par ses improvisations, ce qui assura au nouvel orgue une renommée immédiate en France et en Europe.</p>
   </section>
 
@@ -311,15 +361,11 @@
     <div class="facade-jeux" data-orgue="grand" aria-label="Composition du grand orgue"></div>
     <p class="jeux-note">Composition du grand orgue : un panneau par jeu, décalé selon sa taille en pieds. Survolez ou touchez un jeu pour l'entendre décrit. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p>
     <p>La console, de style néo-gothique, est indépendante. Le buffet, dessiné par l'architecte Prosper Morey, adopte le style néo-gothique flamboyant de la basilique. La transmission est entièrement mécanique suspendue, assistée d'une <strong>machine Barker</strong>, dispositif pneumatique breveté en 1839, pour alléger le toucher.</p>
-    <div class="duo-fig">
-      <figure class="planche">
-        <img src="https://lh3.googleusercontent.com/d/175ccWsNJHKsghuFTx8WvoQImszgWogX-" alt="Le clavier de l'orgue de chœur" loading="lazy">
-        <figcaption>Clavier de l'orgue de chœur.<i>(fig. 2)</i></figcaption>
-      </figure>
-      <figure class="planche">
-        <img src="https://lh3.googleusercontent.com/d/1khe03FaJ7F1UMwKPTqNMVxVZm-Fipf_k" alt="Détail du grand orgue Merklin-Schütze" loading="lazy">
-        <figcaption>Détail du grand orgue.<i>(fig. 3)</i></figcaption>
-      </figure>
+    <div class="arcades">
+      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/tribune.jpg)" role="img" aria-label="Le grand orgue sur la tribune occidentale"></div><figcaption><b>La tribune</b>Le buffet de Prosper Morey, au revers de la façade.</figcaption></figure>
+      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/nef.jpg)" role="img" aria-label="Les grandes orgues vues de la nef"></div><figcaption><b>Depuis la nef</b>Ce que voit l'assemblée en se retournant.</figcaption></figure>
+      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/tuyaux.jpg)" role="img" aria-label="Détail du grand orgue Merklin-Schütze"></div><figcaption><b>Les tuyaux</b>Montres d'étain en façade.</figcaption></figure>
+      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/clavier.jpg)" role="img" aria-label="Le clavier de l'orgue de chœur"></div><figcaption><b>Le clavier</b>Celui de l'orgue de chœur.</figcaption></figure>
     </div>
   </section>
 
@@ -403,6 +449,7 @@
   <b>Saint-Epvre</b>
   <span>Nancy · Lorraine · France</span>
   <p class="sources">Gravures : l'orgue à l'Exposition universelle de 1867 ; façade de Prosper Morey (1862-1864) ; ornements de la <i>Monographie de la Basilique de Saint-Epvre</i> (1890). Domaine public.</p>
+  <p class="sources"><a href="/bibliographie/">Toutes les sources : la bibliographie →</a></p>
 </footer>
 
 <script>
@@ -485,6 +532,6 @@
     } else document.querySelectorAll('.facade-jeux').forEach(function (b) { b.classList.add('vu'); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=5"></script>
+<script defer src="../assets/js/nav.js?v=6"></script>
 </body>
 </html>

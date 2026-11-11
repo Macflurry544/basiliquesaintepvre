@@ -32,6 +32,7 @@
       { href: '/histoire/archives/',          label: 'Archives' },
       { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },
       { href: '/presse/',                     label: 'Presse' },
+      { href: '/bibliographie/',              label: 'Bibliographie' },
     ]},
   ];
 

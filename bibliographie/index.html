@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bibliographie — Basilique Saint-Epvre</title>
+  <meta name="description" content="Les sources de l'histoire de la Basilique Saint-Epvre à Nancy : monographie de 1890, gravures de Prosper Morey, traités de facture d'orgue, journaux d'époque, inventaires.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4a1518">
+  <link rel="canonical" href="https://basiliquesaintepvre.com/bibliographie/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://basiliquesaintepvre.com/bibliographie/">
+  <meta property="og:title" content="Bibliographie — Basilique Saint-Epvre">
+  <meta property="og:description" content="Les livres, gravures et journaux d'où vient ce que raconte le site.">
+  <meta property="og:image" content="https://basiliquesaintepvre.com/assets/img/biblio/mono-titre.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Basilique Saint-Epvre">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/nav.css?v=5">
+  <style>
+    /* ══ Bibliographie — une étagère de vrais livres ══
+       Chaque source est un dos de livre debout. Au survol, le livre s'ouvre de biais et montre sa couverture ;
+       au clic, sa fiche s'affiche sous l'étagère. Bordeaux et bleu marine ne se touchent jamais : un dos clair entre les deux. */
+    :root {
+      --bordeaux: #4a1518; --navy: #213448; --blanc: #ffffff; --papier: #fbf9f5;
+      --gris: #59626e; --filet: rgba(33,52,72,.18);
+      --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.75; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* Ornement : boîte colorée découpée par la gravure vectorisée */
+    .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+
+    .col { max-width: 740px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+
+    /* Titre courant, comme en haut des pages du livre */
+    .courant { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); border-bottom: 1px solid var(--filet); padding-bottom: .5rem; }
+
+    /* Cartouche aux coins coupés, comme « CHAPITRE PREMIER » dans la monographie */
+    .cartouche { display: table; margin: 0 auto; padding: .4rem 1.5rem; background: var(--papier); color: var(--bordeaux); font-size: .82rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      border: 1.5px solid currentColor; box-shadow: inset 0 0 0 3px var(--papier), inset 0 0 0 4px currentColor; }
+
+
+    /* ── Ouverture de chapitre : double filet à rosace, grand chiffre romain ──
+       Animation : les deux filets se déroulent depuis la rosace, qui tourne d'un quart de tour,
+       puis le chiffre et le titre apparaissent. */
+    .ouv { position: relative; text-align: center; color: var(--bordeaux); }
+    .ouv-filet { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .ouv-filet::before, .ouv-filet::after { content: ''; flex: 1; border-top: 3px double currentColor; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .25s; }
+    .ouv-filet::before { transform-origin: right center; }
+    .ouv-filet::after { transform-origin: left center; }
+    .ouv-filet .orn { flex: none; width: 36px; height: 36px; opacity: 0; transform: rotate(-90deg) scale(.6); transition: opacity .7s ease, transform 1.2s cubic-bezier(.22,1,.36,1); }
+    .ouv-num { display: block; font-family: var(--titre); font-size: clamp(3.4rem, 9vw, 4.4rem); line-height: 1; opacity: 0; translate: 0 12px; transition: opacity .9s ease .7s, translate .9s ease .7s; }
+    .ouv-lib { display: block; margin-top: .4rem; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: 0; transition: opacity .9s ease .9s; }
+    .vu .ouv-filet::before, .vu .ouv-filet::after { transform: scaleX(1); }
+    .vu .ouv-filet .orn { opacity: 1; transform: none; }
+    .vu .ouv-num { opacity: 1; translate: 0 0; }
+    .vu .ouv-lib { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .ouv-filet::before, .ouv-filet::after, .ouv-filet .orn, .ouv-num, .ouv-lib { transform: none; opacity: 1; translate: none; transition: none; }
+    }
+
+    /* ── Cul-de-lampe : l'ange à la banderole, sur papier ── */
+    .cul-de-lampe { padding: 4rem 22px 4.5rem; text-align: center; }
+    .cul-de-lampe .orn { width: min(340px, 78vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
+
+    /* ── Pied de page bordeaux ── */
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 3.2rem 22px calc(3.2rem + env(safe-area-inset-bottom, 0px)); }
+    .pied .orn { width: 26px; height: 128px; margin: 0 auto 1rem; color: var(--blanc); }
+    .pied b { display: block; font-family: var(--titre); font-weight: 400; font-size: 1.5rem; }
+    .pied span { font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+    .pied .sources { margin: 1.6rem auto 0; max-width: 60ch; font-size: .82rem; line-height: 1.6; opacity: .7; }
+
+    /* Apparition douce, sans plus */
+    .apparait { opacity: 0; translate: 0 16px; transition: opacity .9s ease, translate .9s ease; }
+    .apparait.vu { opacity: 1; translate: 0 0; }
+    @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-position: center; mask-position: center; margin: 2.5rem 0; }
+
+    /* ── Ouverture ── */
+    .ouverture { padding: 6.5rem 0 1rem; text-align: center; }
+    .ouverture .courant { max-width: 740px; margin: 0 auto 2.6rem; }
+    .ouverture h1 { font-family: var(--titre); font-weight: 400; font-size: clamp(2.6rem, 7.5vw, 4.6rem); line-height: 1.02; margin: 0; }
+    .ouverture .sous { margin: 1rem auto 0; max-width: 40ch; font-style: italic; color: var(--gris); font-size: 1.15rem; line-height: 1.55; }
+
+    /* ── L'étagère ── */
+    .etagere-zone { max-width: 1180px; margin: 3.5rem auto 0; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .rayon-titre { display: flex; align-items: center; gap: .8rem; margin: 0 0 1.2rem; font-weight: 600; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bordeaux); }
+    .rayon-titre::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
+    .rayon-titre small { font-weight: 400; letter-spacing: .06em; text-transform: none; color: var(--gris); font-size: .95rem; }
+    .rayon { margin-bottom: 3.4rem; }
+    .etagere { display: flex; align-items: flex-end; gap: 5px; min-height: 400px; padding: 30px 18px 0; overflow-x: auto; overflow-y: hidden; perspective: 1400px; scrollbar-width: thin;
+      /* la planche : double filet bleu marine */
+      border-bottom: 3px double var(--navy); }
+
+    .livre { --w: 46px; --h: 330px; --l: 240px; position: relative; flex: 0 0 var(--w); height: var(--h); padding: 0; border: 0; background: none; cursor: pointer; font: inherit; color: inherit;
+      transition: flex-basis .6s cubic-bezier(.22,1,.36,1); }
+    .livre:focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 4px; }
+    /* dos */
+    .dos { position: absolute; inset: 0 auto 0 0; width: var(--w); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 14px 0 12px;
+      border-radius: 5px 5px 2px 2px; box-shadow: inset -6px 0 10px -6px rgba(0,0,0,.35), inset 4px 0 6px -4px rgba(255,255,255,.25);
+      transform-origin: right center; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .dos::before, .dos::after { content: ''; position: absolute; left: 5px; right: 5px; height: 6px; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; opacity: .55; }
+    .dos::before { top: 30px; } .dos::after { bottom: 34px; }
+    .dos .t { writing-mode: vertical-rl; transform: rotate(180deg); flex: 1; display: flex; align-items: center; justify-content: center; padding: 46px 0; white-space: nowrap; font-family: var(--titre); font-size: .95rem; line-height: 1.05; text-align: center; max-height: 100%; overflow: hidden; }
+    .dos .a { writing-mode: vertical-rl; transform: rotate(180deg); font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+    .dos .o { width: 16px; height: 16px; flex: none; }
+    .bordeaux .dos { background: var(--bordeaux); color: var(--blanc); }
+    .navy .dos { background: var(--navy); color: var(--blanc); }
+    .clair .dos { background: var(--blanc); color: var(--navy); border: 1px solid var(--filet); }
+    .clair .dos .o { color: var(--bordeaux); }
+    /* couverture : rabattue derrière le dos, elle pivote vers l'avant au survol */
+    .plat { position: absolute; left: var(--w); top: 0; width: var(--l); height: 100%; border-radius: 2px 6px 6px 2px; overflow: hidden; background: var(--blanc) center / cover no-repeat;
+      transform-origin: left center; transform: rotateY(90deg); opacity: 0; box-shadow: 0 18px 30px -18px rgba(33,52,72,.6);
+      transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .25s ease .05s; }
+    .plat.typo { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; padding: 1.6rem 1.2rem; text-align: center; border: 1px solid var(--filet); }
+    .plat.typo b { font-family: var(--titre); font-weight: 400; font-size: 1.35rem; line-height: 1.12; color: var(--navy); }
+    .plat.typo span { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bordeaux); }
+    .plat.typo .o { width: 34px; height: 34px; color: var(--bordeaux); }
+    .plat.typo::before { content: ''; position: absolute; inset: 9px; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: -5px; border-radius: 3px; pointer-events: none; }
+    .livre.ouvert { flex-basis: calc(var(--w) * .35 + var(--l)); }
+    .livre.ouvert .dos { transform: rotateY(-70deg); }
+    .livre.ouvert .plat { left: calc(var(--w) * .35); transform: rotateY(0); opacity: 1; transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .2s ease, left .6s cubic-bezier(.22,1,.36,1); }
+    .livre.choisi .dos { box-shadow: inset 0 -5px 0 var(--bordeaux); }
+    .livre.bordeaux.choisi .dos { box-shadow: inset 0 -5px 0 var(--blanc); }
+
+    /* apparition : les livres se posent un à un */
+    .livre { translate: 0 24px; opacity: 0; }
+    .vu .livre { translate: 0 0; opacity: 1; transition: flex-basis .6s cubic-bezier(.22,1,.36,1), translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 70ms), opacity .6s ease calc(var(--i) * 70ms); }
+
+    /* ── La fiche ── */
+    .fiche { max-width: 900px; margin: 0 auto 1rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .fiche-carte { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; padding: 1.8rem; background: var(--blanc); border: 1px solid var(--filet); border-radius: 18px; box-shadow: 0 18px 40px -28px rgba(33,52,72,.5); }
+    .fiche-carte .couv { width: 100%; aspect-ratio: 2 / 3; border-radius: 6px; background: var(--papier) center / cover no-repeat; border: 1px solid var(--filet); }
+    .fiche-carte .num { font-family: var(--titre); font-size: 2.6rem; line-height: 1; color: var(--bordeaux); }
+    .fiche-carte h2 { font-family: var(--titre); font-weight: 400; font-size: clamp(1.5rem, 3.6vw, 2rem); line-height: 1.15; margin: .4rem 0 .5rem; }
+    .fiche-carte .ref { margin: 0 0 1rem; font-style: italic; color: var(--gris); line-height: 1.5; }
+    .fiche-carte p { margin: 0 0 1rem; }
+    .fiche-carte .pages { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.2rem; padding: 0; list-style: none; }
+    .fiche-carte .pages a { display: inline-block; padding: .2rem .8rem; border: 1px solid var(--filet); border-radius: 999px; font-size: .9rem; text-decoration: none; }
+    .fiche-carte .pages a:hover { border-color: var(--bordeaux); color: var(--bordeaux); }
+    .fiche-carte .lire { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem 1.2rem; background: var(--bordeaux); color: var(--blanc); border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .95rem; }
+    .fiche-carte .lire:hover { background: #5d1d21; }
+    .fiche-carte { animation: fiche .5s cubic-bezier(.22,1,.36,1); }
+    @keyframes fiche { from { opacity: 0; translate: 0 12px; } }
+    .consigne { text-align: center; font-style: italic; color: var(--gris); font-size: 1rem; margin: 0 0 2.4rem; }
+
+    @media (max-width: 640px) {
+      .etagere { min-height: 330px; padding: 24px 10px 0; }
+      .livre { --l: 190px; }
+      .fiche-carte { grid-template-columns: 1fr; padding: 1.3rem; }
+      .fiche-carte .couv { max-width: 180px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .livre, .vu .livre, .dos, .plat { transition: none; translate: none; opacity: 1; }
+      .fiche-carte { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="ouverture">
+  <div class="courant col"><span>Basilique Saint-Epvre</span><span>Bibliographie</span></div>
+  <div class="col">
+    <h1>Bibliographie</h1>
+    <p class="sous">Les livres, gravures et journaux d'où vient ce que raconte ce site. Tirez un livre de l'étagère.</p>
+  </div>
+</header>
+
+<div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
+
+<main>
+  <div class="etagere-zone" id="etageres"></div>
+  <section class="fiche" id="fiche" aria-live="polite"></section>
+  <p class="consigne col">Survolez un dos pour voir la couverture, cliquez pour ouvrir la fiche.</p>
+</main>
+
+<div class="cul-de-lampe" aria-hidden="true">
+  <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=2)"></div>
+</div>
+
+<footer class="pied">
+  <div class="orn" style="--src:url(../assets/ornements/pinacle.svg?v=2)" aria-hidden="true"></div>
+  <b>Saint-Epvre</b>
+  <span>Nancy · Lorraine · France</span>
+  <p class="sources">Couvertures numérisées par le Getty Research Institute et Google (Internet Archive) ; gravures de Prosper Morey (Wikimedia Commons). Domaine public.</p>
+</footer>
+
+<script src="../assets/js/nav.js?v=6"></script>
+<script>
+  (function () {
+    var IMG = '../assets/img/biblio/';
+    var ROSACE = 'url(../assets/ornements/rosace-p.svg?v=2)';
+    // Les sources. couleur : bordeaux, navy ou clair — jamais bordeaux et navy côte à côte.
+    var RAYONS = [
+      { titre: 'La basilique', note: 'son histoire, son architecture', livres: [
+        { id: 'monographie', c: 'bordeaux', w: 62, h: 340, court: 'Monographie', auteur: '1890',
+          titre: 'Monographie de la basilique de Saint-Epvre à Nancy',
+          ref: 'Tournai, Société de Saint-Jean l\'Évangéliste, Desclée, Lefebvre et Cⁱᵉ, 1890. Grand in-folio illustré.',
+          texte: 'Le grand livre de la basilique, publié vingt-six ans après la pose de la première pierre : histoire de la paroisse, construction de l\'église, description des vitraux, des cloches et des orgues. Ses lettrines, ses filets et ses ornements ont servi de modèle à la mise en page de ce site.',
+          couv: 'mono.jpg', interieur: 'mono-titre.jpg', lien: 'https://archive.org/details/gri_33125013356007', lienTxt: 'Lire sur Internet Archive',
+          pages: [['Histoire', '/histoire/'], ['Grandes orgues', '/les-grandes-orgues/'], ['Vitraux', '/les-vitraux/'], ['Cloches', '/les-cloches/']] },
+        { id: 'morey', c: 'clair', w: 40, h: 300, court: 'Gravures', auteur: 'Morey',
+          titre: 'Église Saint-Epvre : façade, portail et croquis',
+          ref: 'Prosper Morey, architecte de la basilique, gravures et dessins à l\'encre, 1862-1864. Wikimedia Commons.',
+          texte: 'Les dessins de l\'architecte lui-même. Les gâbles, pinacles, rosaces et la couronne de la tour qui ornent ce site ont été détourés un à un dans ces gravures, puis vectorisés sans être redessinés.',
+          couv: 'morey.jpg', lien: 'https://commons.wikimedia.org/wiki/File:Eglise_Saint-Epvre_actuelle_-_Portail,_par_M._Morey.jpg', lienTxt: 'Voir sur Wikimedia Commons',
+          pages: [['Histoire', '/histoire/'], ['Accueil', '/']] },
+        { id: 'germain', c: 'navy', w: 34, h: 270, court: 'Les cloches', auteur: 'Germain',
+          titre: 'Inscriptions des cloches de Saint-Epvre',
+          ref: 'Léon Germain, relevé publié en 1889.',
+          texte: 'Le relevé des inscriptions gravées sur les cloches de la basilique, avec leurs parrains et marraines : la source de la page consacrée aux cloches.',
+          pages: [['Cloches', '/les-cloches/']] },
+        { id: 'pop', c: 'clair', w: 30, h: 250, court: 'POP', auteur: 'Culture',
+          titre: 'Plateforme ouverte du patrimoine (POP)',
+          ref: 'Ministère de la Culture — notices Mérimée et Palissy de la basilique et de son mobilier.',
+          texte: 'Les notices officielles des monuments historiques : protection de l\'édifice, des vitraux et des orgues, dates et auteurs.',
+          lien: 'https://pop.culture.gouv.fr/', lienTxt: 'Ouvrir la plateforme POP',
+          pages: [['Sauvegarde', '/sauvegarde-et-restauration/'], ['Vitraux', '/les-vitraux/']] }
+      ] },
+      { titre: 'Les orgues', note: 'facture, composition, presse', livres: [
+        { id: 'hamel', c: 'bordeaux', w: 52, h: 320, court: 'Facteur d\'orgues', auteur: 'Hamel',
+          titre: 'Nouveau manuel complet du facteur d\'orgues',
+          ref: 'M. Hamel, d\'après Dom Bédos de Celles. Paris, Encyclopédie Roret, 1849. Atlas.',
+          texte: 'Le grand traité français de facture d\'orgue au moment où Merklin construit l\'instrument de Saint-Epvre : soufflerie, sommiers, tuyaux, mécanique.',
+          couv: 'hamel.jpg', lien: 'https://archive.org/details/bub_gb_61sDXGrAtpEC', lienTxt: 'Lire sur Internet Archive',
+          pages: [['Grandes orgues', '/les-grandes-orgues/']] },
+        { id: 'audsley', c: 'clair', w: 58, h: 350, court: 'Organ-Building', auteur: 'Audsley',
+          titre: 'The Art of Organ-Building',
+          ref: 'George Ashdown Audsley, New York, Dodd, Mead and Company, 1905. Deux volumes.',
+          texte: 'Ses planches de tuyaux — montre, bourdon, flûte harmonique, trompette, voix humaine… — ont fourni, une à une, les dessins des jeux sur la page des orgues.',
+          couv: 'audsley.jpg', lien: 'https://archive.org/details/gri_33125010939367', lienTxt: 'Lire sur Internet Archive',
+          pages: [['Grandes orgues', '/les-grandes-orgues/']] },
+        { id: 'inventaire', c: 'navy', w: 44, h: 300, court: 'Inventaire', auteur: 'Lorraine',
+          titre: 'Inventaire des orgues',
+          ref: 'Inventaire national des orgues, notices du grand orgue et de l\'orgue de chœur de Saint-Epvre.',
+          texte: 'Composition détaillée des deux instruments, jeu par jeu, et histoire des relevages successifs.',
+          pages: [['Grandes orgues', '/les-grandes-orgues/']] },
+        { id: 'journaux', c: 'clair', w: 36, h: 280, court: 'Journaux', auteur: 'Presse',
+          titre: 'Journaux de 1867 à 1872',
+          ref: 'Le Constitutionnel, La France musicale, Le Ménestrel, L\'Univers, La Meurthe. Gallica, BnF.',
+          texte: 'Les comptes rendus de l\'Exposition universelle, de l\'installation de l\'orgue et de son inauguration par Anton Bruckner.',
+          lien: 'https://gallica.bnf.fr/', lienTxt: 'Chercher sur Gallica',
+          pages: [['Grandes orgues', '/les-grandes-orgues/'], ['Presse', '/presse/']] },
+        { id: 'expo', c: 'bordeaux', w: 40, h: 310, court: 'Exposition', auteur: '1867',
+          titre: 'Le grand orgue à l\'Exposition universelle de 1867',
+          ref: 'Gravure d\'époque : l\'orgue destiné à Saint-Epvre dans la Galerie des machines, au Champ-de-Mars.',
+          texte: 'La gravure qui ouvre la page des orgues, vectorisée trait pour trait.',
+          pages: [['Grandes orgues', '/les-grandes-orgues/']] }
+      ] }
+    ];
+
+    var zone = document.getElementById('etageres'), fiche = document.getElementById('fiche');
+    var tous = [], i = 0;
+    RAYONS.forEach(function (r) {
+      var sec = document.createElement('section'); sec.className = 'rayon';
+      sec.innerHTML = '<h2 class="rayon-titre">' + r.titre + ' <small>' + r.note + '</small></h2>';
+      var et = document.createElement('div'); et.className = 'etagere';
+      r.livres.forEach(function (b) {
+        b.n = ++i; tous.push(b);
+        var el = document.createElement('button'); el.type = 'button';
+        el.className = 'livre ' + b.c; el.dataset.id = b.id;
+        el.style.cssText = '--w:' + b.w + 'px;--h:' + b.h + 'px;--i:' + b.n;
+        el.setAttribute('aria-label', b.titre);
+        var plat = b.couv
+          ? '<span class="plat" style="background-image:url(' + IMG + b.couv + ')"></span>'
+          : '<span class="plat typo"><span class="orn o" style="--src:' + ROSACE + '"></span><b>' + b.titre + '</b><span>' + b.auteur + '</span></span>';
+        el.innerHTML = '<span class="dos"><span class="orn o" style="--src:' + ROSACE + '"></span><span class="t">' + b.court + '</span><span class="a">' + b.auteur + '</span></span>' + plat;
+        et.appendChild(el);
+      });
+      sec.appendChild(et); zone.appendChild(sec);
+    });
+
+    var survol = window.matchMedia('(hover: hover)').matches;
+    var livres = zone.querySelectorAll('.livre');
+    function ouvre(el) { livres.forEach(function (l) { if (l !== el && !l.classList.contains('choisi')) l.classList.remove('ouvert'); }); if (el) el.classList.add('ouvert'); }
+    function montre(id) {
+      var b = tous.filter(function (x) { return x.id === id; })[0]; if (!b) return;
+      livres.forEach(function (l) { var on = l.dataset.id === id; l.classList.toggle('choisi', on); l.classList.toggle('ouvert', on); l.setAttribute('aria-pressed', on); });
+      var img = b.interieur || b.couv;
+      fiche.innerHTML = '<article class="fiche-carte">'
+        + (img ? '<div class="couv" style="background-image:url(' + IMG + img + ')" role="img" aria-label="Page de titre"></div>' : '<div class="couv orn" style="--src:' + ROSACE + ';color:var(--bordeaux);border:0;background-color:var(--bordeaux);-webkit-mask-size:50%;mask-size:50%"></div>')
+        + '<div><span class="num">' + String(b.n).padStart(2, '0') + '</span><h2>' + b.titre + '</h2><p class="ref">' + b.ref + '</p><p>' + b.texte + '</p>'
+        + '<ul class="pages">' + b.pages.map(function (p) { return '<li><a href="' + p[1] + '">' + p[0] + '</a></li>'; }).join('') + '</ul>'
+        + (b.lien ? '<a class="lire" href="' + b.lien + '" target="_blank" rel="noopener">' + b.lienTxt + ' →</a>' : '') + '</div></article>';
+      history.replaceState(null, '', '#' + id);
+    }
+    livres.forEach(function (el) {
+      if (survol) { el.addEventListener('mouseenter', function () { ouvre(el); }); el.addEventListener('mouseleave', function () { if (!el.classList.contains('choisi')) el.classList.remove('ouvert'); }); }
+      el.addEventListener('click', function () { montre(el.dataset.id); if (!survol || window.innerWidth < 900) fiche.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    });
+    montre(location.hash.slice(1) || 'monographie');
+
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' }) : null;
+    zone.querySelectorAll('.etagere').forEach(function (e) { io ? io.observe(e) : e.classList.add('vu'); });
+  })();
+</script>
+</body>
+</html>

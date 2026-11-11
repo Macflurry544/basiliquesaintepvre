@@ -148,23 +148,33 @@
     .organistes li.actuelle span { color: #ecd9d9; }
 
 
-    /* ── Les jeux : une façade de tuyaux par clavier ── */
-    .jeux { margin: 2.2rem 0 1rem; display: grid; gap: 1.6rem; }
-    .clavier { background: var(--blanc); border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 4px; padding: 1.2rem 1rem 1rem; }
-    .clavier h3 { margin: 0 0 1rem; text-align: center; font-family: var(--texte); font-weight: 600; font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
-    .clavier h3 small { font-weight: 400; letter-spacing: .08em; color: var(--gris); text-transform: none; font-size: .95rem; }
-    .clavier ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; align-items: flex-end; gap: clamp(.6rem, 3vw, 1.6rem); flex-wrap: wrap; }
-    .clavier li { display: grid; justify-items: center; align-content: end; gap: .35rem; width: 84px; height: 250px; text-align: center; }
-    .clavier .tuyau { display: block; height: calc(var(--k) * 190px); width: auto; color: var(--navy); }
-    .clavier li b { font-weight: 600; font-size: .92rem; line-height: 1.2; }
-    .clavier li > span:last-child { font-size: .85rem; color: var(--bordeaux); font-variant-numeric: tabular-nums; }
-    .jeux-note { font-size: .9rem; font-style: italic; color: var(--gris); text-align: center; margin: .4rem 0 0; }
-    .clavier li { opacity: 0; translate: 0 14px; transition: opacity .7s ease, translate .8s ease; }
-    .vu .clavier li { opacity: 1; translate: 0 0; }
-    .vu .clavier li:nth-child(2) { transition-delay: .08s; } .vu .clavier li:nth-child(3) { transition-delay: .16s; }
-    .vu .clavier li:nth-child(4) { transition-delay: .24s; } .vu .clavier li:nth-child(5) { transition-delay: .32s; } .vu .clavier li:nth-child(6) { transition-delay: .4s; }
-    @media (max-width: 560px) { .clavier li { width: 72px; height: 210px; } .clavier .tuyau { height: calc(var(--k) * 150px); } }
-    @media (prefers-reduced-motion: reduce) { .clavier li { opacity: 1; translate: none; transition: none; } }
+    /* ── Les jeux : une façade de panneaux, comme les tuyaux d'un buffet ──
+       Chaque clavier est une rangée de panneaux hauts et étroits, décalés selon la taille du jeu.
+       Le panneau survolé (ou touché) s'élargit et révèle la description du son. */
+    .facade-jeux { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4rem; margin: 2.2rem 0 1rem; }
+    .fj-clavier { min-width: 0; }
+    .fj-clavier h3 { display: flex; align-items: center; gap: .8rem; margin: 0 0 1rem; font-family: var(--texte); font-weight: 600; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bordeaux); }
+    .fj-clavier h3::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
+    .fj-clavier h3 small { font-weight: 400; letter-spacing: .06em; text-transform: none; color: var(--gris); font-size: .95rem; }
+    .fj-rang { display: flex; align-items: flex-end; gap: 8px; height: 380px; overflow-x: auto; overflow-y: hidden; padding: 4px 4px 8px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+    .fj { position: relative; flex: 0 0 74px; height: var(--hp); display: flex; flex-direction: column; align-items: center; padding: 10px 8px 0; background: var(--blanc); border: 1px solid var(--filet); border-radius: 16px; box-shadow: 0 10px 24px -18px rgba(33,52,72,.35); cursor: pointer; scroll-snap-align: start; overflow: hidden;
+      transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s ease, color .35s ease; color: var(--navy); text-align: left; font: inherit; }
+    .fj:focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+    .fj.ouvert .fj-nom { border-top-color: rgba(255,255,255,.35); }
+    .fj-tuyau { flex: 1; width: 100%; min-height: 0; color: inherit; -webkit-mask-position: center bottom; mask-position: center bottom; transition: opacity .3s; }
+    .fj-nom { flex: none; width: calc(100% + 16px); margin-top: 8px; padding: .45rem .3rem .6rem; border-top: 1px solid var(--filet); text-align: center; font-size: .82rem; font-weight: 600; line-height: 1.15; }
+    .fj-nom span { display: block; font-weight: 400; font-size: .78rem; opacity: .75; font-variant-numeric: tabular-nums; }
+    .fj-texte { position: absolute; left: 92px; right: 14px; top: 14px; bottom: 64px; display: flex; flex-direction: column; justify-content: center; gap: .5rem; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+    .fj-texte b { font-family: var(--titre); font-weight: 400; font-size: 1.25rem; line-height: 1.1; }
+    .fj-texte p { margin: 0; font-size: .95rem; line-height: 1.45; }
+    .fj.ouvert { flex-basis: min(300px, 78vw); background: var(--bordeaux); color: var(--blanc); border-color: var(--bordeaux); box-shadow: 0 18px 34px -18px rgba(74,21,24,.55); }
+    .fj.ouvert .fj-tuyau { flex: 1; width: 64px; align-self: flex-start; }
+    .fj.ouvert .fj-texte { opacity: 1; transition-delay: .2s; }
+    /* apparition : les panneaux montent l'un après l'autre */
+    .fj { translate: 0 30px; opacity: 0; }
+    .vu .fj { translate: 0 0; opacity: 1; transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s, color .35s, translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms), opacity .6s ease calc(var(--i) * 60ms); }
+    @media (max-width: 560px) { .fj-rang { height: 330px; } .fj { flex-basis: 70px; } .fj-texte { left: 84px; } .fj-nom { font-size: .7rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; } }
+    @media (prefers-reduced-motion: reduce) { .fj, .vu .fj { translate: none; opacity: 1; transition: none; } }
 
     /* ── Les journaux : bande bleu marine pleine largeur ── */
     .presse { position: relative; background: var(--navy); color: var(--blanc); padding: 5rem 0 4rem; margin-top: 4rem; overflow: hidden; }
@@ -298,19 +308,8 @@
     <h2>Caractéristiques techniques</h2>
     <p class="argument">Quarante-quatre jeux, trois claviers et un pédalier — Le buffet de Prosper Morey — La machine Barker.</p>
     <p>Le grand orgue compte <strong>44 jeux</strong> répartis sur trois claviers manuels et un pédalier indépendant.</p>
-    <div class="tab-scroll">
-      <table>
-        <caption>Composition du grand orgue.</caption>
-        <thead><tr><th>Clavier</th><th>Notes</th><th>Jeux</th></tr></thead>
-        <tbody>
-          <tr><td>Positif</td><td>56 notes (C–g³)</td><td>10</td></tr>
-          <tr><td>Grand-Orgue</td><td>56 notes (C–g³)</td><td>15</td></tr>
-          <tr><td>Récit expressif</td><td>56 notes (C–g³)</td><td>10</td></tr>
-          <tr><td>Pédalier</td><td>27 notes (C–d¹)</td><td>9</td></tr>
-        </tbody>
-        <tfoot><tr><td>Total</td><td></td><td>44</td></tr></tfoot>
-      </table>
-    </div>
+    <div class="facade-jeux" data-orgue="grand" aria-label="Composition du grand orgue"></div>
+    <p class="jeux-note">Composition du grand orgue : un panneau par jeu, décalé selon sa taille en pieds. Survolez ou touchez un jeu pour l'entendre décrit. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p>
     <p>La console, de style néo-gothique, est indépendante. Le buffet, dessiné par l'architecte Prosper Morey, adopte le style néo-gothique flamboyant de la basilique. La transmission est entièrement mécanique suspendue, assistée d'une <strong>machine Barker</strong>, dispositif pneumatique breveté en 1839, pour alléger le toucher.</p>
     <div class="duo-fig">
       <figure class="planche">
@@ -353,12 +352,8 @@
     <p>Pour compléter le grand orgue, Mgr Trouillet commanda un orgue de chœur à la même manufacture parisienne. Il était en place en <strong>1872</strong>, date à partir de laquelle il fut assuré pour une valeur de 10 000 francs.</p>
     <p>Le meuble est entièrement en chêne verni. Les tuyaux de façade, en étain, avec écussons rapportés et relevés en ogive, sont répartis sur trois côtés ; le dernier côté coïncide avec la face arrière du maître-autel.</p>
     <p>L'orgue de chœur n'a connu qu'une transformation, vers 1911, par Kühn. Dans les années 1990, alors qu'il venait d'être classé monument historique, un homme sans abri s'y était réfugié et la tuyauterie fut gravement endommagée. L'instrument a été restauré en 2009 et a retrouvé son fonctionnement d'origine.</p>
-    <div class="jeux">
-      <div class="clavier"><h3>Grand-Orgue <small>56 notes</small></h3><ul><li style="--k:1"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/bourdon.svg);aspect-ratio:663/3849" aria-hidden="true"></span><b>Bourdon</b><span>16′</span></li><li style="--k:.72"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/montre.svg);aspect-ratio:327/4938" aria-hidden="true"></span><b>Montre</b><span>8′</span></li><li style="--k:.72"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/bourdon.svg);aspect-ratio:663/3849" aria-hidden="true"></span><b>Bourdon</b><span>8′</span></li><li style="--k:.72"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/salicional.svg);aspect-ratio:321/4416" aria-hidden="true"></span><b>Salicional</b><span>8′</span></li><li style="--k:.5"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/montre.svg);aspect-ratio:327/4938" aria-hidden="true"></span><b>Prestant</b><span>4′</span></li><li style="--k:.72"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/trompette.svg);aspect-ratio:342/4650" aria-hidden="true"></span><b>Trompette</b><span>8′</span></li></ul></div>
-      <div class="clavier"><h3>Récit expressif <small>44 notes</small></h3><ul><li style="--k:.72"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/bourdon.svg);aspect-ratio:663/3849" aria-hidden="true"></span><b>Bourdon harmonique</b><span>8′</span></li><li style="--k:.5"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/flute-harmonique.svg);aspect-ratio:336/4638" aria-hidden="true"></span><b>Flûte harmonique</b><span>4′</span></li><li style="--k:.72"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/hautbois.svg);aspect-ratio:297/4626" aria-hidden="true"></span><b>Basson-Hautbois</b><span>8′</span></li></ul></div>
-      <div class="clavier"><h3>Pédale <small>27 notes</small></h3><ul><li style="--k:1"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/bourdon.svg);aspect-ratio:663/3849" aria-hidden="true"></span><b>Soubasse</b><span>16′</span></li></ul></div>
-      <p class="jeux-note">Composition de l'orgue de chœur. Chaque jeu est représenté par son type de tuyau, à une hauteur proportionnelle à sa taille en pieds (16′, 8′, 4′). Dessins tirés de <i>The Art of Organ-Building</i> d'Audsley (1905).</p>
-    </div>
+    <div class="facade-jeux" data-orgue="choeur" aria-label="Composition de l'orgue de chœur"></div>
+    <p class="jeux-note">Composition de l'orgue de chœur. Survolez ou touchez un jeu pour l'entendre décrit. Dessins de tuyaux d'Audsley (1905).</p>
   </section>
 
   <section class="chapitre col apparait" id="organistes">
@@ -419,6 +414,75 @@
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+
+<script>
+  // Façades des jeux : données des deux orgues, description du son par famille de tuyaux
+  (function () {
+    var D = '../assets/ornements/jeux/';
+    var F = {
+      principal: ['montre', 'Le son fondamental de l\'orgue : plein, noble, ni flûté ni mordant. C\'est la famille des tuyaux de façade.'],
+      bourdon: ['bourdon', 'Tuyau bouché par une calotte : il sonne une octave plus bas que sa taille et donne un son doux et rond.'],
+      rohr: ['rohrflote', 'Flûte à cheminée : tuyau à demi bouché, au son flûté plus clair que le bourdon.'],
+      gambe: ['salicional', 'Tuyau très étroit au son fin et un peu mordant, qui rappelle les instruments à cordes.'],
+      flute: ['flute-harmonique', 'Flûte au son clair et puissant. Le tuyau harmonique, deux fois plus long, est percé d\'un petit trou à mi-hauteur.'],
+      mixture: ['montre', 'Jeu composé de plusieurs rangs de petits tuyaux qui sonnent ensemble : il donne de l\'éclat et de la brillance.'],
+      trompette: ['trompette', 'Jeu d\'anche : une languette vibre dans le pied du tuyau, le résonateur conique rend un son éclatant.'],
+      hautbois: ['hautbois', 'Jeu d\'anche au son nasillard et chantant, qui imite le hautbois et le basson.'],
+      clarinette: ['clarinette', 'Jeu d\'anche à résonateur cylindrique, au son rond et creux comme celui de la clarinette.'],
+      voix: ['voix-humaine', 'Jeu d\'anche à très court résonateur. Joué avec le tremblant, il évoque une voix lointaine.'],
+      clochette: ['montre', 'Jeu de timbre, qui ajoute une petite sonorité de cloche aux registres.']
+    };
+    var ORGUES = {
+      choeur: [
+        ['Grand-Orgue', '56 notes', [['Bourdon', 16, 'bourdon'], ['Montre', 8, 'principal'], ['Bourdon', 8, 'bourdon'], ['Salicional', 8, 'gambe'], ['Prestant', 4, 'principal'], ['Trompette', 8, 'trompette']]],
+        ['Récit expressif', '44 notes', [['Bourdon harmonique', 8, 'bourdon'], ['Flûte harmonique', 4, 'flute'], ['Basson-Hautbois', 8, 'hautbois']]],
+        ['Pédale', '27 notes', [['Soubasse', 16, 'bourdon']]]
+      ],
+      grand: [
+        ['Positif', '56 notes · 10 jeux', [['Bourdon', 16, 'bourdon'], ['Principal', 8, 'principal'], ['Rohrflöte', 8, 'rohr'], ['Salicional', 8, 'gambe'], ['Gambe', 8, 'gambe'], ['Prestant', 4, 'principal'], ['Flûte harmonique', 4, 'flute'], ['Clochette', 0, 'clochette'], ['Trompette', 8, 'trompette'], ['Clarinette', 8, 'clarinette']]],
+        ['Grand-Orgue', '56 notes · 15 jeux', [['Principal', 16, 'principal'], ['Bourdon', 16, 'bourdon'], ['Montre', 8, 'principal'], ['Bourdon', 8, 'bourdon'], ['Flûte harmonique', 8, 'flute'], ['Dulciana', 8, 'gambe'], ['Gambe', 8, 'gambe'], ['Prestant', 4, 'principal'], ['Flûte octaviante', 4, 'flute'], ['Quinte-Flûte', 3, 'flute'], ['Grand Cornet V', 0, 'mixture'], ['Fourniture VI', 0, 'mixture'], ['Bombarde', 16, 'trompette'], ['Trompette', 8, 'trompette'], ['Clairon', 4, 'trompette']]],
+        ['Récit expressif', '56 notes · 10 jeux', [['Bourdon', 8, 'bourdon'], ['Flûte harmonique', 8, 'flute'], ['Gambe', 8, 'gambe'], ['Voix céleste', 8, 'gambe'], ['Flûte octaviante', 4, 'flute'], ['Flageolet', 2, 'flute'], ['Basson', 16, 'trompette'], ['Trompette', 8, 'trompette'], ['Basson-Hautbois', 8, 'hautbois'], ['Voix humaine', 8, 'voix']]],
+        ['Pédale', '27 notes · 9 jeux', [['Soubasse', 32, 'bourdon'], ['Grosse flûte', 16, 'flute'], ['Soubasse', 16, 'bourdon'], ['Octavebasse', 8, 'principal'], ['Violoncelle', 8, 'gambe'], ['Flûte', 4, 'flute'], ['Bombarde', 16, 'trompette'], ['Trompette', 8, 'trompette'], ['Clairon', 4, 'trompette']]]
+      ]
+    };
+    // hauteur du panneau selon la taille du jeu (32′ le plus haut) ; mixtures et timbres : hauteur moyenne
+    var H = { 32: 100, 16: 86, 8: 70, 4: 56, 3: 50, 2: 44, 0: 50 };
+    function pieds(p) { return p ? p + '′' : 'plusieurs rangs'; }
+    document.querySelectorAll('.facade-jeux').forEach(function (bloc) {
+      var html = '', i = 0;
+      ORGUES[bloc.dataset.orgue].forEach(function (c) {
+        html += '<div class="fj-clavier"><h3>' + c[0] + ' <small>' + c[1] + '</small></h3><div class="fj-rang">';
+        c[2].forEach(function (j) {
+          var f = F[j[2]], pi = j[2] === 'clochette' ? 'timbre' : pieds(j[1]);
+          html += '<button type="button" class="fj" style="--hp:' + H[j[1]] + '%;--i:' + (i++) + '" aria-expanded="false">' +
+            '<span class="fj-tuyau orn" style="--src:url(' + D + f[0] + '.svg)" aria-hidden="true"></span>' +
+            '<span class="fj-texte"><b>' + j[0] + '</b><p>' + f[1] + '</p></span>' +
+            '<span class="fj-nom">' + j[0] + '<span>' + pi + '</span></span></button>';
+        });
+        html += '</div></div>';
+      });
+      bloc.innerHTML = html;
+    });
+    // un seul panneau ouvert par rangée ; survol sur ordinateur, toucher sur téléphone
+    function ouvre(fj) {
+      fj.parentNode.querySelectorAll('.fj.ouvert').forEach(function (o) { if (o !== fj) { o.classList.remove('ouvert'); o.setAttribute('aria-expanded', 'false'); } });
+      fj.classList.add('ouvert'); fj.setAttribute('aria-expanded', 'true');
+    }
+    document.querySelectorAll('.fj').forEach(function (fj) {
+      fj.addEventListener('mouseenter', function () { if (matchMedia('(hover: hover)').matches) ouvre(fj); });
+      fj.addEventListener('click', function () { if (fj.classList.contains('ouvert') && !matchMedia('(hover: hover)').matches) { fj.classList.remove('ouvert'); fj.setAttribute('aria-expanded', 'false'); } else ouvre(fj); });
+      fj.addEventListener('focus', function () { ouvre(fj); });
+    });
+    document.querySelectorAll('.fj-rang').forEach(function (r) {
+      r.addEventListener('mouseleave', function () { r.querySelectorAll('.fj.ouvert').forEach(function (o) { o.classList.remove('ouvert'); o.setAttribute('aria-expanded', 'false'); }); });
+    });
+    // la façade se dresse quand elle arrive à l'écran
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .2 });
+      document.querySelectorAll('.facade-jeux').forEach(function (b) { io.observe(b); });
+    } else document.querySelectorAll('.facade-jeux').forEach(function (b) { b.classList.add('vu'); });
   })();
 </script>
 <script defer src="../assets/js/nav.js?v=5"></script>

@@ -18,7 +18,6 @@
   <meta property="og:site_name" content="Basilique Saint-Epvre">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=8">
   <style>
     /* ══ Bibliographie — une étagère de vrais livres ══
@@ -163,6 +162,32 @@
       .fiche-carte { animation: none; }
     }
     .pied .rosace-pied { width: 96px; height: 96px; }
+
+    /* ══ Animations des livres, plus vivantes ══ */
+    /* Arrivée : chaque livre tombe sur la planche, légèrement penché, et rebondit */
+    .livre { translate: 0 -60px; rotate: -8deg; opacity: 0; transform-origin: 50% 100%; }
+    .vu .livre { translate: 0 0; rotate: 0deg; opacity: 1;
+      transition: flex-basis .6s cubic-bezier(.22,1,.36,1), translate .9s cubic-bezier(.34,1.56,.64,1) calc(var(--i) * 80ms), rotate .9s cubic-bezier(.34,1.56,.64,1) calc(var(--i) * 80ms), opacity .4s ease calc(var(--i) * 80ms); }
+    /* Survol : le livre se soulève de l'étagère, comme tiré du rayon */
+    .vu .livre:hover, .vu .livre.ouvert { translate: 0 -14px; }
+    .vu .livre.choisi { translate: 0 -22px; }
+    .livre .dos { transition: transform .7s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, filter .4s ease; }
+    .livre:hover .dos { filter: brightness(1.08); }
+    /* Ouverture : le dos pivote, la couverture se déplie en 3D avec un reflet qui passe */
+    .plat { transform: perspective(900px) rotateY(80deg); transform-origin: left center; box-shadow: 0 30px 40px -24px rgba(33,52,72,.6); }
+    .plat::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.45) 45%, transparent 60%); translate: -120% 0; pointer-events: none; }
+    .livre.ouvert .plat { transform: perspective(900px) rotateY(0deg); transition: transform .75s cubic-bezier(.22,1,.36,1), opacity .25s ease, left .6s cubic-bezier(.22,1,.36,1); }
+    .livre.ouvert .plat::after { translate: 120% 0; transition: translate 1.1s ease .25s; }
+    /* Ombre portée sur la planche */
+    .livre::after { content: ''; position: absolute; left: 10%; right: 10%; bottom: -6px; height: 10px; border-radius: 50%; background: rgba(33,52,72,.25); filter: blur(5px); opacity: 0; transition: opacity .4s; pointer-events: none; }
+    .vu .livre:hover::after, .vu .livre.ouvert::after { opacity: 1; }
+    /* La fiche : la couverture se retourne comme une page */
+    .fiche-carte .couv { animation: tourne .9s cubic-bezier(.22,1,.36,1); transform-origin: left center; }
+    @keyframes tourne { from { transform: perspective(800px) rotateY(-85deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .livre, .vu .livre, .vu .livre:hover, .vu .livre.choisi { translate: none; rotate: none; opacity: 1; transition: none; }
+      .plat::after { display: none; } .fiche-carte .couv { animation: none; }
+    }
 </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
   <link rel="stylesheet" href="/assets/css/refonte.css?v=8">

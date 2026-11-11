@@ -1,0 +1,52 @@
+/* ══ Refonte — style commun à toutes les pages (comme l'accueil et les grandes orgues) ══
+   Titres : grotesque capitale serrée (Familjen Grotesk). Paragraphes : Source Sans 3.
+   Couleurs : bordeaux, bleu marine, blanc — jamais bordeaux et bleu marine côte à côte.
+   Chargée en dernier : elle prend le pas sur site.css et les styles propres à chaque page. */
+
+html:root, html:root body {
+  --bordeaux: #4a1518; --navy: #213448;
+  --grot: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  --font-titre: var(--grot); --font-display: var(--grot); --l-titre: var(--grot); --titre: var(--grot);
+  --font-texte: var(--sans); --font-body: var(--sans); --l-texte: var(--sans); --texte: var(--sans);
+  --l-gold: var(--bordeaux); --gold: var(--bordeaux);
+}
+
+html body { font-family: var(--sans); }
+html body p, html body li, html body td, html body blockquote, html body figcaption, html body dd, html body dt { font-family: var(--sans); }
+
+/* Titres */
+html body h1 {
+  font-family: var(--grot) !important; font-weight: 500 !important; text-transform: uppercase;
+  letter-spacing: -.04em !important; line-height: .9 !important;
+}
+html body h2 {
+  font-family: var(--grot) !important; font-weight: 500 !important; text-transform: uppercase;
+  letter-spacing: -.03em !important; line-height: .98 !important;
+}
+html body h3, html body h4 {
+  font-family: var(--grot) !important; font-weight: 500 !important; letter-spacing: -.015em !important;
+}
+/* Grand titre de page : plus grand, comme sur l'accueil */
+html body h1.titre-page, html body h1.page-title, html body h1.hero-titre {
+  font-size: clamp(3rem, 10vw, 8rem) !important;
+}
+
+/* Petits repères (étiquettes, dates, surtitres) en grotesque */
+html body .section-label, html body .eyebrow, html body .hero-eyebrow, html body .chapitre-siecle,
+html body .jalon-date, html body .l-toc, html body .l-toc-btn, html body small, html body .label, html body .tag,
+html body button, html body .btn {
+  font-family: var(--grot) !important;
+}
+
+/* La lettrine ornée de l'ancien style disparaît : texte simple */
+html body .lecture article .section-texte > p:first-of-type::first-letter,
+html body .lecture .lettrine::first-letter {
+  font-family: inherit; float: none; font-size: inherit; line-height: inherit; padding: 0; color: inherit;
+}
+
+/* Citations : grande grotesque */
+html body blockquote p { font-family: var(--grot); font-weight: 500; letter-spacing: -.015em; line-height: 1.25; }
+
+/* Barre de progression de lecture en bordeaux */
+html body .l-progress { background: var(--bordeaux); }

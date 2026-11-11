@@ -194,6 +194,12 @@
   .blocs.trois .bloc .ogive { width: min(330px, 92%) !important; }
   @media (prefers-reduced-motion: reduce) { .bloc .ogive, .bloc.vu .ogive, .bloc:hover .ogive { transform: none; opacity: 1; transition: none; } }
   .pied .rosace-pied { width: 96px; height: 96px; }
+
+  @media (hover: none) {
+    .bloc.actif .ogive { transform: scale(1.06); }
+    .liste a.actif .fl, .colonnes a.actif .fl { transform: translateX(8px); }
+    .porte.actif .baie { transform: translateY(-8px); }
+  }
 </style>
 </head>
 <body>
@@ -330,6 +336,13 @@
       if (mq.matches && v.duration) v.style.objectPosition = (69 + (58.5 - 69) * v.currentTime / v.duration).toFixed(1) + '% center';
       else if (!mq.matches) v.style.objectPosition = '';
     }, 500);
+  })();
+</script>
+<script>
+  (function () {
+    if (!matchMedia('(hover: none)').matches || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('actif', e.isIntersecting); }); }, { rootMargin: '-38% 0px -38% 0px' });
+    document.querySelectorAll('.bloc, .liste a, .colonnes a').forEach(function (a) { io.observe(a); });
   })();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function(){});</script>

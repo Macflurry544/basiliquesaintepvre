@@ -391,6 +391,10 @@
   /* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
   .pied { display: flex; flex-direction: column; align-items: center; }
   .pied > b { order: 1; } .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; } .pied > span { order: 3; } .pied .sources, .pied p { order: 4; }
+    /* Éventail : contenu dans sa colonne, sans images coupées */
+    .visuel .eventail { overflow: visible; height: 400px; }
+    .visuel .eventail .carte { width: 120px; margin-left: -60px; transform-origin: 50% 260%; }
+    @media (max-width: 560px) { .visuel .eventail { height: 340px; } .visuel .eventail .carte { width: 96px; margin-left: -48px; } }
 </style>
   <script type="application/ld+json">
   {
@@ -482,11 +486,11 @@
   <section class="bande b-papier" id="inauguration">
     <div class="bande-grille">
       <div class="visuel">    <div class="eventail apparait-ouv" aria-hidden="true">
-      <span class="carte" style="--r:-32deg;--i:0;background-image:url(../assets/img/orgues/nef.jpg)"></span>
-      <span class="carte" style="--r:-16deg;--i:1;background-image:url(../assets/img/orgues/tuyaux.jpg)"></span>
+      <span class="carte" style="--r:-24deg;--i:0;background-image:url(../assets/img/orgues/nef.jpg)"></span>
+      <span class="carte" style="--r:-12deg;--i:1;background-image:url(../assets/img/orgues/tuyaux.jpg)"></span>
       <span class="carte" style="--r:0deg;--i:2;background-image:url(../assets/img/orgues/tribune.jpg)"></span>
-      <span class="carte" style="--r:16deg;--i:3;background-image:url(../assets/img/orgues/clavier.jpg)"></span>
-      <span class="carte" style="--r:32deg;--i:4;background-image:url(../assets/img/orgues/plaque.jpg)"></span>
+      <span class="carte" style="--r:12deg;--i:3;background-image:url(../assets/img/orgues/clavier.jpg)"></span>
+      <span class="carte" style="--r:24deg;--i:4;background-image:url(../assets/img/orgues/plaque.jpg)"></span>
       <p class="phrase"><q>Le ménestrel de Dieu</q><span>Anton Bruckner, selon Franz Liszt</span></p>
     </div>
 </div>

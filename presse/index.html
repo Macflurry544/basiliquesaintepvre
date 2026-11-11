@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Presse de l'époque — Basilique Saint-Epvre de Nancy</title>
   <!-- SEO -->
   <meta name="description" content="Revue de presse ancienne sur la construction et la vie de la Basilique Saint-Epvre à Nancy. Archives journalistiques du XIXe et XXe siècle.">
@@ -25,437 +25,440 @@
   <meta name="twitter:image"       content="https://basiliquesaintepvre.com/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=8">
-  <link rel="stylesheet" href="../assets/css/site.css?v=20">
-
   <style>
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
+       Trois couleurs : bordeaux, bleu marine, blanc (jamais bordeaux et bleu marine côte à côte).
+       Ornements : gravures d'époque vectorisées (assets/ornements). */
     :root {
-      --cream:     #7EACB5;
-      --cream-2:   #FFF4EA;
-      --sage:      #EDDCC6;
-      --olive:     #BF4646;
-      --olive-rgb: 65, 67, 27;
-      --font-titre: 'Uncial Antiqua', Georgia, serif;
-      --font-texte: 'EB Garamond', Georgia, serif;
+      --bordeaux: #4a1518; --navy: #213448; --blanc: #ffffff; --papier: #fbf9f5;
+      --gris: #59626e; --filet: rgba(33,52,72,.18);
+      --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
     }
-
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.75; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
 
-    body {
-      padding-top: var(--nav-h, 64px);
-      background-color: var(--cream);
-      color: var(--olive);
-      font-family: var(--font-texte);
-      font-size: 16px;
-      font-weight: 500;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    /* Ornement : boîte colorée découpée par la gravure vectorisée */
+    .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+
+    .col { max-width: 740px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+
+    /* Titre courant, comme en haut des pages du livre */
+    .courant { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); border-bottom: 1px solid var(--filet); padding-bottom: .5rem; }
+
+    /* ── Ouverture : la gravure de l'orgue de 1867 ── */
+    .ouverture { position: relative; padding: 6.5rem 0 2.5rem; text-align: center; overflow: hidden; }
+    .ouverture .courant { max-width: 740px; margin: 0 auto 2.6rem; }
+    .ouverture h1 { font-family: var(--titre); font-weight: 400; font-size: clamp(2.6rem, 7.5vw, 4.8rem); line-height: 1.02; margin: 0; color: var(--navy); }
+    .ouverture .sous { margin: .9rem auto 0; max-width: 34ch; font-style: italic; color: var(--gris); font-size: 1.12rem; line-height: 1.5; }
+    .ouverture figure { margin: 2.6rem auto 0; max-width: 700px; }
+    .ouverture .orgue { width: 100%; aspect-ratio: 1790 / 1910; color: var(--navy); }
+    .ouverture figcaption { margin-top: .8rem; font-size: .95rem; font-style: italic; color: var(--gris); }
+
+    /* Bandeau de ferronnerie : croix de Lorraine et alérions */
+    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-position: center; mask-position: center; margin: 2.5rem 0; }
+
+    /* ── Chapeau avec lettrine ornée ── */
+    .chapeau { padding: 1rem 0 1rem; display: flow-root; }
+    .chapeau p { margin: 0; font-size: 1.28rem; line-height: 1.72; }
+    .lettrine { float: left; width: clamp(120px, 26vw, 190px); aspect-ratio: 1360 / 2550; margin: .35rem 1.2rem .4rem 0; color: var(--bordeaux);
+      /* le texte épouse la forme en L de la lettrine, comme dans la monographie */
+      shape-outside: polygon(0 0, calc(100% + 1.2rem) 0, calc(100% + 1.2rem) 58%, calc(36% + 1rem) 58%, calc(36% + 1rem) 100%, 0 100%); }
+
+    /* ── Sommaire en cartouche ── */
+    .sommaire { margin: 3rem auto 1rem; padding: 2rem 2rem 1.6rem; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 5px; background: var(--blanc); }
+    .sommaire .cartouche { margin-top: -2.95rem; }
+    .sommaire ol { list-style: none; margin: 1rem 0 0; padding: 0; counter-reset: s; }
+    .sommaire li { counter-increment: s; }
+    .sommaire a { display: flex; align-items: baseline; gap: .6rem; padding: .35rem 0; text-decoration: none; font-size: 1.12rem; }
+    .sommaire a::before { content: counter(s, upper-roman) '.'; min-width: 2.6rem; font-family: var(--titre); color: var(--bordeaux); font-size: .95rem; }
+    .sommaire a::after { content: ''; flex: 1; border-bottom: 1px dotted var(--filet); transform: translateY(-.3em); order: 2; }
+    .sommaire a span { order: 1; }
+    .sommaire a:hover { color: var(--bordeaux); }
+
+    /* Cartouche aux coins coupés, comme « CHAPITRE PREMIER » dans la monographie */
+    .cartouche { display: table; margin: 0 auto; padding: .4rem 1.5rem; background: var(--papier); color: var(--bordeaux); font-size: .82rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      border: 1.5px solid currentColor; box-shadow: inset 0 0 0 3px var(--papier), inset 0 0 0 4px currentColor; }
+
+
+    /* ── Ouverture de chapitre : double filet à rosace, grand chiffre romain ──
+       Animation : les deux filets se déroulent depuis la rosace, qui tourne d'un quart de tour,
+       puis le chiffre et le titre apparaissent. */
+    .ouv { position: relative; text-align: center; color: var(--bordeaux); }
+    .ouv-filet { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .ouv-filet::before, .ouv-filet::after { content: ''; flex: 1; border-top: 3px double currentColor; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .25s; }
+    .ouv-filet::before { transform-origin: right center; }
+    .ouv-filet::after { transform-origin: left center; }
+    .ouv-filet .orn { flex: none; width: 36px; height: 36px; opacity: 0; transform: rotate(-90deg) scale(.6); transition: opacity .7s ease, transform 1.2s cubic-bezier(.22,1,.36,1); }
+    .ouv-num { display: block; font-family: var(--titre); font-size: clamp(3.4rem, 9vw, 4.4rem); line-height: 1; opacity: 0; translate: 0 12px; transition: opacity .9s ease .7s, translate .9s ease .7s; }
+    .ouv-lib { display: block; margin-top: .4rem; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: 0; transition: opacity .9s ease .9s; }
+    .vu .ouv-filet::before, .vu .ouv-filet::after { transform: scaleX(1); }
+    .vu .ouv-filet .orn { opacity: 1; transform: none; }
+    .vu .ouv-num { opacity: 1; translate: 0 0; }
+    .vu .ouv-lib { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .ouv-filet::before, .ouv-filet::after, .ouv-filet .orn, .ouv-num, .ouv-lib { transform: none; opacity: 1; translate: none; transition: none; }
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
+    /* ── Chapitres ── */
+    .chapitre { position: relative; padding: 5rem 0 1rem; }
+    .chapitre .croquis { position: absolute; left: 50%; top: 1.2rem; translate: -50% 0; width: 260px; aspect-ratio: 1270 / 1257; color: var(--navy); opacity: .07; pointer-events: none; }
+    .chapitre h2 { position: relative; text-align: center; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.7rem); line-height: 1.12; margin: .7rem 0 .9rem; }
+    .chapitre .argument { position: relative; text-align: center; font-size: 1.04rem; font-style: italic; line-height: 1.55; color: var(--gris); margin: 0 auto 2.4rem; max-width: 46ch; padding-top: .9rem; border-top: 1px solid var(--filet); }
+    .chapitre p { margin: 0 0 1.15em; }
+    .chapitre strong { font-weight: 600; color: var(--bordeaux); }
+
+    /* Figures : double filet, légende et numéro comme dans le livre */
+    figure.planche { margin: 2.4rem 0; text-align: center; }
+    figure.planche img { width: 100%; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 4px; }
+    figure.planche figcaption { margin-top: 1rem; font-size: .98rem; color: var(--gris); }
+    figure.planche figcaption i { display: block; font-size: .85rem; margin-top: .1rem; }
+    .duo-fig { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    @media (max-width: 560px) { .duo-fig { grid-template-columns: 1fr; } }
+
+    /* Encadré bordeaux sur papier : le moment fort */
+    .fort { margin: 2.6rem 0; padding: 2rem 2rem 1.8rem; background: var(--bordeaux); color: var(--blanc); text-align: center; outline: 1px solid var(--bordeaux); outline-offset: 5px; }
+    .fort .orn { width: 46px; height: 46px; margin: 0 auto .8rem; color: var(--blanc); }
+    .fort p { margin: 0; font-size: 1.18rem; line-height: 1.65; }
+    .fort strong { color: var(--blanc); font-weight: 700; }
+
+    /* Tableaux */
+    table { width: 100%; border-collapse: collapse; margin: 1.6rem 0 2rem; font-size: 1.02rem; }
+    caption { caption-side: bottom; margin-top: .6rem; font-size: .9rem; font-style: italic; color: var(--gris); }
+    th { text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bordeaux); padding: .5rem .5rem; border-top: 2px solid var(--navy); border-bottom: 1px solid var(--navy); }
+    td { padding: .6rem .5rem; border-bottom: 1px solid var(--filet); vertical-align: top; }
+    tfoot td { font-weight: 700; border-top: 1px solid var(--navy); border-bottom: 2px solid var(--navy); }
+    .tab-scroll { overflow-x: auto; }
+
+    ul.innovations { margin: 1rem 0 1.6rem; padding: 0; list-style: none; }
+    ul.innovations li { display: grid; grid-template-columns: 22px 1fr; gap: .8rem; padding: .45rem 0; }
+    ul.innovations .orn, .organistes .orn { width: 18px; height: 18px; margin-top: .45rem; color: var(--bordeaux); }
+
+    /* Organistes */
+    .organistes { list-style: none; margin: 1.4rem 0; padding: 0; }
+    .organistes li { display: grid; grid-template-columns: 22px 1fr auto; gap: .9rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--filet); }
+    .organistes b { font-weight: 600; font-size: 1.12rem; }
+    .organistes span { font-variant-numeric: tabular-nums; color: var(--gris); font-size: .98rem; text-align: right; }
+    .organistes li.actuelle { background: var(--bordeaux); color: var(--blanc); padding: .9rem; margin: .5rem 0; border: 0; outline: 1px solid var(--bordeaux); outline-offset: 4px; }
+    .organistes li.actuelle .orn { color: var(--blanc); }
+    .organistes li.actuelle span { color: #ecd9d9; }
+
+
+    /* ── Les jeux : une façade de panneaux, comme les tuyaux d'un buffet ──
+       Chaque clavier est une rangée de panneaux hauts et étroits, décalés selon la taille du jeu.
+       Le panneau survolé (ou touché) s'élargit et révèle la description du son. */
+    .facade-jeux { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4rem; margin: 2.2rem 0 1rem; }
+    .fj-clavier { min-width: 0; }
+    .fj-clavier h3 { display: flex; align-items: center; gap: .8rem; margin: 0 0 1rem; font-family: var(--texte); font-weight: 600; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bordeaux); }
+    .fj-clavier h3::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
+    .fj-clavier h3 small { font-weight: 400; letter-spacing: .06em; text-transform: none; color: var(--gris); font-size: .95rem; }
+    .fj-rang { display: flex; align-items: flex-end; gap: 8px; height: 380px; overflow-x: auto; overflow-y: hidden; padding: 4px 4px 8px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+    .fj { position: relative; flex: 0 0 74px; height: var(--hp); display: flex; flex-direction: column; align-items: center; padding: 10px 8px 0; background: var(--blanc); border: 1px solid var(--filet); border-radius: 16px; box-shadow: 0 10px 24px -18px rgba(33,52,72,.35); cursor: pointer; scroll-snap-align: start; overflow: hidden;
+      transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s ease, color .35s ease; color: var(--navy); text-align: left; font: inherit; }
+    .fj:focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+    .fj.ouvert .fj-nom { border-top-color: rgba(255,255,255,.35); }
+    .fj-tuyau { flex: 1; width: 100%; min-height: 0; color: inherit; -webkit-mask-position: center bottom; mask-position: center bottom; transition: opacity .3s; }
+    .fj-nom { flex: none; width: calc(100% + 16px); margin-top: 8px; padding: .45rem .3rem .6rem; border-top: 1px solid var(--filet); text-align: center; font-size: .82rem; font-weight: 600; line-height: 1.15; }
+    .fj-nom span { display: block; font-weight: 400; font-size: .78rem; opacity: .75; font-variant-numeric: tabular-nums; }
+    .fj-texte { position: absolute; left: 92px; right: 14px; top: 14px; bottom: 64px; display: flex; flex-direction: column; justify-content: center; gap: .5rem; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+    .fj-texte b { font-family: var(--titre); font-weight: 400; font-size: 1.25rem; line-height: 1.1; }
+    .fj-texte p { margin: 0; font-size: .95rem; line-height: 1.45; }
+    .fj.ouvert { flex-basis: min(300px, 78vw); background: var(--bordeaux); color: var(--blanc); border-color: var(--bordeaux); box-shadow: 0 18px 34px -18px rgba(74,21,24,.55); }
+    .fj.ouvert .fj-tuyau { flex: 1; width: 64px; align-self: flex-start; }
+    .fj.ouvert .fj-texte { opacity: 1; transition-delay: .2s; }
+    /* apparition : les panneaux montent l'un après l'autre */
+    .fj { translate: 0 30px; opacity: 0; }
+    .vu .fj { translate: 0 0; opacity: 1; transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s, color .35s, translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms), opacity .6s ease calc(var(--i) * 60ms); }
+    @media (max-width: 560px) { .fj-rang { height: 330px; } .fj { flex-basis: 70px; } .fj-texte { left: 84px; } .fj-nom { font-size: .7rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; } }
+    @media (prefers-reduced-motion: reduce) { .fj, .vu .fj { translate: none; opacity: 1; transition: none; } }
+
+
+    /* ── Grands chiffres, en colonnes numérotées comme une page de magazine ── */
+    .chiffres { max-width: 1100px; margin: 4.5rem auto 1rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .chiffres > div { padding: 0 1.4rem; border-left: 1px solid var(--filet); }
+    .chiffres > div:first-child { border-left: 0; padding-left: 0; }
+    .chiffres small { display: block; font-size: .78rem; letter-spacing: .2em; color: var(--gris); font-variant-numeric: tabular-nums; padding-bottom: .5rem; margin-bottom: .8rem; border-bottom: 1px solid var(--navy); }
+    .chiffres b { display: block; font-family: var(--titre); font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: .95; color: var(--bordeaux); white-space: nowrap; }
+    .chiffres span { display: block; margin-top: .7rem; font-size: 1.02rem; line-height: 1.45; }
+    .chiffres > div { opacity: 0; translate: 0 18px; transition: opacity .8s ease calc(var(--i) * 140ms), translate .8s ease calc(var(--i) * 140ms); }
+    .chiffres.vu > div { opacity: 1; translate: 0 0; }
+    @media (max-width: 720px) { .chiffres { grid-template-columns: 1fr 1fr; row-gap: 2.2rem; } .chiffres > div:nth-child(3) { border-left: 0; padding-left: 0; } }
+
+    /* ── Arcades : photos découpées en ogive, panneaux côte à côte qui s'élargissent ── */
+    .arcades { display: flex; gap: 14px; height: 440px; margin: 2.6rem 0 1rem; }
+    .arcade { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; margin: 0; transition: flex-grow .6s cubic-bezier(.22,1,.36,1); }
+    .arcade .baie { flex: 1; min-height: 0; background: var(--papier) center / cover no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+    .arcade figcaption { flex: none; min-height: 5.4em; padding-top: .7rem; font-size: .92rem; line-height: 1.35; color: var(--gris); border-top: 1px solid var(--navy); margin-top: .6rem; }
+    .arcade figcaption b { display: block; font-weight: 600; color: var(--navy); font-size: .98rem; }
+    .arcades:hover .arcade:hover, .arcade:focus-within { flex-grow: 2.2; }
+    @media (max-width: 560px) { .arcades { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; } .arcade { flex: 0 0 62%; scroll-snap-align: start; } .arcade .baie { height: 320px; flex: none; } }
+
+    /* ── Éventail : photos déployées en arc autour d'une phrase ── */
+    .eventail { position: relative; margin: 2.4rem 0 1.6rem; height: 430px; overflow-x: clip; }
+    .eventail .carte { position: absolute; left: 50%; top: 0; width: 150px; aspect-ratio: 3 / 4; margin-left: -75px; border-radius: 14px; background: var(--papier) center / cover no-repeat; border: 5px solid var(--blanc);
+      box-shadow: 0 14px 28px -16px rgba(33,52,72,.55); transform-origin: 50% 230%; transform: rotate(0deg); transition: transform 1.2s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms); }
+    .eventail.vu .carte { transform: rotate(var(--r)); }
+    .eventail .phrase { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; }
+    .eventail .phrase q { display: block; font-family: var(--titre); font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.15; color: var(--bordeaux); quotes: '« ' ' »'; }
+    .eventail .phrase span { display: block; margin-top: .6rem; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
+    @media (max-width: 560px) { .eventail { height: 380px; } .eventail .carte { width: 110px; margin-left: -55px; transform-origin: 50% 220%; } }
+    @media (prefers-reduced-motion: reduce) { .eventail .carte { transition: none; } .chiffres > div { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Les journaux : bande bleu marine pleine largeur ── */
+    .presse { position: relative; background: var(--navy); color: var(--blanc); padding: 5rem 0 4rem; margin-top: 4rem; overflow: hidden; }
+    .presse .croquis { position: absolute; right: -6%; top: 50%; translate: 0 -50%; width: min(620px, 80vw); aspect-ratio: 1790 / 1910; color: rgba(255,255,255,.06); pointer-events: none; }
+    .presse .cartouche { background: var(--navy); color: var(--blanc); }
+    .presse .ouv { color: var(--blanc); }
+    .presse .ouv-num, .presse .ouv-lib { color: var(--blanc); }
+    .presse h2 { text-align: center; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.6rem); margin: 1rem 0 2.6rem; }
+    .presse blockquote { position: relative; margin: 0 0 2.2rem; padding: 0 0 2.2rem; border-bottom: 1px solid rgba(255,255,255,.22); }
+    .presse blockquote:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+    .presse blockquote p { margin: 0; font-style: italic; font-size: 1.2rem; line-height: 1.62; }
+    .presse cite { display: block; margin-top: .7rem; font-style: normal; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: #c9d3de; }
+
+    /* ── Cul-de-lampe : l'ange à la banderole, sur papier ── */
+    .cul-de-lampe { padding: 4rem 22px 4.5rem; text-align: center; }
+    .cul-de-lampe .orn { width: min(340px, 78vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
+
+    /* ── Pied de page bordeaux ── */
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 3.2rem 22px calc(3.2rem + env(safe-area-inset-bottom, 0px)); }
+    .pied .orn { width: 36px; height: 140px; margin: 0 auto 1rem; color: var(--blanc); }
+    .pied b { display: block; font-family: var(--titre); font-weight: 400; font-size: 1.5rem; }
+    .pied span { font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+    .pied .sources { margin: 1.6rem auto 0; max-width: 60ch; font-size: .82rem; line-height: 1.6; opacity: .7; }
+
+    /* Apparition douce, sans plus */
+    .apparait { opacity: 0; translate: 0 16px; transition: opacity .9s ease, translate .9s ease; }
+    .apparait.vu { opacity: 1; translate: 0 0; }
+    @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+
+    :root { --oculus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E"); }
+    /* ══ Nouveau style (comme l'accueil) : grotesque capitale, aplats bordeaux, l'ancien gardé dans les gravures ══ */
+    .ouverture { background: var(--bordeaux); color: var(--blanc); padding-bottom: 4rem; }
+    .ouverture .courant { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.3); }
+    .ouverture h1 { color: var(--blanc); font-weight: 500; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; font-size: clamp(3.4rem, 12.5vw, 11rem); }
+    .ouverture .sous { color: rgba(255,255,255,.85); }
+    .ouverture .orgue { color: var(--blanc); }
+    .ouverture figcaption { color: rgba(255,255,255,.7); }
+    .chapitre h2, .presse h2 { font-weight: 500; text-transform: uppercase; letter-spacing: -.035em; line-height: .95; font-size: clamp(2.2rem, 6vw, 4.2rem); }
+    .ouv-num { font-weight: 500; letter-spacing: -.04em; font-size: clamp(4rem, 11vw, 6.5rem); }
+    .ouv-lib, .cartouche, .fj-clavier h3, th, .chiffres small, .presse cite, .courant { font-family: var(--titre); }
+    .sommaire a::before { font-weight: 600; }
+    .fj-texte b { font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; }
+    .eventail .phrase q { font-weight: 500; text-transform: uppercase; letter-spacing: -.03em; }
+    .pied b { font-weight: 600; text-transform: uppercase; letter-spacing: -.03em; font-size: clamp(2.4rem, 9vw, 5rem); }
+    /* Chiffres : bande bordeaux pleine largeur, nombres géants */
+    .chiffres { position: relative; padding-top: 4rem; padding-bottom: 4rem; margin-top: 4rem; color: var(--blanc); background: var(--bordeaux); box-shadow: 0 0 0 100vmax var(--bordeaux); clip-path: inset(0 -100vmax); }
+    .chiffres > div { border-color: rgba(255,255,255,.3); }
+    .chiffres small { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.5); }
+    .chiffres b { color: var(--blanc); font-weight: 500; letter-spacing: -.04em; font-size: clamp(2.8rem, 7vw, 5.6rem); }
+    /* Arcades : l'oculus à six lobes de l'accueil remplace l'ogive */
+    .arcade .baie { -webkit-mask: var(--oculus) center / contain no-repeat !important; mask: var(--oculus) center / contain no-repeat !important; flex: none; aspect-ratio: 1; height: auto; }
+    .arcades { height: auto; align-items: flex-start; }
+
+    /* ── Carrousel des jeux ── */
+    .facade-jeux { display: block; margin: 2.6rem 0 1rem; }
+    .cj-tete { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .cj-onglets { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cj-onglet { font: 500 .95rem/1 var(--titre); text-transform: uppercase; letter-spacing: .02em; padding: .7rem 1.1rem; border-radius: 999px; border: 1px solid var(--navy); background: none; color: var(--navy); cursor: pointer; display: inline-flex; gap: .5rem; align-items: center; }
+    .cj-onglet small { font-size: .78rem; opacity: .6; }
+    .cj-onglet[aria-selected="true"] { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+    .cj-fleches { display: flex; gap: .5rem; }
+    .cj-fleches button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); font-size: 1.4rem; cursor: pointer; transition: background .25s, color .25s; }
+    .cj-fleches button:hover { background: var(--navy); color: var(--blanc); }
+    .cj-info { margin: 1.2rem 0 1rem !important; font-family: var(--titre); font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+    /* la piste déborde de la colonne jusqu'aux bords de l'écran */
+    .cj-piste { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin: 0 calc(50% - 50vw); --g: max(22px, calc((100vw - 740px) / 2 + 22px)); padding: 6px var(--g) 24px; scroll-padding-left: var(--g); }
+    .cj-piste::-webkit-scrollbar { display: none; }
+    .cj { flex: 0 0 min(300px, 78vw); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--blanc); border: 1px solid var(--filet); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 34px -26px rgba(33,52,72,.5);
+      opacity: 0; translate: 40px 0; transition: background .35s, color .35s; }
+    .cj-piste.vu .cj { opacity: 1; translate: 0 0; transition: background .35s, color .35s, opacity .6s ease calc(var(--i) * 50ms), translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 50ms); }
+    .cj-dessin { position: relative; height: 270px; display: flex; align-items: flex-end; justify-content: center; padding: 18px 0 0; background: var(--papier); border-bottom: 1px solid var(--filet); }
+    .cj-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; transition: color .35s; }
+    .cj-dessin em { position: absolute; top: 14px; right: 16px; font-style: normal; font: 600 1.4rem/1 var(--titre); color: var(--bordeaux); letter-spacing: -.02em; }
+    .cj-texte { padding: 1.2rem 1.3rem 1.5rem; flex: 1; }
+    .cj-texte small { font: 500 .8rem var(--titre); letter-spacing: .14em; color: var(--gris); }
+    .cj-texte h4 { margin: .25rem 0 .6rem; font: 500 1.7rem/1 var(--titre); text-transform: uppercase; letter-spacing: -.03em; color: var(--navy); }
+    .cj-texte p { margin: 0 !important; font-size: 1.02rem; line-height: 1.5; color: var(--gris); }
+    .cj:hover { background: var(--bordeaux); }
+    .cj:hover .cj-texte h4, .cj:hover .cj-texte p, .cj:hover .cj-texte small { color: var(--blanc); }
+    .cj:hover .cj-dessin { background: #5a1c20; border-color: transparent; }
+    .cj:hover .cj-dessin .orn, .cj:hover .cj-dessin em { color: var(--blanc); }
+    @media (prefers-reduced-motion: reduce) { .cj, .cj-piste.vu .cj { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Sommaire : liste numérotée à flèches, sans cadre ── */
+    .sommaire { border: 0; outline: 0; background: none; padding: 0; margin: 4rem auto 1rem; }
+    .sommaire .cartouche { display: block; margin: 0 0 1rem; padding: 0; border: 0; box-shadow: none; background: none; font: 600 .85rem var(--titre); letter-spacing: .2em; color: var(--bordeaux); }
+    .sommaire ol { margin: 0; border-top: 2px solid var(--navy); }
+    .sommaire li { border-bottom: 1px solid var(--filet); }
+    .sommaire a { display: grid; grid-template-columns: 3.4rem 1fr auto; align-items: center; gap: .8rem; padding: 1rem 0; font: 500 clamp(1.1rem, 2.6vw, 1.5rem)/1.15 var(--titre); text-transform: uppercase; letter-spacing: -.02em; transition: color .25s, padding .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a::before { content: counter(s, decimal-leading-zero); min-width: 0; font: 500 .9rem var(--titre); color: var(--gris); letter-spacing: .08em; }
+    .sommaire a::after { content: '→'; border: 0; transform: none; order: 0; flex: none; font-size: 1.5rem; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a span { order: 0; }
+    .sommaire a:hover { color: var(--bordeaux); padding-left: .6rem; }
+    .sommaire a:hover::after { transform: translateX(6px); }
+    .pied .rosace-pied { width: 96px; height: 96px; }
+
+    /* ══ Organisation façon musée : lecture au défilement, chapitres en bandes empilées, jeux un par un ══ */
+    .lecture { max-width: 1240px; margin: 0 auto; padding: 6rem max(22px, env(safe-area-inset-left, 0px)) 5rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.7rem, 4.4vw, 3.6rem)/1.12 var(--titre); letter-spacing: -.025em; color: var(--navy); }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+
+    .bande { position: sticky; top: var(--st, 0px); padding: clamp(4rem, 9vh, 7rem) 0; min-height: 100vh; min-height: 100svh; }
+    .b-papier { background: var(--papier); color: var(--navy); }
+    .b-bordeaux { background: var(--bordeaux); color: var(--blanc); }
+    .b-navy { background: var(--navy); color: var(--blanc); }
+    .bande-grille { max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+    .visuel { position: sticky; top: 100px; }
+    .visuel-img { width: 100%; aspect-ratio: 1; background: center / cover no-repeat; }
+    .visuel-img.oculus { -webkit-mask: var(--oculus) center / contain no-repeat; mask: var(--oculus) center / contain no-repeat; }
+    .visuel-img.grav { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; aspect-ratio: 1790 / 1910; }
+    .visuel-leg { margin: .9rem 0 0; font: 400 .9rem var(--titre); opacity: .75; }
+    .visuel .eventail { margin: 0; }
+    .b-num { display: block; font: 500 clamp(5rem, 12vw, 9.5rem)/.8 var(--titre); letter-spacing: -.05em; }
+    .bande h2 { margin: 1.6rem 0 1rem; font: 500 clamp(2.2rem, 4.6vw, 3.8rem)/.98 var(--titre); letter-spacing: -.035em; text-transform: none; text-align: left; }
+    .bande .argument { text-align: left; margin: 0 0 1.8rem; padding: 0; border: 0; font: 400 1.15rem/1.45 var(--titre); font-style: normal; color: inherit; opacity: .8; max-width: none; }
+    .bande-texte p { margin: 0 0 1.1em; }
+    .bande strong { color: inherit; font-weight: 700; }
+    .b-bordeaux .fort, .b-navy .fort { background: var(--blanc); color: var(--bordeaux); outline-color: var(--blanc); }
+    .b-bordeaux .fort strong, .b-bordeaux .fort .orn { color: var(--bordeaux); }
+    .bande .innovations .orn, .bande .organistes .orn { color: var(--bordeaux); }
+    .bande-jeux { max-width: 1240px; margin: 4rem auto 0; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .bande-jeux .jeux-note { opacity: .75; font-size: .95rem; margin-top: 1.2rem; }
+    @media (max-width: 820px) {
+      .bande { min-height: 0; }
+      .bande-grille { grid-template-columns: 1fr; }
+      .visuel { position: relative; top: 0; max-width: 420px; }
     }
 
-    .page {
-      position: relative;
-      z-index: 1;
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 7rem 2rem 8rem;
+    /* Jeux : une grande diapositive à la fois, flèches géantes de part et d'autre */
+    .diapo { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(.5rem, 3vw, 3rem); margin-top: 2rem; }
+    .diapo-fl { background: none; border: 0; color: inherit; cursor: pointer; padding: .5rem; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+    .diapo-fl svg { width: clamp(46px, 6vw, 84px); height: auto; display: block; }
+    .diapo-fl:hover { transform: translateX(var(--dx)); }
+    .diapo-prec { --dx: -6px; } .diapo-suiv { --dx: 6px; }
+    .diapo-fl:disabled { opacity: .25; cursor: default; transform: none; }
+    .diapo-cadre { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); min-height: 460px; background: var(--papier); color: var(--navy); border-radius: 20px; overflow: hidden; }
+    .diapo-dessin { display: flex; align-items: flex-end; justify-content: center; padding: 2rem 1rem 0; background: var(--blanc); border-right: 1px solid var(--filet); }
+    .diapo-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; }
+    .diapo-texte { padding: clamp(1.6rem, 4vw, 3.2rem); display: flex; flex-direction: column; justify-content: center; }
+    .diapo-texte small { font: 500 .9rem var(--titre); letter-spacing: .14em; color: var(--gris); text-transform: uppercase; }
+    .diapo-texte h4 { margin: .6rem 0 .3rem; font: 500 clamp(2.4rem, 5vw, 4.4rem)/.95 var(--titre); letter-spacing: -.04em; text-transform: uppercase; }
+    .diapo-texte em { font: 600 clamp(1.6rem, 3vw, 2.4rem) var(--titre); font-style: normal; color: var(--bordeaux); }
+    .diapo-texte p { margin: 1.2rem 0 0 !important; font-size: 1.2rem; line-height: 1.5; color: var(--navy); }
+    .diapo-cadre > * { animation: diapo .6s cubic-bezier(.22,1,.36,1); }
+    @keyframes diapo { from { opacity: 0; transform: translateX(var(--sens, 30px)); } }
+    .b-navy .cj-onglet, .b-bordeaux .cj-onglet { border-color: rgba(255,255,255,.6); color: var(--blanc); }
+    .b-navy .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--navy); border-color: var(--blanc); }
+    .b-bordeaux .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--bordeaux); border-color: var(--blanc); }
+    .cj-info { color: inherit !important; opacity: .7; }
+    @media (max-width: 700px) {
+      .diapo { grid-template-columns: 1fr 1fr; }
+      .diapo-cadre { grid-column: 1 / -1; grid-row: 1; grid-template-columns: 1fr; min-height: 0; }
+      .diapo-dessin { height: 240px; border-right: 0; border-bottom: 1px solid var(--filet); }
+      .diapo-prec { justify-self: start; } .diapo-suiv { justify-self: end; }
+    }
+    @media (prefers-reduced-motion: reduce) { .diapo-cadre > * { animation: none; } .lecture-texte span { transition: none; } }
+
+    /* Encadrés simples, sans double cadre */
+    .fort { outline: 0 !important; border-radius: 18px; }
+    .organistes li.actuelle { outline: 0; border-radius: 14px; padding: .9rem 1.1rem; }
+    .ouverture { padding-top: 8rem; }
+    /* Jeux : tuyau centré et agrandi dans son cadre */
+    .diapo-dessin { align-items: center; padding: 1.6rem; }
+    .diapo-dessin .orn { width: 100%; height: 100% !important; max-height: none !important; -webkit-mask-position: center; mask-position: center; transform: scale(var(--z, 1)); }
+
+    /* Au doigt : ce qui s'anime au survol s'anime quand l'élément passe au milieu de l'écran */
+    @media (hover: none) {
+      .sommaire a.actif { color: var(--bordeaux); padding-left: .6rem; }
+      .sommaire a.actif::after { transform: translateX(6px); }
     }
 
-    /* ── RETOUR ─────────────────────────── */
-    .retour {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--olive);
-      text-decoration: none;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 0.1s;
-      transition: opacity 0.2s;
-    }
-    .retour:hover { opacity: 0.85 !important; }
-    .retour svg { width: 18px; height: 8px; overflow: visible; }
-    .retour svg line, .retour svg polyline { stroke: var(--olive); stroke-width: 1.2; fill: none; }
+    /* Sommaire sur téléphone : rien ne dépasse */
+    .sommaire { overflow: hidden; padding-left: max(22px, env(safe-area-inset-left, 0px)) !important; padding-right: max(22px, env(safe-area-inset-right, 0px)) !important; }
+    .sommaire a { grid-template-columns: 3.4rem minmax(0, 1fr) auto; }
+    .sommaire a span { min-width: 0; overflow-wrap: break-word; }
+    @media (max-width: 560px) { .sommaire a { grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .6rem; font-size: 1.05rem; } .sommaire a::after { font-size: 1.2rem; } }
 
-    /* ── EN-TÊTE ────────────────────────── */
-    .surtitre {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 0.25s;
-    }
+  /* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
+  .pied { display: flex; flex-direction: column; align-items: center; }
+  .pied > b { order: 1; } .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; } .pied > span { order: 3; } .pied .sources, .pied p { order: 4; }
+    /* Éventail : contenu dans sa colonne, sans images coupées */
+    .visuel .eventail { overflow: visible; height: 400px; }
+    .visuel .eventail .carte { width: 120px; margin-left: -60px; transform-origin: 50% 260%; }
+    @media (max-width: 560px) { .visuel .eventail { height: 340px; } .visuel .eventail .carte { width: 96px; margin-left: -48px; } }
 
-    .titre-page {
-      font-family: var(--font-titre);
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      line-height: 1.06;
-      color: var(--olive);
-      letter-spacing: -0.01em;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.4s;
-    }
-
-    .sous-titre-page {
-      font-size: 1rem;
-      font-style: italic;
-      font-weight: 400;
-      color: rgba(var(--olive-rgb), 0.55);
-      margin-top: 1rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.55s;
-    }
-
-    .trait {
-      width: 48px;
-      height: 1px;
-      background: var(--sage);
-      margin: 2.5rem 0 3.5rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 0.65s;
-    }
-
-    /* ── INTRO ──────────────────────────── */
-    .intro {
-      font-size: 16px;
-      line-height: 1.9;
-      color: rgba(var(--olive-rgb), 0.7);
-      font-weight: 400;
-      font-style: italic;
-      border-left: 2px solid var(--sage);
-      padding-left: 1.5rem;
-      max-width: 640px;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.75s;
-    }
-
-    /* ── SOMMAIRE ───────────────────────── */
-    .sommaire {
-      background-color: var(--cream-2);
-      padding: 2.5rem 3rem;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.85s;
-    }
-
-    .sommaire-label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      margin-bottom: 1.5rem;
-    }
-
-    .sommaire ol { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-
-    .sommaire li { display: flex; align-items: baseline; gap: 0.8rem; }
-
-    .sommaire .num {
-      font-family: var(--font-titre);
-      font-size: 0.75rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      min-width: 1.8rem;
-    }
-
-    .sommaire a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--olive);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      line-height: 1.6;
-      transition: border-color 0.2s;
-      cursor: pointer;
-    }
-    .sommaire a:hover { border-color: rgba(var(--olive-rgb), 0.35); }
-
-    /* ── ARTICLES ───────────────────────── */
-    .article {
-      padding: 3.5rem 3rem;
-      margin-bottom: 2px;
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .article.visible { opacity: 1; transform: translateY(0); }
-
-    .article:nth-child(odd)  { background-color: var(--cream-2); }
-    .article:nth-child(even) { background-color: var(--cream); border: 1px solid rgba(var(--olive-rgb), 0.08); }
-
-    .article::after {
-      content: attr(data-num);
-      font-family: var(--font-titre);
-      font-size: 8rem;
-      color: rgba(var(--olive-rgb), 0.04);
-      position: absolute;
-      right: 2rem;
-      bottom: -1rem;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .article-entete {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .article-num {
-      font-family: var(--font-titre);
-      font-size: 0.75rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      padding-top: 0.55rem;
-      letter-spacing: 0.05em;
-    }
-
-    .article-titre {
-      font-family: var(--font-titre);
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      color: var(--olive);
-      line-height: 1.2;
-      position: relative;
-      z-index: 1;
-    }
-
-    .article-source {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-top: 0.4rem;
-      display: block;
-    }
-
-    .article-texte {
-      font-size: 16px;
-      line-height: 1.95;
-      color: rgba(var(--olive-rgb), 0.72);
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
-    }
-
-    .article-texte p + p { margin-top: 1.2rem; }
-
-    .article-texte blockquote {
-      margin: 1.5rem 0;
-      padding-left: 1.5rem;
-      border-left: 2px solid var(--sage);
-      font-style: italic;
-      color: rgba(var(--olive-rgb), 0.6);
-      line-height: 1.8;
-    }
-
-    .article-note {
-      font-size: 0.78rem;
-      font-style: italic;
-      color: rgba(var(--olive-rgb), 0.4);
-      border-top: 1px solid rgba(var(--olive-rgb), 0.08);
-      padding-top: 1rem;
-      margin-top: 1.5rem;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── POÈME ──────────────────────────── */
-    .poeme {
-      font-family: var(--font-titre);
-      font-size: 1rem;
-      line-height: 2;
-      color: rgba(var(--olive-rgb), 0.72);
-      font-style: italic;
-      padding-left: 2rem;
-      border-left: 2px solid var(--sage);
-      margin: 1rem 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .poeme-auteur {
-      display: block;
-      font-size: 0.75rem;
-      font-style: normal;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-top: 1rem;
-    }
-
-    /* ── PIED ───────────────────────────── */
-    .pied {
-      margin-top: 7rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 1s;
-    }
-
-    .pied-nom {
-      font-family: var(--font-titre);
-      font-size: 1.1rem;
-      color: rgba(var(--olive-rgb), 0.15);
-      letter-spacing: 0.06em;
-      user-select: none;
-    }
-
-    .pied-lieu {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.28);
-      font-weight: 500;
-    }
-
-    /* ── ANIMATION ──────────────────────── */
-    @keyframes apparition {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RESPONSIVE ─────────────────────── */
-    @media (max-width: 600px) {
-      .page          { padding: 4rem 1.5rem 6rem; }
-      .article       { padding: 2.5rem 1.5rem; }
-      .article::after { display: none; }
-      .sommaire      { padding: 2rem 1.5rem; }
-      .pied          { flex-direction: column; align-items: flex-start; }
-    }
-
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Presse de l'époque — Basilique Saint-Epvre de Nancy",
-    "url": "https://basiliquesaintepvre.com/presse/",
-    "description": "Revue de presse ancienne sur la construction et la vie de la Basilique Saint-Epvre à Nancy — archives journalistiques du XIXe et XXe siècle.",
-    "inLanguage": "fr",
-    "isPartOf": { "@id": "https://basiliquesaintepvre.com/" },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://basiliquesaintepvre.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Presse", "item": "https://basiliquesaintepvre.com/presse/" }
-      ]
-    }
-  }
-  </script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=8">
+    /* ── Jalons de la frise ── */
+    .jalons { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid currentColor; }
+    .jalon { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.4rem; padding: 1.6rem 0; border-bottom: 1px solid rgba(127,127,127,.3); }
+    .jalon-date { font: 500 clamp(1.8rem, 3.2vw, 2.6rem)/1 var(--titre); letter-spacing: -.035em; }
+    .jalon-date { grid-row: span 2; } .jalon h3, .jalon p { grid-column: 2; }
+    .jalon h3 { margin: 0 0 .5rem; font: 500 1.35rem/1.2 var(--titre); letter-spacing: -.015em; }
+    .jalon p { margin: 0 !important; }
+    @media (max-width: 560px) { .jalon { grid-template-columns: 1fr; gap: .4rem; } .jalon-date { grid-row: auto; } .jalon h3, .jalon p { grid-column: 1; } }
+    .mesures { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2.6rem; text-align: center; }
+    .mesures > div + div { border-left: 1px solid rgba(255,255,255,.4); }
+    .mesures b { display: block; font: 500 clamp(2.2rem, 5vw, 3.6rem)/1 var(--titre); letter-spacing: -.04em; }
+    .mesures span { display: block; margin-top: .4rem; font: 500 .78rem var(--titre); letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+    .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
+    /* ── Articles de presse : grand numéro et source à gauche, texte à droite ── */
+    .art-gauche { position: sticky; top: 110px; }
+    .art-gauche .b-num { font-size: clamp(5rem, 11vw, 8.5rem); }
+    .art-source { display: block; margin-top: 1.2rem; font: 500 .9rem/1.4 var(--titre); letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+    .bande.art { min-height: 0; padding: clamp(4rem, 8vh, 6rem) 0; }
+    .bande.art .bande-grille { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); }
+    .bande.art h2 { margin-top: 0; font-size: clamp(1.9rem, 3.6vw, 3rem); }
+    .article-note { font-size: .92rem; opacity: .75; }
+    .poeme { font: 500 clamp(1.15rem, 2vw, 1.4rem)/1.55 var(--titre); letter-spacing: -.01em; }
+    .poeme-auteur { display: block; margin-top: 1.2rem; font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; opacity: .75; }
+    @media (max-width: 820px) { .art-gauche { position: relative; top: 0; } .bande.art .bande-grille { grid-template-columns: 1fr; gap: 1rem; } }
+</style>
 </head>
 <body>
 
-<div class="page">
+<header class="ouverture">
+  <div class="col">
+    <h1>Presse de l'époque</h1>
+    <p class="sous">Journaux lorrains du XIXᵉ et du XXᵉ siècle</p>
+  </div>
+</header>
 
-  <!-- RETOUR -->
-  <a href="https://www.basiliquesaintepvre.com" class="retour">
-    <svg viewBox="0 0 18 8" aria-hidden="true">
-      <polyline points="6,1 1,4 6,7"/>
-      <line x1="1" y1="4" x2="17" y2="4"/>
-    </svg>
-    Basilique Saint-Epvre
-  </a>
+<div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
 
-  <!-- EN-TÊTE -->
-  <span class="surtitre">Archives · XIXe – XXe siècle</span>
-  <h1 class="titre-page">Presse<br>de l'époque</h1>
-  <p class="sous-titre-page">Extraits de journaux lorrains relatifs à la Basilique Saint-Epvre</p>
-  <div class="trait"></div>
+<main>
+  <section class="lecture"><p class="lecture-texte" aria-label="Ces pages rassemblent une sélection d'articles de presse, d'anecdotes et de récits méconnus autour de l'histoire de la basilique. Issus principalement du Journal de la Meurthe, du Patriote et d'autres journaux lorrains de la seconde moitié du XIXe siècle, ils témoignent de la vie de la basilique et de ses figures marquantes. "><span>Ces</span> <span>pages</span> <span>rassemblent</span> <span>une</span> <span>sélection</span> <span>d'articles</span> <span>de</span> <span>presse,</span> <span>d'anecdotes</span> <span>et</span> <span>de</span> <span>récits</span> <span>méconnus</span> <span>autour</span> <span>de</span> <span>l'histoire</span> <span>de</span> <span>la</span> <span>basilique.</span> <span>Issus</span> <span>principalement</span> <span>du</span> <span>Journal</span> <span>de</span> <span>la</span> <span>Meurthe,</span> <span>du</span> <span>Patriote</span> <span>et</span> <span>d'autres</span> <span>journaux</span> <span>lorrains</span> <span>de</span> <span>la</span> <span>seconde</span> <span>moitié</span> <span>du</span> <span>XIXe</span> <span>siècle,</span> <span>ils</span> <span>témoignent</span> <span>de</span> <span>la</span> <span>vie</span> <span>de</span> <span>la</span> <span>basilique</span> <span>et</span> <span>de</span> <span>ses</span> <span>figures</span> <span>marquantes.</span> <span></span></p></section>
 
-  <!-- INTRO -->
-  <p class="intro">
-    Ces pages rassemblent une sélection d'articles de presse, d'anecdotes et de récits méconnus autour de l'histoire de la basilique. Issus principalement du <em>Journal de la Meurthe</em>, du <em>Patriote</em> et d'autres journaux lorrains de la seconde moitié du XIXe siècle, ils témoignent de la vie de la basilique et de ses figures marquantes.
-  </p>
-
-  <!-- SOMMAIRE -->
-  <nav class="sommaire" aria-label="Sommaire">
-    <span class="sommaire-label">Sommaire</span>
-    <ol>
-      <li><span class="num">01</span><a data-cible="article-1">Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</a></li>
-      <li><span class="num">02</span><a data-cible="article-2">Les derniers jours de Mgr Trouillet</a></li>
-      <li><span class="num">03</span><a data-cible="article-3">Mort de Mgr Trouillet</a></li>
-      <li><span class="num">04</span><a data-cible="article-4">Les locataires de la tour de Saint-Epvre</a></li>
-      <li><span class="num">05</span><a data-cible="article-5">Installation du curé de Saint-Epvre</a></li>
-      <li><span class="num">06</span><a data-cible="article-6">Un pieux coup de pied</a></li>
-      <li><span class="num">07</span><a data-cible="article-7">Installation du nouveau curé de Saint-Epvre</a></li>
-      <li><span class="num">08</span><a data-cible="article-8">Vente mobilière de Mgr Trouillet</a></li>
-      <li><span class="num">09</span><a data-cible="article-9">Anniversaire de Mgr Trouillet</a></li>
-      <li><span class="num">10</span><a data-cible="article-10">Sonnets lorrains — Saint-Epvre</a></li>
-      <li><span class="num">11</span><a data-cible="article-11">Monographie de Saint-Epvre</a></li>
-      <li><span class="num">12</span><a data-cible="article-12">Statue de Mgr Trouillet</a></li>
-      <li><span class="num">13</span><a data-cible="article-13">La messe du 21 janvier à Nancy</a></li>
-    </ol>
+  <nav class="sommaire col apparait" aria-label="Sommaire">
+    <span class="cartouche">Sommaire</span>
+    <ol><li><a href="#article-1"><span>Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</span></a></li><li><a href="#article-2"><span>Les derniers jours de Mgr Trouillet</span></a></li><li><a href="#article-3"><span>Mort de Mgr Trouillet</span></a></li><li><a href="#article-4"><span>Les locataires de la tour de Saint-Epvre</span></a></li><li><a href="#article-5"><span>Installation du curé de Saint-Epvre</span></a></li><li><a href="#article-6"><span>Un pieux coup de pied</span></a></li><li><a href="#article-7"><span>Installation du nouveau curé de Saint-Epvre</span></a></li><li><a href="#article-8"><span>Vente mobilière de Mgr Trouillet</span></a></li><li><a href="#article-9"><span>Anniversaire de Mgr Trouillet</span></a></li><li><a href="#article-10"><span>Sonnets lorrains — Saint-Epvre</span></a></li><li><a href="#article-11"><span>Monographie de Saint-Epvre</span></a></li><li><a href="#article-12"><span>Statue de Mgr Trouillet</span></a></li><li><a href="#article-13"><span>La messe du 21 janvier à Nancy</span></a></li></ol>
   </nav>
 
-
-  <!-- ═══ ARTICLE 01 ═══════════════════════════════════════ -->
-  <article class="article" id="article-1" data-num="01">
-    <div class="article-entete">
-      <span class="article-num">01</span>
-      <div>
-        <h2 class="article-titre">Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</h2>
-        <span class="article-source">Le Patriote · 12 et 18 février 1886</span>
-      </div>
-    </div>
-    <div class="article-texte">
-      <p>Hier a eu lieu, à Saint-Epvre, le service religieux annoncé pour le repos de l'âme de Mme la comtesse de Chambord. Mgr Trouillet officiait lui-même. Tous les piliers étaient voilés de noir. Un catafalque entouré de cierges et orné de magnifiques couronnes blanches, offertes par les dames de Nancy, se dressait au-devant de l'autel. Une foule nombreuse remplissait la nef.</p>
+  <section class="bande art b-papier" id="article-1">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">01</span><span class="art-source">Le Patriote · 12 et 18 février 1886</span></div>
+      <div class="bande-texte">
+        <h2>Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</h2>
+        <p>Hier a eu lieu, à Saint-Epvre, le service religieux annoncé pour le repos de l'âme de Mme la comtesse de Chambord. Mgr Trouillet officiait lui-même. Tous les piliers étaient voilés de noir. Un catafalque entouré de cierges et orné de magnifiques couronnes blanches, offertes par les dames de Nancy, se dressait au-devant de l'autel. Une foule nombreuse remplissait la nef.</p>
       <p>Les places d'honneur étaient occupées par les principaux membres de l'ancien comité royaliste. Aux personnes qui composaient l'assistance et qui appartenaient à toutes les nuances de l'opinion conservatrice s'étaient jointes un grand nombre de dames, mues par un pieux souvenir envers la mémoire de Mme la comtesse de Chambord.</p>
       <p>Pendant la messe, chantée par la maîtrise, M. Hellé, maître de chapelle, a fait entendre le <em>Pie Jesu</em> de Stradella. À onze heures, le service se terminait, laissant dans le souvenir de tous l'impression d'une manifestation touchante et solennelle par sa simplicité, par son recueillement et par la pensée pieuse qui l'inspirait.</p>
       <p class="article-note">* Service commémoratif.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 02 ═══════════════════════════════════════ -->
-  <article class="article" id="article-2" data-num="02">
-    <div class="article-entete">
-      <span class="article-num">02</span>
-      <div>
-        <h2 class="article-titre">Les derniers jours de Mgr Trouillet</h2>
-        <span class="article-source">La Meurthe · Mars 1887</span>
       </div>
     </div>
-    <div class="article-texte">
-
-      <p><strong>La santé de M. Trouillet</strong></p>
+  </section>
+  <section class="bande art b-bordeaux" id="article-2">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">02</span><span class="art-source">La Meurthe · Mars 1887</span></div>
+      <div class="bande-texte">
+        <h2>Les derniers jours de Mgr Trouillet</h2>
+        <p><strong>La santé de M. Trouillet</strong></p>
       <p>Nous n'avions pas cru devoir, par égard pour la santé même de Mgr Trouillet, mentionner hier une indisposition dont l'éminent curé souffre depuis samedi et qui le contraint à garder le lit. Mgr Trouillet avait ressenti les premières atteintes de cette indisposition samedi soir. Une crise plus vive l'avait obligé pendant le sermon de dimanche matin à quitter l'église. Son énergie aidant, il avait pu toutefois revenir presque immédiatement du presbytère à Saint-Epvre pour assister à la dernière partie de la messe et sa présence avait heureusement rassuré ses paroissiens.</p>
       <p>Une note parue hier matin dans deux journaux de Nancy a occasionné pendant toute la journée d'hier de nombreuses démarches de Nancéiens venus de tous les points de la ville pour témoigner de leur sollicitude au malade. La consultation qui a eu lieu hier, à cinq heures, n'a point révélé d'aggravation sensible dans l'état de Mgr Trouillet, qui a passé une nuit calme et dont la tranquillité d'esprit est entière. Il est permis d'augurer qu'un repos absolu de quelques jours viendra rendre au malade ses forces précieuses.</p>
       <p class="article-note">La Meurthe, 16 mars 1887.</p>
@@ -477,75 +480,52 @@
 
       <p style="margin-top:2rem;"><strong>Mardi 15, 3 heures de l'après-midi</strong></p>
       <p>Le mieux n'a pas persisté. Le hoquet a reparu et certaines idées fixes, notamment celle de se lever, le tourmentent. La nuit de mardi à mercredi a été très agitée. La parole devient tout à fait difficile. Des sangsues ont été posées hier à la nuque du malade, qui conserve en général toute sa lucidité, mais qui délire fréquemment.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 03 ═══════════════════════════════════════ -->
-  <article class="article" id="article-3" data-num="03">
-    <div class="article-entete">
-      <span class="article-num">03</span>
-      <div>
-        <h2 class="article-titre">Mort de Mgr Trouillet</h2>
-        <span class="article-source">La Meurthe · 12 avril 1887</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Nous recevons à l'instant une triste nouvelle que nos bulletins quotidiens sur la santé de Mgr Trouillet laissaient malheureusement pressentir.</p>
+  </section>
+  <section class="bande art b-papier" id="article-3">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">03</span><span class="art-source">La Meurthe · 12 avril 1887</span></div>
+      <div class="bande-texte">
+        <h2>Mort de Mgr Trouillet</h2>
+        <p>Nous recevons à l'instant une triste nouvelle que nos bulletins quotidiens sur la santé de Mgr Trouillet laissaient malheureusement pressentir.</p>
       <p>Le digne curé de Saint-Epvre s'est éteint vendredi à 4 h 1/2 du matin, après une agonie de dix heures, confiant en la bonté du Dieu qu'il a servi si dignement, et dont le saint Viatique avait fortifié son cœur contre les angoisses de la dernière heure.</p>
       <p>L'émotion profonde causée par sa maladie, les marques de sollicitude unanime dont son chevet a été assiégé dès que l'on a pu pressentir la fatale issue de cette crise, témoignent des sentiments de vénération qu'il inspirait à tous ceux qui l'ont connu et aimé. La liste de ceux qu'il a obligés est si grande ! Ne s'étend-elle point à tous les rangs de la société, depuis les plus humbles conditions de la population lorraine jusqu'aux plus hautes dignités de l'épiscopat français, de la prélature romaine, des cours européennes ?</p>
       <blockquote>Et cependant, quelle existence plus modeste, plus régulière que celle de ce prêtre, de ce simple curé de paroisse, mort absolument pauvre, après avoir administré, pour la seule gloire de Dieu, des millions dont lui seul a su le nombre !</blockquote>
       <p>Sa vie se résume en trois lignes. Le bien qu'il a fait ne pourrait se dire en plusieurs volumes.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 04 ═══════════════════════════════════════ -->
-  <article class="article" id="article-4" data-num="04">
-    <div class="article-entete">
-      <span class="article-num">04</span>
-      <div>
-        <h2 class="article-titre">Les locataires de la tour de Saint-Epvre</h2>
-        <span class="article-source">La Meurthe · 1887</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Sous ce titre, je veux désigner deux espèces d'oiseaux qui ont fait élection de domicile dans la tour et dans la basilique de Saint-Epvre. Depuis quelques années, tour et clochetons étaient habités par des carnivores que l'on appelle vulgairement chasserot, mais que le naturaliste désigne sous le nom d'épervier. Jusqu'à l'année dernière, ils avaient vécu tranquilles, sans voisins de même espèce, quand est venu un couple de corneilles. Les éperviers avaient le haut de la tour et les corneilles les clochetons.</p>
+  </section>
+  <section class="bande art b-navy" id="article-4">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">04</span><span class="art-source">La Meurthe · 1887</span></div>
+      <div class="bande-texte">
+        <h2>Les locataires de la tour de Saint-Epvre</h2>
+        <p>Sous ce titre, je veux désigner deux espèces d'oiseaux qui ont fait élection de domicile dans la tour et dans la basilique de Saint-Epvre. Depuis quelques années, tour et clochetons étaient habités par des carnivores que l'on appelle vulgairement chasserot, mais que le naturaliste désigne sous le nom d'épervier. Jusqu'à l'année dernière, ils avaient vécu tranquilles, sans voisins de même espèce, quand est venu un couple de corneilles. Les éperviers avaient le haut de la tour et les corneilles les clochetons.</p>
       <p>Cette première année s'était bien passée, à part quelques disputes. Mais cette année ce n'est pas la même chose ; les locataires sont plus nombreux. Le couple de corneilles a eu deux pontes de six corneilles chacune : mâle, femelle et douze petits font quatorze corneilles. Tous se font entendre, par leurs cris agaçants, tous les jours à cinq heures du matin.</p>
       <p>Il y a quelques jours, il fallait les voir se disputant le terrain. C'était un spectacle très amusant. Aujourd'hui, le calme renaît. On voit l'épervier occuper la même rosace que la corneille occupait l'année dernière, et la corneille faire le nid de l'épervier. Cela montre qu'ils sont plus sensés que bien des gens de notre siècle…</p>
       <p>Depuis quelques jours, chaque couple travaille à faire son nid. Il faut voir avec quelle ardeur ces oiseaux vont chercher les matériaux pour le tresser. Il y a deux jours, ils rapportaient des branches assez grosses, longues de 30 à 40 centimètres. J'en ai vu casser des branches de sapin ; j'en ai vu aussi sur les arbres de la place Lafayette et à la Pépinière.</p>
       <p>C'est vraiment un beau coup d'œil. J'engage les personnes qui désirent en jouir à se mettre sur la place Carrière, sur la place des Dames ou sur la place Saint-Epvre, et à bâiller… aux corneilles !</p>
       <p class="article-note">Un Amateur.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 05 ═══════════════════════════════════════ -->
-  <article class="article" id="article-5" data-num="05">
-    <div class="article-entete">
-      <span class="article-num">05</span>
-      <div>
-        <h2 class="article-titre">Installation du curé de Saint-Epvre</h2>
-        <span class="article-source">1887</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>C'est lundi dernier, fête de l'Assomption, que le successeur de Mgr Trouillet, à Saint-Epvre, a été solennellement installé par M. le vicaire général Jambois, au milieu d'un grand concours de clergé et de notabilités nancéiennes.</p>
+  </section>
+  <section class="bande art b-papier" id="article-5">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">05</span><span class="art-source">1887</span></div>
+      <div class="bande-texte">
+        <h2>Installation du curé de Saint-Epvre</h2>
+        <p>C'est lundi dernier, fête de l'Assomption, que le successeur de Mgr Trouillet, à Saint-Epvre, a été solennellement installé par M. le vicaire général Jambois, au milieu d'un grand concours de clergé et de notabilités nancéiennes.</p>
       <p>Dans un discours fort élevé et très patriotique, le chanoine Briot a rappelé la mémoire de son inoubliable prédécesseur, de cet homme extraordinaire qui a bien aimé sa patrie, et qui est entré vivant dans la légende du pays lorrain ; il a évoqué les souvenirs glorieux de l'ancien et du nouveau Saint-Epvre, puis les jours d'épreuve de la France qui n'a pas, a-t-il ajouté, de province plus chère que la Lorraine, puisque c'est d'abord la terre des vaillants et qu'ensuite elle porte au flanc une blessure toujours saignante.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 06 ═══════════════════════════════════════ -->
-  <article class="article" id="article-6" data-num="06">
-    <div class="article-entete">
-      <span class="article-num">06</span>
-      <div>
-        <h2 class="article-titre">Un pieux coup de pied</h2>
       </div>
     </div>
-    <div class="article-texte">
-      <blockquote>— Encore un autel neuf ! Où prends-tu l'argent ?<br>
+  </section>
+  <section class="bande art b-bordeaux" id="article-6">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">06</span></div>
+      <div class="bande-texte">
+        <h2>Un pieux coup de pied</h2>
+        <blockquote>— Encore un autel neuf ! Où prends-tu l'argent ?<br>
       — Je ne le prends pas, mon cher. Je le reçois.<br>
       — Il faut convenir que tu as dans ta paroisse des âmes bien généreuses et qui ont le porte-monnaie facile.<br>
       — Ni généreuses, ni faciles.<br>
@@ -562,71 +542,48 @@
 
       <p>Elle me quitta en me donnant la main. Depuis, elle m'a donné bien autre chose. C'est à elle que je dois la restauration de mon église. Cependant, elle commence à se faire tirer l'oreille. Aussi, dernièrement, quand je lui demandais un portail neuf, elle me dit en souriant : <em>« Je vois ce que c'est, l'abbé. Vous voudriez bien encore un coup de pied. »</em></p>
       <p class="article-note">J. K.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 07 ═══════════════════════════════════════ -->
-  <article class="article" id="article-7" data-num="07">
-    <div class="article-entete">
-      <span class="article-num">07</span>
-      <div>
-        <h2 class="article-titre">Installation du nouveau curé de Saint-Epvre</h2>
-        <span class="article-source">La Meurthe · 21 août 1887</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Nous avons parlé, le lendemain même, de l'installation de M. l'abbé Briot, curé de Saint-Epvre. Voici en quels termes la <em>Semaine religieuse</em> en fait mention : C'est lundi dernier, en la fête de l'Assomption de la Sainte Vierge, qu'a eu lieu cette imposante cérémonie. C'est M. Jambois, vicaire général, qui a présenté le nouveau curé aux fidèles de Saint-Epvre.</p>
+  </section>
+  <section class="bande art b-papier" id="article-7">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">07</span><span class="art-source">La Meurthe · 21 août 1887</span></div>
+      <div class="bande-texte">
+        <h2>Installation du nouveau curé de Saint-Epvre</h2>
+        <p>Nous avons parlé, le lendemain même, de l'installation de M. l'abbé Briot, curé de Saint-Epvre. Voici en quels termes la <em>Semaine religieuse</em> en fait mention : C'est lundi dernier, en la fête de l'Assomption de la Sainte Vierge, qu'a eu lieu cette imposante cérémonie. C'est M. Jambois, vicaire général, qui a présenté le nouveau curé aux fidèles de Saint-Epvre.</p>
       <p>Après avoir accompli les rites sacrés, M. le vicaire général, du haut de la chaire, a rendu hommage à l'ancien pasteur, Mgr Trouillet, puis a fait l'histoire de la nomination de M. l'abbé Briot, des difficultés qu'elle a suscitées et des raisons pour lesquelles Monseigneur a cru devoir la maintenir. Il a ensuite tracé le portrait du bon curé que M. Briot s'efforcera de réaliser.</p>
       <p>Après l'Évangile, M. Briot est monté en chaire. Il a rappelé, avec une grande émotion, les œuvres prodigieuses de Mgr Trouillet ; il a remercié MM. les vicaires de leur zèle, puis il a montré comment il comprenait le ministère de curé dans une grande paroisse et dans les temps actuels. En terminant, dans une touchante péroraison, le nouveau curé s'est consacré avec ses paroissiens au Cœur de Jésus et à la Très Sainte Vierge. On nous rapporte que l'impression produite par cet éloquent discours a été très bonne.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 08 ═══════════════════════════════════════ -->
-  <article class="article" id="article-8" data-num="08">
-    <div class="article-entete">
-      <span class="article-num">08</span>
-      <div>
-        <h2 class="article-titre">Vente mobilière de Mgr Trouillet</h2>
-        <span class="article-source">L'Espérance · 1887</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>La vente des objets mobiliers provenant de la succession de Mgr Trouillet s'est terminée vendredi par un produit de plus de onze mille francs. Le mobilier proprement dit n'entre dans cette somme que pour une très faible part, car il était de la dernière simplicité. Ce qui a fait de l'argent, ce sont les dons offerts au vénérable curé, notamment à l'occasion de ses noces d'or, et sa cave alimentée par les dons de la reconnaissance.</p>
+  </section>
+  <section class="bande art b-navy" id="article-8">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">08</span><span class="art-source">L'Espérance · 1887</span></div>
+      <div class="bande-texte">
+        <h2>Vente mobilière de Mgr Trouillet</h2>
+        <p>La vente des objets mobiliers provenant de la succession de Mgr Trouillet s'est terminée vendredi par un produit de plus de onze mille francs. Le mobilier proprement dit n'entre dans cette somme que pour une très faible part, car il était de la dernière simplicité. Ce qui a fait de l'argent, ce sont les dons offerts au vénérable curé, notamment à l'occasion de ses noces d'or, et sa cave alimentée par les dons de la reconnaissance.</p>
       <p>Des amis se sont disputé à titre de souvenirs les quelques bibelots du défunt. Un petit crucifix de bois sans valeur artistique est monté jusqu'à 80 francs. Un tableautin de saint Joseph brodé en soie s'est vendu 61 francs. Un encrier en argent, un crucifix en bronze argenté, une tête de Christ de Barbedienne, une vierge en ivoire et un tableau ont été achetés séparément par une même personne pour le prix total de 914 francs. La canne a été payée 45 francs, le grand bréviaire 42 francs.</p>
       <p>Le fauteuil habituel du premier maçon de la chrétienté, un bien pauvre meuble, a atteint le prix de 73 francs. Les Trappistes, ces enfants gâtés de Mgr Trouillet, prévenus trop tard de la vente, ont fait racheter le lit de leur bienfaiteur.</p>
       <p>Enfin, un Israélite a acheté tous les exemplaires restant de la relation des Noces d'or du bon curé, environ 1 500, et il les a écoulés ce matin en un clin d'œil, sur la place du Marché. Le peuple lorrain conserve pieusement le souvenir de cette grande mémoire.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 09 ═══════════════════════════════════════ -->
-  <article class="article" id="article-9" data-num="09">
-    <div class="article-entete">
-      <span class="article-num">09</span>
-      <div>
-        <h2 class="article-titre">Anniversaire de Mgr Trouillet</h2>
-        <span class="article-source">Journal de La Meurthe · 22 mai 1888</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Lundi 20 mars, un service anniversaire pour le repos de l'âme de Mgr Joseph Trouillet a été célébré solennellement à Saint-Epvre. Le souvenir du prélat défunt est trop fortement ancré dans la mémoire de ses paroissiens pour que la date du 18 mars, jour de sa mort, n'éveille pas dans le clergé lorrain de profonds regrets.</p>
+  </section>
+  <section class="bande art b-papier" id="article-9">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">09</span><span class="art-source">Journal de La Meurthe · 22 mai 1888</span></div>
+      <div class="bande-texte">
+        <h2>Anniversaire de Mgr Trouillet</h2>
+        <p>Lundi 20 mars, un service anniversaire pour le repos de l'âme de Mgr Joseph Trouillet a été célébré solennellement à Saint-Epvre. Le souvenir du prélat défunt est trop fortement ancré dans la mémoire de ses paroissiens pour que la date du 18 mars, jour de sa mort, n'éveille pas dans le clergé lorrain de profonds regrets.</p>
       <p>Un catafalque magnifique et revêtu de décorations pieuses se dressait au milieu de la nef. Le tombeau de Mgr Trouillet avait été également orné pour cette solennité. Le clergé diocésain était représenté par M. Voinot, vicaire général, par M. l'abbé Krick, neveu de Mgr Trouillet, par MM. les curés de Nancy et des doyennés du diocèse. M. le curé Briot a dit la messe de Requiem, chantée par les enfants des Frères. Les assistants ont, après l'absoute, défilé devant le tombeau pour donner l'eau bénite à la dépouille mortelle du vénéré prélat.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 10 ═══════════════════════════════════════ -->
-  <article class="article" id="article-10" data-num="10">
-    <div class="article-entete">
-      <span class="article-num">10</span>
-      <div>
-        <h2 class="article-titre">Sonnets lorrains — Saint-Epvre</h2>
       </div>
     </div>
-    <div class="article-texte">
-      <div class="poeme">
+  </section>
+  <section class="bande art b-bordeaux" id="article-10">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">10</span></div>
+      <div class="bande-texte">
+        <h2>Sonnets lorrains — Saint-Epvre</h2>
+        <div class="poeme">
         Hors la cathédrale gothique,<br>
         D'ordinaire, dans la cité,<br>
         Tout est neuf, ou du moins gratté ;<br>
@@ -646,96 +603,106 @@
         L'aspect des siècles écoulés.
         <span class="poeme-auteur">Léon Barat</span>
       </div>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 11 ═══════════════════════════════════════ -->
-  <article class="article" id="article-11" data-num="11">
-    <div class="article-entete">
-      <span class="article-num">11</span>
-      <div>
-        <h2 class="article-titre">Monographie de Saint-Epvre</h2>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Nous apprenons que le Père Eugène, religieux trappiste de l'abbaye de Notre-Dame des Neiges, a terminé l'importante monographie de la Basilique Saint-Epvre de Nancy. Cet ouvrage de grand luxe avait été demandé au savant religieux par Mgr Trouillet, qui s'était engagé à en payer les frais de publication, et versa à ce sujet 30 000 francs.</p>
+  </section>
+  <section class="bande art b-papier" id="article-11">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">11</span></div>
+      <div class="bande-texte">
+        <h2>Monographie de Saint-Epvre</h2>
+        <p>Nous apprenons que le Père Eugène, religieux trappiste de l'abbaye de Notre-Dame des Neiges, a terminé l'importante monographie de la Basilique Saint-Epvre de Nancy. Cet ouvrage de grand luxe avait été demandé au savant religieux par Mgr Trouillet, qui s'était engagé à en payer les frais de publication, et versa à ce sujet 30 000 francs.</p>
       <p>Le Père Eugène fut pendant plus d'une année le commensal du curé de Saint-Epvre, et durant ce temps recueillit sur place tous les matériaux et documents pour son œuvre considérable. Le manuscrit est aujourd'hui terminé ; reste la grosse question de publication. Un tel ouvrage, publié avec de splendides phototypies et des chromolithographies nombreuses, n'aura guère accès que dans les bibliothèques publiques et sur les rayons des amateurs lorrains.</p>
       <p>La monographie de la Basilique Saint-Epvre aura le même format que l'ouvrage de M. Auguin sur la Cathédrale de Nancy, et sera illustrée de nombreuses vignettes. Un tel ouvrage fera grand honneur à notre pays ; reste à trouver, pour en hâter la publication, les 300 souscripteurs nécessaires.</p>
       <p class="article-note">E. B.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 12 ═══════════════════════════════════════ -->
-  <article class="article" id="article-12" data-num="12">
-    <div class="article-entete">
-      <span class="article-num">12</span>
-      <div>
-        <h2 class="article-titre">Statue de Mgr Trouillet</h2>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Nous apprenons que la statue de marbre blanc de Mgr Trouillet, le regretté curé de Saint-Epvre, est en cours d'exécution à l'école des Beaux-Arts à Paris. Le bloc de marbre, on le sait, a été donné, sur les instances de M. Roger Marx et en faveur de son ami Bussières.</p>
+  </section>
+  <section class="bande art b-navy" id="article-12">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">12</span></div>
+      <div class="bande-texte">
+        <h2>Statue de Mgr Trouillet</h2>
+        <p>Nous apprenons que la statue de marbre blanc de Mgr Trouillet, le regretté curé de Saint-Epvre, est en cours d'exécution à l'école des Beaux-Arts à Paris. Le bloc de marbre, on le sait, a été donné, sur les instances de M. Roger Marx et en faveur de son ami Bussières.</p>
       <p>La mise au point est bien avancée ; M. Bussières, dans un court séjour à Paris, a tout préparé pour la station assez longue qu'il fera durant l'hiver à son atelier de Paris. M. Bussières a tiré un parti habile des quelques observations faites par les visiteurs, lors de son exposition, et le jeune artiste nous prépare pour l'an prochain une œuvre de mérite.</p>
-    </div>
-  </article>
-
-
-  <!-- ═══ ARTICLE 13 ═══════════════════════════════════════ -->
-  <article class="article" id="article-13" data-num="13">
-    <div class="article-entete">
-      <span class="article-num">13</span>
-      <div>
-        <h2 class="article-titre">La messe du 21 janvier à Nancy</h2>
-        <span class="article-source">Messe commémorative de la mort du roi Louis XVI</span>
       </div>
     </div>
-    <div class="article-texte">
-      <p>Avant-hier a eu lieu, à Saint-Epvre, une pieuse et émouvante cérémonie : la messe commémorative de la mort du roi Louis XVI. Cette tradition, conservée religieusement à Nancy du vivant du comte de Chambord par le parti royaliste, a été soigneusement perpétuée par M. le comte de Paris.</p>
+  </section>
+  <section class="bande art b-papier" id="article-13">
+    <div class="bande-grille">
+      <div class="art-gauche"><span class="b-num">13</span><span class="art-source">Messe commémorative de la mort du roi Louis XVI</span></div>
+      <div class="bande-texte">
+        <h2>La messe du 21 janvier à Nancy</h2>
+        <p>Avant-hier a eu lieu, à Saint-Epvre, une pieuse et émouvante cérémonie : la messe commémorative de la mort du roi Louis XVI. Cette tradition, conservée religieusement à Nancy du vivant du comte de Chambord par le parti royaliste, a été soigneusement perpétuée par M. le comte de Paris.</p>
       <p>Il semble qu'elle emprunte aujourd'hui aux douleurs de l'exil qui frappent la famille royale une importance et une solennité exceptionnelles. Un devoir plus impérieux s'impose à tous les membres du grand parti monarchique : affirmer en cette occasion non seulement leur réprobation du crime odieux commis par la Convention, mais leur respect pour la grande tradition d'unité monarchique.</p>
       <p>Au pied de l'autel où s'unissent dans une même prière tous ceux qui portent vivant au cœur l'amour du pays, la pensée s'élève vers Celui qui préside aux destinées des peuples. C'est à Dieu, maître de l'avenir, que s'adressent les vœux ardents de tous ceux qui gardent en sa justice une confiance absolue.</p>
       <p>Rien dans cette solennité qui ressemble aux bruyantes manifestations des partis. Tout y est émouvant comme le recueillement, silencieux comme la prière, grand et simple comme un acte de pure conscience.</p>
       <p>Et c'est dans cette commune pensée qu'un nombre considérable de catholiques remplissaient avant-hier la vaste nef de Saint-Epvre. Dans cette communauté de regrets et d'espérances, il eût été difficile de distinguer une trace des dissentiments dont les malheurs du présent ont effacé jusqu'au dernier souvenir. Jamais pareille affluence n'avait été vue dans les mêmes circonstances.</p>
+      </div>
     </div>
-  </article>
+  </section>
+</main>
 
-
-  <!-- PIED -->
-  <div class="pied">
-    <span class="pied-nom">Saint-Epvre</span>
-    <span class="pied-lieu">Nancy · Lorraine · France</span>
-  </div>
-
+<div class="cul-de-lampe" aria-hidden="true">
+  <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=3)"></div>
 </div>
 
+<footer class="pied">
+  <div class="orn rosace-pied" style="--src:url(../assets/ornements/rosace-p.svg?v=2)" aria-hidden="true"></div>
+  <b>Saint-Epvre</b>
+  <span>Nancy · Lorraine · France</span>
+  </footer>
+
 <script>
-  /* Navigation sommaire — compatible Google Sites iframe */
-  document.querySelectorAll('.sommaire a[data-cible]').forEach(function(lien) {
-    lien.addEventListener('click', function(e) {
-      e.preventDefault();
-      var cible = document.getElementById(this.getAttribute('data-cible'));
-      if (cible) {
-        cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Apparition douce des blocs au défilement
+  (function () {
+    var els = document.querySelectorAll('.apparait, .apparait-ouv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('vu'); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<script>
+  (function () {
+    // Le chapeau se lit au défilement : les mots passent du gris au bleu marine
+    (function () {
+      var mots = document.querySelectorAll('.lecture-texte span'); if (!mots.length) return;
+      var bloc = document.querySelector('.lecture');
+      function maj() {
+        var r = bloc.getBoundingClientRect(), h = innerHeight;
+        var p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25)));
+        var lus = Math.round(p * mots.length);
+        mots.forEach(function (m, i) { m.classList.toggle('lu', i < lus); });
       }
-    });
-  });
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
+      var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
+    })();
 
-  /* Animation au scroll */
-  var blocs = document.querySelectorAll('.article');
-  var obs = new IntersectionObserver(function(entrees) {
-    entrees.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  blocs.forEach(function(b) { obs.observe(b); });
+    // Bandes empilées : une bande plus haute que l'écran reste collée par le bas
+    (function () {
+      // hauteur d'écran figée (la barre d'adresse du téléphone ne doit pas faire sauter les bandes)
+      var VW = innerWidth, VH = innerHeight;
+      function cale() { document.querySelectorAll('.bande').forEach(function (b) { b.style.setProperty('--st', Math.min(0, VH - b.offsetHeight) + 'px'); }); }
+      addEventListener('resize', function () { if (Math.abs(innerWidth - VW) > 40) { VW = innerWidth; VH = innerHeight; } cale(); });
+      addEventListener('load', cale); cale();
+    })();
+    // la façade se dresse quand elle arrive à l'écran
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .2 });
+      document.querySelectorAll('.facade-jeux').forEach(function (b) { io.observe(b); });
+    } else document.querySelectorAll('.facade-jeux').forEach(function (b) { b.classList.add('vu'); });
+  })();
+</script>
+<script>
+  // Sur écran tactile, l'élément au centre de l'écran prend l'état « survolé »
+  (function () {
+    if (!matchMedia('(hover: none)').matches || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('actif', e.isIntersecting); }); }, { rootMargin: '-42% 0px -42% 0px' });
+    document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
+  })();
 </script>
 <script defer src="../assets/js/nav.js?v=10"></script>
-  <script defer src="../assets/js/site.js?v=21"></script>
-<script src="/assets/js/refonte.js?v=2"></script>
 </body>
 </html>

@@ -200,6 +200,13 @@
     .liste a.actif .fl, .colonnes a.actif .fl { transform: translateX(8px); }
     .porte.actif .baie { transform: translateY(-8px); }
   }
+
+  /* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
+  .pied { display: flex; flex-direction: column; align-items: center; }
+  .pied > b { order: 1; } .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; } .pied > span { order: 3; } .pied .sources, .pied p { order: 4; }
+  .pied { background: var(--bordeaux) !important; color: #fff; padding: 4rem 22px 4.5rem !important; }
+  .pied b, .pied span { color: #fff !important; } .pied span { opacity: .75; }
+  .pied .orn { color: #fff !important; }
 </style>
 </head>
 <body>

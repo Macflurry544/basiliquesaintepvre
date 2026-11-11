@@ -387,6 +387,10 @@
     .sommaire a { grid-template-columns: 3.4rem minmax(0, 1fr) auto; }
     .sommaire a span { min-width: 0; overflow-wrap: break-word; }
     @media (max-width: 560px) { .sommaire a { grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .6rem; font-size: 1.05rem; } .sommaire a::after { font-size: 1.2rem; } }
+
+  /* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
+  .pied { display: flex; flex-direction: column; align-items: center; }
+  .pied > b { order: 1; } .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; } .pied > span { order: 3; } .pied .sources, .pied p { order: 4; }
 </style>
   <script type="application/ld+json">
   {

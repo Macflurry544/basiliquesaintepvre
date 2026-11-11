@@ -129,3 +129,18 @@ html body .l-glass:not(.sombre) :is(p, span, li, strong, em, h2, h3, h4, cite, s
 html body .hero .hero-img { -webkit-mask: var(--oculus) center 42% / min(78vh, 92vw) no-repeat; mask: var(--oculus) center 42% / min(78vh, 92vw) no-repeat; filter: none !important; }
 html body .hero .hero-vignette { display: none !important; }
 html body .hero .hero-meta { position: relative; z-index: 2; color: #fff; }
+
+/* Ouverture : plus de surtitre ; chiffres plus bas, en grand, sans encadré */
+html body .hero .hero-surtitre { display: none !important; }
+html body .hero .hero-chiffres { margin-top: 12vh !important; gap: clamp(1.5rem, 5vw, 4.5rem) !important; background: none !important; border: 0 !important; flex-wrap: wrap; }
+html body .hero .hero-chiffre { background: none !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; padding: 0 !important; border-radius: 0 !important; }
+html body .hero .hero-chiffre::before, html body .hero .hero-chiffre::after { display: none !important; }
+html body .hero .hero-chiffre-val { font-size: clamp(2.6rem, 6vw, 4.6rem) !important; line-height: 1 !important; }
+html body .hero .hero-chiffre-lab { font-family: var(--grot) !important; font-size: .8rem !important; letter-spacing: .2em !important; }
+
+/* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
+html body .pied, html body .page-closing { display: flex !important; flex-direction: column; align-items: center; }
+html body .pied .pied-nom, html body .pied > b { order: 1; }
+html body .pied::before, html body .page-closing::before, html body .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; }
+html body .pied .pied-lieu, html body .pied > span { order: 3; }
+html body .pied .sources, html body .pied p { order: 4; }

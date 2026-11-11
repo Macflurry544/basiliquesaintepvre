@@ -66,11 +66,28 @@
     return '<a href="' + l.href + '"' + cls + ' style="--k:' + j + '"><span>' + l.label + '</span></a>';
   }).join('');
 
+  /* Police grotesque du menu, chargée une seule fois */
+  if (!document.querySelector('link[href*="Familjen+Grotesk"]')) {
+    var lf = document.createElement('link'); lf.rel = 'stylesheet';
+    lf.href = 'https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&display=swap';
+    document.head.appendChild(lf);
+  }
+
   var closeSVG =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">'
-    + '<line x1="5" y1="5" x2="19" y2="19"/>'
-    + '<line x1="19" y1="5" x2="5" y2="19"/>'
-    + '</svg>';
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">'
+    + '<line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>';
+  var chevron = '<svg class="nm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 8q8 0 8 9q0-9 8-9"/></svg>';
+  var ext = '<svg class="nm-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>';
+
+  /* Grandes rubriques : un titre géant qui déplie ses pages */
+  var groupsHTML = MOBILE_GROUPS.map(function (g, i) {
+    var sous = g.links.map(function (l) {
+      return '<a href="' + l.href + '"' + (l.href === activeHref ? ' class="active"' : '') + '>' + l.label + '</a>';
+    }).join('');
+    return '<div class="nm-groupe" style="--k:' + i + '">'
+      + '<button class="nm-titre" aria-expanded="false"><span>' + g.title + '</span>' + chevron + '</button>'
+      + '<div class="nm-sous"><div>' + sous + '</div></div></div>';
+  }).join('');
 
   var navHTML =
     '<nav class="nav" id="nav" aria-label="Navigation principale">'
@@ -83,10 +100,17 @@
     + '</nav>'
     + '<div class="nav-voile" id="navVoile" aria-hidden="true"></div>'
     + '<div class="nav-fullscreen" id="navFullscreen" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">'
-    +   '<button class="nav-fullscreen-close" id="navClose" aria-label="Fermer le menu">' + closeSVG + '</button>'
-    +   '<nav class="nav-fullscreen-links" aria-label="Menu mobile">'
-    +     mobileList
-    +   '</nav>'
+    +   '<div class="nm-haut">'
+    +     '<a class="nm-heure" href="/horaires-douverture/">Ouverte le samedi 16h30–18h30 <span>→</span></a>'
+    +     '<a class="nm-logo" href="/"><span class="nm-rosace" aria-hidden="true"></span>Basilique<br>Saint-Epvre</a>'
+    +     '<button class="nav-fullscreen-close" id="navClose" aria-label="Fermer le menu">' + closeSVG + '</button>'
+    +   '</div>'
+    +   '<nav class="nm-groupes" aria-label="Sommaire">' + groupsHTML + '</nav>'
+    +   '<div class="nm-second"><a href="/contact/">Contact</a><a href="/carte/">Venir</a><a href="/bibliographie/">Bibliographie</a></div>'
+    +   '<div class="nm-bas">'
+    +     '<a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/" target="_blank" rel="noopener">Messes et offices' + ext + '</a>'
+    +     '<a href="https://www.oratoire-nancy.org/" target="_blank" rel="noopener">L\'Oratoire de Nancy' + ext + '</a>'
+    +   '</div>'
     + '</div>';
 
   document.body.insertAdjacentHTML('afterbegin', navHTML);
@@ -182,7 +206,7 @@
     burger.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    var firstLink = menu.querySelector('.nav-fullscreen-links a');
+    var firstLink = menu.querySelector('.nm-titre');
     if (firstLink) setTimeout(function () { firstLink.focus(); }, 40);
   }
 
@@ -204,6 +228,18 @@
     if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) closeMenu();
   });
   closeBtn.addEventListener('click', closeMenu);
+
+  /* Rubriques dépliantes : une seule ouverte ; celle de la page en cours est ouverte d'office */
+  var groupes = menu.querySelectorAll('.nm-groupe');
+  groupes.forEach(function (g) {
+    var b = g.querySelector('.nm-titre');
+    if (g.querySelector('a.active')) { g.classList.add('ouvert'); b.setAttribute('aria-expanded', 'true'); }
+    b.addEventListener('click', function () {
+      var ouvrir = !g.classList.contains('ouvert');
+      groupes.forEach(function (x) { x.classList.remove('ouvert'); x.querySelector('.nm-titre').setAttribute('aria-expanded', 'false'); });
+      if (ouvrir) { g.classList.add('ouvert'); b.setAttribute('aria-expanded', 'true'); }
+    });
+  });
 
   menu.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', closeMenu);

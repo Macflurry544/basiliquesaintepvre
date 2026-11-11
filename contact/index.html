@@ -36,7 +36,7 @@
     .tete .trait { width: 64px; height: 4px; background: var(--blanc); margin: 2.4rem auto 0; }
 
     /* Contenu : titres et listes à puces carrées, sans rien de plus */
-    main { padding: 5.5rem 0 6rem; }
+    main.col { padding-top: 5.5rem; padding-bottom: 6rem; }
     h2 { margin: 0 0 1rem; font: 500 clamp(1.9rem, 4vw, 2.6rem)/1.05 var(--grot); letter-spacing: -.025em; }
     h2 + ul { margin-top: 0; }
     section + section { margin-top: 3.4rem; }
@@ -56,6 +56,13 @@
     .mail button { font: 600 .95rem var(--grot); padding: .6rem 1.2rem; border-radius: 999px; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); cursor: pointer; }
     .mail button.copie { background: var(--navy); color: var(--blanc); }
     section p { margin: 0 0 1rem; }
+    /* Plus d'air */
+    .tete { padding: 10rem 0 6rem; }
+    main.col { padding-top: 7rem; padding-bottom: 8rem; }
+    section + section { margin-top: 5.5rem; padding-top: 5.5rem; border-top: 1px solid rgba(33,52,72,.14); }
+    h2 { margin-bottom: 1.8rem; }
+    li { margin-bottom: 1.2rem; line-height: 1.7; }
+    .mail { margin-top: 0; gap: 1.4rem 2rem; }
   </style>
 </head>
 <body>

@@ -43,7 +43,7 @@
     .tete p { margin: 1.2rem 0 0; font: 500 .9rem var(--grot); letter-spacing: .3em; text-transform: uppercase; color: var(--gris); }
 
     /* ── L'arc de vitraux autour du texte ── */
-    .arc { position: relative; height: calc(var(--R) + 140px); margin: 2rem auto 0; max-width: 1240px; }
+    .arc { position: relative; height: calc(var(--R) + var(--c) * 1.45 + 110px); margin: 3rem auto 0; max-width: 1240px; }
     .arc-carte { position: absolute; left: 50%; bottom: 80px; width: var(--c); aspect-ratio: 3 / 4; margin-left: calc(var(--c) / -2);
       border-radius: 16px; overflow: hidden; background: var(--papier) center / cover no-repeat; box-shadow: 0 16px 30px -18px rgba(33,52,72,.55);
       transform: rotate(var(--a)) translateY(calc(var(--R) * -1)) ; transform-origin: 50% 100%;
@@ -117,7 +117,6 @@
 <header class="tete">
   <div class="rosace" aria-hidden="true"></div>
   <h1>Les vitraux</h1>
-  <p>• Soixante-quatorze verrières •</p>
 </header>
 
 <section class="arc" id="arc" aria-label="Quelques vitraux">
@@ -172,7 +171,7 @@
   var avecImg = tous.filter(function (v) { return v.img; });
 
   // ── Arc : 13 vitraux répartis sur un demi-cercle au-dessus du texte
-  var arc = document.getElementById('arc'), N = 13, pas = Math.max(1, Math.floor(avecImg.length / N));
+  var arc = document.getElementById('arc'), N = 9, pas = Math.max(1, Math.floor(avecImg.length / N));
   var choix = []; for (var k = 0; k < N && k * pas < avecImg.length; k++) choix.push(avecImg[k * pas]);
   choix.forEach(function (v, k) {
     var b = document.createElement('button'); b.className = 'arc-carte'; b.type = 'button';
@@ -183,7 +182,7 @@
     arc.appendChild(b);
   });
   function taille() {
-    var R = Math.min(520, window.innerWidth * .40), c = Math.max(64, Math.min(120, window.innerWidth * .11));
+    var R = Math.min(360, window.innerWidth * .34), c = Math.max(58, Math.min(100, window.innerWidth * .1));
     arc.style.setProperty('--R', R + 'px'); arc.style.setProperty('--c', c + 'px');
   }
   taille(); addEventListener('resize', taille);

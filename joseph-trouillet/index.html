@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Monseigneur Trouillet — Basilique Saint-Epvre</title>
   <!-- SEO -->
   <meta name="description" content="Monseigneur Joseph Trouillet, figure emblématique de la Basilique Saint-Epvre à Nancy. Biographie et œuvre de ce prêtre lorrain du XIXe siècle.">
@@ -25,879 +25,434 @@
   <meta name="twitter:image"       content="https://basiliquesaintepvre.com/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=9">
-  <link rel="stylesheet" href="../assets/css/site.css?v=20">
-
   <style>
-
-    /* ─────────────────────────────────────────
-       RESET & VARIABLES
-    ───────────────────────────────────────── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
+       Trois couleurs : bordeaux, bleu marine, blanc (jamais bordeaux et bleu marine côte à côte).
+       Ornements : gravures d'époque vectorisées (assets/ornements). */
     :root {
-      --cream:     #DCD7C9;
-      --cream-2:   #A27B5C;
-      --sage:      #3F4F44;
-      --olive:     #2C3930;
-      --olive-rgb: 65, 67, 27;
-      --font-titre: 'Uncial Antiqua', Georgia, serif;
-      --font-texte: 'EB Garamond', Georgia, serif;
+      --bordeaux: #4a1518; --navy: #213448; --blanc: #ffffff; --papier: #fbf9f5;
+      --gris: #59626e; --filet: rgba(33,52,72,.18);
+      --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
     }
-
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--cream);
-      color: var(--olive);
-      font-family: var(--font-texte);
-      font-size: 16px;
-      font-weight: 500;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    /* ─────────────────────────────────────────
-       CONTENEUR
-    ───────────────────────────────────────── */
-    .page {
-      position: relative;
-      z-index: 1;
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 7rem 2rem 8rem;
-    }
-
-    /* ─────────────────────────────────────────
-       LIEN RETOUR
-    ───────────────────────────────────────── */
-    .retour {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--olive);
-      text-decoration: none;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 0.1s;
-      transition: opacity 0.2s;
-    }
-    .retour:hover { opacity: 0.85 !important; }
-
-    .retour svg { width: 18px; height: 8px; overflow: visible; }
-    .retour svg line,
-    .retour svg polyline {
-      stroke: var(--olive);
-      stroke-width: 1.2;
-      fill: none;
-    }
-
-    /* ─────────────────────────────────────────
-       EN-TÊTE
-    ───────────────────────────────────────── */
-    .surtitre {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 0.25s;
-    }
-
-    .titre-page {
-      font-family: var(--font-titre);
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      line-height: 1.06;
-      color: var(--olive);
-      letter-spacing: -0.01em;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.4s;
-    }
-
-    .sous-titre-page {
-      font-size: 1rem;
-      font-style: italic;
-      font-weight: 400;
-      color: rgba(var(--olive-rgb), 0.55);
-      margin-top: 1rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.55s;
-    }
-
-    .trait {
-      width: 48px;
-      height: 1px;
-      background: var(--sage);
-      margin: 2.5rem 0 3.5rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 0.65s;
-    }
-
-    /* ─────────────────────────────────────────
-       RÉSUMÉ EN CHIFFRES
-    ───────────────────────────────────────── */
-    .chiffres {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.75s;
-    }
-
-    .chiffre-item {
-      background-color: var(--cream-2);
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-
-    .chiffre-valeur {
-      font-family: var(--font-titre);
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      color: var(--olive);
-      line-height: 1;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .chiffre-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: rgba(var(--olive-rgb), 0.55);
-      letter-spacing: 0.05em;
-      line-height: 1.4;
-    }
-
-    /* ─────────────────────────────────────────
-       CARROUSEL
-    ───────────────────────────────────────── */
-    .carrousel-wrapper {
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.85s;
-    }
-
-    .carrousel-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      display: block;
-      margin-bottom: 1.2rem;
-    }
-
-    .carrousel {
-      position: relative;
-      background-color: var(--olive);
-      overflow: hidden;
-    }
-
-    .carrousel-piste {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .carrousel-diapo {
-      flex: 0 0 100%;
-      width: 100%;
-    }
-
-    .carrousel-diapo img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      display: block;
-      background-color: var(--cream-2);
-    }
-
-    /* description sous la photo */
-    .carrousel-desc {
-      background-color: var(--olive);
-      color: rgba(248, 243, 225, 0.75);
-      padding: 1.2rem 1.5rem 1.4rem;
-      font-size: 0.82rem;
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .carrousel-desc strong {
-      display: block;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.3rem;
-    }
-
-    /* boutons précédent / suivant */
-    .carrousel-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1rem;
-    }
-
-    .carrousel-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: none;
-      border: 1px solid rgba(var(--olive-rgb), 0.25);
-      color: var(--olive);
-      font-family: var(--font-texte);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.6rem 1rem;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .carrousel-btn:hover {
-      background-color: rgba(var(--olive-rgb), 0.07);
-      border-color: rgba(var(--olive-rgb), 0.5);
-    }
-
-    .carrousel-btn svg {
-      width: 14px;
-      height: 6px;
-      overflow: visible;
-    }
-
-    .carrousel-btn svg line,
-    .carrousel-btn svg polyline {
-      stroke: var(--olive);
-      stroke-width: 1.2;
-      fill: none;
-    }
-
-    /* indicateurs points */
-    .carrousel-points {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .point {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: rgba(var(--olive-rgb), 0.2);
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .point.actif {
-      background-color: var(--sage);
-    }
-
-    /* ─────────────────────────────────────────
-       CITATION MISE EN AVANT
-    ───────────────────────────────────────── */
-    .citation-forte {
-      background-color: var(--olive);
-      color: var(--cream);
-      padding: 3rem 3rem 2.5rem;
-      margin-bottom: 5rem;
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 0.95s;
-    }
-
-    .citation-forte::before {
-      content: '«';
-      font-family: var(--font-titre);
-      font-size: 8rem;
-      color: rgba(248,243,225,0.06);
-      position: absolute;
-      top: -1rem;
-      left: 1.5rem;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .citation-forte blockquote {
-      font-family: var(--font-titre);
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      line-height: 1.6;
-      color: rgba(248,243,225,0.9);
-      font-style: italic;
-      position: relative;
-      z-index: 1;
-    }
-
-    .citation-forte cite {
-      display: block;
-      margin-top: 1.2rem;
-      font-size: 0.72rem;
-      font-style: normal;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sage);
-    }
-
-    /* ─────────────────────────────────────────
-       SOMMAIRE
-    ───────────────────────────────────────── */
-    .sommaire {
-      background-color: var(--cream-2);
-      padding: 2.5rem 3rem;
-      margin-bottom: 5rem;
-      opacity: 0;
-      animation: apparition 0.9s ease forwards 1.05s;
-    }
-
-    .sommaire-label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.45);
-      margin-bottom: 1.5rem;
-    }
-
-    .sommaire ol {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-
-    .sommaire li {
-      display: flex;
-      align-items: baseline;
-      gap: 0.8rem;
-    }
-
-    .sommaire .num {
-      font-family: var(--font-titre);
-      font-size: 0.75rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      min-width: 1.8rem;
-    }
-
-    .sommaire a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--olive);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      line-height: 1.6;
-      transition: border-color 0.2s;
-      cursor: pointer;
-    }
-    .sommaire a:hover {
-      border-color: rgba(var(--olive-rgb), 0.35);
-    }
-
-    /* ─────────────────────────────────────────
-       SECTIONS
-    ───────────────────────────────────────── */
-    .section {
-      margin-bottom: 2px;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section:nth-child(odd)  .section-inner { background-color: var(--cream-2); }
-    .section:nth-child(even) .section-inner { background-color: var(--cream); border: 1px solid rgba(var(--olive-rgb), 0.08); }
-
-    .section-inner {
-      padding: 3.5rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-inner::after {
-      content: attr(data-num);
-      font-family: var(--font-titre);
-      font-size: 8rem;
-      color: rgba(var(--olive-rgb), 0.04);
-      position: absolute;
-      right: 2rem;
-      bottom: -1rem;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .section-entete {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .section-num {
-      font-family: var(--font-titre);
-      font-size: 0.75rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      padding-top: 0.55rem;
-      letter-spacing: 0.05em;
-    }
-
-    .section-titre {
-      font-family: var(--font-titre);
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      color: var(--olive);
-      line-height: 1.2;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-texte {
-      font-size: 16px;
-      line-height: 1.95;
-      color: rgba(var(--olive-rgb), 0.72);
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-texte p + p {
-      margin-top: 1.2rem;
-    }
-
-    .section-texte blockquote {
-      margin: 1.5rem 0;
-      padding: 1.2rem 1.5rem;
-      border-left: 2px solid var(--sage);
-      background-color: rgba(var(--olive-rgb), 0.03);
-      font-style: italic;
-      color: rgba(var(--olive-rgb), 0.6);
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-
-    .section-texte ul {
-      list-style: none;
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .section-texte ul li {
-      display: flex;
-      align-items: baseline;
-      gap: 0.6rem;
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .section-texte ul li::before {
-      content: '–';
-      color: var(--sage);
-      flex-shrink: 0;
-    }
-
-    /* note de bas de section */
-    .note-bas {
-      font-size: 0.78rem;
-      font-style: italic;
-      color: rgba(var(--olive-rgb), 0.45);
-      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
-      padding-top: 1rem;
-      margin-top: 1.5rem;
-      line-height: 1.6;
-    }
-
-    /* lien source */
-    .lien-source {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 1.2rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--olive);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(var(--olive-rgb), 0.3);
-      padding-bottom: 2px;
-      transition: opacity 0.2s;
-      opacity: 0.65;
-    }
-    .lien-source:hover { opacity: 1; }
-
-    /* ─────────────────────────────────────────
-       SECTION SOURCES
-    ───────────────────────────────────────── */
-    .sources {
-      margin-top: 2px;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .sources.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .sources-inner {
-      background-color: var(--cream-2);
-      padding: 3rem 3rem;
-    }
-
-    .sources-titre {
-      font-family: var(--font-titre);
-      font-size: 1.2rem;
-      color: var(--olive);
-      margin-bottom: 1.5rem;
-    }
-
-    .sources-liste {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .sources-liste li {
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: rgba(var(--olive-rgb), 0.65);
-      padding-left: 1rem;
-      border-left: 1px solid rgba(var(--olive-rgb), 0.15);
-    }
-
-    .sources-liste a {
-      color: var(--olive);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(var(--olive-rgb), 0.25);
-      transition: border-color 0.2s;
-    }
-    .sources-liste a:hover { border-color: var(--olive); }
-
-    /* ─────────────────────────────────────────
-       PIED DE PAGE
-    ───────────────────────────────────────── */
-    .pied {
-      margin-top: 7rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(var(--olive-rgb), 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      opacity: 0;
-      animation: apparition 0.8s ease forwards 1s;
-    }
-
-    .pied-nom {
-      font-family: var(--font-titre);
-      font-size: 1.1rem;
-      color: rgba(var(--olive-rgb), 0.15);
-      letter-spacing: 0.06em;
-      user-select: none;
-    }
-
-    .pied-lieu {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(var(--olive-rgb), 0.28);
-      font-weight: 500;
-    }
-
-    /* ─────────────────────────────────────────
-       ANIMATION
-    ───────────────────────────────────────── */
-    @keyframes apparition {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
+    body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.75; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* Ornement : boîte colorée découpée par la gravure vectorisée */
+    .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+
+    .col { max-width: 740px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+
+    /* Titre courant, comme en haut des pages du livre */
+    .courant { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); border-bottom: 1px solid var(--filet); padding-bottom: .5rem; }
+
+    /* ── Ouverture : la gravure de l'orgue de 1867 ── */
+    .ouverture { position: relative; padding: 6.5rem 0 2.5rem; text-align: center; overflow: hidden; }
+    .ouverture .courant { max-width: 740px; margin: 0 auto 2.6rem; }
+    .ouverture h1 { font-family: var(--titre); font-weight: 400; font-size: clamp(2.6rem, 7.5vw, 4.8rem); line-height: 1.02; margin: 0; color: var(--navy); }
+    .ouverture .sous { margin: .9rem auto 0; max-width: 34ch; font-style: italic; color: var(--gris); font-size: 1.12rem; line-height: 1.5; }
+    .ouverture figure { margin: 2.6rem auto 0; max-width: 700px; }
+    .ouverture .orgue { width: 100%; aspect-ratio: 1790 / 1910; color: var(--navy); }
+    .ouverture figcaption { margin-top: .8rem; font-size: .95rem; font-style: italic; color: var(--gris); }
+
+    /* Bandeau de ferronnerie : croix de Lorraine et alérions */
+    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-position: center; mask-position: center; margin: 2.5rem 0; }
+
+    /* ── Chapeau avec lettrine ornée ── */
+    .chapeau { padding: 1rem 0 1rem; display: flow-root; }
+    .chapeau p { margin: 0; font-size: 1.28rem; line-height: 1.72; }
+    .lettrine { float: left; width: clamp(120px, 26vw, 190px); aspect-ratio: 1360 / 2550; margin: .35rem 1.2rem .4rem 0; color: var(--bordeaux);
+      /* le texte épouse la forme en L de la lettrine, comme dans la monographie */
+      shape-outside: polygon(0 0, calc(100% + 1.2rem) 0, calc(100% + 1.2rem) 58%, calc(36% + 1rem) 58%, calc(36% + 1rem) 100%, 0 100%); }
+
+    /* ── Sommaire en cartouche ── */
+    .sommaire { margin: 3rem auto 1rem; padding: 2rem 2rem 1.6rem; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 5px; background: var(--blanc); }
+    .sommaire .cartouche { margin-top: -2.95rem; }
+    .sommaire ol { list-style: none; margin: 1rem 0 0; padding: 0; counter-reset: s; }
+    .sommaire li { counter-increment: s; }
+    .sommaire a { display: flex; align-items: baseline; gap: .6rem; padding: .35rem 0; text-decoration: none; font-size: 1.12rem; }
+    .sommaire a::before { content: counter(s, upper-roman) '.'; min-width: 2.6rem; font-family: var(--titre); color: var(--bordeaux); font-size: .95rem; }
+    .sommaire a::after { content: ''; flex: 1; border-bottom: 1px dotted var(--filet); transform: translateY(-.3em); order: 2; }
+    .sommaire a span { order: 1; }
+    .sommaire a:hover { color: var(--bordeaux); }
+
+    /* Cartouche aux coins coupés, comme « CHAPITRE PREMIER » dans la monographie */
+    .cartouche { display: table; margin: 0 auto; padding: .4rem 1.5rem; background: var(--papier); color: var(--bordeaux); font-size: .82rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      border: 1.5px solid currentColor; box-shadow: inset 0 0 0 3px var(--papier), inset 0 0 0 4px currentColor; }
+
+
+    /* ── Ouverture de chapitre : double filet à rosace, grand chiffre romain ──
+       Animation : les deux filets se déroulent depuis la rosace, qui tourne d'un quart de tour,
+       puis le chiffre et le titre apparaissent. */
+    .ouv { position: relative; text-align: center; color: var(--bordeaux); }
+    .ouv-filet { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .ouv-filet::before, .ouv-filet::after { content: ''; flex: 1; border-top: 3px double currentColor; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .25s; }
+    .ouv-filet::before { transform-origin: right center; }
+    .ouv-filet::after { transform-origin: left center; }
+    .ouv-filet .orn { flex: none; width: 36px; height: 36px; opacity: 0; transform: rotate(-90deg) scale(.6); transition: opacity .7s ease, transform 1.2s cubic-bezier(.22,1,.36,1); }
+    .ouv-num { display: block; font-family: var(--titre); font-size: clamp(3.4rem, 9vw, 4.4rem); line-height: 1; opacity: 0; translate: 0 12px; transition: opacity .9s ease .7s, translate .9s ease .7s; }
+    .ouv-lib { display: block; margin-top: .4rem; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: 0; transition: opacity .9s ease .9s; }
+    .vu .ouv-filet::before, .vu .ouv-filet::after { transform: scaleX(1); }
+    .vu .ouv-filet .orn { opacity: 1; transform: none; }
+    .vu .ouv-num { opacity: 1; translate: 0 0; }
+    .vu .ouv-lib { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .ouv-filet::before, .ouv-filet::after, .ouv-filet .orn, .ouv-num, .ouv-lib { transform: none; opacity: 1; translate: none; transition: none; }
+    }
+
+    /* ── Chapitres ── */
+    .chapitre { position: relative; padding: 5rem 0 1rem; }
+    .chapitre .croquis { position: absolute; left: 50%; top: 1.2rem; translate: -50% 0; width: 260px; aspect-ratio: 1270 / 1257; color: var(--navy); opacity: .07; pointer-events: none; }
+    .chapitre h2 { position: relative; text-align: center; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.7rem); line-height: 1.12; margin: .7rem 0 .9rem; }
+    .chapitre .argument { position: relative; text-align: center; font-size: 1.04rem; font-style: italic; line-height: 1.55; color: var(--gris); margin: 0 auto 2.4rem; max-width: 46ch; padding-top: .9rem; border-top: 1px solid var(--filet); }
+    .chapitre p { margin: 0 0 1.15em; }
+    .chapitre strong { font-weight: 600; color: var(--bordeaux); }
+
+    /* Figures : double filet, légende et numéro comme dans le livre */
+    figure.planche { margin: 2.4rem 0; text-align: center; }
+    figure.planche img { width: 100%; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 4px; }
+    figure.planche figcaption { margin-top: 1rem; font-size: .98rem; color: var(--gris); }
+    figure.planche figcaption i { display: block; font-size: .85rem; margin-top: .1rem; }
+    .duo-fig { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    @media (max-width: 560px) { .duo-fig { grid-template-columns: 1fr; } }
+
+    /* Encadré bordeaux sur papier : le moment fort */
+    .fort { margin: 2.6rem 0; padding: 2rem 2rem 1.8rem; background: var(--bordeaux); color: var(--blanc); text-align: center; outline: 1px solid var(--bordeaux); outline-offset: 5px; }
+    .fort .orn { width: 46px; height: 46px; margin: 0 auto .8rem; color: var(--blanc); }
+    .fort p { margin: 0; font-size: 1.18rem; line-height: 1.65; }
+    .fort strong { color: var(--blanc); font-weight: 700; }
+
+    /* Tableaux */
+    table { width: 100%; border-collapse: collapse; margin: 1.6rem 0 2rem; font-size: 1.02rem; }
+    caption { caption-side: bottom; margin-top: .6rem; font-size: .9rem; font-style: italic; color: var(--gris); }
+    th { text-align: left; font-weight: 600; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bordeaux); padding: .5rem .5rem; border-top: 2px solid var(--navy); border-bottom: 1px solid var(--navy); }
+    td { padding: .6rem .5rem; border-bottom: 1px solid var(--filet); vertical-align: top; }
+    tfoot td { font-weight: 700; border-top: 1px solid var(--navy); border-bottom: 2px solid var(--navy); }
+    .tab-scroll { overflow-x: auto; }
+
+    ul.innovations { margin: 1rem 0 1.6rem; padding: 0; list-style: none; }
+    ul.innovations li { display: grid; grid-template-columns: 22px 1fr; gap: .8rem; padding: .45rem 0; }
+    ul.innovations .orn, .organistes .orn { width: 18px; height: 18px; margin-top: .45rem; color: var(--bordeaux); }
+
+    /* Organistes */
+    .organistes { list-style: none; margin: 1.4rem 0; padding: 0; }
+    .organistes li { display: grid; grid-template-columns: 22px 1fr auto; gap: .9rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--filet); }
+    .organistes b { font-weight: 600; font-size: 1.12rem; }
+    .organistes span { font-variant-numeric: tabular-nums; color: var(--gris); font-size: .98rem; text-align: right; }
+    .organistes li.actuelle { background: var(--bordeaux); color: var(--blanc); padding: .9rem; margin: .5rem 0; border: 0; outline: 1px solid var(--bordeaux); outline-offset: 4px; }
+    .organistes li.actuelle .orn { color: var(--blanc); }
+    .organistes li.actuelle span { color: #ecd9d9; }
+
+
+    /* ── Les jeux : une façade de panneaux, comme les tuyaux d'un buffet ──
+       Chaque clavier est une rangée de panneaux hauts et étroits, décalés selon la taille du jeu.
+       Le panneau survolé (ou touché) s'élargit et révèle la description du son. */
+    .facade-jeux { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4rem; margin: 2.2rem 0 1rem; }
+    .fj-clavier { min-width: 0; }
+    .fj-clavier h3 { display: flex; align-items: center; gap: .8rem; margin: 0 0 1rem; font-family: var(--texte); font-weight: 600; font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bordeaux); }
+    .fj-clavier h3::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
+    .fj-clavier h3 small { font-weight: 400; letter-spacing: .06em; text-transform: none; color: var(--gris); font-size: .95rem; }
+    .fj-rang { display: flex; align-items: flex-end; gap: 8px; height: 380px; overflow-x: auto; overflow-y: hidden; padding: 4px 4px 8px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+    .fj { position: relative; flex: 0 0 74px; height: var(--hp); display: flex; flex-direction: column; align-items: center; padding: 10px 8px 0; background: var(--blanc); border: 1px solid var(--filet); border-radius: 16px; box-shadow: 0 10px 24px -18px rgba(33,52,72,.35); cursor: pointer; scroll-snap-align: start; overflow: hidden;
+      transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s ease, color .35s ease; color: var(--navy); text-align: left; font: inherit; }
+    .fj:focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+    .fj.ouvert .fj-nom { border-top-color: rgba(255,255,255,.35); }
+    .fj-tuyau { flex: 1; width: 100%; min-height: 0; color: inherit; -webkit-mask-position: center bottom; mask-position: center bottom; transition: opacity .3s; }
+    .fj-nom { flex: none; width: calc(100% + 16px); margin-top: 8px; padding: .45rem .3rem .6rem; border-top: 1px solid var(--filet); text-align: center; font-size: .82rem; font-weight: 600; line-height: 1.15; }
+    .fj-nom span { display: block; font-weight: 400; font-size: .78rem; opacity: .75; font-variant-numeric: tabular-nums; }
+    .fj-texte { position: absolute; left: 92px; right: 14px; top: 14px; bottom: 64px; display: flex; flex-direction: column; justify-content: center; gap: .5rem; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+    .fj-texte b { font-family: var(--titre); font-weight: 400; font-size: 1.25rem; line-height: 1.1; }
+    .fj-texte p { margin: 0; font-size: .95rem; line-height: 1.45; }
+    .fj.ouvert { flex-basis: min(300px, 78vw); background: var(--bordeaux); color: var(--blanc); border-color: var(--bordeaux); box-shadow: 0 18px 34px -18px rgba(74,21,24,.55); }
+    .fj.ouvert .fj-tuyau { flex: 1; width: 64px; align-self: flex-start; }
+    .fj.ouvert .fj-texte { opacity: 1; transition-delay: .2s; }
+    /* apparition : les panneaux montent l'un après l'autre */
+    .fj { translate: 0 30px; opacity: 0; }
+    .vu .fj { translate: 0 0; opacity: 1; transition: flex-basis .55s cubic-bezier(.22,1,.36,1), background .35s, color .35s, translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms), opacity .6s ease calc(var(--i) * 60ms); }
+    @media (max-width: 560px) { .fj-rang { height: 330px; } .fj { flex-basis: 70px; } .fj-texte { left: 84px; } .fj-nom { font-size: .7rem; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; } }
+    @media (prefers-reduced-motion: reduce) { .fj, .vu .fj { translate: none; opacity: 1; transition: none; } }
+
+
+    /* ── Grands chiffres, en colonnes numérotées comme une page de magazine ── */
+    .chiffres { max-width: 1100px; margin: 4.5rem auto 1rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .chiffres > div { padding: 0 1.4rem; border-left: 1px solid var(--filet); }
+    .chiffres > div:first-child { border-left: 0; padding-left: 0; }
+    .chiffres small { display: block; font-size: .78rem; letter-spacing: .2em; color: var(--gris); font-variant-numeric: tabular-nums; padding-bottom: .5rem; margin-bottom: .8rem; border-bottom: 1px solid var(--navy); }
+    .chiffres b { display: block; font-family: var(--titre); font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: .95; color: var(--bordeaux); white-space: nowrap; }
+    .chiffres span { display: block; margin-top: .7rem; font-size: 1.02rem; line-height: 1.45; }
+    .chiffres > div { opacity: 0; translate: 0 18px; transition: opacity .8s ease calc(var(--i) * 140ms), translate .8s ease calc(var(--i) * 140ms); }
+    .chiffres.vu > div { opacity: 1; translate: 0 0; }
+    @media (max-width: 720px) { .chiffres { grid-template-columns: 1fr 1fr; row-gap: 2.2rem; } .chiffres > div:nth-child(3) { border-left: 0; padding-left: 0; } }
+
+    /* ── Arcades : photos découpées en ogive, panneaux côte à côte qui s'élargissent ── */
+    .arcades { display: flex; gap: 14px; height: 440px; margin: 2.6rem 0 1rem; }
+    .arcade { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; margin: 0; transition: flex-grow .6s cubic-bezier(.22,1,.36,1); }
+    .arcade .baie { flex: 1; min-height: 0; background: var(--papier) center / cover no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300' preserveAspectRatio='none'%3E%3Cpath d='M0 300V70Q0 18 50 0Q100 18 100 70V300Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+    .arcade figcaption { flex: none; min-height: 5.4em; padding-top: .7rem; font-size: .92rem; line-height: 1.35; color: var(--gris); border-top: 1px solid var(--navy); margin-top: .6rem; }
+    .arcade figcaption b { display: block; font-weight: 600; color: var(--navy); font-size: .98rem; }
+    .arcades:hover .arcade:hover, .arcade:focus-within { flex-grow: 2.2; }
+    @media (max-width: 560px) { .arcades { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; } .arcade { flex: 0 0 62%; scroll-snap-align: start; } .arcade .baie { height: 320px; flex: none; } }
+
+    /* ── Éventail : photos déployées en arc autour d'une phrase ── */
+    .eventail { position: relative; margin: 2.4rem 0 1.6rem; height: 430px; overflow-x: clip; }
+    .eventail .carte { position: absolute; left: 50%; top: 0; width: 150px; aspect-ratio: 3 / 4; margin-left: -75px; border-radius: 14px; background: var(--papier) center / cover no-repeat; border: 5px solid var(--blanc);
+      box-shadow: 0 14px 28px -16px rgba(33,52,72,.55); transform-origin: 50% 230%; transform: rotate(0deg); transition: transform 1.2s cubic-bezier(.22,1,.36,1) calc(var(--i) * 60ms); }
+    .eventail.vu .carte { transform: rotate(var(--r)); }
+    .eventail .phrase { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; }
+    .eventail .phrase q { display: block; font-family: var(--titre); font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.15; color: var(--bordeaux); quotes: '« ' ' »'; }
+    .eventail .phrase span { display: block; margin-top: .6rem; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
+    @media (max-width: 560px) { .eventail { height: 380px; } .eventail .carte { width: 110px; margin-left: -55px; transform-origin: 50% 220%; } }
+    @media (prefers-reduced-motion: reduce) { .eventail .carte { transition: none; } .chiffres > div { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Les journaux : bande bleu marine pleine largeur ── */
+    .presse { position: relative; background: var(--navy); color: var(--blanc); padding: 5rem 0 4rem; margin-top: 4rem; overflow: hidden; }
+    .presse .croquis { position: absolute; right: -6%; top: 50%; translate: 0 -50%; width: min(620px, 80vw); aspect-ratio: 1790 / 1910; color: rgba(255,255,255,.06); pointer-events: none; }
+    .presse .cartouche { background: var(--navy); color: var(--blanc); }
+    .presse .ouv { color: var(--blanc); }
+    .presse .ouv-num, .presse .ouv-lib { color: var(--blanc); }
+    .presse h2 { text-align: center; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.6rem); margin: 1rem 0 2.6rem; }
+    .presse blockquote { position: relative; margin: 0 0 2.2rem; padding: 0 0 2.2rem; border-bottom: 1px solid rgba(255,255,255,.22); }
+    .presse blockquote:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+    .presse blockquote p { margin: 0; font-style: italic; font-size: 1.2rem; line-height: 1.62; }
+    .presse cite { display: block; margin-top: .7rem; font-style: normal; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: #c9d3de; }
+
+    /* ── Cul-de-lampe : l'ange à la banderole, sur papier ── */
+    .cul-de-lampe { padding: 4rem 22px 4.5rem; text-align: center; }
+    .cul-de-lampe .orn { width: min(340px, 78vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
+
+    /* ── Pied de page bordeaux ── */
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 3.2rem 22px calc(3.2rem + env(safe-area-inset-bottom, 0px)); }
+    .pied .orn { width: 36px; height: 140px; margin: 0 auto 1rem; color: var(--blanc); }
+    .pied b { display: block; font-family: var(--titre); font-weight: 400; font-size: 1.5rem; }
+    .pied span { font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+    .pied .sources { margin: 1.6rem auto 0; max-width: 60ch; font-size: .82rem; line-height: 1.6; opacity: .7; }
+
+    /* Apparition douce, sans plus */
+    .apparait { opacity: 0; translate: 0 16px; transition: opacity .9s ease, translate .9s ease; }
+    .apparait.vu { opacity: 1; translate: 0 0; }
+    @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+
+    :root { --oculus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='31'/%3E%3Ccircle cx='0.00' cy='-33.00' r='15'/%3E%3Ccircle cx='28.58' cy='-16.50' r='15'/%3E%3Ccircle cx='28.58' cy='16.50' r='15'/%3E%3Ccircle cx='0.00' cy='33.00' r='15'/%3E%3Ccircle cx='-28.58' cy='16.50' r='15'/%3E%3Ccircle cx='-28.58' cy='-16.50' r='15'/%3E%3C/svg%3E"); }
+    /* ══ Nouveau style (comme l'accueil) : grotesque capitale, aplats bordeaux, l'ancien gardé dans les gravures ══ */
+    .ouverture { background: var(--bordeaux); color: var(--blanc); padding-bottom: 4rem; }
+    .ouverture .courant { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.3); }
+    .ouverture h1 { color: var(--blanc); font-weight: 500; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; font-size: clamp(3.4rem, 12.5vw, 11rem); }
+    .ouverture .sous { color: rgba(255,255,255,.85); }
+    .ouverture .orgue { color: var(--blanc); }
+    .ouverture figcaption { color: rgba(255,255,255,.7); }
+    .chapitre h2, .presse h2 { font-weight: 500; text-transform: uppercase; letter-spacing: -.035em; line-height: .95; font-size: clamp(2.2rem, 6vw, 4.2rem); }
+    .ouv-num { font-weight: 500; letter-spacing: -.04em; font-size: clamp(4rem, 11vw, 6.5rem); }
+    .ouv-lib, .cartouche, .fj-clavier h3, th, .chiffres small, .presse cite, .courant { font-family: var(--titre); }
+    .sommaire a::before { font-weight: 600; }
+    .fj-texte b { font-weight: 500; text-transform: uppercase; letter-spacing: -.02em; }
+    .eventail .phrase q { font-weight: 500; text-transform: uppercase; letter-spacing: -.03em; }
+    .pied b { font-weight: 600; text-transform: uppercase; letter-spacing: -.03em; font-size: clamp(2.4rem, 9vw, 5rem); }
+    /* Chiffres : bande bordeaux pleine largeur, nombres géants */
+    .chiffres { position: relative; padding-top: 4rem; padding-bottom: 4rem; margin-top: 4rem; color: var(--blanc); background: var(--bordeaux); box-shadow: 0 0 0 100vmax var(--bordeaux); clip-path: inset(0 -100vmax); }
+    .chiffres > div { border-color: rgba(255,255,255,.3); }
+    .chiffres small { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.5); }
+    .chiffres b { color: var(--blanc); font-weight: 500; letter-spacing: -.04em; font-size: clamp(2.8rem, 7vw, 5.6rem); }
+    /* Arcades : l'oculus à six lobes de l'accueil remplace l'ogive */
+    .arcade .baie { -webkit-mask: var(--oculus) center / contain no-repeat !important; mask: var(--oculus) center / contain no-repeat !important; flex: none; aspect-ratio: 1; height: auto; }
+    .arcades { height: auto; align-items: flex-start; }
+
+    /* ── Carrousel des jeux ── */
+    .facade-jeux { display: block; margin: 2.6rem 0 1rem; }
+    .cj-tete { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .cj-onglets { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cj-onglet { font: 500 .95rem/1 var(--titre); text-transform: uppercase; letter-spacing: .02em; padding: .7rem 1.1rem; border-radius: 999px; border: 1px solid var(--navy); background: none; color: var(--navy); cursor: pointer; display: inline-flex; gap: .5rem; align-items: center; }
+    .cj-onglet small { font-size: .78rem; opacity: .6; }
+    .cj-onglet[aria-selected="true"] { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+    .cj-fleches { display: flex; gap: .5rem; }
+    .cj-fleches button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); font-size: 1.4rem; cursor: pointer; transition: background .25s, color .25s; }
+    .cj-fleches button:hover { background: var(--navy); color: var(--blanc); }
+    .cj-info { margin: 1.2rem 0 1rem !important; font-family: var(--titre); font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+    /* la piste déborde de la colonne jusqu'aux bords de l'écran */
+    .cj-piste { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin: 0 calc(50% - 50vw); --g: max(22px, calc((100vw - 740px) / 2 + 22px)); padding: 6px var(--g) 24px; scroll-padding-left: var(--g); }
+    .cj-piste::-webkit-scrollbar { display: none; }
+    .cj { flex: 0 0 min(300px, 78vw); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--blanc); border: 1px solid var(--filet); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 34px -26px rgba(33,52,72,.5);
+      opacity: 0; translate: 40px 0; transition: background .35s, color .35s; }
+    .cj-piste.vu .cj { opacity: 1; translate: 0 0; transition: background .35s, color .35s, opacity .6s ease calc(var(--i) * 50ms), translate .8s cubic-bezier(.22,1,.36,1) calc(var(--i) * 50ms); }
+    .cj-dessin { position: relative; height: 270px; display: flex; align-items: flex-end; justify-content: center; padding: 18px 0 0; background: var(--papier); border-bottom: 1px solid var(--filet); }
+    .cj-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; transition: color .35s; }
+    .cj-dessin em { position: absolute; top: 14px; right: 16px; font-style: normal; font: 600 1.4rem/1 var(--titre); color: var(--bordeaux); letter-spacing: -.02em; }
+    .cj-texte { padding: 1.2rem 1.3rem 1.5rem; flex: 1; }
+    .cj-texte small { font: 500 .8rem var(--titre); letter-spacing: .14em; color: var(--gris); }
+    .cj-texte h4 { margin: .25rem 0 .6rem; font: 500 1.7rem/1 var(--titre); text-transform: uppercase; letter-spacing: -.03em; color: var(--navy); }
+    .cj-texte p { margin: 0 !important; font-size: 1.02rem; line-height: 1.5; color: var(--gris); }
+    .cj:hover { background: var(--bordeaux); }
+    .cj:hover .cj-texte h4, .cj:hover .cj-texte p, .cj:hover .cj-texte small { color: var(--blanc); }
+    .cj:hover .cj-dessin { background: #5a1c20; border-color: transparent; }
+    .cj:hover .cj-dessin .orn, .cj:hover .cj-dessin em { color: var(--blanc); }
+    @media (prefers-reduced-motion: reduce) { .cj, .cj-piste.vu .cj { opacity: 1; translate: none; transition: none; } }
+
+    /* ── Sommaire : liste numérotée à flèches, sans cadre ── */
+    .sommaire { border: 0; outline: 0; background: none; padding: 0; margin: 4rem auto 1rem; }
+    .sommaire .cartouche { display: block; margin: 0 0 1rem; padding: 0; border: 0; box-shadow: none; background: none; font: 600 .85rem var(--titre); letter-spacing: .2em; color: var(--bordeaux); }
+    .sommaire ol { margin: 0; border-top: 2px solid var(--navy); }
+    .sommaire li { border-bottom: 1px solid var(--filet); }
+    .sommaire a { display: grid; grid-template-columns: 3.4rem 1fr auto; align-items: center; gap: .8rem; padding: 1rem 0; font: 500 clamp(1.1rem, 2.6vw, 1.5rem)/1.15 var(--titre); text-transform: uppercase; letter-spacing: -.02em; transition: color .25s, padding .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a::before { content: counter(s, decimal-leading-zero); min-width: 0; font: 500 .9rem var(--titre); color: var(--gris); letter-spacing: .08em; }
+    .sommaire a::after { content: '→'; border: 0; transform: none; order: 0; flex: none; font-size: 1.5rem; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+    .sommaire a span { order: 0; }
+    .sommaire a:hover { color: var(--bordeaux); padding-left: .6rem; }
+    .sommaire a:hover::after { transform: translateX(6px); }
+    .pied .rosace-pied { width: 96px; height: 96px; }
+
+    /* ══ Organisation façon musée : lecture au défilement, chapitres en bandes empilées, jeux un par un ══ */
+    .lecture { max-width: 1240px; margin: 0 auto; padding: 6rem max(22px, env(safe-area-inset-left, 0px)) 5rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.7rem, 4.4vw, 3.6rem)/1.12 var(--titre); letter-spacing: -.025em; color: var(--navy); }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+
+    .bande { position: sticky; top: var(--st, 0px); padding: clamp(4rem, 9vh, 7rem) 0; min-height: 100vh; min-height: 100svh; }
+    .b-papier { background: var(--papier); color: var(--navy); }
+    .b-bordeaux { background: var(--bordeaux); color: var(--blanc); }
+    .b-navy { background: var(--navy); color: var(--blanc); }
+    .bande-grille { max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+    .visuel { position: sticky; top: 100px; }
+    .visuel-img { width: 100%; aspect-ratio: 1; background: center / cover no-repeat; }
+    .visuel-img.oculus { -webkit-mask: var(--oculus) center / contain no-repeat; mask: var(--oculus) center / contain no-repeat; }
+    .visuel-img.grav { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; aspect-ratio: 1790 / 1910; }
+    .visuel-leg { margin: .9rem 0 0; font: 400 .9rem var(--titre); opacity: .75; }
+    .visuel .eventail { margin: 0; }
+    .b-num { display: block; font: 500 clamp(5rem, 12vw, 9.5rem)/.8 var(--titre); letter-spacing: -.05em; }
+    .bande h2 { margin: 1.6rem 0 1rem; font: 500 clamp(2.2rem, 4.6vw, 3.8rem)/.98 var(--titre); letter-spacing: -.035em; text-transform: none; text-align: left; }
+    .bande .argument { text-align: left; margin: 0 0 1.8rem; padding: 0; border: 0; font: 400 1.15rem/1.45 var(--titre); font-style: normal; color: inherit; opacity: .8; max-width: none; }
+    .bande-texte p { margin: 0 0 1.1em; }
+    .bande strong { color: inherit; font-weight: 700; }
+    .b-bordeaux .fort, .b-navy .fort { background: var(--blanc); color: var(--bordeaux); outline-color: var(--blanc); }
+    .b-bordeaux .fort strong, .b-bordeaux .fort .orn { color: var(--bordeaux); }
+    .bande .innovations .orn, .bande .organistes .orn { color: var(--bordeaux); }
+    .bande-jeux { max-width: 1240px; margin: 4rem auto 0; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .bande-jeux .jeux-note { opacity: .75; font-size: .95rem; margin-top: 1.2rem; }
+    @media (max-width: 820px) {
+      .bande { min-height: 0; }
+      .bande-grille { grid-template-columns: 1fr; }
+      .visuel { position: relative; top: 0; max-width: 420px; }
+    }
+
+    /* Jeux : une grande diapositive à la fois, flèches géantes de part et d'autre */
+    .diapo { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(.5rem, 3vw, 3rem); margin-top: 2rem; }
+    .diapo-fl { background: none; border: 0; color: inherit; cursor: pointer; padding: .5rem; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+    .diapo-fl svg { width: clamp(46px, 6vw, 84px); height: auto; display: block; }
+    .diapo-fl:hover { transform: translateX(var(--dx)); }
+    .diapo-prec { --dx: -6px; } .diapo-suiv { --dx: 6px; }
+    .diapo-fl:disabled { opacity: .25; cursor: default; transform: none; }
+    .diapo-cadre { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); min-height: 460px; background: var(--papier); color: var(--navy); border-radius: 20px; overflow: hidden; }
+    .diapo-dessin { display: flex; align-items: flex-end; justify-content: center; padding: 2rem 1rem 0; background: var(--blanc); border-right: 1px solid var(--filet); }
+    .diapo-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; }
+    .diapo-texte { padding: clamp(1.6rem, 4vw, 3.2rem); display: flex; flex-direction: column; justify-content: center; }
+    .diapo-texte small { font: 500 .9rem var(--titre); letter-spacing: .14em; color: var(--gris); text-transform: uppercase; }
+    .diapo-texte h4 { margin: .6rem 0 .3rem; font: 500 clamp(2.4rem, 5vw, 4.4rem)/.95 var(--titre); letter-spacing: -.04em; text-transform: uppercase; }
+    .diapo-texte em { font: 600 clamp(1.6rem, 3vw, 2.4rem) var(--titre); font-style: normal; color: var(--bordeaux); }
+    .diapo-texte p { margin: 1.2rem 0 0 !important; font-size: 1.2rem; line-height: 1.5; color: var(--navy); }
+    .diapo-cadre > * { animation: diapo .6s cubic-bezier(.22,1,.36,1); }
+    @keyframes diapo { from { opacity: 0; transform: translateX(var(--sens, 30px)); } }
+    .b-navy .cj-onglet, .b-bordeaux .cj-onglet { border-color: rgba(255,255,255,.6); color: var(--blanc); }
+    .b-navy .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--navy); border-color: var(--blanc); }
+    .b-bordeaux .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--bordeaux); border-color: var(--blanc); }
+    .cj-info { color: inherit !important; opacity: .7; }
     @media (max-width: 700px) {
-      .chiffres { grid-template-columns: repeat(2, 1fr); }
+      .diapo { grid-template-columns: 1fr 1fr; }
+      .diapo-cadre { grid-column: 1 / -1; grid-row: 1; grid-template-columns: 1fr; min-height: 0; }
+      .diapo-dessin { height: 240px; border-right: 0; border-bottom: 1px solid var(--filet); }
+      .diapo-prec { justify-self: start; } .diapo-suiv { justify-self: end; }
+    }
+    @media (prefers-reduced-motion: reduce) { .diapo-cadre > * { animation: none; } .lecture-texte span { transition: none; } }
+
+    /* Encadrés simples, sans double cadre */
+    .fort { outline: 0 !important; border-radius: 18px; }
+    .organistes li.actuelle { outline: 0; border-radius: 14px; padding: .9rem 1.1rem; }
+    .ouverture { padding-top: 8rem; }
+    /* Jeux : tuyau centré et agrandi dans son cadre */
+    .diapo-dessin { align-items: center; padding: 1.6rem; }
+    .diapo-dessin .orn { width: 100%; height: 100% !important; max-height: none !important; -webkit-mask-position: center; mask-position: center; transform: scale(var(--z, 1)); }
+
+    /* Au doigt : ce qui s'anime au survol s'anime quand l'élément passe au milieu de l'écran */
+    @media (hover: none) {
+      .sommaire a.actif { color: var(--bordeaux); padding-left: .6rem; }
+      .sommaire a.actif::after { transform: translateX(6px); }
     }
 
-    @media (max-width: 600px) {
-      .page              { padding: 4rem 1.5rem 6rem; }
-      .section-inner     { padding: 2.5rem 1.5rem; }
-      .section-inner::after { display: none; }
-      .sommaire          { padding: 2rem 1.5rem; }
-      .sources-inner     { padding: 2rem 1.5rem; }
-      .citation-forte    { padding: 2rem 1.5rem; }
-      .carrousel-diapo img { height: 260px; }
-      .pied              { flex-direction: column; align-items: flex-start; }
-    }
+    /* Sommaire sur téléphone : rien ne dépasse */
+    .sommaire { overflow: hidden; padding-left: max(22px, env(safe-area-inset-left, 0px)) !important; padding-right: max(22px, env(safe-area-inset-right, 0px)) !important; }
+    .sommaire a { grid-template-columns: 3.4rem minmax(0, 1fr) auto; }
+    .sommaire a span { min-width: 0; overflow-wrap: break-word; }
+    @media (max-width: 560px) { .sommaire a { grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .6rem; font-size: 1.05rem; } .sommaire a::after { font-size: 1.2rem; } }
 
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "name": "Monseigneur Joseph Trouillet — Basilique Saint-Epvre",
-    "headline": "Monseigneur Joseph Trouillet, figure emblématique de la Basilique Saint-Epvre",
-    "url": "https://basiliquesaintepvre.com/joseph-trouillet/",
-    "description": "Monseigneur Joseph Trouillet, figure emblématique de la Basilique Saint-Epvre à Nancy. Biographie et œuvre de ce prêtre lorrain du XIXe siècle.",
-    "inLanguage": "fr",
-    "isPartOf": { "@id": "https://basiliquesaintepvre.com/" },
-    "about": {
-      "@type": "Person",
-      "name": "Monseigneur Joseph Trouillet",
-      "description": "Prêtre lorrain du XIXe siècle, figure de la Basilique Saint-Epvre de Nancy"
-    },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://basiliquesaintepvre.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Monseigneur Trouillet", "item": "https://basiliquesaintepvre.com/joseph-trouillet/" }
-      ]
-    }
-  }
-  </script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=8">
+  /* Pied de page unifié : le nom en grand, la rosace au centre, puis le lieu */
+  .pied { display: flex; flex-direction: column; align-items: center; }
+  .pied > b { order: 1; } .pied .rosace-pied { order: 2; margin: 1.6rem auto 1.4rem !important; } .pied > span { order: 3; } .pied .sources, .pied p { order: 4; }
+    /* Éventail : contenu dans sa colonne, sans images coupées */
+    .visuel .eventail { overflow: visible; height: 400px; }
+    .visuel .eventail .carte { width: 120px; margin-left: -60px; transform-origin: 50% 260%; }
+    @media (max-width: 560px) { .visuel .eventail { height: 340px; } .visuel .eventail .carte { width: 96px; margin-left: -48px; } }
+
+    /* ── Jalons de la frise ── */
+    .jalons { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid currentColor; }
+    .jalon { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.4rem; padding: 1.6rem 0; border-bottom: 1px solid rgba(127,127,127,.3); }
+    .jalon-date { font: 500 clamp(1.8rem, 3.2vw, 2.6rem)/1 var(--titre); letter-spacing: -.035em; }
+    .jalon-date { grid-row: span 2; } .jalon h3, .jalon p { grid-column: 2; }
+    .jalon h3 { margin: 0 0 .5rem; font: 500 1.35rem/1.2 var(--titre); letter-spacing: -.015em; }
+    .jalon p { margin: 0 !important; }
+    @media (max-width: 560px) { .jalon { grid-template-columns: 1fr; gap: .4rem; } .jalon-date { grid-row: auto; } .jalon h3, .jalon p { grid-column: 1; } }
+    .mesures { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2.6rem; text-align: center; }
+    .mesures > div + div { border-left: 1px solid rgba(255,255,255,.4); }
+    .mesures b { display: block; font: 500 clamp(2.2rem, 5vw, 3.6rem)/1 var(--titre); letter-spacing: -.04em; }
+    .mesures span { display: block; margin-top: .4rem; font: 500 .78rem var(--titre); letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+    .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
+    .documents { max-width: 1240px; margin: 0 auto; padding: 6rem max(22px, env(safe-area-inset-left, 0px)) 2rem; }
+    .documents h2 { margin: 0 0 2.4rem; font: 500 clamp(2.6rem, 7vw, 5.5rem)/.9 var(--titre); letter-spacing: -.045em; text-transform: uppercase; }
+    .docs-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px 22px; }
+    .docs-grille figure { margin: 0; }
+    .docs-grille img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 16px; display: block; box-shadow: 0 14px 28px -22px rgba(33,52,72,.5); }
+    .docs-grille figcaption { margin-top: .8rem; font-size: .95rem; line-height: 1.45; color: var(--gris); }
+    .docs-grille figcaption strong { display: block; font: 500 1.1rem/1.2 var(--titre); color: var(--navy); margin-bottom: .2rem; }
+    .sources-t { max-width: 820px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
+    .sources-t h3 { font: 600 .85rem var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
+    .sources-t li { margin-bottom: .5rem; }
+</style>
 </head>
 <body>
 
-<div class="page">
-
-  <!-- ════ LIEN RETOUR ════════════════════════════════════ -->
-  <a href="/" class="retour">
-    <svg viewBox="0 0 18 8" aria-hidden="true">
-      <polyline points="6,1 1,4 6,7"/>
-      <line x1="1" y1="4" x2="17" y2="4"/>
-    </svg>
-    Basilique Saint-Epvre
-  </a>
-
-  <!-- ════ EN-TÊTE ════════════════════════════════════════ -->
-  <span class="surtitre">Histoire · Figures marquantes</span>
-  <h1 class="titre-page">Monseigneur<br>Trouillet</h1>
-  <p class="sous-titre-page">1809 – 1887 · Curé-doyen de Saint-Epvre · Bâtisseur de la basilique</p>
-  <div class="trait"></div>
-
-  <!-- ════ RÉSUMÉ EN CHIFFRES ═════════════════════════════ -->
-  <div class="chiffres">
-    <div class="chiffre-item">
-      <span class="chiffre-valeur">1809</span>
-      <span class="chiffre-label">Naissance à Lixheim</span>
-    </div>
-    <div class="chiffre-item">
-      <span class="chiffre-valeur">54</span>
-      <span class="chiffre-label">Années de sacerdoce</span>
-    </div>
-    <div class="chiffre-item">
-      <span class="chiffre-valeur">1874</span>
-      <span class="chiffre-label">Élévation en basilique mineure</span>
-    </div>
-    <div class="chiffre-item">
-      <span class="chiffre-valeur">20 000</span>
-      <span class="chiffre-label">Fidèles à son jubilé sacerdotal</span>
-    </div>
+<header class="ouverture">
+  <div class="col">
+    <h1>Monseigneur Trouillet</h1>
+    <p class="sous">1809 – 1887 · Curé-doyen de Saint-Epvre · Bâtisseur de la basilique</p>
   </div>
+</header>
 
-  <!-- ════ CARROUSEL ══════════════════════════════════════ -->
-  <div class="carrousel-wrapper">
-    <span class="carrousel-label">Documents &amp; photographies</span>
+<div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
 
-    <div class="carrousel" id="monCarrousel">
-      <div class="carrousel-piste" id="pisteDiapos">
+<main>
+  <section class="lecture"><p class="lecture-texte" aria-label="« Mon père et ma mère n'avaient pas de fortune à me donner, mais ils m'ont doté de biens plus précieux que l'or. Je tiens de leur munificence une éducation chrétienne. »"><span>«</span> <span>Mon</span> <span>père</span> <span>et</span> <span>ma</span> <span>mère</span> <span>n'avaient</span> <span>pas</span> <span>de</span> <span>fortune</span> <span>à</span> <span>me</span> <span>donner,</span> <span>mais</span> <span>ils</span> <span>m'ont</span> <span>doté</span> <span>de</span> <span>biens</span> <span>plus</span> <span>précieux</span> <span>que</span> <span>l'or.</span> <span>Je</span> <span>tiens</span> <span>de</span> <span>leur</span> <span>munificence</span> <span>une</span> <span>éducation</span> <span>chrétienne.</span> <span>»</span></p><p class="sources-h" style="margin:1.4rem 0 0;padding:0">Mgr Trouillet, le jour de son jubilé sacerdotal</p></section>
 
-        <!-- Diapo 1 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/1UhRimBvRUb_A5gvACkl8jhqSZ2D3BsiD.jpg"
-            alt="Portrait de Monseigneur Trouillet"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Portrait officiel</strong>
-            Portrait de Monseigneur Trouillet — Fond Wiener · Société d'histoire de la Lorraine et du Musée Lorrain.
-          </div>
-        </div>
+  <section class="chiffres apparait-ouv" aria-label="Sa vie en chiffres">
+    <div style="--i:0"><small>01</small><b>1809</b><span>Naissance à Lixheim.</span></div>
+    <div style="--i:1"><small>02</small><b>54</b><span>Années de sacerdoce.</span></div>
+    <div style="--i:2"><small>03</small><b>1874</b><span>Saint-Epvre élevée en basilique mineure.</span></div>
+    <div style="--i:3"><small>04</small><b>20&#8239;000</b><span>Fidèles à son jubilé sacerdotal.</span></div>
+  </section>
 
-        <!-- Diapo 2 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/19qRQ2bnQgbDJFAjClaQJgp8sToQlKj4O.jpg"
-            alt="Veillée funéraire de Monseigneur Trouillet, mars 1887"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Veillée funéraire — 21 mars 1887</strong>
-            Photo possiblement prise lors de la veillée funéraire de Monseigneur Trouillet, probablement le 21 mars 1887. Les chaises sont mises de côté pour laisser le plus grand nombre de fidèles lui rendre hommage. Possibilité d'un cénotaphe pour l'anniversaire de sa mort. — Collection particulière.
-          </div>
-        </div>
-
-        <!-- Diapo 3 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/10-oyn5mSyR6NWvgfPWOYinPVw0y6vQ6B.jpg"
-            alt="Obsèques de Monseigneur Trouillet"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Obsèques — 22 mars 1887</strong>
-            Obsèques de Monseigneur Trouillet — Joseph Delarue · Sylvette Rigollot ©.
-          </div>
-        </div>
-
-        <!-- Diapo 4 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/1M-I_W_QcVVud-ymkLyK_CCbcd7uwetCp.jpg"
-            alt="Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Jubilé sacerdotal — Feuillet d'invitation (recto)</strong>
-            Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet — Fond Wiener.
-          </div>
-        </div>
-
-        <!-- Diapo 5 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/11oB032RkEeKwdQlsMT5ETSgzvUxWJ1dR.jpg"
-            alt="Feuillet d'invitation du jubilé sacerdotal — verso"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Jubilé sacerdotal — Feuillet d'invitation (verso)</strong>
-            Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet — Fond Wiener · Société d'histoire de la Lorraine et du Musée Lorrain.
-          </div>
-        </div>
-
-        <!-- Diapo 6 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/1zBIvKT9pBtwUWoJVxiV5MPwCHAJROytV.jpg"
-            alt="Feuillet souvenir du jubilé sacerdotal"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Jubilé sacerdotal — Feuillet souvenir</strong>
-            Feuillet souvenir du jubilé sacerdotal de Monseigneur Trouillet — Fond Wiener · Société d'histoire de la Lorraine et du Musée Lorrain.
-          </div>
-        </div>
-
-        <!-- Diapo 7 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/1ky-9BtTw61t7qitln2oVSXfMn_dZJhOL.jpg"
-            alt="Monseigneur Turinaz, évêque de Nancy"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Monseigneur Turinaz</strong>
-            Monseigneur Turinaz, évêque de Nancy — célébrant de l'enterrement de Monseigneur Trouillet.
-          </div>
-        </div>
-
-        <!-- Diapo 8 -->
-        <div class="carrousel-diapo">
-          <img
-            src="/assets/img/site/1L8gLpOZ-7xTat9iBxe8HVCrI6HUDmY2N.jpg"
-            alt="Document Légion d'honneur de Monseigneur Trouillet"
-            loading="lazy"
-          >
-          <div class="carrousel-desc">
-            <strong>Légion d'honneur — 1866</strong>
-            Document attestant de l'attribution de la Légion d'honneur à Monseigneur Trouillet — Archives nationales du gouvernement français.
-          </div>
-        </div>
-
-      </div><!-- fin piste -->
-    </div><!-- fin carrousel -->
-
-    <!-- navigation -->
-    <div class="carrousel-nav">
-      <button class="carrousel-btn" id="btnPrev" aria-label="Précédent">
-        <svg viewBox="0 0 14 6" aria-hidden="true">
-          <polyline points="5,1 1,3 5,5"/>
-          <line x1="1" y1="3" x2="13" y2="3"/>
-        </svg>
-        Précédent
-      </button>
-
-      <div class="carrousel-points" id="pointsNav"></div>
-
-      <button class="carrousel-btn" id="btnNext" aria-label="Suivant">
-        Suivant
-        <svg viewBox="0 0 14 6" aria-hidden="true">
-          <line x1="1" y1="3" x2="13" y2="3"/>
-          <polyline points="9,1 13,3 9,5"/>
-        </svg>
-      </button>
-    </div>
-
-  </div><!-- fin carrousel-wrapper -->
-
-  <!-- ════ CITATION FORTE ═════════════════════════════════ -->
-  <div class="citation-forte">
-    <blockquote>
-      « Mon père et ma mère n'avaient pas de fortune à me donner, mais ils m'ont doté de biens plus précieux que l'or. Je tiens de leur munificence une éducation chrétienne. »
-      <cite>Mgr Trouillet — le jour de son jubilé sacerdotal</cite>
-    </blockquote>
-  </div>
-
-  <!-- ════ SOMMAIRE ═══════════════════════════════════════ -->
-  <nav class="sommaire" aria-label="Sommaire">
-    <span class="sommaire-label">Sommaire</span>
-    <ol>
-      <li><span class="num">01</span><a data-cible="section-1">Enfance &amp; formation</a></li>
-      <li><span class="num">02</span><a data-cible="section-2">Les débuts à Lunéville</a></li>
-      <li><span class="num">03</span><a data-cible="section-3">Le bâtisseur</a></li>
-      <li><span class="num">04</span><a data-cible="section-4">La basilique Saint-Epvre</a></li>
-      <li><span class="num">05</span><a data-cible="section-5">Honneurs &amp; distinctions</a></li>
-      <li><span class="num">06</span><a data-cible="section-6">Derniers jours &amp; héritage</a></li>
-    </ol>
+  <nav class="sommaire col apparait" aria-label="Sommaire">
+    <span class="cartouche">Sommaire</span>
+    <ol><li><a href="#section-1"><span>Enfance &amp; formation</span></a></li><li><a href="#section-2"><span>Les débuts à Lunéville</span></a></li><li><a href="#section-3"><span>Le bâtisseur</span></a></li><li><a href="#section-4"><span>La basilique Saint-Epvre</span></a></li><li><a href="#section-5"><span>Honneurs &amp; distinctions</span></a></li><li><a href="#section-6"><span>Derniers jours &amp; héritage</span></a></li><li><a href="#documents"><span>Documents &amp; photographies</span></a></li></ol>
   </nav>
 
-
-  <!-- ════ SECTION 01 ════════════════════════════════════ -->
-  <article class="section" id="section-1">
-    <div class="section-inner" data-num="01">
-      <div class="section-entete">
-        <span class="section-num">01</span>
-        <h2 class="section-titre">Enfance<br>&amp; formation</h2>
-      </div>
-      <div class="section-texte">
+  <section class="bande b-papier" id="section-1">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1UhRimBvRUb_A5gvACkl8jhqSZ2D3BsiD.jpg)" role="img" aria-label="Portrait de Monseigneur Trouillet"></div><p class="visuel-leg">Portrait officiel</p></div>
+      <div class="bande-texte">
+        <span class="b-num">I</span>
+        <h2>Enfance &amp; formation</h2>
         <p>Joseph Trouillet naquit le <strong>24 septembre 1809</strong> à Lixheim (alors en Meurthe, aujourd'hui Moselle), issu d'une famille modeste d'agriculteurs. Troisième fils de Martin et Anne Trouillet, il fait ses humanités en parallèle du travail des champs.</p>
         <p>Il entre en <strong>1828</strong>, à l'âge de 19 ans, au grand séminaire de Nancy sur la recommandation de l'abbé Heim, curé de Lixheim. Ses premiers maîtres furent l'instituteur de Lixheim, M. Fourlemann, et le curé de Brouderdorf, M. Toni.</p>
 
@@ -913,33 +468,25 @@
         </a>
       </div>
     </div>
-  </article>
-
-
-  <!-- ════ SECTION 02 ════════════════════════════════════ -->
-  <article class="section" id="section-2">
-    <div class="section-inner" data-num="02">
-      <div class="section-entete">
-        <span class="section-num">02</span>
-        <h2 class="section-titre">Les débuts<br>à Lunéville</h2>
-      </div>
-      <div class="section-texte">
+  </section>
+  <section class="bande b-bordeaux" id="section-2">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/19qRQ2bnQgbDJFAjClaQJgp8sToQlKj4O.jpg)" role="img" aria-label="Veillée funéraire de Monseigneur Trouillet, mars 1887"></div><p class="visuel-leg">Veillée funéraire — 21 mars 1887</p></div>
+      <div class="bande-texte">
+        <span class="b-num">II</span>
+        <h2>Les débuts à Lunéville</h2>
         <p>Sa longue carrière ecclésiastique débute à <strong>Lunéville</strong>, où l'abbé Trouillet sert comme vicaire de l'église Saint-Jacques (1833–1838) et aumônier de l'hôpital civil et militaire. En 1838, il est nommé curé de Chanteheux (Meurthe), poste qu'il occupe jusqu'en 1849.</p>
         <p>À Lunéville, il fonde la paroisse Saint-Maur (1849–1865), bâtit son église paroissiale et, fidèle à sa vocation éducative, y crée deux écoles primaires et un collège d'enseignement secondaire — l'Institution Saint-Pierre Fourier — pour évangéliser les ouvriers de la ville, en grande partie déchristianisés.</p>
         <p>Parallèlement, il veille à la régularisation des unions matrimoniales ouvrières, conscient des mœurs de son époque, aidant la population ouvrière à rétablir l'ordre matrimonial.</p>
       </div>
     </div>
-  </article>
-
-
-  <!-- ════ SECTION 03 ════════════════════════════════════ -->
-  <article class="section" id="section-3">
-    <div class="section-inner" data-num="03">
-      <div class="section-entete">
-        <span class="section-num">03</span>
-        <h2 class="section-titre">Le bâtisseur</h2>
-      </div>
-      <div class="section-texte">
+  </section>
+  <section class="bande b-papier" id="section-3">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/10-oyn5mSyR6NWvgfPWOYinPVw0y6vQ6B.jpg)" role="img" aria-label="Obsèques de Monseigneur Trouillet"></div><p class="visuel-leg">Obsèques — 22 mars 1887</p></div>
+      <div class="bande-texte">
+        <span class="b-num">III</span>
+        <h2>Le bâtisseur</h2>
         <p>Monseigneur Trouillet n'en est pas à sa première conception lorsqu'il prend la relève dans le projet Saint-Epvre. Dès 1838, il accepte avec joie la charge de l'aumônerie militaire, rénove et agrandit la chapelle de l'hôpital, y installe une tribune pour les militaires blessés — puisant dans ses propres ressources pour financer les travaux.</p>
         <p>Partout, il mène des chantiers pour bâtir ou rénover églises, chapelles, écoles et hospices, souvent grâce au mécénat des familles nobles lorraines et des souverains d'Europe. Parmi ses réalisations :</p>
 
@@ -954,17 +501,13 @@
         <p class="note-bas">* Le titre de prélat d'honneur est un titre honorifique donnant droit à l'appellation de « Monseigneur », mais ne confère nullement le titre d'évêque.</p>
       </div>
     </div>
-  </article>
-
-
-  <!-- ════ SECTION 04 ════════════════════════════════════ -->
-  <article class="section" id="section-4">
-    <div class="section-inner" data-num="04">
-      <div class="section-entete">
-        <span class="section-num">04</span>
-        <h2 class="section-titre">La basilique<br>Saint-Epvre</h2>
-      </div>
-      <div class="section-texte">
+  </section>
+  <section class="bande b-navy" id="section-4">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1M-I_W_QcVVud-ymkLyK_CCbcd7uwetCp.jpg)" role="img" aria-label="Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet"></div><p class="visuel-leg">Jubilé sacerdotal — Feuillet d'invitation (recto)</p></div>
+      <div class="bande-texte">
+        <span class="b-num">IV</span>
+        <h2>La basilique Saint-Epvre</h2>
         <p>L'œuvre la plus emblématique de Monseigneur Trouillet reste la <strong>basilique Saint-Epvre</strong> à Nancy, élevée au rang de basilique mineure en 1874. En 1864, la première pierre est posée, mais les fonds font défaut. Joseph Trouillet, qui succède en 1865 au curé fondateur abbé Simon, accélère grandement le chantier.</p>
         <p>Il parcourt l'Europe pour recueillir des dons : il sollicite la famille impériale d'Autriche (propriétaire des tombeaux des anciens ducs de Lorraine enfouis sous Saint-Epvre), le Pape Pie IX, Napoléon III et l'impératrice Eugénie. Sur certains vitraux de Saint-Epvre, on peut apercevoir les <strong>blasons des donateurs</strong> en reconnaissance de leur générosité.</p>
         <p>L'église est inaugurée le <strong>20 mars 1871</strong>, en pleine guerre franco-allemande, ce qui illustre bien l'attachement local à ce projet.</p>
@@ -974,17 +517,13 @@
         </blockquote>
       </div>
     </div>
-  </article>
-
-
-  <!-- ════ SECTION 05 ════════════════════════════════════ -->
-  <article class="section" id="section-5">
-    <div class="section-inner" data-num="05">
-      <div class="section-entete">
-        <span class="section-num">05</span>
-        <h2 class="section-titre">Honneurs<br>&amp; distinctions</h2>
-      </div>
-      <div class="section-texte">
+  </section>
+  <section class="bande b-papier" id="section-5">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/11oB032RkEeKwdQlsMT5ETSgzvUxWJ1dR.jpg)" role="img" aria-label="Feuillet d'invitation du jubilé sacerdotal — verso"></div><p class="visuel-leg">Jubilé sacerdotal — Feuillet d'invitation (verso)</p></div>
+      <div class="bande-texte">
+        <span class="b-num">V</span>
+        <h2>Honneurs &amp; distinctions</h2>
         <p>Ses talents de négociateur lui ouvrent les portes des cours et des chancelleries d'Europe. En tant que curé de Saint-Epvre et gardien des tombeaux des ducs de Lorraine, il reçoit de nombreuses distinctions :</p>
 
         <ul>
@@ -996,17 +535,13 @@
         </ul>
       </div>
     </div>
-  </article>
-
-
-  <!-- ════ SECTION 06 ════════════════════════════════════ -->
-  <article class="section" id="section-6">
-    <div class="section-inner" data-num="06">
-      <div class="section-entete">
-        <span class="section-num">06</span>
-        <h2 class="section-titre">Derniers jours<br>&amp; héritage</h2>
-      </div>
-      <div class="section-texte">
+  </section>
+  <section class="bande b-bordeaux" id="section-6">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1zBIvKT9pBtwUWoJVxiV5MPwCHAJROytV.jpg)" role="img" aria-label="Feuillet souvenir du jubilé sacerdotal"></div><p class="visuel-leg">Jubilé sacerdotal — Feuillet souvenir</p></div>
+      <div class="bande-texte">
+        <span class="b-num">VI</span>
+        <h2>Derniers jours &amp; héritage</h2>
         <p>Monseigneur Trouillet s'éteint le <strong>12 mars 1887</strong> à Nancy, peu après avoir célébré la messe dominicale. Dès 1883, lors de son jubilé sacerdotal (50 ans de prêtrise), des cortèges de fidèles, 18 prélats, 3 abbés mitrés et une centaine de prêtres participèrent à l'hommage solennel, devant environ <strong>vingt mille fidèles</strong>.</p>
         <p>À ses funérailles, le <strong>22 mars 1887</strong>, Monseigneur Turinaz (évêque de Nancy) préside une cérémonie grandiose à la basilique Saint-Epvre. Son tombeau, dans le transept droit de la basilique qu'il a fait achever, est symboliquement encadré par deux grands Lorrains : Epvre et Fourier.</p>
         <p>Après sa mort, <strong>deux rues</strong> portent son nom, à Nancy et à Lunéville. Son souvenir reste profondément attaché au paysage nancéien et à l'histoire religieuse et sociale de la région.</p>
@@ -1014,14 +549,13 @@
         <p class="note-bas">* Le comité d'érection de l'orant de Trouillet était composé des membres du Conseil de fabrique, de M. Olry (premier vicaire de la paroisse), du curé de Saint-Vincent-Saint-Fiacre et d'un architecte.</p>
       </div>
     </div>
-  </article>
+  </section>
+  <section class="documents" id="documents">
+    <h2>Documents &amp; photographies</h2>
+    <div class="docs-grille"><figure><img src="/assets/img/site/1UhRimBvRUb_A5gvACkl8jhqSZ2D3BsiD.jpg" alt="Portrait de Monseigneur Trouillet" loading="lazy"><figcaption><strong>Portrait officiel</strong>Portrait de Monseigneur Trouillet — Fond Wiener · Société d'histoire de la Lorraine et du Musée Lorrain.</figcaption></figure><figure><img src="/assets/img/site/19qRQ2bnQgbDJFAjClaQJgp8sToQlKj4O.jpg" alt="Veillée funéraire de Monseigneur Trouillet, mars 1887" loading="lazy"><figcaption><strong>Veillée funéraire — 21 mars 1887</strong>Photo possiblement prise lors de la veillée funéraire de Monseigneur Trouillet, probablement le 21 mars 1887. Les chaises sont mises de côté pour laisser le plus grand nombre de fidèles lui rendre hommage. Possibilité d'un cénotaphe pour l'anniversaire de sa mort. — Collection particulière.</figcaption></figure><figure><img src="/assets/img/site/10-oyn5mSyR6NWvgfPWOYinPVw0y6vQ6B.jpg" alt="Obsèques de Monseigneur Trouillet" loading="lazy"><figcaption><strong>Obsèques — 22 mars 1887</strong>Obsèques de Monseigneur Trouillet — Joseph Delarue · Sylvette Rigollot ©.</figcaption></figure><figure><img src="/assets/img/site/1M-I_W_QcVVud-ymkLyK_CCbcd7uwetCp.jpg" alt="Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet" loading="lazy"><figcaption><strong>Jubilé sacerdotal — Feuillet d'invitation (recto)</strong>Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet — Fond Wiener.</figcaption></figure><figure><img src="/assets/img/site/11oB032RkEeKwdQlsMT5ETSgzvUxWJ1dR.jpg" alt="Feuillet d'invitation du jubilé sacerdotal — verso" loading="lazy"><figcaption><strong>Jubilé sacerdotal — Feuillet d'invitation (verso)</strong>Feuillet d'invitation du jubilé sacerdotal de Monseigneur Trouillet — Fond Wiener · Société d'histoire de la Lorraine et du Musée Lorrain.</figcaption></figure><figure><img src="/assets/img/site/1zBIvKT9pBtwUWoJVxiV5MPwCHAJROytV.jpg" alt="Feuillet souvenir du jubilé sacerdotal" loading="lazy"><figcaption><strong>Jubilé sacerdotal — Feuillet souvenir</strong>Feuillet souvenir du jubilé sacerdotal de Monseigneur Trouillet — Fond Wiener · Société d'histoire de la Lorraine et du Musée Lorrain.</figcaption></figure><figure><img src="/assets/img/site/1ky-9BtTw61t7qitln2oVSXfMn_dZJhOL.jpg" alt="Monseigneur Turinaz, évêque de Nancy" loading="lazy"><figcaption><strong>Monseigneur Turinaz</strong>Monseigneur Turinaz, évêque de Nancy — célébrant de l'enterrement de Monseigneur Trouillet.</figcaption></figure><figure><img src="/assets/img/site/1L8gLpOZ-7xTat9iBxe8HVCrI6HUDmY2N.jpg" alt="Document Légion d'honneur de Monseigneur Trouillet" loading="lazy"><figcaption><strong>Légion d'honneur — 1866</strong>Document attestant de l'attribution de la Légion d'honneur à Monseigneur Trouillet — Archives nationales du gouvernement français.</figcaption></figure></div>
+  </section>
 
-
-  <!-- ════ SOURCES ════════════════════════════════════════ -->
-  <div class="sources" id="sources">
-    <div class="sources-inner">
-      <h3 class="sources-titre">Sources</h3>
-      <ul class="sources-liste">
+  <div class="sources-t"><h3>Sources</h3><ul class="sources-liste">
         <li>Source principale : <a href="http://www.societe-histoire-lorraine.com" target="_blank" rel="noopener">Société d'histoire de la Lorraine</a> (archives scannées par le Fond Wiener)</li>
         <li>Journal de la Meurthe, notice nécrologique de Monseigneur Trouillet (p. 58)</li>
         <li>Jean Py, <em>Monseigneur Joseph Trouillet (1809–1887)</em>, Office de Tourisme du Lunévillois</li>
@@ -1029,95 +563,70 @@
         <li>Notice photographique <em>Obsèques de Monseigneur Trouillet</em> — <a href="https://image-est.fr" target="_blank" rel="noopener">Image'Est</a></li>
         <li>Vivre Nancy n°2 (Lorraine Magazine), « Un sanglier en ville : la place Saint-Epvre »</li>
         <li>Joseph Trouillet, généalogie par Philippe Schmitt (phil68) — <a href="https://gw.geneanet.org/phil68?lang=fr&n=trouillet&oc=0&p=joseph&type=timeline" target="_blank" rel="noopener">Geneanet</a></li>
-      </ul>
-    </div>
-  </div>
+      </ul></div>
+</main>
 
+<div class="cul-de-lampe" aria-hidden="true">
+  <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=3)"></div>
+</div>
 
-  <!-- ════ PIED DE PAGE ═══════════════════════════════════ -->
-  <div class="pied">
-    <span class="pied-nom">Saint-Epvre</span>
-    <span class="pied-lieu">Nancy · Lorraine · France</span>
-  </div>
-
-</div><!-- fin .page -->
+<footer class="pied">
+  <div class="orn rosace-pied" style="--src:url(../assets/ornements/rosace-p.svg?v=2)" aria-hidden="true"></div>
+  <b>Saint-Epvre</b>
+  <span>Nancy · Lorraine · France</span>
+  </footer>
 
 <script>
-  /* ── CARROUSEL ─────────────────────────────────────── */
-  (function() {
-    var piste      = document.getElementById('pisteDiapos');
-    var diapos     = document.querySelectorAll('.carrousel-diapo');
-    var btnPrev    = document.getElementById('btnPrev');
-    var btnNext    = document.getElementById('btnNext');
-    var conteneur  = document.getElementById('pointsNav');
-    var total      = diapos.length;
-    var actuel     = 0;
-
-    for (var i = 0; i < total; i++) {
-      var pt = document.createElement('button');
-      pt.className = 'point' + (i === 0 ? ' actif' : '');
-      pt.setAttribute('aria-label', 'Diapositive ' + (i + 1));
-      pt.setAttribute('data-index', i);
-      conteneur.appendChild(pt);
-    }
-
-    function aller(index) {
-      actuel = (index + total) % total;
-      piste.style.transform = 'translateX(-' + (actuel * 100) + '%)';
-      conteneur.querySelectorAll('.point').forEach(function(p, idx) {
-        p.classList.toggle('actif', idx === actuel);
-      });
-    }
-
-    btnPrev.addEventListener('click', function() { aller(actuel - 1); });
-    btnNext.addEventListener('click', function() { aller(actuel + 1); });
-
-    conteneur.addEventListener('click', function(e) {
-      if (e.target.classList.contains('point')) {
-        aller(parseInt(e.target.getAttribute('data-index')));
-      }
-    });
-
-    var debutX = 0;
-    piste.addEventListener('touchstart', function(e) {
-      debutX = e.touches[0].clientX;
-    }, { passive: true });
-    piste.addEventListener('touchend', function(e) {
-      var diff = debutX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) {
-        aller(diff > 0 ? actuel + 1 : actuel - 1);
-      }
-    }, { passive: true });
+  // Apparition douce des blocs au défilement
+  (function () {
+    var els = document.querySelectorAll('.apparait, .apparait-ouv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('vu'); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
   })();
-
-  /* ── NAVIGATION SOMMAIRE — compatible Google Sites iframe ── */
-  document.querySelectorAll('.sommaire a[data-cible]').forEach(function(lien) {
-    lien.addEventListener('click', function(e) {
-      e.preventDefault();
-      var cible = document.getElementById(this.getAttribute('data-cible'));
-      if (cible) {
-        cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  /* ── SCROLL REVEAL ─────────────────────────────────── */
-  var blocs = document.querySelectorAll('.section, .sources');
-  var obs = new IntersectionObserver(function(entrees) {
-    entrees.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  blocs.forEach(function(b) { obs.observe(b); });
 </script>
+<script>
+  (function () {
+    // Le chapeau se lit au défilement : les mots passent du gris au bleu marine
+    (function () {
+      var mots = document.querySelectorAll('.lecture-texte span'); if (!mots.length) return;
+      var bloc = document.querySelector('.lecture');
+      function maj() {
+        var r = bloc.getBoundingClientRect(), h = innerHeight;
+        var p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25)));
+        var lus = Math.round(p * mots.length);
+        mots.forEach(function (m, i) { m.classList.toggle('lu', i < lus); });
+      }
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
+      var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
+    })();
 
+    // Bandes empilées : une bande plus haute que l'écran reste collée par le bas
+    (function () {
+      // hauteur d'écran figée (la barre d'adresse du téléphone ne doit pas faire sauter les bandes)
+      var VW = innerWidth, VH = innerHeight;
+      function cale() { document.querySelectorAll('.bande').forEach(function (b) { b.style.setProperty('--st', Math.min(0, VH - b.offsetHeight) + 'px'); }); }
+      addEventListener('resize', function () { if (Math.abs(innerWidth - VW) > 40) { VW = innerWidth; VH = innerHeight; } cale(); });
+      addEventListener('load', cale); cale();
+    })();
+    // la façade se dresse quand elle arrive à l'écran
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .2 });
+      document.querySelectorAll('.facade-jeux').forEach(function (b) { io.observe(b); });
+    } else document.querySelectorAll('.facade-jeux').forEach(function (b) { b.classList.add('vu'); });
+  })();
+</script>
+<script>
+  // Sur écran tactile, l'élément au centre de l'écran prend l'état « survolé »
+  (function () {
+    if (!matchMedia('(hover: none)').matches || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('actif', e.isIntersecting); }); }, { rootMargin: '-42% 0px -42% 0px' });
+    document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
+  })();
+</script>
 <script defer src="../assets/js/nav.js?v=11"></script>
-  <script defer src="../assets/js/site.js?v=21"></script>
-<script src="/assets/js/refonte.js?v=2"></script>
 <script src="/assets/js/visionneuse.js?v=2"></script>
 </body>
 </html>

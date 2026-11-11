@@ -93,10 +93,16 @@
     +   '<a href="/" class="nav-logo">Basilique Saint-Epvre</a>'
     +   '<span class="nav-sep" aria-hidden="true"></span>'
     +   '<ul class="nav-links" role="list">' + desktopItems + '</ul>'
+    +   '<button class="nav-langue" id="navLangue" aria-label="Traduire la page" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg></button>'
     +   '<button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navFullscreen">'
     +     '<span></span><span></span><span></span>'
     +   '</button>'
     + '</nav>'
+    + '<div class="nav-langues" id="navLangues" hidden><span>Traduire la page</span>'
+    +   [['en','English'],['de','Deutsch'],['es','Español'],['it','Italiano'],['pl','Polski'],['nl','Nederlands']].map(function (l) {
+          return '<a href="https://translate.google.com/translate?sl=fr&tl=' + l[0] + '&u=' + encodeURIComponent(location.href) + '" rel="noopener">' + l[1] + '</a>';
+        }).join('')
+    + '</div>'
     + '<div class="nav-voile" id="navVoile" aria-hidden="true"></div>'
     + '<div class="nav-fullscreen" id="navFullscreen" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">'
     +   '<div class="nm-haut">'
@@ -228,6 +234,17 @@
     document.body.style.overflow = '';
     burger.focus();
   }
+
+  // Bouton Traduire : petite liste de langues (traduction automatique de Google Traduction)
+  var lb = document.getElementById('navLangue'), lp = document.getElementById('navLangues');
+  lb.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var r = lb.getBoundingClientRect();
+    lp.style.top = (r.bottom + 10) + 'px'; lp.style.right = Math.max(12, innerWidth - r.right - 40) + 'px';
+    lp.hidden = !lp.hidden; lb.setAttribute('aria-expanded', !lp.hidden);
+  });
+  document.addEventListener('click', function (e) { if (!lp.hidden && !lp.contains(e.target)) { lp.hidden = true; lb.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lp.hidden = true; });
 
   burger.addEventListener('click', function () {
     if (menu.classList.contains('open')) closeMenu(); else openMenu();

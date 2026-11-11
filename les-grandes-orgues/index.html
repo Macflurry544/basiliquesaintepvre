@@ -305,6 +305,68 @@
     .sommaire a:hover { color: var(--bordeaux); padding-left: .6rem; }
     .sommaire a:hover::after { transform: translateX(6px); }
     .pied .rosace-pied { width: 96px; height: 96px; }
+
+    /* ══ Organisation façon musée : lecture au défilement, chapitres en bandes empilées, jeux un par un ══ */
+    .lecture { max-width: 1240px; margin: 0 auto; padding: 6rem max(22px, env(safe-area-inset-left, 0px)) 5rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.7rem, 4.4vw, 3.6rem)/1.12 var(--titre); letter-spacing: -.025em; color: var(--navy); }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+
+    .bande { position: sticky; top: var(--st, 0px); padding: clamp(4rem, 9vh, 7rem) 0; min-height: 100vh; min-height: 100svh; }
+    .b-papier { background: var(--papier); color: var(--navy); }
+    .b-bordeaux { background: var(--bordeaux); color: var(--blanc); }
+    .b-navy { background: var(--navy); color: var(--blanc); }
+    .bande-grille { max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+    .visuel { position: sticky; top: 100px; }
+    .visuel-img { width: 100%; aspect-ratio: 1; background: center / cover no-repeat; }
+    .visuel-img.oculus { -webkit-mask: var(--oculus) center / contain no-repeat; mask: var(--oculus) center / contain no-repeat; }
+    .visuel-img.grav { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; aspect-ratio: 1790 / 1910; }
+    .visuel-leg { margin: .9rem 0 0; font: 400 .9rem var(--titre); opacity: .75; }
+    .visuel .eventail { margin: 0; }
+    .b-num { display: block; font: 500 clamp(5rem, 12vw, 9.5rem)/.8 var(--titre); letter-spacing: -.05em; }
+    .bande h2 { margin: 1.6rem 0 1rem; font: 500 clamp(2.2rem, 4.6vw, 3.8rem)/.98 var(--titre); letter-spacing: -.035em; text-transform: none; text-align: left; }
+    .bande .argument { text-align: left; margin: 0 0 1.8rem; padding: 0; border: 0; font: 400 1.15rem/1.45 var(--titre); font-style: normal; color: inherit; opacity: .8; max-width: none; }
+    .bande-texte p { margin: 0 0 1.1em; }
+    .bande strong { color: inherit; font-weight: 700; }
+    .b-bordeaux .fort, .b-navy .fort { background: var(--blanc); color: var(--bordeaux); outline-color: var(--blanc); }
+    .b-bordeaux .fort strong, .b-bordeaux .fort .orn { color: var(--bordeaux); }
+    .bande .innovations .orn, .bande .organistes .orn { color: var(--bordeaux); }
+    .bande-jeux { max-width: 1240px; margin: 4rem auto 0; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .bande-jeux .jeux-note { opacity: .75; font-size: .95rem; margin-top: 1.2rem; }
+    @media (max-width: 820px) {
+      .bande { position: relative; top: 0; min-height: 0; }
+      .bande-grille { grid-template-columns: 1fr; }
+      .visuel { position: relative; top: 0; max-width: 420px; }
+    }
+
+    /* Jeux : une grande diapositive à la fois, flèches géantes de part et d'autre */
+    .diapo { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(.5rem, 3vw, 3rem); margin-top: 2rem; }
+    .diapo-fl { background: none; border: 0; color: inherit; cursor: pointer; padding: .5rem; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+    .diapo-fl svg { width: clamp(46px, 6vw, 84px); height: auto; display: block; }
+    .diapo-fl:hover { transform: translateX(var(--dx)); }
+    .diapo-prec { --dx: -6px; } .diapo-suiv { --dx: 6px; }
+    .diapo-fl:disabled { opacity: .25; cursor: default; transform: none; }
+    .diapo-cadre { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); min-height: 460px; background: var(--papier); color: var(--navy); border-radius: 20px; overflow: hidden; }
+    .diapo-dessin { display: flex; align-items: flex-end; justify-content: center; padding: 2rem 1rem 0; background: var(--blanc); border-right: 1px solid var(--filet); }
+    .diapo-dessin .orn { width: 100%; color: var(--navy); -webkit-mask-position: center bottom; mask-position: center bottom; }
+    .diapo-texte { padding: clamp(1.6rem, 4vw, 3.2rem); display: flex; flex-direction: column; justify-content: center; }
+    .diapo-texte small { font: 500 .9rem var(--titre); letter-spacing: .14em; color: var(--gris); text-transform: uppercase; }
+    .diapo-texte h4 { margin: .6rem 0 .3rem; font: 500 clamp(2.4rem, 5vw, 4.4rem)/.95 var(--titre); letter-spacing: -.04em; text-transform: uppercase; }
+    .diapo-texte em { font: 600 clamp(1.6rem, 3vw, 2.4rem) var(--titre); font-style: normal; color: var(--bordeaux); }
+    .diapo-texte p { margin: 1.2rem 0 0 !important; font-size: 1.2rem; line-height: 1.5; color: var(--navy); }
+    .diapo-cadre > * { animation: diapo .6s cubic-bezier(.22,1,.36,1); }
+    @keyframes diapo { from { opacity: 0; transform: translateX(var(--sens, 30px)); } }
+    .b-navy .cj-onglet, .b-bordeaux .cj-onglet { border-color: rgba(255,255,255,.6); color: var(--blanc); }
+    .b-navy .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--navy); border-color: var(--blanc); }
+    .b-bordeaux .cj-onglet[aria-selected="true"] { background: var(--blanc); color: var(--bordeaux); border-color: var(--blanc); }
+    .cj-info { color: inherit !important; opacity: .7; }
+    @media (max-width: 700px) {
+      .diapo { grid-template-columns: 1fr 1fr; }
+      .diapo-cadre { grid-column: 1 / -1; grid-row: 1; grid-template-columns: 1fr; min-height: 0; }
+      .diapo-dessin { height: 240px; border-right: 0; border-bottom: 1px solid var(--filet); }
+      .diapo-prec { justify-self: start; } .diapo-suiv { justify-self: end; }
+    }
+    @media (prefers-reduced-motion: reduce) { .diapo-cadre > * { animation: none; } .lecture-texte span { transition: none; } }
 </style>
   <script type="application/ld+json">
   {
@@ -342,10 +404,7 @@
 <div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
 
 <main>
-  <section class="chapeau col apparait">
-    <div class="orn lettrine" style="--src:url(../assets/ornements/lettrine-c.svg?v=4)" aria-hidden="true"></div>
-    <p><span class="visuellement-cache" style="position:absolute;left:-9999px">C</span>ouronné d'une médaille d'or à Paris, au Champ-de-Mars, en 1867, cet orgue n'était pas destiné à une cathédrale parisienne, mais à une église encore en chantier au cœur de la Ville-Vieille de Nancy. Deux ans plus tard, Anton Bruckner vint l'inaugurer. Chef-d'œuvre de la facture d'orgue romantique-symphonique, il résonne depuis 1869 sous les voûtes de Saint-Epvre.</p>
-  </section>
+  <section class="lecture"><p class="lecture-texte" aria-label="Couronné d'une médaille d'or à Paris, au Champ-de-Mars, en 1867, cet orgue n'était pas destiné à une cathédrale parisienne, mais à une église encore en chantier au cœur de la Ville-Vieille de Nancy. Deux ans plus tard, Anton Bruckner vint l'inaugurer. Chef-d'œuvre de la facture d'orgue romantique-symphonique, il résonne depuis 1869 sous les voûtes de Saint-Epvre."><span>Couronné</span> <span>d'une</span> <span>médaille</span> <span>d'or</span> <span>à</span> <span>Paris,</span> <span>au</span> <span>Champ-de-Mars,</span> <span>en</span> <span>1867,</span> <span>cet</span> <span>orgue</span> <span>n'était</span> <span>pas</span> <span>destiné</span> <span>à</span> <span>une</span> <span>cathédrale</span> <span>parisienne,</span> <span>mais</span> <span>à</span> <span>une</span> <span>église</span> <span>encore</span> <span>en</span> <span>chantier</span> <span>au</span> <span>cœur</span> <span>de</span> <span>la</span> <span>Ville-Vieille</span> <span>de</span> <span>Nancy.</span> <span>Deux</span> <span>ans</span> <span>plus</span> <span>tard,</span> <span>Anton</span> <span>Bruckner</span> <span>vint</span> <span>l'inaugurer.</span> <span>Chef-d'œuvre</span> <span>de</span> <span>la</span> <span>facture</span> <span>d'orgue</span> <span>romantique-symphonique,</span> <span>il</span> <span>résonne</span> <span>depuis</span> <span>1869</span> <span>sous</span> <span>les</span> <span>voûtes</span> <span>de</span> <span>Saint-Epvre.</span></p></section>
 
   <nav class="sommaire col apparait" aria-label="Sommaire">
     <span class="cartouche">Sommaire</span>
@@ -369,45 +428,40 @@
     <div style="--i:3"><small>04</small><b>80&#8239;000</b><span>Francs-or : son prix estimé par <i>La Meurthe</i>.</span></div>
   </section>
 
-  <section class="chapitre col apparait" id="avant">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">I</span><span class="ouv-lib">Chapitre premier</span>
-    </div>
-    <h2>L'orgue avant la basilique</h2>
-    <p class="argument">Un orgue dès le XVIᵉ siècle — Un instrument du XVIIIᵉ — Les tuyaux partis pour Dannelbourg.</p>
+  <section class="bande b-papier" id="avant">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img" style="background-image:url(../assets/img/biblio/morey.jpg)" role="img" aria-label="Gravure de Prosper Morey"></div><p class="visuel-leg">Gravure de Prosper Morey, 1862-1864</p></div>
+      <div class="bande-texte">
+        <span class="b-num">I</span>
+        <h2>L'orgue avant la basilique</h2>
+        <p class="argument">Un orgue dès le XVIᵉ siècle — Un instrument du XVIIIᵉ — Les tuyaux partis pour Dannelbourg.</p>
+
     <p>Avant la construction de la nouvelle basilique, l'ancienne église paroissiale possédait déjà un orgue, mentionné dès le XVIᵉ siècle ; on sait qu'un orgue du XVIIIᵉ siècle y avait ensuite été établi. Lors de la démolition de l'édifice, l'instrument fut démonté et ses tuyaux revendus pour l'église de Dannelbourg. Aucune trace directe de ce premier orgue n'a traversé le temps.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="chapitre col apparait" id="commande">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">II</span><span class="ouv-lib">Chapitre deuxième</span>
-    </div>
-    <h2>Commande et construction, 1867</h2>
-    <p class="argument">Mgr Trouillet et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p>
+  <section class="bande b-bordeaux" id="commande">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(../assets/img/orgues/tribune.jpg)" role="img" aria-label="Le grand orgue sur la tribune"></div><p class="visuel-leg">Le grand orgue Merklin-Schütze, tribune occidentale</p></div>
+      <div class="bande-texte">
+        <span class="b-num">II</span>
+        <h2>Commande et construction, 1867</h2>
+        <p class="argument">Mgr Trouillet et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p>
+
     <p>Pour la nouvelle église en construction, Mgr Joseph Trouillet passa commande d'un instrument neuf auprès de la maison Merklin-Schütze, à Paris. Il acquit l'orgue que Joseph Merklin présentait à l'Exposition universelle de 1867.</p>
     <div class="fort">
       <div class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)" aria-hidden="true"></div>
       <p>L'instrument remporta la <strong>médaille d'or de l'Exposition de 1867</strong> et valut à Merklin la croix de la Légion d'honneur ainsi que de nombreuses louanges de la presse musicale. Le journal <i>La Meurthe</i> estima son prix à près de <strong>80 000 francs-or</strong>.</p>
     </div>
     <p>Livré et installé en Lorraine peu après, le grand orgue de Saint-Epvre était alors à la pointe du progrès de la facture d'orgue.</p>
-    <figure class="planche">
-      <img src="../assets/img/orgues/tribune.jpg" alt="Le grand orgue Merklin-Schütze sur la tribune occidentale de la basilique" loading="lazy">
-      <figcaption>Le grand orgue Merklin-Schütze, tribune occidentale.<i>(fig. 1)</i></figcaption>
-    </figure>
+      </div>
+    </div>
   </section>
 
-  <section class="chapitre col apparait" id="inauguration">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">III</span><span class="ouv-lib">Chapitre troisième</span>
-    </div>
-    <h2>L'inauguration par Bruckner, 1869</h2>
-    <p class="argument">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p>
-    <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
-    <p>L'Autrichien <strong>Anton Bruckner</strong>, alors âgé de 44 ans, surnommé « le ménestrel de Dieu » par Franz Liszt et organiste à la cour de François-Joseph, y fut invité comme artiste vedette. Choisi par l'empereur d'Autriche pour représenter son pays, il joua lors de ces concerts inauguraux.</p>
-    <div class="eventail apparait-ouv" aria-hidden="true">
+  <section class="bande b-papier" id="inauguration">
+    <div class="bande-grille">
+      <div class="visuel">    <div class="eventail apparait-ouv" aria-hidden="true">
       <span class="carte" style="--r:-32deg;--i:0;background-image:url(../assets/img/orgues/nef.jpg)"></span>
       <span class="carte" style="--r:-16deg;--i:1;background-image:url(../assets/img/orgues/tuyaux.jpg)"></span>
       <span class="carte" style="--r:0deg;--i:2;background-image:url(../assets/img/orgues/tribune.jpg)"></span>
@@ -415,35 +469,43 @@
       <span class="carte" style="--r:32deg;--i:4;background-image:url(../assets/img/orgues/plaque.jpg)"></span>
       <p class="phrase"><q>Le ménestrel de Dieu</q><span>Anton Bruckner, selon Franz Liszt</span></p>
     </div>
+</div>
+      <div class="bande-texte">
+        <span class="b-num">III</span>
+        <h2>L'inauguration par Bruckner, 1869</h2>
+        <p class="argument">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p>
+
+    <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
+    <p>L'Autrichien <strong>Anton Bruckner</strong>, alors âgé de 44 ans, surnommé « le ménestrel de Dieu » par Franz Liszt et organiste à la cour de François-Joseph, y fut invité comme artiste vedette. Choisi par l'empereur d'Autriche pour représenter son pays, il joua lors de ces concerts inauguraux.</p>
     <p>Les journaux locaux relatèrent qu'il éblouit le public par ses improvisations, ce qui assura au nouvel orgue une renommée immédiate en France et en Europe.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="chapitre col apparait" id="instrument">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">IV</span><span class="ouv-lib">Chapitre quatrième</span>
-    </div>
-    <h2>Caractéristiques techniques</h2>
-    <p class="argument">Quarante-quatre jeux, trois claviers et un pédalier — Le buffet de Prosper Morey — La machine Barker.</p>
+  <section class="bande b-navy" id="instrument">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(../assets/img/orgues/tuyaux.jpg)" role="img" aria-label="Tuyaux de façade"></div><p class="visuel-leg">Les montres d'étain en façade</p></div>
+      <div class="bande-texte">
+        <span class="b-num">IV</span>
+        <h2>Caractéristiques techniques</h2>
+        <p class="argument">Quarante-quatre jeux, trois claviers et un pédalier — Le buffet de Prosper Morey — La machine Barker.</p>
+
     <p>Le grand orgue compte <strong>44 jeux</strong> répartis sur trois claviers manuels et un pédalier indépendant.</p>
-    <div class="facade-jeux" data-orgue="grand" aria-label="Composition du grand orgue"></div>
-    <p class="jeux-note">Composition du grand orgue : un clavier par onglet, une carte par jeu, le tuyau dessiné à l'échelle de sa taille en pieds. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p>
     <p>La console, de style néo-gothique, est indépendante. Le buffet, dessiné par l'architecte Prosper Morey, adopte le style néo-gothique flamboyant de la basilique. La transmission est entièrement mécanique suspendue, assistée d'une <strong>machine Barker</strong>, dispositif pneumatique breveté en 1839, pour alléger le toucher.</p>
-    <div class="arcades">
-      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/tribune.jpg)" role="img" aria-label="Le grand orgue sur la tribune occidentale"></div><figcaption><b>La tribune</b>Le buffet de Prosper Morey, au revers de la façade.</figcaption></figure>
-      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/nef.jpg)" role="img" aria-label="Les grandes orgues vues de la nef"></div><figcaption><b>Depuis la nef</b>Ce que voit l'assemblée en se retournant.</figcaption></figure>
-      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/tuyaux.jpg)" role="img" aria-label="Détail du grand orgue Merklin-Schütze"></div><figcaption><b>Les tuyaux</b>Montres d'étain en façade.</figcaption></figure>
-      <figure class="arcade"><div class="baie" style="background-image:url(../assets/img/orgues/clavier.jpg)" role="img" aria-label="Le clavier de l'orgue de chœur"></div><figcaption><b>Le clavier</b>Celui de l'orgue de chœur.</figcaption></figure>
-    </div>
+      </div>
+    </div><div class="bande-jeux">
+    <div class="facade-jeux" data-orgue="grand" aria-label="Composition du grand orgue"></div>
+    <p class="jeux-note">Composition du grand orgue : un clavier par onglet, une carte par jeu, le tuyau dessiné à l'échelle de sa taille en pieds. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p></div>
   </section>
 
-  <section class="chapitre col apparait" id="style">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">V</span><span class="ouv-lib">Chapitre cinquième</span>
-    </div>
-    <h2>Un orgue romantique-symphonique</h2>
-    <p class="argument">Imiter l'orchestre — Les avancées de l'instrument — Le Récit expressif.</p>
+  <section class="bande b-papier" id="style">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img orn grav" style="--src:url(../assets/ornements/orgue-1867.svg?v=2)" role="img" aria-label="Gravure de l'orgue en 1867"></div><p class="visuel-leg">L'orgue à l'Exposition universelle, 1867</p></div>
+      <div class="bande-texte">
+        <span class="b-num">V</span>
+        <h2>Un orgue romantique-symphonique</h2>
+        <p class="argument">Imiter l'orchestre — Les avancées de l'instrument — Le Récit expressif.</p>
+
     <p>Construit au milieu du XIXᵉ siècle, le grand orgue de Saint-Epvre illustre l'esthétique romantique-symphonique française. Ces instruments cherchent à élargir la palette sonore pour imiter l'orchestre : les jeux de fonds deviennent plus larges et plus puissants, les anches gagnent en ampleur, et l'on multiplie les dispositifs qui permettent de combiner les registres.</p>
     <p>L'instrument se distingue par plusieurs avancées :</p>
     <ul class="innovations">
@@ -454,29 +516,35 @@
       <li><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span><span>une pédale de forte général, qui ouvre ou ferme d'un coup tous les jeux de combinaisons.</span></li>
     </ul>
     <p>Le <strong>Récit expressif</strong> est enfermé dans une boîte expressive qui permet de véritables effets de crescendo et de decrescendo : ampleur orchestrale, richesse des timbres, contrastes et souplesse.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="chapitre col apparait" id="choeur">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">VI</span><span class="ouv-lib">Chapitre sixième</span>
-    </div>
-    <h2>L'orgue de chœur</h2>
-    <p class="argument">Commandé à la même manufacture — En place en 1872 — Abîmé puis restauré en 2009.</p>
+  <section class="bande b-bordeaux" id="choeur">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(../assets/img/orgues/clavier.jpg)" role="img" aria-label="Le clavier de l'orgue de chœur"></div><p class="visuel-leg">Le clavier de l'orgue de chœur</p></div>
+      <div class="bande-texte">
+        <span class="b-num">VI</span>
+        <h2>L'orgue de chœur</h2>
+        <p class="argument">Commandé à la même manufacture — En place en 1872 — Abîmé puis restauré en 2009.</p>
+
     <p>Pour compléter le grand orgue, Mgr Trouillet commanda un orgue de chœur à la même manufacture parisienne. Il était en place en <strong>1872</strong>, date à partir de laquelle il fut assuré pour une valeur de 10 000 francs.</p>
     <p>Le meuble est entièrement en chêne verni. Les tuyaux de façade, en étain, avec écussons rapportés et relevés en ogive, sont répartis sur trois côtés ; le dernier côté coïncide avec la face arrière du maître-autel.</p>
     <p>L'orgue de chœur n'a connu qu'une transformation, vers 1911, par Kühn. Dans les années 1990, alors qu'il venait d'être classé monument historique, un homme sans abri s'y était réfugié et la tuyauterie fut gravement endommagée. L'instrument a été restauré en 2009 et a retrouvé son fonctionnement d'origine.</p>
+      </div>
+    </div><div class="bande-jeux">
     <div class="facade-jeux" data-orgue="choeur" aria-label="Composition de l'orgue de chœur"></div>
-    <p class="jeux-note">Composition de l'orgue de chœur. Dessins de tuyaux d'Audsley (1905).</p>
+    <p class="jeux-note">Composition de l'orgue de chœur. Dessins de tuyaux d'Audsley (1905).</p></div>
   </section>
 
-  <section class="chapitre col apparait" id="organistes">
-    <div class="ouv">
-      <div class="ouv-filet"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span></div>
-      <span class="ouv-num">VII</span><span class="ouv-lib">Chapitre septième</span>
-    </div>
-    <h2>Les titulaires de l'orgue</h2>
-    <p class="argument">Ceux qui ont tenu la tribune depuis l'inauguration.</p>
+  <section class="bande b-papier" id="organistes">
+    <div class="bande-grille">
+      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(../assets/img/orgues/plaque.jpg)" role="img" aria-label="Plaque Merklin-Schütze"></div><p class="visuel-leg">La plaque du facteur, sur la console</p></div>
+      <div class="bande-texte">
+        <span class="b-num">VII</span>
+        <h2>Les titulaires de l'orgue</h2>
+        <p class="argument">Ceux qui ont tenu la tribune depuis l'inauguration.</p>
+
     <ul class="organistes">
       <li><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span><b>Auguste Rigaux</b><span>années 1860</span></li>
       <li><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span><b>Auguste Joly</b><span>années 1860</span></li>
@@ -489,6 +557,8 @@
       <li class="actuelle"><span class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></span><b>Nathalie Dassi</b><span>depuis 1988</span></li>
     </ul>
     <p>Organiste de chœur et maître de chapelle : Joseph Gérard Alphonse Claude (1887–1928).</p>
+      </div>
+    </div>
   </section>
 </main>
 
@@ -565,35 +635,55 @@
     // hauteur du panneau selon la taille du jeu (32′ le plus haut) ; mixtures et timbres : hauteur moyenne
     var H = { 32: 100, 16: 86, 8: 70, 4: 56, 3: 50, 2: 44, 0: 50 };
     function pieds(p) { return p ? p + '′' : 'plusieurs rangs'; }
-    // Carrousel : un onglet par clavier, une grande carte par jeu
+    // Diaporama : un onglet par clavier, un seul jeu à la fois, grandes flèches
     document.querySelectorAll('.facade-jeux').forEach(function (bloc) {
-      var claviers = ORGUES[bloc.dataset.orgue];
-      var onglets = claviers.map(function (c, k) {
-        return '<button type="button" class="cj-onglet" role="tab" aria-selected="' + (k === 0) + '" data-k="' + k + '">' + c[0] + '<small>' + c[2].length + '</small></button>';
+      var claviers = ORGUES[bloc.dataset.orgue], k = 0, n = 0;
+      var onglets = claviers.map(function (c, i) {
+        return '<button type="button" class="cj-onglet" role="tab" aria-selected="' + (i === 0) + '" data-k="' + i + '">' + c[0] + '<small>' + c[2].length + '</small></button>';
       }).join('');
-      bloc.innerHTML = '<div class="cj-tete"><div class="cj-onglets" role="tablist">' + onglets + '</div>'
-        + '<div class="cj-fleches"><button type="button" class="cj-prec" aria-label="Jeu précédent">←</button><button type="button" class="cj-suiv" aria-label="Jeu suivant">→</button></div></div>'
-        + '<p class="cj-info"></p><div class="cj-piste" tabindex="0"></div>';
-      var piste = bloc.querySelector('.cj-piste'), info = bloc.querySelector('.cj-info');
-      function montre(k) {
-        var c = claviers[k];
-        bloc.querySelectorAll('.cj-onglet').forEach(function (o, n) { o.setAttribute('aria-selected', n === k); });
+      bloc.innerHTML = '<div class="cj-onglets" role="tablist">' + onglets + '</div><p class="cj-info"></p>'
+        + '<div class="diapo"><button type="button" class="diapo-fl diapo-prec" aria-label="Jeu précédent"><svg viewBox="0 0 84 60" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" aria-hidden="true" style="transform:scaleX(-1)"><path d="M4 30h76"/><path d="M58 4q0 26 22 26q-22 0-22 26"/></svg></button>'
+        + '<div class="diapo-cadre" aria-live="polite"></div>'
+        + '<button type="button" class="diapo-fl diapo-suiv" aria-label="Jeu suivant"><svg viewBox="0 0 84 60" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" aria-hidden="true"><path d="M4 30h76"/><path d="M58 4q0 26 22 26q-22 0-22 26"/></svg></button></div>';
+      var cadre = bloc.querySelector('.diapo-cadre'), info = bloc.querySelector('.cj-info');
+      var prec = bloc.querySelector('.diapo-prec'), suiv = bloc.querySelector('.diapo-suiv');
+      function rend(sens) {
+        var c = claviers[k], j = c[2][n], f = F[j[2]], pi = j[2] === 'clochette' ? 'timbre' : pieds(j[1]);
+        bloc.querySelectorAll('.cj-onglet').forEach(function (o, i) { o.setAttribute('aria-selected', i === k); });
         info.textContent = c[0] + ' · ' + c[1];
-        piste.innerHTML = c[2].map(function (j, n) {
-          var f = F[j[2]], pi = j[2] === 'clochette' ? 'timbre' : pieds(j[1]);
-          return '<article class="cj" style="--i:' + n + '">'
-            + '<div class="cj-dessin"><span class="orn" style="--src:url(' + D + f[0] + '.svg);height:' + H[j[1]] + '%" aria-hidden="true"></span><em>' + pi + '</em></div>'
-            + '<div class="cj-texte"><small>' + String(n + 1).padStart(2, '0') + '</small><h4>' + j[0] + '</h4><p>' + f[1] + '</p></div></article>';
-        }).join('');
-        piste.scrollLeft = 0;
-        piste.classList.remove('vu'); void piste.offsetWidth; piste.classList.add('vu');
+        cadre.style.setProperty('--sens', (sens || 1) * 30 + 'px');
+        cadre.innerHTML = '<div class="diapo-dessin"><span class="orn" style="--src:url(' + D + f[0] + '.svg);height:' + (H[j[1]] * 4) + 'px;max-height:100%" aria-hidden="true"></span></div>'
+          + '<div class="diapo-texte"><small>Jeu ' + (n + 1) + ' sur ' + c[2].length + '</small><h4>' + j[0] + '</h4><em>' + pi + '</em><p>' + f[1] + '</p></div>';
+        prec.disabled = n === 0; suiv.disabled = n === c[2].length - 1;
       }
-      bloc.querySelectorAll('.cj-onglet').forEach(function (o) { o.addEventListener('click', function () { montre(+o.dataset.k); }); });
-      function pas() { var c = piste.querySelector('.cj'); return c ? c.offsetWidth + 20 : 300; }
-      bloc.querySelector('.cj-prec').addEventListener('click', function () { piste.scrollBy({ left: -pas(), behavior: 'smooth' }); });
-      bloc.querySelector('.cj-suiv').addEventListener('click', function () { piste.scrollBy({ left: pas(), behavior: 'smooth' }); });
-      montre(0);
+      bloc.querySelectorAll('.cj-onglet').forEach(function (o) { o.addEventListener('click', function () { k = +o.dataset.k; n = 0; rend(1); }); });
+      prec.addEventListener('click', function () { if (n > 0) { n--; rend(-1); } });
+      suiv.addEventListener('click', function () { if (n < claviers[k][2].length - 1) { n++; rend(1); } });
+      var x0 = null;
+      cadre.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      cadre.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (dx < -40) suiv.click(); else if (dx > 40) prec.click(); x0 = null; });
+      rend(1);
     });
+
+    // Le chapeau se lit au défilement : les mots passent du gris au bleu marine
+    (function () {
+      var mots = document.querySelectorAll('.lecture-texte span'); if (!mots.length) return;
+      var bloc = document.querySelector('.lecture');
+      function maj() {
+        var r = bloc.getBoundingClientRect(), h = innerHeight;
+        var p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25)));
+        var lus = Math.round(p * mots.length);
+        mots.forEach(function (m, i) { m.classList.toggle('lu', i < lus); });
+      }
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
+      var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
+    })();
+
+    // Bandes empilées : une bande plus haute que l'écran reste collée par le bas
+    (function () {
+      function cale() { document.querySelectorAll('.bande').forEach(function (b) { b.style.setProperty('--st', Math.min(0, innerHeight - b.offsetHeight) + 'px'); }); }
+      addEventListener('resize', cale); addEventListener('load', cale); cale();
+    })();
     // la façade se dresse quand elle arrive à l'écran
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .2 });

@@ -1,7 +1,7 @@
 /* Visionneuse commune : un clic sur une photo (dans l'oculus, l'éventail, les blocs…) l'affiche en grand.
    Fermeture : grande croix, touche Échap, ou clic à côté de l'image. */
 (function () {
-  var SEL = '.visuel-img:not(.grav), .eventail .carte, .duo img, .arcade .baie';
+  var SEL = '.visuel-img:not(.grav), .eventail .carte, .duo img, .arcade .baie, .fiche-carte .couv, figure img, article img, .page img, .carrousel-diapo img, .planche img';
   var css = document.createElement('style');
   css.textContent = [
     SEL.split(',').map(function (s) { return s.trim(); }).join(',') + '{cursor:zoom-in}',
@@ -34,8 +34,7 @@
   function ferme() { vz.classList.remove('ouverte'); document.body.style.overflow = ''; }
   document.addEventListener('click', function (e) {
     var el = e.target.closest(SEL);
-    if (el && !vz.contains(el)) {
-      if (el.closest('a')) e.preventDefault();
+    if (el && !vz.contains(el) && !el.closest('a, button, nav, .lb, .vision, .lightbox')) {
       ouvre(el);
     }
   });

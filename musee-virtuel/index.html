@@ -8,9 +8,7 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#4a1518">
   <link rel="canonical" href="https://basiliquesaintepvre.com/musee-virtuel/">
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon_io/favicon.svg?v=2">
-  <link rel="icon" href="/assets/favicon_io/favicon.ico?v=2" sizes="any">
-  <link rel="apple-touch-icon" href="/assets/favicon_io/apple-touch-icon.png?v=2">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://basiliquesaintepvre.com/musee-virtuel/">
   <meta property="og:title" content="Musée virtuel — Basilique Saint-Epvre">
@@ -146,8 +144,8 @@
     /* ══ Le mobilier : planches annotées au crayon, comme un croquis d'architecte ══ */
     .mob-ouv { min-height: 70vh; min-height: 70svh; }
     .mob-intro p { font: 400 clamp(1.15rem, 2vw, 1.45rem)/1.5 var(--titre); opacity: .9; margin: 0; }
-    .plan { --crayon: #5b5d61; display: block; }
-    .b-navy.plan { --crayon: rgba(255,255,255,.78); }
+    .plan { --crayon: #45474b; display: block; }
+    .b-navy.plan { --crayon: rgba(255,255,255,.92); }
     .plan-tete { max-width: 1240px; margin: 0 auto 1.6rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); text-align: center; }
     .plan-num { display: block; font: 600 .78rem/1 var(--titre); letter-spacing: .26em; text-transform: uppercase; opacity: .65; margin-bottom: .9rem; }
     .plan h3 { margin: 0 0 .7rem; font: 500 clamp(2.2rem, 4.6vw, 4rem)/.95 var(--titre); letter-spacing: -.045em; text-transform: uppercase; }
@@ -167,14 +165,14 @@
     .plan.vu .trace { opacity: 1; }
     /* notes manuscrites, au crayon */
     .notes { position: relative; list-style: none; margin: 0; padding: 0; min-width: 0; }
-    .note { position: absolute; left: 0; right: 0; font: 400 1.32rem/1.12 'Caveat', 'Segoe Print', cursive; color: var(--crayon); opacity: 0; translate: 0 6px; transition: opacity .6s ease calc(.6s + var(--i) * .25s), translate .6s ease calc(.6s + var(--i) * .25s), color .25s; }
+    .note { position: absolute; left: 0; right: 0; font: 400 1.32rem/1.12 'Caveat', 'Segoe Print', cursive; color: var(--crayon); opacity: 0; translate: 0 6px; transition: opacity .6s ease calc(1.4s + var(--i) * .18s), translate .6s ease calc(1.4s + var(--i) * .18s), color .25s; }
     .note strong { display: block; font-weight: 700; font-size: 1.5rem; margin-bottom: .1rem; }
     .notes.g .note { text-align: right; }
     .plan.vu .note { opacity: 1; translate: 0 0; }
     .note.actif { color: inherit; }
     .traits { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-    .traits path { fill: none; stroke: var(--crayon); stroke-width: 1.3; stroke-linecap: round; filter: url(#crayon); stroke-dasharray: var(--l, 600); stroke-dashoffset: var(--l, 600); transition: stroke-dashoffset 1s ease calc(.4s + var(--i) * .25s), stroke .25s; }
-    .traits circle { fill: var(--crayon); opacity: 0; transition: opacity .4s ease calc(.4s + var(--i) * .25s); }
+    .traits path { fill: none; stroke: var(--crayon); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: var(--l, 600); stroke-dashoffset: var(--l, 600); transition: stroke-dashoffset 1.1s cubic-bezier(.65,0,.35,1) .2s, stroke .25s; }
+    .traits circle { fill: var(--crayon); opacity: 0; transition: opacity .3s ease 1.2s; }
     .traits.dessine path { stroke-dashoffset: 0; }
     .traits.dessine circle { opacity: 1; }
     .traits .actif { stroke: currentColor; stroke-width: 2; }
@@ -1194,6 +1192,9 @@
         var sc = pl.querySelector('.plan-scene'), fig = pl.querySelector('.plan-fig'), svg = pl.querySelector('.traits');
         if (!bureau.matches) return;
         var R = sc.getBoundingClientRect(), F = fig.getBoundingClientRect();
+        var cle = Math.round(R.width) + 'x' + Math.round(R.height) + ':' + Math.round(F.width) + 'x' + Math.round(F.height) + ':' + Math.round(F.left - R.left) + ':' + Math.round(F.top - R.top);
+        if (svg.dataset.cle === cle) return;   // rien n'a bougé : on ne redessine pas (évite le clignotement)
+        svg.dataset.cle = cle;
         svg.setAttribute('viewBox', '0 0 ' + R.width + ' ' + R.height); svg.innerHTML = '';
         ['g', 'd'].forEach(function (cote) {
           var ol = pl.querySelector('.notes.' + cote), O = ol.getBoundingClientRect(), notes = [].slice.call(ol.children), bas = 0;
@@ -1205,7 +1206,8 @@
             var ax = cote === 'g' ? O.right - R.left + 8 : O.left - R.left - 8, ay = O.top - R.top + Math.max(0, it.y) + 14;
             var bx = it.px - R.left, by = it.py - R.top, mx = (ax + bx) / 2;
             var p = document.createElementNS(NS, 'path');
-            p.setAttribute('d', 'M' + ax + ' ' + ay + ' C' + (mx) + ' ' + (ay + (by - ay) * .1) + ' ' + (mx) + ' ' + (by - (by - ay) * .1) + ' ' + bx + ' ' + by);
+            p.setAttribute('d', crayon(ax, ay, mx, ay + (by - ay) * .1, mx, by - (by - ay) * .1, bx, by, +it.n.dataset.i + 1));
+            p.setAttribute('fill', 'none'); p.setAttribute('stroke', getComputedStyle(pl).getPropertyValue('--crayon') || '#5b5d61'); p.setAttribute('stroke-width', '1.6'); p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round');
             p.dataset.i = it.n.dataset.i; p.style.setProperty('--i', it.n.dataset.i);
             var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', bx); c.setAttribute('cy', by); c.setAttribute('r', 3.2); c.style.setProperty('--i', it.n.dataset.i);
             svg.appendChild(p); svg.appendChild(c);
@@ -1214,10 +1216,16 @@
           ol.style.minHeight = Math.max(0, bas - 14) + 'px';
         });
       }
-      // filtre « crayon » partagé : un léger tremblé sur les traits
-      var defs = document.createElementNS(NS, 'svg'); defs.setAttribute('width', 0); defs.setAttribute('height', 0); defs.style.position = 'absolute';
-      defs.innerHTML = '<filter id="crayon" filterUnits="userSpaceOnUse" x="-200" y="-200" width="4000" height="4000"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>';
-      document.body.appendChild(defs);
+      // trait de crayon : la courbe est échantillonnée et légèrement tremblée (sans filtre SVG, que Safari n'affiche pas)
+      function crayon(ax, ay, c1x, c1y, c2x, c2y, bx, by, graine) {
+        var d = 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1), n = 28, s = graine * 9301 + 49297;
+        function alea() { s = (s * 9301 + 49297) % 233280; return s / 233280 - .5; }
+        for (var k = 1; k <= n; k++) { var u = k / n, v = 1 - u;
+          var x = v*v*v*ax + 3*v*v*u*c1x + 3*v*u*u*c2x + u*u*u*bx, y = v*v*v*ay + 3*v*v*u*c1y + 3*v*u*u*c2y + u*u*u*by;
+          // trait lisse : pas de tremblé
+          d += ' L' + x.toFixed(1) + ' ' + y.toFixed(1); }
+        return d;
+      }
       function tout() { plans.forEach(place); }
       plans.forEach(function (pl) { pl.querySelectorAll('img').forEach(function (im) { im.addEventListener('load', function () { place(pl); }); }); });
       if ('ResizeObserver' in window) { var ro = new ResizeObserver(function (es) { es.forEach(function (e) { place(e.target.closest('.plan')); }); }); plans.forEach(function (pl) { ro.observe(pl.querySelector('.plan-fig')); }); }

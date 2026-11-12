@@ -47,7 +47,7 @@
     .lecture-texte span.lu { color: var(--navy); }
 
     /* Sommaire des salles */
-    .sommaire { margin: 0 auto 5rem; }
+    .sommaire { margin: 0 auto 5rem; scroll-margin-top: 110px; }
     .sommaire .cartouche { display: block; font: 600 .85rem var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); margin-bottom: 1rem; }
     .sommaire ol { list-style: none; margin: 0; padding: 0; counter-reset: s; border-top: 1px solid var(--filet); }
     .sommaire li { counter-increment: s; border-bottom: 1px solid var(--filet); }
@@ -81,6 +81,17 @@
     .pied .rosace-pied { width: 96px; height: 96px; margin: 1.6rem auto 1.4rem; color: var(--blanc); order: 2; }
     .pied span { order: 3; font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
 
+
+    /* Boutons flottants : retour au sommaire, salle suivante */
+    .guide { position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 40; display: flex; align-items: center; gap: 4px; padding: 5px; max-width: calc(100vw - 32px); border-radius: 999px; background: rgba(255,255,255,.94); color: var(--navy); box-shadow: 0 10px 30px -10px rgba(0,0,0,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); translate: -50% 140%; opacity: 0; transition: translate .5s cubic-bezier(.22,1,.36,1), opacity .4s; font: 500 .9rem/1 var(--titre); }
+    .guide.visible { translate: -50% 0; opacity: 1; }
+    .guide a { display: flex; align-items: center; gap: .45rem; padding: .7rem 1rem; border-radius: 999px; text-decoration: none; white-space: nowrap; transition: background .25s, color .25s; }
+    .guide a:hover { background: var(--navy); color: var(--blanc); }
+    .guide .ici { min-width: 0; padding: 0 .6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .65; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+    .guide .suiv[hidden] { display: none; }
+    @media (max-width: 560px) { .guide .ici { display: none; } .guide a { padding: .75rem .95rem; } }
+    @media (prefers-reduced-motion: reduce) { .guide { transition: none; } }
+
     .apparait { opacity: 0; translate: 0 16px; transition: opacity .9s ease, translate .9s ease; }
     .apparait.vu { opacity: 1; translate: 0 0; }
 
@@ -101,12 +112,12 @@
   </div>
 </header>
 
-<div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=2)" aria-hidden="true"></div>
+<div class="orn ferronnerie" style="--src:url(../assets/ornements/grille-lorraine.svg?v=3)" aria-hidden="true"></div>
 
 <main>
   <section class="lecture"><p class="lecture-texte" aria-label="Les murs de la basilique ne sont pas peints directement : chaque scène a été peinte à l'huile sur une toile, puis marouflée, c'est-à-dire collée au mur. Des Vertus de l'entrée aux anges de l'Apocalypse, l'œuvre de Sublet forme un seul poème, que voici tableau par tableau."><span>Les</span> <span>murs</span> <span>de</span> <span>la</span> <span>basilique</span> <span>ne</span> <span>sont</span> <span>pas</span> <span>peints</span> <span>directement</span> <span>:</span> <span>chaque</span> <span>scène</span> <span>a</span> <span>été</span> <span>peinte</span> <span>à</span> <span>l'huile</span> <span>sur</span> <span>une</span> <span>toile,</span> <span>puis</span> <span>marouflée,</span> <span>c'est-à-dire</span> <span>collée</span> <span>au</span> <span>mur.</span> <span>Des</span> <span>Vertus</span> <span>de</span> <span>l'entrée</span> <span>aux</span> <span>anges</span> <span>de</span> <span>l'Apocalypse,</span> <span>l'œuvre</span> <span>de</span> <span>Sublet</span> <span>forme</span> <span>un</span> <span>seul</span> <span>poème,</span> <span>que</span> <span>voici</span> <span>tableau</span> <span>par</span> <span>tableau.</span></p></section>
 
-  <nav class="sommaire col apparait" aria-label="Les salles">
+  <nav class="sommaire col apparait" id="sommaire" aria-label="Les salles">
     <span class="cartouche">Les salles</span>
     <ol><li><a href="#vertus"><span>Les Vertus</span></a></li><li><a href="#colere"><span>La Colère</span></a></li><li><a href="#gloire"><span>La Gloire</span></a></li><li><a href="#saint-michel"><span>Chapelle Saint-Michel</span></a></li><li><a href="#vierge-sacre-coeur"><span>Chapelles de la Vierge et du Sacré-Cœur</span></a></li><li><a href="#saint-joseph"><span>Chapelle Saint-Joseph</span></a></li><li><a href="#purgatoire"><span>Chapelle des Âmes du Purgatoire</span></a></li><li><a href="#transept"><span>Le Transept</span></a></li><li><a href="#soubassements"><span>Soubassements</span></a></li></ol>
   </nav>
@@ -785,6 +796,12 @@
   </div>
 </main>
 
+<nav class="guide" id="guide" aria-label="Navigation entre les salles">
+  <a href="#sommaire" aria-label="Retour au sommaire des salles"><span aria-hidden="true">↑</span> Sommaire</a>
+  <span class="ici" id="guide-ici"></span>
+  <a href="#" class="suiv" id="guide-suiv">Salle suivante <span aria-hidden="true">→</span></a>
+</nav>
+
 <p class="sources-h">Source : <a href="/bibliographie/#monographie">Monographie de la basilique de Saint-Epvre</a>, 1890, chapitre VII. Gravures tirées des planches de l'exemplaire numérisé par Internet Archive.</p>
 
 <div class="cul-de-lampe" aria-hidden="true">
@@ -817,6 +834,25 @@
       }
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
       var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
+    })();
+
+
+    // Boutons flottants : visibles dans les salles, mènent au sommaire ou à la salle suivante
+    (function () {
+      var g = document.getElementById('guide'), ici = document.getElementById('guide-ici'), suiv = document.getElementById('guide-suiv');
+      var groupes = [].slice.call(document.querySelectorAll('.groupe'));
+      var noms = ["Les Vertus","La Colère","La Gloire","Chapelle Saint-Michel","Chapelles de la Vierge et du Sacré-Cœur","Chapelle Saint-Joseph","Chapelle des Âmes du Purgatoire","Le Transept","Soubassements"];
+      function maj() {
+        var h = innerHeight, cur = -1;
+        groupes.forEach(function (gr, i) { var r = gr.getBoundingClientRect(); if (r.top < h * .5 && r.bottom > h * .5) cur = i; });
+        g.classList.toggle('visible', cur >= 0);
+        if (cur < 0) return;
+        ici.textContent = 'Salle ' + (cur + 1) + ' · ' + noms[cur];
+        var n = groupes[cur + 1];
+        suiv.hidden = !n; if (n) { suiv.href = '#' + n.id; suiv.title = noms[cur + 1]; }
+      }
+      var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true });
+      addEventListener('resize', maj); maj();
     })();
 
     // Bandes empilées : une bande plus haute que l'écran reste collée par le bas

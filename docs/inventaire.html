@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inventaire architectural</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Inventaire : chaque élément relevé sur la basilique → son dessin SVG → l'usage proposé sur le site.
+   Style du site actuel : crème, bleu marine, Uncial pour les titres, Garamond pour le texte. */
+:root { --cream: #F3F4F4; --cream-2: #e9ebeb; --navy: #213448; --soft: #5b6573; --line: rgba(33,52,72,.16);
+  --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cream); color: var(--navy); font-family: var(--texte); font-size: 18px; }
+main { max-width: 1180px; margin: 0 auto; padding: 3.5rem max(20px, env(safe-area-inset-left, 0px)) 6rem; }
+h1 { font-family: var(--titre); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0; }
+.chapeau { font-size: 1.15rem; line-height: 1.7; max-width: 64ch; color: #3b4450; margin: .8rem 0 3rem; }
+
+.trait, .trait * { fill: none; stroke: var(--navy); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+
+/* Une ligne d'inventaire : source | dessin | usage */
+.el { display: grid; grid-template-columns: 220px 220px minmax(0, 1fr); gap: 1.6rem; align-items: center; padding: 2.2rem 0; border-top: 1px solid var(--line); }
+.el:last-of-type { border-bottom: 1px solid var(--line); }
+.src { aspect-ratio: 1; border-radius: 6px; background-image: var(--img); background-size: var(--s); background-position: var(--p); background-repeat: no-repeat; filter: grayscale(.2); box-shadow: inset 0 0 0 1px var(--line); }
+.src-cap, .dessin-cap { display: block; margin-top: .4rem; font-size: .85rem; color: var(--soft); }
+.dessin { aspect-ratio: 1; display: grid; place-items: center; background: #fff; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line); }
+.dessin svg { width: 80%; height: 170px; overflow: visible; }
+.usage h2 { font-family: var(--titre); font-weight: 400; font-size: 1.8rem; margin: 0 0 .4rem; }
+.usage p { margin: 0 0 1rem; line-height: 1.6; color: #2e3846; max-width: 52ch; }
+.usage .pour { font-weight: 600; color: var(--navy); }
+.demo { padding: 1.2rem; background: #fff; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line); }
+@media (max-width: 860px) { .el { grid-template-columns: 1fr 1fr; } .usage { grid-column: 1 / -1; } }
+
+/* Démos d'usage */
+.demo-section { position: relative; background: var(--cream-2); padding: 3.5rem 1.4rem 1.4rem; margin-top: 46px; }
+.demo-section .pignon { position: absolute; left: 0; right: 0; top: -46px; height: 47px; width: 100%; }
+.demo-section h3, .demo h3 { font-family: var(--titre); font-weight: 400; font-size: 1.5rem; margin: 0 0 .4rem; }
+.demo-section p, .demo p { margin: 0; color: #3b4450; line-height: 1.6; }
+.frise { display: block; width: 100%; height: 46px; }
+.cadre { position: relative; width: 220px; max-width: 100%; margin: 0 auto; }
+.cadre svg { display: block; width: 100%; height: auto; }
+.logo { display: flex; align-items: center; gap: .7rem; font-family: var(--titre); font-size: 1.4rem; }
+.logo svg { width: 22px; height: 54px; }
+.puces { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.puces li { display: flex; align-items: center; gap: .7rem; font-size: 1.1rem; }
+.puces svg { width: 18px; height: 18px; flex: none; }
+.pied svg { display: block; width: 100%; height: auto; }
+.pied p { text-align: center; font-family: var(--titre); margin-top: .6rem !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Inventaire architectural</h1>
+  <p class="chapeau">Des éléments relevés sur la basilique (ta vidéo de la façade, la photo du parvis, ton relevé de la rosace), redessinés en SVG, avec un usage proposé sur le site. Dis-moi lesquels « matchent ».</p>
+
+  <!-- 1. Gâble -->
+  <div class="el">
+    <div><div class="src" style="--img:url(inventaire-facade.jpg);--s:600%;--p:63% 0%"></div><span class="src-cap">Gâble au-dessus du portail central</span></div>
+    <div><div class="dessin"><svg viewBox="0 0 200 220" class="trait" id="gable"></svg></div><span class="dessin-cap">Pignon à crochets, fleuron au sommet</span></div>
+    <div class="usage">
+      <h2>Le gâble</h2>
+      <p><span class="pour">Forme du haut des sections :</span> chaque grande partie de page commence par la pointe du pignon, comme une entrée de portail.</p>
+      <div class="demo-section"><svg class="pignon" viewBox="0 0 1000 47" preserveAspectRatio="none" aria-hidden="true"><path d="M0 47 L500 0 L1000 47 Z" fill="#e9ebeb"/><path d="M0 47 L500 0 L1000 47" fill="none" stroke="#213448" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg><h3>Les grandes orgues</h3><p>Le début d'une section, coiffé du pignon de la façade.</p></div>
+    </div>
+  </div>
+
+  <!-- 2. Dais à gâblets -->
+  <div class="el">
+    <div><div class="src" style="--img:url(../assets/img/parvisbasiliquesaintepvre.jpeg);--s:520%;--p:31% 22%"></div><span class="src-cap">Dais à petits gâbles au-dessus des apôtres</span></div>
+    <div><div class="dessin"><svg viewBox="0 0 180 120" class="trait" id="dais"></svg></div><span class="dessin-cap">Trois gâblets sur arcs trilobés</span></div>
+    <div class="usage">
+      <h2>Le dais des apôtres</h2>
+      <p><span class="pour">Séparateur entre deux parties :</span> une frise continue de petits gâbles, à la place des lignes ou des croix actuelles.</p>
+      <div class="demo"><svg class="frise" id="friseDais" viewBox="0 0 900 46" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg></div>
+    </div>
+  </div>
+
+  <!-- 3. Portail à voussures -->
+  <div class="el">
+    <div><div class="src" style="--img:url(../assets/img/parvisbasiliquesaintepvre.jpeg);--s:420%;--p:62% 8%"></div><span class="src-cap">Portail latéral, voussures sculptées</span></div>
+    <div><div class="dessin"><svg viewBox="0 0 160 200" class="trait" id="portail"></svg></div><span class="dessin-cap">Arc brisé à trois voussures</span></div>
+    <div class="usage">
+      <h2>Le portail</h2>
+      <p><span class="pour">Cadre des photos :</span> les images importantes sont découpées en arc brisé et entourées de leurs voussures, comme vues à travers le portail.</p>
+      <div class="demo"><div class="cadre"><svg viewBox="0 0 160 200" id="cadrePhoto" aria-label="Photo dans un cadre en arc brisé"></svg></div></div>
+    </div>
+  </div>
+
+  <!-- 4. Pinacle -->
+  <div class="el">
+    <div><div class="src" style="--img:url(inventaire-facade.jpg);--s:900%;--p:43% 22%"></div><span class="src-cap">Pinacle à crochets, à gauche du portail</span></div>
+    <div><div class="dessin"><svg viewBox="0 0 60 200" class="trait" id="pinacle"></svg></div><span class="dessin-cap">Flèche à crochets sur un gâblet</span></div>
+    <div class="usage">
+      <h2>Le pinacle</h2>
+      <p><span class="pour">Petit logo :</span> fin et vertical, il accompagne le nom « Basilique Saint-Epvre » dans le menu et en bas des pages.</p>
+      <div class="demo"><div class="logo"><svg viewBox="0 0 60 200" class="trait" id="pinacleLogo"></svg>Basilique Saint-Epvre</div></div>
+    </div>
+  </div>
+
+  <!-- 5. Quadrilobe -->
+  <div class="el">
+    <div><div class="src" style="--img:url(inventaire-facade.jpg);--s:700%;--p:49% 24%"></div><span class="src-cap">Quadrilobes dans les écoinçons</span></div>
+    <div><div class="dessin"><svg viewBox="-24 -24 48 48" class="trait" id="quadrilobe"></svg></div><span class="dessin-cap">Quadrilobe, comme dans la rosace</span></div>
+    <div class="usage">
+      <h2>Le quadrilobe</h2>
+      <p><span class="pour">Puces et repères :</span> devant les éléments de liste, les dates de la frise, les numéros du sommaire.</p>
+      <div class="demo"><ul class="puces" id="puces"><li>Auguste Kling · vers 1870–1919</li><li>Édouard Claude · 1919–1960</li><li>Nathalie Dassi · depuis 1988</li></ul></div>
+    </div>
+  </div>
+
+  <!-- 6. Balustrade et marches -->
+  <div class="el">
+    <div><div class="src" style="--img:url(../assets/img/parvisbasiliquesaintepvre.jpeg);--s:300%;--p:100% 92%"></div><span class="src-cap">Balustrade et marches du parvis</span></div>
+    <div><div class="dessin"><svg viewBox="0 0 200 120" class="trait" id="balustrade"></svg></div><span class="dessin-cap">Balustres sur les marches</span></div>
+    <div class="usage">
+      <h2>Le parvis</h2>
+      <p><span class="pour">Pied de page :</span> chaque page se termine sur la balustrade et les marches, comme quand on ressort de la basilique.</p>
+      <div class="demo pied"><svg viewBox="0 0 900 90" id="piedParvis" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg><p>Saint-Epvre · Nancy</p></div>
+    </div>
+  </div>
+</main>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const f = n => +n.toFixed(2);
+const pol = (cx, cy, r, deg) => { const a = (deg - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+
+// Quadrilobe : contour de 4 lobes (pointes = intersections extérieures des lobes voisins)
+function polylobe(cx, cy, n, d, r, rot = 0) {
+  const half = Math.PI / n, h = d * Math.cos(half) + Math.sqrt(Math.max(0, r * r - (d * Math.sin(half)) ** 2));
+  const large = 2 * Math.atan2(h * Math.sin(half), h * Math.cos(half) - d) > Math.PI ? 1 : 0;
+  let p = '';
+  for (let k = 0; k < n; k++) { const [x1, y1] = pol(cx, cy, h, rot + (k - .5) * 360 / n), [x2, y2] = pol(cx, cy, h, rot + (k + .5) * 360 / n); p += (k ? '' : `M${f(x1)} ${f(y1)}`) + ` A${r} ${r} 0 ${large} 1 ${f(x2)} ${f(y2)}`; }
+  return p + 'Z';
+}
+// Crochets : petites feuilles enroulées posées le long d'un rampant
+function crochets(x1, y1, x2, y2, n, taille, cote = 1) {
+  let p = ''; const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L, nx = uy * cote, ny = -ux * cote;
+  for (let i = 1; i <= n; i++) {
+    const t = i / (n + 1), x = x1 + dx * t, y = y1 + dy * t;
+    const tx = x + nx * taille, ty = y + ny * taille;
+    p += `M${f(x)} ${f(y)} Q${f(x + nx * taille * .2 + ux * taille)} ${f(y + ny * taille * .2 + uy * taille)} ${f(tx + ux * taille * .4)} ${f(ty + uy * taille * .4)} q${f(-ux * taille * .5 - nx * taille * .3)} ${f(-uy * taille * .5 - ny * taille * .3)} ${f(-ux * taille * .2)} ${f(-uy * taille * .2)}`;
+  }
+  return p;
+}
+const fleuron = (x, y, s) => `M${x} ${y} V${y - s * 2.2} M${x - s} ${y - s * 1.2} Q${x} ${y - s * 2} ${x + s} ${y - s * 1.2} M${x - s * .7} ${y - s * 2} Q${x} ${y - s * 3} ${x + s * .7} ${y - s * 2}`;
+// Arc brisé : pied (x, y), largeur w, piédroits hp
+function ogive(x, y, w, hp, k = .85) {
+  const r = w * k, top = y - hp, apex = top - Math.sqrt(r * r - (r - w / 2) ** 2);
+  return `M${f(x - w / 2)} ${f(y)} L${f(x - w / 2)} ${f(top)} A${f(r)} ${f(r)} 0 0 1 ${f(x)} ${f(apex)} A${f(r)} ${f(r)} 0 0 1 ${f(x + w / 2)} ${f(top)} L${f(x + w / 2)} ${f(y)}`;
+}
+const trilobe = (cx, cy, s) => polylobe(cx, cy, 3, s * .5, s * .55, 0);
+const set = (id, inner) => document.getElementById(id).innerHTML = inner;
+
+/* 1. Gâble */
+set('gable', `<path d="M14 214 L100 36 L186 214"/><path d="M30 214 L100 70 L170 214"/>
+  <path d="${crochets(14, 214, 100, 36, 7, 10, 1)}"/><path d="${crochets(186, 214, 100, 36, 7, 10, -1)}"/>
+  <path d="${fleuron(100, 36, 9)}"/><path d="${trilobe(100, 150, 26)}"/><circle cx="100" cy="150" r="34"/>
+  <path d="M6 214 V140 L14 120 L22 140 V214 M178 214 V140 L186 120 L194 140 V214"/>`);
+
+/* 2. Dais à gâblets (motif répétable) */
+function dais(x0, n, w, base, h) {
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    const cx = x0 + w * i + w / 2, g = base - h;
+    s += `<path d="M${cx - w / 2} ${base} L${cx} ${g} L${cx + w / 2} ${base}"/><path d="${crochets(cx - w / 2, base, cx, g, 2, w * .09, 1)}"/><path d="${crochets(cx + w / 2, base, cx, g, 2, w * .09, -1)}"/>`;
+    s += `<path d="${ogive(cx, base + h * .9, w * .62, h * .25)}"/><path d="${trilobe(cx, base + h * .32, w * .18)}"/>`;
+    s += `<path d="M${cx - w / 2} ${base + h * .95} V${base - h * .35} l${w * .04} -${h * .12} l${w * .04} ${h * .12} V${base + h * .95}" transform="translate(-${w * .04} 0)"/>`;
+  }
+  return s + `<path d="M${x0} ${base + h * .95} H${x0 + n * w}"/>`;
+}
+set('dais', dais(10, 3, 54, 62, 40));
+document.getElementById('friseDais').innerHTML = `<g class="trait">${dais(0, 30, 30, 22, 16)}</g>`;
+
+/* 3. Portail à voussures + cadre photo */
+const v = [ogive(80, 196, 150, 70), ogive(80, 196, 128, 70), ogive(80, 196, 106, 70)];
+set('portail', v.map(d => `<path d="${d}"/>`).join('') + `<path d="M15 196 H145"/>` + Array.from({ length: 9 }, (_, i) => { const [x, y] = pol(80, 140, 62, -70 + i * 17.5); return `<circle cx="${f(x)}" cy="${f(y)}" r="2.2"/>`; }).join(''));
+document.getElementById('cadrePhoto').innerHTML = `<defs><clipPath id="baie"><path d="${ogive(80, 196, 106, 70)} Z"/></clipPath></defs>
+  <image href="inventaire-facade.jpg" x="-60" y="-10" width="320" height="220" preserveAspectRatio="xMidYMid slice" clip-path="url(#baie)"/>
+  <g class="trait">${v.map(d => `<path d="${d}"/>`).join('')}<path d="M10 196 H150"/></g>`;
+
+/* 4. Pinacle */
+const pinacle = `<path d="M18 198 V112 H42 V198"/><path d="M14 112 L30 88 L46 112"/><path d="M22 88 L30 20 L38 88"/>
+  <path d="${crochets(22, 88, 30, 20, 4, 5, 1)}"/><path d="${crochets(38, 88, 30, 20, 4, 5, -1)}"/><path d="${fleuron(30, 20, 5)}"/>
+  <path d="${ogive(30, 160, 12, 18)}"/><path d="M18 198 H42"/>`;
+set('pinacle', pinacle); set('pinacleLogo', pinacle);
+
+/* 5. Quadrilobe + puces */
+set('quadrilobe', `<circle r="20"/><path d="${polylobe(0, 0, 4, 7, 9, 45)}"/>`);
+document.querySelectorAll('#puces li').forEach(li => li.insertAdjacentHTML('afterbegin', `<svg viewBox="-12 -12 24 24" class="trait"><path d="${polylobe(0, 0, 4, 4.2, 5.4, 45)}"/></svg>`));
+
+/* 6. Balustrade + marches */
+function baluste(x, y, h) { const w = h * .32; return `<path d="M${x - w * .5} ${y} H${x + w * .5} M${x - w * .25} ${y} C${x - w * .6} ${y - h * .3} ${x - w * .1} ${y - h * .55} ${x - w * .18} ${y - h * .75} Q${x} ${y - h * .85} ${x + w * .18} ${y - h * .75} C${x + w * .1} ${y - h * .55} ${x + w * .6} ${y - h * .3} ${x + w * .25} ${y} M${x - w * .45} ${y - h} H${x + w * .45}"/>`; }
+function parvis(W, nb, h, y0) {
+  let s = `<path d="M0 ${y0 - h - 4} H${W} M0 ${y0 - h} H${W} M0 ${y0} H${W}"/>`;
+  for (let i = 0; i < nb; i++) s += baluste((i + .5) * W / nb, y0, h);
+  for (let k = 1; k <= 3; k++) s += `<path d="M0 ${y0 + k * 9} H${W}"/>`;
+  return s;
+}
+set('balustrade', parvis(200, 7, 46, 70));
+document.getElementById('piedParvis').innerHTML = `<g class="trait">${parvis(900, 32, 40, 56)}</g>`;
+</script>
+</body>
+</html>

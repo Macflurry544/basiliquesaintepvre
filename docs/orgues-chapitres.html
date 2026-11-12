@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ouvertures de chapitre</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Trois façons d'ouvrir un chapitre, avec deux chapitres réels de la page des orgues pour voir la transition. */
+:root { --bordeaux: #4a1518; --navy: #213448; --blanc: #fff; --papier: #fbf9f5; --papier-2: #f2eee6; --gris: #59626e; --filet: rgba(33,52,72,.18);
+  --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.75; }
+.orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+.col { max-width: 740px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+.variante { padding: 2rem 0 5rem; }
+.etiquette { max-width: 740px; margin: 0 auto 2rem; padding: 0 22px; }
+.etiquette b { font-family: var(--titre); font-weight: 400; font-size: 2.2rem; color: var(--bordeaux); }
+.etiquette span { display: block; color: var(--gris); }
+.coupure { height: 6px; background: repeating-linear-gradient(90deg, var(--navy) 0 12px, transparent 12px 20px); opacity: .25; margin: 2rem 0; }
+p { margin: 0 0 1.1em; }
+strong { color: var(--bordeaux); font-weight: 600; }
+
+/* ── A : ouverture de chapitre du livre ── */
+.a-chap { padding: 5rem 0 1.5rem; }
+.a-chap + .a-chap { border-top: 0; }
+.a-tete { text-align: center; margin-bottom: 2.4rem; }
+.a-filet { display: flex; align-items: center; gap: 1rem; color: var(--bordeaux); margin-bottom: 1.6rem; }
+.a-filet::before, .a-filet::after { content: ''; flex: 1; border-top: 3px double currentColor; }
+.a-filet .orn { width: 34px; height: 34px; }
+.a-num { font-family: var(--titre); font-size: 4.2rem; line-height: 1; color: var(--bordeaux); }
+.a-tete small { display: block; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; color: var(--bordeaux); margin-top: .4rem; }
+.a-tete h2 { font-family: var(--titre); font-weight: 400; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; margin: .7rem 0 .9rem; }
+.a-tete .arg { font-style: italic; color: var(--gris); max-width: 46ch; margin: 0 auto; padding-top: .9rem; border-top: 1px solid var(--filet); font-size: 1.02rem; line-height: 1.55; }
+
+/* ── B : bandeau de ferronnerie et titre aligné à gauche ── */
+.b-chap { padding: 4.5rem 0 1.5rem; }
+.b-bandeau { height: 64px; color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; margin-bottom: 1.6rem; }
+.b-tete { display: grid; grid-template-columns: auto 1fr; gap: 0 1.2rem; align-items: end; padding-bottom: 1rem; border-bottom: 2px solid var(--navy); margin-bottom: 1.8rem; }
+.b-num { grid-row: span 2; font-family: var(--titre); font-size: 4.6rem; line-height: .85; color: var(--bordeaux); padding-right: 1.2rem; border-right: 1px solid var(--filet); }
+.b-tete small { font-size: .8rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gris); }
+.b-tete h2 { font-family: var(--titre); font-weight: 400; font-size: clamp(1.8rem, 4.6vw, 2.6rem); line-height: 1.1; margin: 0; }
+.b-arg { font-weight: 600; font-size: .98rem; color: var(--gris); margin-bottom: 1.4rem; }
+
+/* ── C : chaque chapitre est une page du livre ── */
+.c-chap { padding: 1.4rem 0; }
+.c-page { position: relative; background: var(--blanc); padding: 3.4rem clamp(1.2rem, 5vw, 3.2rem) 2.6rem; border: 1px solid var(--bordeaux); outline: 1px solid var(--bordeaux); outline-offset: -8px; box-shadow: 0 18px 40px -26px rgba(33,52,72,.35); }
+.c-bord { position: absolute; left: 14px; right: 14px; top: 14px; height: 22px; color: var(--bordeaux); opacity: .8; -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; }
+.c-courant { display: flex; justify-content: space-between; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); border-bottom: 1px solid var(--filet); padding: 1.2rem 0 .4rem; margin-bottom: 2rem; }
+.c-tete { text-align: center; margin-bottom: 2rem; }
+.c-cartouche { display: inline-block; padding: .35rem 1.4rem; color: var(--bordeaux); font-size: .8rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; border: 1.5px solid currentColor; box-shadow: inset 0 0 0 3px var(--blanc), inset 0 0 0 4px currentColor; }
+.c-tete h2 { font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.8vw, 2.6rem); line-height: 1.1; margin: 1rem 0 .7rem; }
+.c-tete .arg { font-weight: 600; font-size: .95rem; color: var(--gris); max-width: 48ch; margin: 0 auto; line-height: 1.5; }
+.c-fin { display: block; width: 46px; height: 46px; margin: 1.6rem auto 0; color: var(--bordeaux); }
+</style>
+</head>
+<body>
+
+<!-- A -->
+<section class="variante">
+  <div class="etiquette"><b>A</b><span>Ouverture de chapitre du livre : double filet avec rosace, grand chiffre romain, titre, argument en italique.</span></div>
+  <div class="col">
+    <article class="a-chap">
+      <div class="a-tete">
+        <div class="a-filet"><div class="orn" style="--src:url(../assets/ornements/rosace-p.svg)"></div></div>
+        <div class="a-num">II</div><small>Chapitre deuxième</small>
+        <h2>Commande et construction, 1867</h2>
+        <p class="arg">Mgr Trouillet et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p>
+      </div>
+      <p>Pour la nouvelle église en construction, Mgr Joseph Trouillet passa commande d'un instrument neuf auprès de la maison Merklin-Schütze, à Paris. Il acquit l'orgue que Joseph Merklin présentait à l'Exposition universelle de 1867.</p>
+      <p>L'instrument remporta la <strong>médaille d'or de l'Exposition de 1867</strong> et valut à Merklin la croix de la Légion d'honneur.</p>
+    </article>
+    <article class="a-chap">
+      <div class="a-tete">
+        <div class="a-filet"><div class="orn" style="--src:url(../assets/ornements/rosace-p.svg)"></div></div>
+        <div class="a-num">III</div><small>Chapitre troisième</small>
+        <h2>L'inauguration par Bruckner, 1869</h2>
+        <p class="arg">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p>
+      </div>
+      <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
+    </article>
+  </div>
+</section>
+
+<div class="coupure"></div>
+
+<!-- B -->
+<section class="variante">
+  <div class="etiquette"><b>B</b><span>Bandeau de ferronnerie en tête, chiffre romain et titre alignés à gauche sur un trait épais.</span></div>
+  <div class="col">
+    <article class="b-chap">
+      <div class="orn b-bandeau" style="--src:url(../assets/ornements/grille-lorraine.svg)"></div>
+      <div class="b-tete"><span class="b-num">II</span><small>Chapitre deuxième</small><h2>Commande et construction, 1867</h2></div>
+      <p class="b-arg">Mgr Trouillet et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p>
+      <p>Pour la nouvelle église en construction, Mgr Joseph Trouillet passa commande d'un instrument neuf auprès de la maison Merklin-Schütze, à Paris. Il acquit l'orgue que Joseph Merklin présentait à l'Exposition universelle de 1867.</p>
+      <p>L'instrument remporta la <strong>médaille d'or de l'Exposition de 1867</strong> et valut à Merklin la croix de la Légion d'honneur.</p>
+    </article>
+    <article class="b-chap">
+      <div class="orn b-bandeau" style="--src:url(../assets/ornements/grille-lorraine.svg)"></div>
+      <div class="b-tete"><span class="b-num">III</span><small>Chapitre troisième</small><h2>L'inauguration par Bruckner, 1869</h2></div>
+      <p class="b-arg">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p>
+      <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
+    </article>
+  </div>
+</section>
+
+<div class="coupure"></div>
+
+<!-- C -->
+<section class="variante" style="background:var(--papier-2)">
+  <div class="etiquette" style="padding-top:2rem"><b>C</b><span>Chaque chapitre est une page du livre : cadre bordeaux à double filet, bordure de la monographie, titre courant, cartouche, rosace en fin de page.</span></div>
+  <div class="col">
+    <article class="c-chap"><div class="c-page">
+      <div class="orn c-bord" style="--src:url(../assets/ornements/bordure-monographie.svg)"></div>
+      <div class="c-courant"><span>Les grandes orgues</span><span>II</span></div>
+      <div class="c-tete"><span class="c-cartouche">Chapitre deuxième</span><h2>Commande et construction, 1867</h2><p class="arg">Mgr Trouillet et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p></div>
+      <p>Pour la nouvelle église en construction, Mgr Joseph Trouillet passa commande d'un instrument neuf auprès de la maison Merklin-Schütze, à Paris. Il acquit l'orgue que Joseph Merklin présentait à l'Exposition universelle de 1867.</p>
+      <p>L'instrument remporta la <strong>médaille d'or de l'Exposition de 1867</strong> et valut à Merklin la croix de la Légion d'honneur.</p>
+      <div class="orn c-fin" style="--src:url(../assets/ornements/rosace-p.svg)"></div>
+    </div></article>
+    <article class="c-chap"><div class="c-page">
+      <div class="orn c-bord" style="--src:url(../assets/ornements/bordure-monographie.svg)"></div>
+      <div class="c-courant"><span>Les grandes orgues</span><span>III</span></div>
+      <div class="c-tete"><span class="c-cartouche">Chapitre troisième</span><h2>L'inauguration par Bruckner, 1869</h2><p class="arg">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p></div>
+      <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
+      <div class="orn c-fin" style="--src:url(../assets/ornements/rosace-p.svg)"></div>
+    </div></article>
+  </div>
+</section>
+
+</body>
+</html>

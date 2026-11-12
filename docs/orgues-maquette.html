@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maquette — Les Grandes Orgues</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+<style>
+/* Maquette de la page des orgues dans la nouvelle direction :
+   trois couleurs (bordeaux, bleu marine, blanc) et ornements vectorisés depuis la gravure de Morey.
+   Peu d'animations : un simple fondu à l'apparition. */
+:root {
+  --bordeaux: #4a1518; --bordeaux-2: #5d1c20; --navy: #213448; --blanc: #ffffff; --papier: #faf8f5;
+  --gris: #5b6573; --filet: rgba(33,52,72,.15);
+  --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.75; }
+img { max-width: 100%; display: block; }
+
+/* ornement vectorisé = boîte colorée découpée par le SVG */
+.orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+
+.col { max-width: 720px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+.large { max-width: 1100px; }
+
+/* ── En-tête : photo, bandeau bordeaux couronné des trois gâbles ── */
+.entete { position: relative; }
+.entete img { width: 100%; height: min(78vh, 760px); object-fit: cover; }
+.bandeau { position: relative; background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 1rem 22px 3.4rem; }
+.bandeau .couronne { position: absolute; left: 50%; bottom: 100%; translate: -50% 1px; width: min(560px, 92vw); aspect-ratio: 2779 / 1315; color: var(--bordeaux); }
+.bandeau .sur { font-size: .95rem; letter-spacing: .2em; text-transform: uppercase; opacity: .75; }
+.bandeau h1 { font-family: var(--titre); font-weight: 400; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.05; margin: .4rem 0 .8rem; }
+.bandeau p { margin: 0 auto; max-width: 34ch; font-style: italic; font-size: 1.15rem; opacity: .9; line-height: 1.5; }
+
+/* ── Ouverture : le récit ── */
+.ouverture { padding: 4.5rem 0 2rem; }
+.ouverture p { font-size: 1.32rem; line-height: 1.7; margin: 0; }
+.ouverture p::first-letter { font-family: var(--titre); float: left; font-size: 4.2em; line-height: .8; padding: .06em .12em 0 0; color: var(--bordeaux); }
+
+/* ── Séparateur : la rosace du gâble entre deux filets ── */
+.sep { display: flex; align-items: center; gap: 1.2rem; margin: 3.5rem auto; max-width: 420px; color: var(--bordeaux); }
+.sep::before, .sep::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: .5; }
+.sep .orn { width: 46px; height: 46px; flex: none; }
+
+/* ── Sommaire ── */
+.sommaire { margin: 1rem auto 0; }
+.sommaire h2 { font-family: var(--titre); font-weight: 400; font-size: 1.6rem; margin: 0 0 .6rem; }
+.sommaire ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.sommaire a { display: grid; grid-template-columns: 3rem 1fr; align-items: baseline; padding: .7rem 0; border-top: 1px solid var(--filet); color: var(--navy); text-decoration: none; font-size: 1.2rem; transition: color .25s, padding .25s; }
+.sommaire li:last-child a { border-bottom: 1px solid var(--filet); }
+.sommaire a::before { counter-increment: s; content: counter(s, upper-roman); font-family: var(--titre); color: var(--bordeaux); font-size: 1rem; }
+.sommaire a:hover { color: var(--bordeaux); padding-left: .4rem; }
+
+/* ── Chapitres ── */
+.chapitre { padding: 1rem 0; }
+.chap-tete { position: relative; text-align: center; padding: 3.2rem 0 1.6rem; margin-bottom: 1rem; }
+.chap-tete .gable { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 230px; aspect-ratio: 1270 / 1257; color: var(--bordeaux); opacity: .1; }
+.chap-tete .num { position: relative; font-family: var(--titre); color: var(--bordeaux); font-size: 1.1rem; }
+.chap-tete h2 { position: relative; font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.12; margin: .3rem 0 0; }
+.chapitre p { margin: 0 0 1.2em; }
+.chapitre strong { font-weight: 600; color: var(--bordeaux); }
+
+/* photo encadrée d'un filet, légende en italique */
+figure { margin: 2.4rem 0; }
+figure img { width: 100%; border: 1px solid var(--navy); padding: 6px; background: var(--blanc); }
+figcaption { margin-top: .6rem; font-style: italic; font-size: 1rem; color: var(--gris); text-align: center; }
+
+/* encadré bordeaux : le moment fort */
+.fort { position: relative; margin: 2.4rem 0; padding: 2.4rem 2rem 2rem; background: var(--bordeaux); color: var(--blanc); }
+.fort .orn { position: absolute; top: -26px; left: 50%; translate: -50% 0; width: 52px; height: 52px; color: var(--bordeaux); background: currentColor; }
+.fort .orn-fond { position: absolute; top: -32px; left: 50%; translate: -50% 0; width: 64px; height: 64px; border-radius: 50%; background: var(--papier); }
+.fort p { margin: 0; font-size: 1.2rem; line-height: 1.65; }
+.fort strong { color: var(--blanc); font-weight: 700; }
+
+/* tableau des claviers */
+table { width: 100%; border-collapse: collapse; margin: 1.6rem 0; font-size: 1.05rem; }
+th { text-align: left; font-weight: 600; font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; color: var(--bordeaux); padding: .5rem .4rem; border-bottom: 2px solid var(--navy); }
+td { padding: .65rem .4rem; border-bottom: 1px solid var(--filet); }
+tfoot td { font-weight: 700; border-bottom: 2px solid var(--navy); }
+
+/* les organistes : une ligne par personne, quadrilobe en repère */
+.organistes { list-style: none; margin: 1.4rem 0; padding: 0; }
+.organistes li { display: grid; grid-template-columns: 26px 1fr auto; gap: .9rem; align-items: center; padding: .75rem 0; border-bottom: 1px solid var(--filet); }
+.organistes .orn { width: 22px; height: 22px; color: var(--bordeaux); }
+.organistes b { font-weight: 600; font-size: 1.15rem; }
+.organistes span { font-variant-numeric: tabular-nums; color: var(--gris); font-size: 1rem; text-align: right; }
+.organistes li.actuelle { background: var(--navy); color: var(--blanc); padding: .9rem .9rem; margin: .4rem -.9rem; border: 0; }
+.organistes li.actuelle .orn { color: var(--blanc); }
+.organistes li.actuelle span { color: #d6dce4; }
+
+/* journaux d'époque : bandeau bleu marine plein largeur */
+.presse { background: var(--navy); color: var(--blanc); padding: 4.5rem 0 3.5rem; margin-top: 3rem; position: relative; }
+.presse .pinacles { position: absolute; top: 2rem; bottom: 2rem; width: 46px; color: rgba(255,255,255,.18); }
+.presse .pinacles.g { left: max(10px, 3vw); } .presse .pinacles.d { right: max(10px, 3vw); }
+.presse h2 { font-family: var(--titre); font-weight: 400; font-size: clamp(1.9rem, 4.5vw, 2.6rem); text-align: center; margin: 0 0 2.2rem; }
+.presse blockquote { margin: 0 0 2.2rem; padding: 0 0 2.2rem; border-bottom: 1px solid rgba(255,255,255,.2); }
+.presse blockquote:last-child { border-bottom: 0; margin-bottom: 0; }
+.presse blockquote p { margin: 0; font-style: italic; font-size: 1.22rem; line-height: 1.6; }
+.presse cite { display: block; margin-top: .7rem; font-style: normal; font-size: .95rem; letter-spacing: .06em; color: #d9b8b9; }
+@media (max-width: 900px) { .presse .pinacles { display: none; } }
+
+/* pied : le pinacle, le nom */
+.pied { text-align: center; padding: 3.5rem 22px 4rem; background: var(--bordeaux); color: var(--blanc); }
+.pied .orn { width: 30px; height: 150px; margin: 0 auto 1rem; aspect-ratio: auto; }
+.pied b { font-family: var(--titre); font-weight: 400; font-size: 1.6rem; display: block; }
+.pied span { font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+
+/* apparition douce, rien d'autre */
+.apparait { opacity: 0; translate: 0 18px; transition: opacity .9s ease, translate .9s ease; }
+.apparait.vu { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="entete">
+  <img src="https://lh3.googleusercontent.com/d/1KwZkedBiJVozhhNAafsdBR89R5dASlQH" alt="Les grandes orgues de la basilique Saint-Epvre, vues de la nef">
+  <div class="bandeau">
+    <div class="orn couronne" style="--src:url(essais-gravure/couronne.svg)" aria-hidden="true"></div>
+    <span class="sur">Basilique Saint-Epvre · Nancy</span>
+    <h1>Les grandes orgues</h1>
+    <p>Merklin-Schütze, 1867 — médaille d'or de l'Exposition universelle de Paris</p>
+  </div>
+</header>
+
+<main>
+  <section class="ouverture col apparait">
+    <p>En 1867, à Paris, au Champ-de-Mars, un orgue remporte la médaille d'or de l'Exposition universelle. Il n'est pas destiné à une cathédrale parisienne, mais à une église encore en chantier au cœur de la Ville-Vieille de Nancy. Deux ans plus tard, Anton Bruckner vient l'inaugurer. Il résonne depuis sous les voûtes de Saint-Epvre.</p>
+  </section>
+
+  <nav class="sommaire col apparait" aria-label="Sommaire">
+    <h2>Sommaire</h2>
+    <ol>
+      <li><a href="#avant">L'orgue avant la basilique</a></li>
+      <li><a href="#commande">La commande, 1867</a></li>
+      <li><a href="#bruckner">Bruckner à Nancy, 1869</a></li>
+      <li><a href="#instrument">L'instrument</a></li>
+      <li><a href="#choeur">L'orgue de chœur</a></li>
+      <li><a href="#organistes">Ceux qui l'ont joué</a></li>
+      <li><a href="#presse">Ce qu'en disaient les journaux</a></li>
+    </ol>
+  </nav>
+
+  <div class="sep"><div class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></div></div>
+
+  <section class="chapitre col apparait" id="avant">
+    <div class="chap-tete"><div class="orn gable" style="--src:url(essais-gravure/gable-c.svg)"></div><span class="num">I</span><h2>L'orgue avant la basilique</h2></div>
+    <p>L'ancienne église paroissiale possédait déjà un orgue, mentionné dès le XVIᵉ siècle ; un instrument du XVIIIᵉ siècle lui avait succédé. À la démolition de l'édifice, il fut démonté et ses tuyaux revendus pour l'église de Dannelbourg. Rien de ce premier orgue n'est resté à Saint-Epvre.</p>
+  </section>
+
+  <section class="chapitre col apparait" id="commande">
+    <div class="chap-tete"><div class="orn gable" style="--src:url(essais-gravure/gable-c.svg)"></div><span class="num">II</span><h2>La commande, 1867</h2></div>
+    <p>Pour la nouvelle église, Mgr Joseph Trouillet s'adresse à la maison Merklin-Schütze, à Paris. Il acquiert l'orgue que Joseph Merklin présente à l'Exposition universelle de 1867.</p>
+    <div class="fort"><div class="orn-fond"></div><div class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></div><p>L'instrument remporte la <strong>médaille d'or de l'Exposition de 1867</strong> et vaut à Merklin la croix de la Légion d'honneur. Le journal <i>La Meurthe</i> estime son prix à près de <strong>80 000 francs-or</strong>.</p></div>
+    <figure>
+      <img src="https://lh3.googleusercontent.com/d/1e9gniO4cAl-uJlxiPRboux_QOj8pHrom" alt="Le grand orgue sur la tribune occidentale" loading="lazy">
+      <figcaption>Le grand orgue Merklin-Schütze sur la tribune occidentale.</figcaption>
+    </figure>
+  </section>
+
+  <section class="chapitre col apparait" id="bruckner">
+    <div class="chap-tete"><div class="orn gable" style="--src:url(essais-gravure/gable-c.svg)"></div><span class="num">III</span><h2>Bruckner à Nancy, 1869</h2></div>
+    <p>Les 28 et 29 avril 1869, deux grands concerts dédient l'instrument. L'artiste invité est un Autrichien de 44 ans, organiste à la cour de François-Joseph, que Liszt surnommait « le ménestrel de Dieu » : <strong>Anton Bruckner</strong>, choisi par l'empereur pour représenter son pays.</p>
+    <p>Les journaux locaux racontent qu'il éblouit le public par ses improvisations. Le nouvel orgue de Saint-Epvre devient célèbre en France et en Europe dès ses premiers jours.</p>
+  </section>
+
+  <section class="chapitre col apparait" id="instrument">
+    <div class="chap-tete"><div class="orn gable" style="--src:url(essais-gravure/gable-c.svg)"></div><span class="num">IV</span><h2>L'instrument</h2></div>
+    <p>Le grand orgue compte <strong>44 jeux</strong>, répartis sur trois claviers et un pédalier. Son buffet néo-gothique a été dessiné par Prosper Morey, l'architecte de la basilique. Pour alléger le toucher, une machine Barker, un dispositif pneumatique, assiste la transmission mécanique.</p>
+    <table>
+      <thead><tr><th>Clavier</th><th>Notes</th><th>Jeux</th></tr></thead>
+      <tbody>
+        <tr><td>Positif</td><td>56</td><td>10</td></tr>
+        <tr><td>Grand-Orgue</td><td>56</td><td>15</td></tr>
+        <tr><td>Récit expressif</td><td>56</td><td>10</td></tr>
+        <tr><td>Pédalier</td><td>27</td><td>9</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td></td><td>44</td></tr></tfoot>
+    </table>
+    <p>C'est un orgue « romantique-symphonique » : il cherche à sonner comme un orchestre, avec des timbres amples, des contrastes de nuances et un Récit enfermé dans une boîte expressive pour faire monter et descendre le son.</p>
+  </section>
+
+  <section class="chapitre col apparait" id="choeur">
+    <div class="chap-tete"><div class="orn gable" style="--src:url(essais-gravure/gable-c.svg)"></div><span class="num">V</span><h2>L'orgue de chœur</h2></div>
+    <p>Mgr Trouillet commande aussi un orgue de chœur à la même manufacture ; il est en place en <strong>1872</strong>. Son meuble est en chêne verni, ses tuyaux de façade en étain.</p>
+    <p>Il n'a été transformé qu'une fois, vers 1911. Dans les années 1990, alors qu'il venait d'être classé, un homme sans abri s'y était réfugié et la tuyauterie fut gravement abîmée. L'orgue a été restauré en 2009 et a retrouvé son fonctionnement d'origine.</p>
+    <figure>
+      <img src="https://lh3.googleusercontent.com/d/175ccWsNJHKsghuFTx8WvoQImszgWogX-" alt="Le clavier de l'orgue de chœur" loading="lazy">
+      <figcaption>Le clavier de l'orgue de chœur.</figcaption>
+    </figure>
+  </section>
+
+  <section class="chapitre col apparait" id="organistes">
+    <div class="chap-tete"><div class="orn gable" style="--src:url(essais-gravure/gable-c.svg)"></div><span class="num">VI</span><h2>Ceux qui l'ont joué</h2></div>
+    <p>Depuis 1869, une dizaine d'organistes se sont succédé à la tribune. Édouard Claude y est resté plus de quarante ans.</p>
+    <ul class="organistes">
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Auguste Rigaux</b><span>années 1860</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Auguste Joly</b><span>années 1860</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Auguste Kling</b><span>vers 1870 – 1919</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Édouard Claude</b><span>1919 – 1960</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Hubert Renard</b><span>1960 – 1961</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Monique Vallin</b><span>1961 – vers 1970</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>René Depoutot</b><span>vers 1970 – 1978</span></li>
+      <li><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Jean Bizot</b><span>1978 – 1988</span></li>
+      <li class="actuelle"><span class="orn" style="--src:url(essais-gravure/rosace-p.svg)"></span><b>Nathalie Dassi</b><span>depuis 1988</span></li>
+    </ul>
+  </section>
+</main>
+
+<section class="presse" id="presse">
+  <div class="orn pinacles g" style="--src:url(essais-gravure/pinacle.svg)" aria-hidden="true"></div>
+  <div class="orn pinacles d" style="--src:url(essais-gravure/pinacle.svg)" aria-hidden="true"></div>
+  <div class="col">
+    <h2>Ce qu'en disaient les journaux</h2>
+    <blockquote class="apparait"><p>« Nous sommes allés visiter au Champ-de-Mars le grand orgue destiné à l'église Saint-Epvre de Nancy. Les perfectionnements ingénieux qui le tirent de pair ont valu à M. Merklin la Légion d'honneur. »</p><cite>Le Constitutionnel, Paris — 5 août 1867</cite></blockquote>
+    <blockquote class="apparait"><p>« Le grand orgue qui a été couronné à l'exposition de 1867 vient d'être installé dans la nouvelle et magnifique église de Saint-Epvre, à Nancy, qui s'achève grâce au zèle et au dévouement de son curé, M. l'abbé Trouillet. »</p><cite>Le Ménestrel, Paris — 10 avril 1869</cite></blockquote>
+    <blockquote class="apparait"><p>« La commission d'expertise a constaté en termes élogieux que cet orgue réunit toutes les qualités et ressources d'un excellent instrument et répond parfaitement à son but. »</p><cite>Le Ménestrel, Paris — 10 mars 1872, à propos de l'orgue de chœur</cite></blockquote>
+  </div>
+</section>
+
+<footer class="pied">
+  <div class="orn" style="--src:url(essais-gravure/pinacle.svg)" aria-hidden="true"></div>
+  <b>Saint-Epvre</b>
+  <span>Nancy · Lorraine</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.apparait').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

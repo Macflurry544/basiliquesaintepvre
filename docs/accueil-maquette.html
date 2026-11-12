@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Accueil — maquette</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/nav.css?v=7">
+<style>
+  /* Maquette d'accueil : la vidéo naît dans une baie en ogive sur fond bordeaux,
+     la baie s'ouvre au défilement jusqu'à remplir l'écran, puis le grand titre monte. */
+  :root { --bordeaux: #4a1518; --navy: #213448; --blanc: #fff; --papier: #fbf9f5; --gris: #59626e; --filet: rgba(33,52,72,.18);
+    --titre: 'Uncial Antiqua', Georgia, serif; --texte: 'EB Garamond', Georgia, serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--papier); color: var(--navy); font-family: var(--texte); font-size: 19px; line-height: 1.7; }
+  a { color: inherit; }
+  .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+
+  /* ── Ouverture ── */
+  .ouverture { position: relative; height: 260vh; background: var(--bordeaux); }
+  .scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    --w: 34vw; --h: 66vh;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") center 58% / var(--w) var(--h) no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") center 58% / var(--w) var(--h) no-repeat; }
+  .entete { position: absolute; left: 0; right: 0; top: 0; padding: 5.6rem 22px 0; text-align: center; color: var(--blanc); transition: opacity .3s; }
+  .entete .rosace { width: 42px; height: 42px; margin: 0 auto .5rem; }
+  .entete small { display: block; font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; opacity: .85; }
+  .badge { position: absolute; left: 50%; bottom: 7vh; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: .4rem; color: var(--blanc); font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; transition: opacity .3s; }
+  .badge i { width: 1px; height: 38px; background: currentColor; animation: descend 1.8s ease-in-out infinite; transform-origin: top; }
+  @keyframes descend { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+  /* Grand titre qui monte d'une ligne, coupé en bas comme un mot gravé qui sort du sol */
+  .titre { position: absolute; left: 0; right: 0; bottom: 8vh; text-align: center; color: var(--blanc); pointer-events: none; }
+  .titre .fente { display: block; overflow: hidden; padding-top: .1em; }
+  .titre h1 { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(3.4rem, 14vw, 13rem); line-height: .9; letter-spacing: -.01em; translate: 0 var(--ty, 100%); text-shadow: 0 6px 40px rgba(0,0,0,.25); }
+  .titre p { margin: 1rem 0 0; font-size: clamp(1rem, 1.6vw, 1.3rem); font-style: italic; opacity: var(--op, 0); }
+  .voile { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,10,10,.55), transparent 55%); opacity: var(--op, 0); pointer-events: none; }
+
+  /* ══ La suite, sur le modèle d'un musée : très grands titres, aplats, listes à flèches ══ */
+  .large { max-width: 1240px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+  .rouge { background: var(--bordeaux); color: var(--blanc); }
+  .ogive { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; background: var(--papier) center / cover no-repeat; }
+
+  /* Bienvenue : le mot défile, il passe en bordeaux sur la photo */
+  .bienvenue { position: relative; padding: 7rem 0 4rem; overflow: hidden; text-align: center; }
+  .bienvenue .cadre { position: relative; width: min(620px, 80vw); aspect-ratio: 4 / 3; margin: 0 auto; background: url(../assets/img/accueil/facade.jpg) center / cover; }
+  .defile { position: absolute; left: 0; right: 0; overflow: hidden; top: calc(7rem + min(620px, 80vw) * .375); translate: 0 -50%; white-space: nowrap; font-family: var(--titre); font-size: clamp(5rem, 15vw, 13rem); line-height: 1; pointer-events: none; }
+  .defile span { display: inline-block; animation: defile 38s linear infinite; padding-right: .4em; }
+  .defile.dessus { color: var(--bordeaux); clip-path: inset(0 calc(50% - min(310px, 40vw)) ); }
+  @keyframes defile { to { transform: translateX(-100%); } }
+  .bienvenue h2 { margin: 3rem 0 .4rem; font-family: var(--titre); font-weight: 400; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.05; }
+  .bienvenue a { font-size: .9rem; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; opacity: .85; }
+
+  /* Horaires en très grands chiffres */
+  .ouvert { padding-bottom: 6rem; }
+  .ouvert .deux { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.4); padding-top: 4rem; }
+  .ouvert .deux > div { text-align: center; padding: 1rem 1.5rem 2rem; }
+  .ouvert .deux > div + div { border-left: 1px solid rgba(255,255,255,.4); }
+  .ouvert small { font-size: .9rem; letter-spacing: .24em; text-transform: uppercase; opacity: .85; }
+  .ouvert b { display: block; margin: .8rem 0 .6rem; font-family: var(--titre); font-weight: 400; font-size: clamp(3.4rem, 9vw, 8rem); line-height: .95; }
+  .ouvert span { font-size: 1.15rem; opacity: .9; }
+  .boutons { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-top: 2.6rem; }
+  .boutons a { display: flex; align-items: center; justify-content: center; gap: .8rem; padding: 1.5rem; background: var(--blanc); color: var(--bordeaux); border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 1.25rem; transition: transform .3s; }
+  .boutons a:hover { transform: translateY(-3px); }
+
+  /* Très grand titre + liste à flèches */
+  .geant { margin: 0; font-family: var(--titre); font-weight: 400; font-size: clamp(3.4rem, 11vw, 9.5rem); line-height: .92; }
+  .liste { list-style: none; margin: 4rem 0 0; padding: 0; border-top: 1px solid currentColor; }
+  .liste a { display: grid; grid-template-columns: 200px 1fr auto; gap: 2.5rem; align-items: center; padding: 2.4rem 0; border-bottom: 1px solid currentColor; text-decoration: none; }
+  .liste .vign { display: block; aspect-ratio: 4 / 3; background: center / cover; }
+  .liste small { font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; opacity: .8; }
+  .liste h3 { margin: .2rem 0 .3rem; font-family: var(--titre); font-weight: 400; font-size: clamp(1.7rem, 3.4vw, 2.8rem); line-height: 1.05; }
+  .liste p { margin: 0; opacity: .85; }
+  .liste .fl { font-size: 3rem; line-height: 1; transition: transform .3s; }
+  .liste a:hover .fl { transform: translateX(8px); }
+  .temps { padding-top: 6rem; padding-bottom: 7rem; }
+  .papier { background: var(--papier); color: var(--navy); }
+
+  /* Grands blocs de couleur */
+  .explorer { padding-top: 6rem; padding-bottom: 2rem; }
+  
+  .blocs { display: grid; gap: 22px; }
+  .blocs.un { grid-template-columns: 1fr; } .blocs.deux { grid-template-columns: 1fr 1fr; margin-top: 22px; } .blocs.trois { grid-template-columns: repeat(3, 1fr); margin-top: 22px; }
+  .bloc { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 3.4rem 2rem 3rem; text-decoration: none; }
+  .bloc h3 { margin: 0 0 2.4rem; font-family: var(--titre); font-weight: 400; font-size: clamp(2rem, 4.4vw, 4rem); line-height: 1; }
+  .blocs.trois .bloc h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); }
+  .bloc .ogive { display: block; width: min(300px, 60%); aspect-ratio: 3 / 4.2; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+  .blocs.un .bloc .ogive { width: min(340px, 60%); }
+  .bloc:hover .ogive { transform: scale(1.04); }
+  .bloc p { margin: 2.4rem 0 0; font-size: 1.25rem; }
+  .bloc.b { background: var(--bordeaux); color: var(--blanc); }
+  .bloc.n { background: var(--navy); color: var(--blanc); }
+  .bloc.w { background: var(--blanc); color: var(--bordeaux); border: 1px solid var(--filet); }
+  .bloc.mince { padding: 1.8rem 2rem; } .bloc.mince h3 { margin: 0; font-family: var(--texte); font-weight: 500; font-size: 1.5rem; }
+
+  .colonnes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; padding-top: 2rem; padding-bottom: 6rem; }
+  .colonnes a { text-decoration: none; display: block; }
+  .colonnes .ph { display: block; aspect-ratio: 4 / 3; background: center / cover; margin-bottom: 1.6rem; }
+  .colonnes small { font-size: .85rem; letter-spacing: .22em; text-transform: uppercase; opacity: .85; }
+  .colonnes h3 { margin: .5rem 0 .7rem; font-weight: 500; font-size: 1.7rem; line-height: 1.15; }
+  .colonnes p { margin: 0 0 1.2rem; opacity: .9; }
+  .colonnes .fl { font-size: 2.2rem; line-height: 1; display: inline-block; transition: transform .3s; }
+  .colonnes a:hover .fl { transform: translateX(8px); }
+  .titre-lien { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .titre-lien a { font-size: .95rem; letter-spacing: .18em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 5px; }
+  @media (max-width: 760px) { .colonnes { grid-template-columns: 1fr; } }
+  .lire { padding-top: 7rem; padding-bottom: 6rem; }
+  .pied { background: var(--papier); text-align: center; padding: 3rem 22px 4rem; }
+  .pied .orn { width: 36px; height: 140px; margin: 0 auto 1rem; color: var(--bordeaux); }
+  .pied b { display: block; font-family: var(--titre); font-weight: 400; font-size: clamp(3rem, 12vw, 9rem); line-height: .9; color: var(--bordeaux); }
+  .pied span { display: block; margin-top: 1rem; font-size: .82rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gris); }
+
+  .apparait { opacity: 0; translate: 0 24px; transition: opacity 1s ease, translate 1s cubic-bezier(.22,1,.36,1); }
+  .apparait.vu { opacity: 1; translate: 0 0; }
+  @media (max-width: 760px) {
+    .scene video { --w: 70vw; }
+    .ouvert .deux, .boutons, .blocs.deux, .blocs.trois { grid-template-columns: 1fr; }
+    .ouvert .deux > div + div { border-left: 0; border-top: 1px solid rgba(255,255,255,.4); padding-top: 2.4rem; }
+    .liste a { grid-template-columns: 90px 1fr auto; gap: 1rem; } .liste .fl { font-size: 2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; translate: none; transition: none; } .badge i, .defile span { animation: none; } }
+</style>
+</head>
+<body>
+
+<section class="ouverture" id="ouverture">
+  <div class="scene">
+    <video autoplay muted loop playsinline preload="auto" poster="../assets/video/basilique-hero-poster.jpg" aria-hidden="true">
+      <source src="../assets/video/basilique-hero.webm" type="video/webm">
+      <source src="../assets/video/basilique-hero.mp4" type="video/mp4">
+    </video>
+    <div class="voile"></div>
+    <div class="entete">
+      <div class="orn rosace" style="--src:url(../assets/ornements/rosace-p.svg?v=2)"></div>
+      <small>Nancy · Place Saint-Epvre</small>
+    </div>
+    <div class="badge"><span>Descendre</span><i></i></div>
+    <div class="titre">
+      <span class="fente"><h1>Saint-Epvre</h1></span>
+      <p>Basilique néo-gothique, au cœur de la Ville-Vieille de Nancy.</p>
+    </div>
+  </div>
+</section>
+
+<section class="rouge">
+  <div class="bienvenue">
+    <div class="cadre" role="img" aria-label="La façade de la basilique"></div>
+    <div class="defile" aria-hidden="true"><span>Bienvenue — Bienvenue — Bienvenue — </span><span>Bienvenue — Bienvenue — Bienvenue — </span></div>
+    <div class="defile dessus" aria-hidden="true"><span>Bienvenue — Bienvenue — Bienvenue — </span><span>Bienvenue — Bienvenue — Bienvenue — </span></div>
+    <h2>Découvrir Saint-Epvre</h2>
+    <a href="/histoire/">Visiter</a>
+  </div>
+
+  <div class="ouvert large">
+    <div class="deux">
+      <div class="apparait"><small>Ouverte le samedi</small><b>16h30–18h30</b><span>Dernière entrée à 18 h 20</span></div>
+      <div class="apparait"><small>Messe du dimanche</small><b>9h30 · 11h</b><span>Samedi 18 h 30 et semaine 8 h 30, à la crypte</span></div>
+    </div>
+    <div class="boutons">
+      <a href="/horaires-douverture/">Horaires d'ouverture <span>→</span></a>
+      <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/">Messes et offices <span>→</span></a>
+    </div>
+  </div>
+
+  <div class="large colonnes">
+    <a href="/horaires-douverture/" class="apparait"><span class="ph" style="background-image:url(../assets/img/accueil/nef-principale.jpg)"></span><small>Votre visite</small><h3>Une église ouverte à tous</h3><p>Pour la prière, le silence et la contemplation. Entrée libre.</p><span class="fl">→</span></a>
+    <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/" class="apparait"><span class="ph" style="background-image:url(../assets/img/orgues/clavier.jpg)"></span><small>Prier</small><h3>Messes et offices</h3><p>Laudes, vêpres et messes, avec la Congrégation de l'Oratoire.</p><span class="fl">→</span></a>
+    <a href="/bibliographie/" class="apparait"><span class="ph" style="background-image:url(../assets/img/biblio/mono.jpg)"></span><small>Lire</small><h3>Les livres de la basilique</h3><p>La monographie de 1890 et toutes nos sources.</p><span class="fl">→</span></a>
+  </div>
+
+  <div class="temps large">
+    <h2 class="geant apparait">Les grandes<br>orgues de 1867</h2>
+    <ul class="liste">
+      <li><a href="/les-grandes-orgues/" class="apparait"><span class="vign" style="background-image:url(../assets/img/orgues/tribune.jpg)"></span><span><small>Merklin-Schütze</small><h3>Médaille d'or, Bruckner et 44 jeux</h3><p>L'histoire de l'instrument, jeu par jeu.</p></span><span class="fl">→</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="papier">
+  <div class="explorer large">
+    <div class="titre-lien"><h2 class="geant apparait" style="margin:0">Explorer</h2><a href="/photos/">Toutes les photographies →</a></div>
+    <div class="blocs un">
+      <a class="bloc b apparait" href="/histoire/"><h3>L'histoire</h3><span class="ogive" style="background-image:url(../assets/img/accueil/facade.jpg)"></span><p>De la paroisse médiévale à la basilique de Prosper Morey</p></a>
+    </div>
+    <div class="blocs deux">
+      <a class="bloc n apparait" href="/les-vitraux/"><h3>Les vitraux</h3><span class="ogive" style="background-image:url(../assets/img/accueil/rosace.jpg)"></span><p>Une nef de lumière</p></a>
+      <a class="bloc w apparait" href="/les-grandes-orgues/"><h3>Les orgues</h3><span class="ogive" style="background-image:url(../assets/img/orgues/tuyaux.jpg)"></span><p>Inaugurées par Bruckner en 1869</p></a>
+    </div>
+    <div class="blocs deux">
+      <a class="bloc n mince apparait" href="/photos/"><h3>Photographies de la basilique</h3></a>
+      <a class="bloc b mince apparait" href="/carte/"><h3>Venir place Saint-Epvre</h3></a>
+    </div>
+    <div class="blocs trois">
+      <a class="bloc w apparait" href="/les-cloches/"><h3>Les cloches</h3><span class="ogive" style="background-image:url(../assets/img/accueil/vitrail.jpg)"></span><p>Leurs noms et leurs inscriptions</p></a>
+      <a class="bloc b apparait" href="/joseph-trouillet/"><h3>Mgr Trouillet</h3><span class="ogive" style="background-image:url(../assets/img/accueil/nef-principale.jpg)"></span><p>Le curé bâtisseur</p></a>
+      <a class="bloc w apparait" href="/sauvegarde-et-restauration/"><h3>Sauvegarde</h3><span class="ogive" style="background-image:url(../assets/img/orgues/plaque.jpg)"></span><p>Restaurer la basilique</p></a>
+    </div>
+  </div>
+
+  <div class="lire large">
+    <h2 class="geant apparait">À lire</h2>
+    <ul class="liste">
+      <li><a href="/bibliographie/" class="apparait"><span class="vign" style="background-image:url(../assets/img/biblio/mono-titre.jpg)"></span><span><small>Tournai, 1890</small><h3>Monographie de la basilique</h3><p>Et toutes les sources du site, sur l'étagère de la bibliographie.</p></span><span class="fl">→</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="pied">
+  <div class="orn" style="--src:url(../assets/ornements/clocher.svg?v=2)" aria-hidden="true"></div>
+  <b>Saint-Epvre</b>
+  <span>Nancy · Lorraine · France</span>
+</footer>
+
+<script src="../assets/js/nav.js?v=7"></script>
+<script>
+  (function () {
+    var sec = document.getElementById('ouverture'), v = sec.querySelector('video'), sc = sec.querySelector('.scene');
+    var ent = sec.querySelector('.entete'), badge = sec.querySelector('.badge');
+    var reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+    function maj() {
+      var total = sec.offsetHeight - innerHeight;
+      var p = reduit ? 1 : Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total));
+      var o = ease(Math.min(1, p / .6));            // ouverture de la baie
+      var t = ease(Math.max(0, (p - .55) / .45));   // montée du titre
+      var mob = innerWidth < 760;
+      v.style.setProperty('--w', lerp(mob ? 70 : 34, 190, o) + 'vw');
+      v.style.setProperty('--h', lerp(66, 230, o) + 'vh');
+      ent.style.opacity = badge.style.opacity = 1 - Math.min(1, p * 4);
+      sc.style.setProperty('--ty', (100 - t * 100) + '%');
+      sc.style.setProperty('--op', t);
+    }
+    addEventListener('scroll', maj, { passive: true }); addEventListener('resize', maj); maj();
+
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.apparait').forEach(function (e) { io.observe(e); });
+  })();
+</script>
+</body>
+</html>

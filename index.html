@@ -207,6 +207,21 @@
   /* Blocs : gravures vectorisées de la monographie à la place des photos */
   .bloc .ogive.gravure { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
   .bloc.w .ogive.gravure { color: var(--bordeaux); }
+  /* Gravures des blocs : simple apparition, sans rotation ni zoom */
+  .bloc .ogive.gravure, .bloc.vu .ogive.gravure, .bloc:hover .ogive.gravure, .bloc.actif .ogive.gravure { transform: none; }
+  .bloc .ogive.gravure { transition: opacity 1.4s ease .2s; }
+  /* Bloc du musée : petite galerie dont les tableaux changent tout seuls */
+  .galerie { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 6px; width: min(420px, 82%); aspect-ratio: 1 / 1.15; opacity: 0; transition: opacity 1.2s ease .2s; }
+  .bloc.vu .galerie { opacity: 1; }
+  .galerie .tuile { position: relative; overflow: hidden; border-radius: 6px; background: var(--creme, #efe6d6); }
+  .galerie { grid-template-rows: repeat(4, 1fr); grid-auto-flow: dense; }
+  .galerie .t1, .galerie .t5, .galerie .t6 { grid-row: span 2; }
+  .galerie i { position: absolute; inset: 0; background: center 25% / cover no-repeat; transition: opacity 1.2s ease, scale 6s linear; scale: 1.06; }
+  .galerie i.sort { opacity: 0; }
+  .bloc:hover .galerie i { scale: 1.12; }
+  .lecture-ico { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,.88); box-shadow: 0 8px 24px -8px rgba(0,0,0,.45); transition: scale .4s cubic-bezier(.34,1.56,.64,1); }
+  .lecture-ico::after { content: ""; position: absolute; left: 54%; top: 50%; translate: -50% -50%; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent var(--bordeaux); }
+  .bloc:hover .lecture-ico { scale: 1.12; }
   @media (prefers-reduced-motion: reduce) { .bloc .ogive, .bloc.vu .ogive, .bloc:hover .ogive { transform: none; opacity: 1; transition: none; } }
   .pied .rosace-pied { width: 96px; height: 96px; }
 
@@ -295,19 +310,19 @@
     </div>
     <div class="blocs deux">
       <a class="bloc n apparait" href="/les-vitraux/"><h3>Les vitraux</h3><span class="ogive gravure" style="--src:url(/assets/ornements/vitrail.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Une nef de lumière</p></a>
-      <a class="bloc w apparait" href="/les-grandes-orgues/"><h3>Les orgues</h3><span class="ogive gravure" style="--src:url(/assets/ornements/orgue.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Inaugurées par Bruckner en 1869</p></a>
+      <a class="bloc w apparait" href="/les-grandes-orgues/"><h3>Les orgues</h3><span class="ogive gravure" style="--src:url(/assets/ornements/orgue.svg?v=2)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Inaugurées par Bruckner en 1869</p></a>
     </div>
     <div class="blocs deux">
       <a class="bloc n mince apparait" href="/photos/"><h3>Photographies de la basilique</h3></a>
       <a class="bloc b mince apparait" href="/carte/"><h3>Venir place Saint-Epvre</h3></a>
     </div>
     <div class="blocs un">
-      <a class="bloc w apparait" href="/musee-virtuel/"><h3>Le musée virtuel</h3><span class="ogive gravure" style="--src:url(/assets/ornements/saint-michel.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Les peintures murales, une à une, et leur signification</p></a>
+      <a class="bloc w apparait" href="/musee-virtuel/"><h3>Le musée virtuel</h3><span class="galerie" aria-hidden="true"><span class="tuile t0" data-alt="m70-1"><i style="background-image:url(/assets/img/musee/m68-0.webp?v=2)"></i></span><span class="tuile t1" data-alt="m78-2"><i style="background-image:url(/assets/img/musee/m76-0.webp?v=2)"></i></span><span class="tuile t2" data-alt="m88-5"><i style="background-image:url(/assets/img/musee/m88-0.webp?v=2)"></i></span><span class="tuile t3" data-alt="m90-7"><i style="background-image:url(/assets/img/musee/m90-3.webp?v=2)"></i></span><span class="tuile t4" data-alt="m72-0"><i style="background-image:url(/assets/img/musee/m74-0.webp?v=2)"></i></span><span class="tuile t5" data-alt="m92-2"><i style="background-image:url(/assets/img/musee/m92-5.webp?v=2)"></i></span><span class="tuile t6" data-alt="m78-1"><i style="background-image:url(/assets/img/musee/m78-0.webp?v=2)"></i></span><span class="tuile t7" data-alt="m84-1"><i style="background-image:url(/assets/img/musee/m84-4.webp?v=2)"></i></span><span class="tuile t8" data-alt="m94-6"><i style="background-image:url(/assets/img/musee/m94-1.webp?v=2)"></i></span><span class="lecture-ico"></span></span><p>Les peintures murales, une à une, et leur signification</p></a>
     </div>
     <div class="blocs trois">
-      <a class="bloc w apparait" href="/les-cloches/"><h3>Les cloches</h3><span class="ogive gravure" style="--src:url(/assets/ornements/clocher.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Leurs noms et leurs inscriptions</p></a>
-      <a class="bloc b apparait" href="/joseph-trouillet/"><h3>Mgr Trouillet</h3><span class="ogive gravure" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Le curé bâtisseur</p></a>
-      <a class="bloc w apparait" href="/sauvegarde-et-restauration/"><h3>Sauvegarde</h3><span class="ogive gravure" style="--src:url(/assets/ornements/mobilier/grille.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Restaurer la basilique</p></a>
+      <a class="bloc w apparait" href="/les-cloches/"><h3>Les cloches</h3><span class="ogive gravure" style="--src:url(/assets/ornements/clocher.svg?v=2)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Leurs noms et leurs inscriptions</p></a>
+      <a class="bloc b apparait" href="/joseph-trouillet/"><h3>Mgr Trouillet</h3><span class="ogive gravure" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=2)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Le curé bâtisseur</p></a>
+      <a class="bloc w apparait" href="/sauvegarde-et-restauration/"><h3>Sauvegarde</h3><span class="ogive gravure" style="--src:url(/assets/ornements/mobilier/grille.svg?v=2)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Restaurer la basilique</p></a>
     </div>
   </div>
 
@@ -395,5 +410,20 @@
   })();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(function(){});</script>
+<script>
+  // Galerie du bloc musée : une tuile au hasard change de tableau toutes les deux secondes
+  (function () {
+    var g = document.querySelector('.galerie'); if (!g || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tuiles = [].slice.call(g.querySelectorAll('.tuile')).filter(function (t) { return getComputedStyle(t).display !== 'none'; });
+    setInterval(function () {
+      if (document.hidden) return;
+      var t = tuiles[Math.floor(Math.random() * tuiles.length)], ancien = t.querySelector('i'), suivant = t.dataset.alt;
+      t.dataset.alt = (ancien.style.backgroundImage.match(/m\d+-\d+/) || [suivant])[0];
+      var n = document.createElement('i'); n.style.backgroundImage = 'url(/assets/img/musee/' + suivant + '.webp?v=2)'; n.classList.add('sort');
+      t.appendChild(n); requestAnimationFrame(function () { requestAnimationFrame(function () { n.classList.remove('sort'); ancien.classList.add('sort'); }); });
+      setTimeout(function () { ancien.remove(); }, 1400);
+    }, 2000);
+  })();
+</script>
 </body>
 </html>

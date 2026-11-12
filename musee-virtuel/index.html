@@ -18,7 +18,7 @@
   <meta property="og:site_name" content="Basilique Saint-Epvre">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=9">
   <style>
     :root {
@@ -47,24 +47,27 @@
     .lecture-texte span.lu { color: var(--navy); }
 
 
-    /* Vitrine : les salles défilent en cartes illustrées */
+    /* Vitrine : un mur de musée, les tableaux des salles défilent derrière un banc */
     .vitrine { margin: 0 0 4.5rem; }
     .vit-tete { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
     .vit-tete .cartouche { display: block; font: 600 .85rem var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
     .vit-tete p { margin: 0; font: 400 .9rem var(--titre); color: var(--gris); }
-    .vit-rail { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-    .vit-piste { display: flex; gap: 18px; width: max-content; padding: 10px 0 18px; animation: defile-salles 70s linear infinite; }
+    .vit-salle { --mur: clamp(300px, 34vw, 420px); position: relative; height: calc(var(--mur) + 150px); overflow: hidden;
+      background: radial-gradient(ellipse 60% 70% at 50% 30%, rgba(255,255,255,.08), transparent 70%), repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), rgba(0,0,0,.18) calc(25% - 1px) 25%), linear-gradient(180deg, #2a3f56, var(--navy) 70%); }
+    .vit-sol { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(180deg, #1a2838, #121d29); border-top: 1px solid rgba(255,255,255,.08); }
+    .vit-rail { position: absolute; left: 0; right: 0; top: 34px; height: calc(var(--mur) + 10px); }
+    .vit-piste { display: flex; align-items: flex-start; gap: clamp(40px, 5vw, 80px); width: max-content; padding: 0 40px; animation: defile-salles 90s linear infinite; }
     .vit-rail:hover .vit-piste, .vit-rail:focus-within .vit-piste, .vit-rail.tenu .vit-piste { animation-play-state: paused; }
-    @keyframes defile-salles { to { transform: translateX(calc(-50% - 9px)); } }
-    .carte-salle { position: relative; flex: none; width: clamp(230px, 24vw, 300px); aspect-ratio: 3 / 4; border-radius: 18px; overflow: hidden; text-decoration: none; color: var(--blanc); background: var(--navy); box-shadow: 0 18px 30px -22px rgba(33,52,72,.7); transition: translate .45s cubic-bezier(.22,1,.36,1), box-shadow .45s; }
-    .carte-salle:nth-child(even) { background: var(--blanc); color: var(--navy); box-shadow: 0 18px 30px -22px rgba(33,52,72,.7), inset 0 0 0 1px var(--filet); }
-    .cs-img { position: absolute; inset: 0 0 38% 0; background: var(--creme, #f3e9d8) center 20% / cover no-repeat; transition: scale .8s cubic-bezier(.22,1,.36,1); }
-    .cs-txt { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: .35rem; }
-    .cs-num { font: 600 .7rem/1 var(--titre); letter-spacing: .22em; text-transform: uppercase; opacity: .7; }
-    .carte-salle b { font: 500 1.25rem/1.02 var(--titre); letter-spacing: -.02em; text-transform: uppercase; }
-    .cs-acc { font: 400 .85rem/1.35 var(--texte); opacity: .85; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-    .carte-salle:hover, .carte-salle:focus-visible { translate: 0 -8px; box-shadow: 0 26px 40px -22px rgba(33,52,72,.8); }
-    .carte-salle:hover .cs-img { scale: 1.06; }
+    @keyframes defile-salles { to { transform: translateX(-50%); } }
+    .tableau { flex: none; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--blanc); margin-top: calc((1 - var(--h)) * var(--mur) * .35); }
+    .cadre-t { display: block; height: calc(var(--mur) * .72 * var(--h)); aspect-ratio: var(--r); padding: 10px; background: #f6f1e7; box-shadow: 0 0 0 6px #14100c, 0 26px 40px -16px rgba(0,0,0,.7); transition: translate .5s cubic-bezier(.22,1,.36,1); }
+    .cadre-t img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .tableau:hover .cadre-t, .tableau:focus-visible .cadre-t { translate: 0 -6px; }
+    .cartel { margin-top: 20px; max-width: 230px; text-align: center; font: 500 .82rem/1.35 var(--titre); opacity: .85; }
+    .cartel b { display: block; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; opacity: .7; margin-bottom: .2rem; }
+    .cartel em { display: block; margin-top: .3rem; font: italic 400 .78rem/1.35 var(--texte); opacity: .8; }
+    .banc { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; width: min(560px, 74%); height: auto; fill: #0b1119; z-index: 2; pointer-events: none; filter: drop-shadow(0 -2px 0 rgba(255,255,255,.05)); }
+    @media (max-width: 820px) { .vit-salle { --mur: 300px; } .cartel em { display: none; } }
     @media (prefers-reduced-motion: reduce) { .vit-piste { animation: none; } .vit-rail { overflow-x: auto; } }
 
     /* Sommaire des salles */
@@ -132,69 +135,76 @@
     .points i.ici { opacity: 1; width: 22px; border-radius: 4px; }
     .bande .bande-grille { padding-left: clamp(22px, 7vw, 110px); padding-right: clamp(22px, 7vw, 110px); }
 
-    /* ══ Le mobilier : planches commentées comme un plan d'architecte ══ */
+    /* ══ Le mobilier : planches annotées au crayon, comme un croquis d'architecte ══ */
     .mob-ouv { min-height: 70vh; min-height: 70svh; }
     .mob-intro p { font: 400 clamp(1.15rem, 2vw, 1.45rem)/1.5 var(--titre); opacity: .9; margin: 0; }
-    .plan { --trait: currentColor; }
-    .plan-grille { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-    .plan.large .plan-grille { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
-    .plan-fig { position: relative; margin: 0 auto; width: min(100%, calc((100svh - 13rem) * var(--ar))); justify-self: center;
-      background-image: linear-gradient(to right, color-mix(in srgb, currentColor 9%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, currentColor 9%, transparent) 1px, transparent 1px);
+    .plan { --crayon: #5b5d61; display: block; }
+    .b-navy.plan { --crayon: rgba(255,255,255,.78); }
+    .plan-tete { max-width: 1240px; margin: 0 auto 1.6rem; padding: 0 max(22px, env(safe-area-inset-left, 0px)); text-align: center; }
+    .plan-num { display: block; font: 600 .78rem/1 var(--titre); letter-spacing: .26em; text-transform: uppercase; opacity: .65; margin-bottom: .9rem; }
+    .plan h3 { margin: 0 0 .7rem; font: 500 clamp(2.2rem, 4.6vw, 4rem)/.95 var(--titre); letter-spacing: -.045em; text-transform: uppercase; }
+    .plan-meta { margin: 0 auto .8rem; font: 500 .9rem/1.5 var(--titre); opacity: .7; }
+    .plan-intro { margin: 0 auto; max-width: 60ch; font-size: 1rem; line-height: 1.6; opacity: .9; }
+    .plan-scene { position: relative; max-width: 1320px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: stretch; }
+    .plan-fig { position: relative; margin: 0; align-self: center; height: min(calc(100svh - 17rem), 760px); width: auto; max-width: 46vw;
+      background-image: linear-gradient(to right, color-mix(in srgb, currentColor 8%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, currentColor 8%, transparent) 1px, transparent 1px);
       background-size: 24px 24px; background-position: -1px -1px; }
+    .plan.large .plan-fig { height: auto; width: min(46vw, 640px); }
     .trace { position: absolute; inset: 0; width: 100%; height: 100%; }
     div.trace { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
     img.trace { object-fit: contain; }
     .b-papier img.trace { mix-blend-mode: multiply; }
-    /* le tracé se dessine de bas en haut */
-    .plan .trace { clip-path: inset(100% 0 0 0); transition: clip-path 1.8s cubic-bezier(.65,0,.35,1); }
-    .plan.vu .trace { clip-path: inset(0 0 0 0); }
-    /* repères numérotés, avec ligne de rappel vers le bord */
-    .repere { position: absolute; width: 0; height: 0; z-index: 2; }
-    .repere b { position: absolute; left: 0; top: 0; translate: -50% -50%; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--bordeaux); color: var(--blanc); font: 600 .78rem/1 var(--titre); box-shadow: 0 0 0 3px color-mix(in srgb, var(--blanc) 70%, transparent); scale: 0; transition: scale .5s cubic-bezier(.34,1.56,.64,1) calc(1.4s + var(--i) * .22s); z-index: 2; }
-    .b-navy .repere b { background: var(--blanc); color: var(--navy); box-shadow: 0 0 0 3px rgba(33,52,72,.6); }
-    .repere::before { content: ""; position: absolute; top: 0; height: 1px; background: currentColor; opacity: .7; transform: scaleX(0); transition: transform .6s ease calc(1.55s + var(--i) * .22s); }
-    .repere.g::before { right: 0; width: var(--rappel, 0px); transform-origin: right; }
-    .repere.d::before { left: 0; width: var(--rappel, 0px); transform-origin: left; }
-    .repere em { position: absolute; top: 0; translate: 0 -50%; white-space: nowrap; font: 600 .7rem/1 var(--titre); letter-spacing: .14em; text-transform: uppercase; opacity: 0; transition: opacity .5s ease calc(1.8s + var(--i) * .22s); }
-    .repere.g em { right: calc(var(--rappel, 0px) + 8px); text-align: right; }
-    .repere.d em { left: calc(var(--rappel, 0px) + 8px); }
-    .plan.vu .repere b { scale: 1; }
-    .plan.vu .repere::before { transform: scaleX(1); }
-    .plan.vu .repere em { opacity: .85; }
-    .repere.actif b, .repere:hover b { scale: 1.25; background: var(--navy); color: var(--blanc); }
-    .b-navy .repere.actif b, .b-navy .repere:hover b { background: var(--bordeaux); color: var(--blanc); }
-    .repere.actif em { opacity: 1; }
+    /* apparition simple */
+    .plan .trace { opacity: 0; transition: opacity 1.2s ease; }
+    .plan.vu .trace { opacity: 1; }
+    /* notes manuscrites, au crayon */
+    .notes { position: relative; list-style: none; margin: 0; padding: 0; min-width: 0; }
+    .note { position: absolute; left: 0; right: 0; font: 400 1.32rem/1.12 'Caveat', 'Segoe Print', cursive; color: var(--crayon); opacity: 0; translate: 0 6px; transition: opacity .6s ease calc(.6s + var(--i) * .25s), translate .6s ease calc(.6s + var(--i) * .25s), color .25s; }
+    .note strong { display: block; font-weight: 700; font-size: 1.5rem; margin-bottom: .1rem; }
+    .notes.g .note { text-align: right; }
+    .plan.vu .note { opacity: 1; translate: 0 0; }
+    .note.actif { color: inherit; }
+    .traits { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .traits path { fill: none; stroke: var(--crayon); stroke-width: 1.3; stroke-linecap: round; filter: url(#crayon); stroke-dasharray: var(--l, 600); stroke-dashoffset: var(--l, 600); transition: stroke-dashoffset 1s ease calc(.4s + var(--i) * .25s), stroke .25s; }
+    .traits circle { fill: var(--crayon); opacity: 0; transition: opacity .4s ease calc(.4s + var(--i) * .25s); }
+    .plan.vu .traits path { stroke-dashoffset: 0; }
+    .plan.vu .traits circle { opacity: 1; }
+    .traits .actif { stroke: currentColor; stroke-width: 2; }
+    /* repères : invisibles sur ordinateur (les traits suffisent), numérotés sur téléphone */
+    .repere { position: absolute; width: 0; height: 0; padding: 0; border: 0; background: none; z-index: 3; cursor: pointer; }
+    .repere b { display: none; }
+    .bulle { display: none; }
+    .plan-aide { display: none; }
     /* cotes */
-    .cote { position: absolute; opacity: 0; transition: opacity .6s ease 1s; font: 600 .75rem/1 var(--titre); letter-spacing: .1em; }
-    .cote.v { top: 0; bottom: 0; left: -34px; width: 1px; border-left: 1px solid currentColor; }
+    .cote { position: absolute; opacity: 0; transition: opacity .6s ease 1s; font: 400 1.15rem/1 'Caveat', cursive; color: var(--crayon); }
+    .cote.v { top: 0; bottom: 0; left: -30px; width: 1px; border-left: 1px solid currentColor; }
     .cote.v::before, .cote.v::after { content: ""; position: absolute; left: -6px; width: 12px; border-top: 1px solid currentColor; }
     .cote.v::before { top: 0; } .cote.v::after { bottom: 0; }
-    .cote.v span { position: absolute; top: 50%; left: -10px; translate: -100% -50%; writing-mode: vertical-rl; rotate: 180deg; padding: 6px 0; }
-    .cote.h { left: 0; right: 0; bottom: -30px; height: 1px; border-top: 1px solid currentColor; }
+    .cote.v span { position: absolute; top: 50%; left: -8px; translate: -100% -50%; writing-mode: vertical-rl; rotate: 180deg; }
+    .cote.h { left: 0; right: 0; bottom: -26px; height: 1px; border-top: 1px solid currentColor; }
     .cote.h::before, .cote.h::after { content: ""; position: absolute; top: -6px; height: 12px; border-left: 1px solid currentColor; }
     .cote.h::before { left: 0; } .cote.h::after { right: 0; }
-    .cote.h span { position: absolute; left: 50%; top: 6px; translate: -50% 0; padding: 0 8px; }
-    .plan.vu .cote { opacity: .8; }
-    /* texte et légende */
-    .plan-num { display: block; font: 600 .78rem/1 var(--titre); letter-spacing: .26em; text-transform: uppercase; opacity: .65; margin-bottom: 1rem; }
-    .plan h3 { margin: 0 0 .8rem; font: 500 clamp(2rem, 4vw, 3.4rem)/.95 var(--titre); letter-spacing: -.04em; }
-    .plan-meta { font: 500 .95rem/1.5 var(--titre); opacity: .75; margin: 0 0 1rem; }
-    .legende { list-style: none; margin: 1.4rem 0 0; padding: 0; border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
-    .legende li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .6rem; padding: .7rem 0; border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent); font-size: .95rem; line-height: 1.5; cursor: default; opacity: 0; translate: 12px 0; transition: opacity .5s ease calc(1.5s + var(--i) * .22s), translate .5s ease calc(1.5s + var(--i) * .22s), background .25s; }
-    .plan.vu .legende li { opacity: 1; translate: 0 0; }
-    .legende li b { font: 600 .9rem/1.5 var(--titre); }
-    .legende li strong { font-family: var(--titre); font-weight: 600; }
-    .legende li.actif { background: color-mix(in srgb, currentColor 7%, transparent); }
-    @media (max-width: 980px) { .repere em, .repere::before { display: none; } }
-    .plan.sans-etiquettes .repere em, .plan.sans-etiquettes .repere::before { display: none; }
-    @media (max-width: 820px) {
-      .plan-grille, .plan.large .plan-grille { grid-template-columns: 1fr; }
-      .plan-fig { width: min(calc(100% - 40px), calc(64svh * var(--ar))); margin-left: 40px; }
+    .cote.h span { position: absolute; left: 50%; top: 4px; translate: -50% 0; }
+    .plan.vu .cote { opacity: 1; }
+    /* ── téléphone et tablette : numéros + bulle au niveau du point ── */
+    @media (max-width: 980px) {
+      .plan-scene { grid-template-columns: 1fr; }
+      .notes, .traits { display: none; }
+      .plan-fig, .plan.large .plan-fig { height: auto; width: min(calc(100% - 40px), calc(62svh * var(--ar))); max-width: none; justify-self: center; }
       .plan.large .plan-fig { width: 100%; }
-      .plan.large .plan-fig { margin-left: auto; margin-bottom: 36px; }
+      .repere b { display: grid; place-items: center; position: absolute; left: 0; top: 0; translate: -50% -50%; width: 30px; height: 30px; border-radius: 50%; background: var(--bordeaux); color: var(--blanc); font: 600 .8rem/1 var(--titre); box-shadow: 0 0 0 3px rgba(255,255,255,.75); scale: 0; transition: scale .45s cubic-bezier(.34,1.56,.64,1) calc(.5s + var(--i) * .15s); }
+      .b-navy .repere b { background: var(--blanc); color: var(--navy); box-shadow: 0 0 0 3px rgba(33,52,72,.6); }
+      .plan.vu .repere b { scale: 1; }
+      .repere.actif b { background: var(--navy); color: var(--blanc); scale: 1.15; }
+      .b-navy .repere.actif b { background: var(--bordeaux); }
+      .bulle { display: none; position: absolute; left: 0; top: 0; z-index: 4; width: min(260px, 74vw); padding: .75rem .9rem; border-radius: 12px; background: var(--blanc); color: var(--navy); font-size: .92rem; line-height: 1.45; box-shadow: 0 14px 30px -10px rgba(0,0,0,.45); opacity: 0; visibility: hidden; translate: 0 6px; transition: opacity .25s, translate .25s, visibility 0s .25s; }
+      .bulle strong { display: block; font: 600 .95rem/1.2 var(--titre); margin-bottom: .25rem; color: var(--bordeaux); }
+      .bulle.ouverte { display: block; opacity: 1; visibility: visible; translate: 0 0; animation: bulle .25s ease; }
+      @keyframes bulle { from { opacity: 0; translate: 0 6px; } }
+      .plan-aide { display: block; text-align: center; margin: 2.2rem 22px 0; font: 400 1.2rem/1.3 'Caveat', cursive; color: var(--crayon); }
       .cote.v { left: -26px; }
     }
-    @media (prefers-reduced-motion: reduce) { .plan .trace, .repere b, .repere::before, .repere em, .legende li, .cote { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .plan .trace, .note, .traits path, .traits circle, .repere b, .cote { transition: none; } }
     .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
     .cul-de-lampe { padding: 4rem 22px 4.5rem; text-align: center; }
     .cul-de-lampe .orn { width: min(340px, 78vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
@@ -245,8 +255,12 @@
 
 
   <section class="vitrine" aria-label="Les salles du musée">
-    <div class="vit-tete col"><span class="cartouche">Choisir une salle</span><p>Les salles défilent : survolez ou touchez pour arrêter.</p></div>
-    <div class="vit-rail"><div class="vit-piste"><a class="carte-salle" href="#vertus"><span class="cs-img" style="background-image:url(/assets/img/musee/m68-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle I</span><b>Les Vertus</b><span class="cs-acc">La Charité, la Justice… et les vices qui leur répondent</span></span></a><a class="carte-salle" href="#colere"><span class="cs-img" style="background-image:url(/assets/img/musee/m74-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle II</span><b>La Colère</b><span class="cs-acc">Le Christ juge et les fléaux de l’Apocalypse</span></span></a><a class="carte-salle" href="#gloire"><span class="cs-img" style="background-image:url(/assets/img/musee/m76-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle III</span><b>La Gloire</b><span class="cs-acc">La Sainte Famille couronnée au ciel</span></span></a><a class="carte-salle" href="#saint-michel"><span class="cs-img" style="background-image:url(/assets/img/musee/m88-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle IV</span><b>Chapelle Saint-Michel</b><span class="cs-acc">Jacob, Tobie, Gabriel : les apparitions des anges</span></span></a><a class="carte-salle" href="#vierge-sacre-coeur"><span class="cs-img" style="background-image:url(/assets/img/musee/m84-4.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle V</span><b>Chapelles de la Vierge et du Sacré-Cœur</b><span class="cs-acc">La Passion et les sept sacrements</span></span></a><a class="carte-salle" href="#saint-joseph"><span class="cs-img" style="background-image:url(/assets/img/musee/m90-3.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle VI</span><b>Chapelle Saint-Joseph</b><span class="cs-acc">De la Nativité à la mort de saint Joseph</span></span></a><a class="carte-salle" href="#purgatoire"><span class="cs-img" style="background-image:url(/assets/img/musee/m94-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle VII</span><b>Chapelle des Âmes du Purgatoire</b><span class="cs-acc">La fournaise, les lions : figures du purgatoire</span></span></a><a class="carte-salle" href="#transept"><span class="cs-img" style="background-image:url(/assets/img/musee/m92-5.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle VIII</span><b>Le Transept</b><span class="cs-acc">Les arts, la théologie et l’éloquence</span></span></a><a class="carte-salle" href="#soubassements"><span class="cs-img" style="background-image:url(/assets/img/musee/m86-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle IX</span><b>Soubassements</b><span class="cs-acc">Les soubassements, vus en entier</span></span></a><a class="carte-salle" href="#mobilier"><span class="cs-img" style="background-image:url(/assets/img/mobilier/ostensoir.webp)"></span><span class="cs-txt"><span class="cs-num">Salle X</span><b>Le mobilier et le trésor</b><span class="cs-acc">Chaire, lutrin, ostensoir : commentés comme un plan</span></span></a><a class="carte-salle" href="#vertus" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m68-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle I</span><b>Les Vertus</b><span class="cs-acc">La Charité, la Justice… et les vices qui leur répondent</span></span></a><a class="carte-salle" href="#colere" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m74-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle II</span><b>La Colère</b><span class="cs-acc">Le Christ juge et les fléaux de l’Apocalypse</span></span></a><a class="carte-salle" href="#gloire" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m76-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle III</span><b>La Gloire</b><span class="cs-acc">La Sainte Famille couronnée au ciel</span></span></a><a class="carte-salle" href="#saint-michel" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m88-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle IV</span><b>Chapelle Saint-Michel</b><span class="cs-acc">Jacob, Tobie, Gabriel : les apparitions des anges</span></span></a><a class="carte-salle" href="#vierge-sacre-coeur" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m84-4.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle V</span><b>Chapelles de la Vierge et du Sacré-Cœur</b><span class="cs-acc">La Passion et les sept sacrements</span></span></a><a class="carte-salle" href="#saint-joseph" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m90-3.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle VI</span><b>Chapelle Saint-Joseph</b><span class="cs-acc">De la Nativité à la mort de saint Joseph</span></span></a><a class="carte-salle" href="#purgatoire" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m94-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle VII</span><b>Chapelle des Âmes du Purgatoire</b><span class="cs-acc">La fournaise, les lions : figures du purgatoire</span></span></a><a class="carte-salle" href="#transept" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m92-5.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle VIII</span><b>Le Transept</b><span class="cs-acc">Les arts, la théologie et l’éloquence</span></span></a><a class="carte-salle" href="#soubassements" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/musee/m86-0.webp?v=2)"></span><span class="cs-txt"><span class="cs-num">Salle IX</span><b>Soubassements</b><span class="cs-acc">Les soubassements, vus en entier</span></span></a><a class="carte-salle" href="#mobilier" tabindex="-1" aria-hidden="true"><span class="cs-img" style="background-image:url(/assets/img/mobilier/ostensoir.webp)"></span><span class="cs-txt"><span class="cs-num">Salle X</span><b>Le mobilier et le trésor</b><span class="cs-acc">Chaire, lutrin, ostensoir : commentés comme un plan</span></span></a></div></div>
+    <div class="vit-tete col"><span class="cartouche">Choisir une salle</span><p>Asseyez-vous : les salles défilent. Survolez ou touchez un tableau pour l’arrêter.</p></div>
+    <div class="vit-salle">
+      <div class="vit-rail"><div class="vit-piste"><a class="tableau" href="#vertus" style="--r:0.42;--h:1"><span class="cadre-t"><img src="/assets/img/musee/m68-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle I</b>Les Vertus<em>La Charité, la Justice… et les vices qui leur répondent</em></span></a><a class="tableau" href="#colere" style="--r:1.276;--h:0.82"><span class="cadre-t"><img src="/assets/img/musee/m74-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle II</b>La Colère<em>Le Christ juge et les fléaux de l’Apocalypse</em></span></a><a class="tableau" href="#gloire" style="--r:1.45;--h:0.92"><span class="cadre-t"><img src="/assets/img/musee/m76-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle III</b>La Gloire<em>La Sainte Famille couronnée au ciel</em></span></a><a class="tableau" href="#saint-michel" style="--r:1.005;--h:0.76"><span class="cadre-t"><img src="/assets/img/musee/m88-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle IV</b>Chapelle Saint-Michel<em>Jacob, Tobie, Gabriel : les apparitions des anges</em></span></a><a class="tableau" href="#vierge-sacre-coeur" style="--r:1.011;--h:0.88"><span class="cadre-t"><img src="/assets/img/musee/m84-4.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle V</b>Chapelles de la Vierge et du Sacré-Cœur<em>La Passion et les sept sacrements</em></span></a><a class="tableau" href="#saint-joseph" style="--r:1.046;--h:1"><span class="cadre-t"><img src="/assets/img/musee/m90-3.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle VI</b>Chapelle Saint-Joseph<em>De la Nativité à la mort de saint Joseph</em></span></a><a class="tableau" href="#purgatoire" style="--r:0.987;--h:0.82"><span class="cadre-t"><img src="/assets/img/musee/m94-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle VII</b>Chapelle des Âmes du Purgatoire<em>La fournaise, les lions : figures du purgatoire</em></span></a><a class="tableau" href="#transept" style="--r:0.932;--h:0.92"><span class="cadre-t"><img src="/assets/img/musee/m92-5.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle VIII</b>Le Transept<em>Les arts, la théologie et l’éloquence</em></span></a><a class="tableau" href="#soubassements" style="--r:1.45;--h:0.76"><span class="cadre-t"><img src="/assets/img/musee/m86-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle IX</b>Soubassements<em>Les soubassements, vus en entier</em></span></a><a class="tableau" href="#mobilier" style="--r:0.42;--h:0.88"><span class="cadre-t"><img src="/assets/img/mobilier/ostensoir.webp" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle X</b>Le mobilier et le trésor<em>Chaire, lutrin, ostensoir : commentés comme un plan</em></span></a><a class="tableau" href="#vertus" style="--r:0.42;--h:1" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m68-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle I</b>Les Vertus<em>La Charité, la Justice… et les vices qui leur répondent</em></span></a><a class="tableau" href="#colere" style="--r:1.276;--h:0.82" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m74-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle II</b>La Colère<em>Le Christ juge et les fléaux de l’Apocalypse</em></span></a><a class="tableau" href="#gloire" style="--r:1.45;--h:0.92" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m76-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle III</b>La Gloire<em>La Sainte Famille couronnée au ciel</em></span></a><a class="tableau" href="#saint-michel" style="--r:1.005;--h:0.76" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m88-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle IV</b>Chapelle Saint-Michel<em>Jacob, Tobie, Gabriel : les apparitions des anges</em></span></a><a class="tableau" href="#vierge-sacre-coeur" style="--r:1.011;--h:0.88" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m84-4.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle V</b>Chapelles de la Vierge et du Sacré-Cœur<em>La Passion et les sept sacrements</em></span></a><a class="tableau" href="#saint-joseph" style="--r:1.046;--h:1" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m90-3.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle VI</b>Chapelle Saint-Joseph<em>De la Nativité à la mort de saint Joseph</em></span></a><a class="tableau" href="#purgatoire" style="--r:0.987;--h:0.82" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m94-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle VII</b>Chapelle des Âmes du Purgatoire<em>La fournaise, les lions : figures du purgatoire</em></span></a><a class="tableau" href="#transept" style="--r:0.932;--h:0.92" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m92-5.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle VIII</b>Le Transept<em>Les arts, la théologie et l’éloquence</em></span></a><a class="tableau" href="#soubassements" style="--r:1.45;--h:0.76" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m86-0.webp?v=2" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle IX</b>Soubassements<em>Les soubassements, vus en entier</em></span></a><a class="tableau" href="#mobilier" style="--r:0.42;--h:0.88" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/mobilier/ostensoir.webp" alt="" loading="lazy" decoding="async"></span><span class="cartel"><b>Salle X</b>Le mobilier et le trésor<em>Chaire, lutrin, ostensoir : commentés comme un plan</em></span></a></div></div>
+      <div class="vit-sol" aria-hidden="true"></div>
+      <svg class="banc" viewBox="0 0 600 120" aria-hidden="true"><ellipse cx="300" cy="112" rx="300" ry="8" fill="rgba(0,0,0,.35)"/><rect x="20" y="30" width="560" height="22" rx="3"/><rect x="20" y="52" width="560" height="6" opacity=".55"/><rect x="60" y="58" width="16" height="54"/><rect x="524" y="58" width="16" height="54"/><rect x="60" y="88" width="480" height="6" opacity=".7"/></svg>
+    </div>
   </section>
 
   <nav class="sommaire col apparait" id="sommaire" aria-label="Les salles">
@@ -978,88 +992,109 @@
     <div class="col mob-intro"><p>Chaire, stalles, grilles, orfèvrerie : la basilique a été meublée avec le même soin que ses murs. Voici sept pièces, redessinées d’après les planches de la monographie et commentées point par point, comme on lit un plan d’architecte.</p></div>
   </section>
   <section class="bande b-papier plan" id="obj-chaire">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:635 / 2023;--ar:0.3138902619871478"><div class="trace" role="img" aria-label="La chaire à prêcher, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/chaire.svg)"></div><span class="repere d" style="left:60%;top:12%;--i:0" data-i="0"><b>1</b><em>Flèche de clochetons</em></span><span class="repere d" style="left:88%;top:42%;--i:1" data-i="1"><b>2</b><em>Anges aux ailes dressées</em></span><span class="repere g" style="left:22%;top:48%;--i:2" data-i="2"><b>3</b><em>Abat-voix octogonal</em></span><span class="repere d" style="left:58%;top:57%;--i:3" data-i="3"><b>4</b><em>Panneau à colonnettes</em></span><span class="repere d" style="left:62%;top:72%;--i:4" data-i="4"><b>5</b><em>Cuve et prophètes</em></span><span class="repere g" style="left:24%;top:79%;--i:5" data-i="5"><b>6</b><em>Escalier semi-circulaire</em></span><span class="repere d" style="left:55%;top:88%;--i:6" data-i="6"><b>7</b><em>Faisceau de colonnettes</em></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 01 / 07</span>
-        <h3>La chaire à prêcher</h3>
-        <p class="plan-meta">Plans de Prosper Morey<br>Sculpture des frères Klem, de Colmar<br>Chêne sculpté et polychromé</p>
-        <p>Elle occupe une arcature de la grande nef, dans l’axe de l’ogive. Sa forme est octogonale, et son architecture est « sœur de celle de l’édifice ».</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>Flèche de clochetons</strong> L’abat-voix est surmonté d’une flèche formée de petits clochetons.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Anges aux ailes dressées</strong> Des consoles en spirale relient la flèche aux angles de l’abat-voix ; elles portent de petites colonnes surmontées d’anges aux ailes éployées.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Abat-voix octogonal</strong> Il renvoie la voix du prédicateur vers la nef. Les quatre plus grandes colonnettes du panneau en soutiennent les nervures.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Panneau à colonnettes</strong> Un long panneau s’élève de l’un des pans de l’octogone et relie la cuve à l’abat-voix.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Cuve et prophètes</strong> La balustrade de la cuve est faite d’arcatures, dont chacune abrite la statuette d’un prophète.</span></li><li data-i="5" style="--i:5"><b>6</b><span><strong>Escalier semi-circulaire</strong> On monte à la chaire par un escalier courbe dont la rampe est faite d’arcatures géminées.</span></li><li data-i="6" style="--i:6"><b>7</b><span><strong>Faisceau de colonnettes</strong> La chaire repose sur un faisceau de colonnettes ; leurs chapiteaux portent un large cul-de-lampe.</span></li></ol>
-      </div>
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 01 / 07</span>
+      <h3>La chaire à prêcher</h3>
+      <p class="plan-meta">Plans de Prosper Morey · Sculpture des frères Klem, de Colmar · Chêne sculpté et polychromé</p>
+      <p class="plan-intro">Elle occupe une arcature de la grande nef, dans l’axe de l’ogive. Sa forme est octogonale, et son architecture est « sœur de celle de l’édifice ».</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="2" style="--i:2"><strong>Abat-voix octogonal</strong> Il renvoie la voix du prédicateur vers la nef. Les quatre plus grandes colonnettes du panneau en soutiennent les nervures.</li><li class="note" data-i="5" style="--i:5"><strong>Escalier semi-circulaire</strong> On monte à la chaire par un escalier courbe dont la rampe est faite d’arcatures géminées.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:678 / 2032;--ar:0.33366141732283466"><div class="trace" role="img" aria-label="La chaire à prêcher, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=2)"></div><button type="button" class="repere" style="left:59%;top:12%;--i:0" data-i="0" aria-label="Flèche de clochetons"><b>1</b></button><button type="button" class="repere" style="left:86%;top:42%;--i:1" data-i="1" aria-label="Anges aux ailes dressées"><b>2</b></button><button type="button" class="repere" style="left:24%;top:48%;--i:2" data-i="2" aria-label="Abat-voix octogonal"><b>3</b></button><button type="button" class="repere" style="left:57%;top:57%;--i:3" data-i="3" aria-label="Panneau à colonnettes"><b>4</b></button><button type="button" class="repere" style="left:61%;top:72%;--i:4" data-i="4" aria-label="Cuve et prophètes"><b>5</b></button><button type="button" class="repere" style="left:26%;top:79%;--i:5" data-i="5" aria-label="Escalier semi-circulaire"><b>6</b></button><button type="button" class="repere" style="left:55%;top:88%;--i:6" data-i="6" aria-label="Faisceau de colonnettes"><b>7</b></button><div class="bulle" data-i="0" role="tooltip"><strong>Flèche de clochetons</strong>L’abat-voix est surmonté d’une flèche formée de petits clochetons.</div><div class="bulle" data-i="1" role="tooltip"><strong>Anges aux ailes dressées</strong>Des consoles en spirale relient la flèche aux angles de l’abat-voix ; elles portent de petites colonnes surmontées d’anges aux ailes éployées.</div><div class="bulle" data-i="2" role="tooltip"><strong>Abat-voix octogonal</strong>Il renvoie la voix du prédicateur vers la nef. Les quatre plus grandes colonnettes du panneau en soutiennent les nervures.</div><div class="bulle" data-i="3" role="tooltip"><strong>Panneau à colonnettes</strong>Un long panneau s’élève de l’un des pans de l’octogone et relie la cuve à l’abat-voix.</div><div class="bulle" data-i="4" role="tooltip"><strong>Cuve et prophètes</strong>La balustrade de la cuve est faite d’arcatures, dont chacune abrite la statuette d’un prophète.</div><div class="bulle" data-i="5" role="tooltip"><strong>Escalier semi-circulaire</strong>On monte à la chaire par un escalier courbe dont la rampe est faite d’arcatures géminées.</div><div class="bulle" data-i="6" role="tooltip"><strong>Faisceau de colonnettes</strong>La chaire repose sur un faisceau de colonnettes ; leurs chapiteaux portent un large cul-de-lampe.</div></figure>
+      <ol class="notes d"><li class="note" data-i="0" style="--i:0"><strong>Flèche de clochetons</strong> L’abat-voix est surmonté d’une flèche formée de petits clochetons.</li><li class="note" data-i="1" style="--i:1"><strong>Anges aux ailes dressées</strong> Des consoles en spirale relient la flèche aux angles de l’abat-voix ; elles portent de petites colonnes surmontées d’anges aux ailes éployées.</li><li class="note" data-i="3" style="--i:3"><strong>Panneau à colonnettes</strong> Un long panneau s’élève de l’un des pans de l’octogone et relie la cuve à l’abat-voix.</li><li class="note" data-i="4" style="--i:4"><strong>Cuve et prophètes</strong> La balustrade de la cuve est faite d’arcatures, dont chacune abrite la statuette d’un prophète.</li><li class="note" data-i="6" style="--i:6"><strong>Faisceau de colonnettes</strong> La chaire repose sur un faisceau de colonnettes ; leurs chapiteaux portent un large cul-de-lampe.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
   <section class="bande b-navy plan" id="obj-stalle">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:403 / 1933;--ar:0.20848422141748577"><div class="trace" role="img" aria-label="Les stalles du sanctuaire, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/stalle.svg)"></div><span class="repere g" style="left:48%;top:9%;--i:0" data-i="0"><b>1</b><em>Pignon</em></span><span class="repere g" style="left:9%;top:12%;--i:1" data-i="1"><b>2</b><em>Anges musiciens</em></span><span class="repere d" style="left:50%;top:33%;--i:2" data-i="2"><b>3</b><em>Dais ou baldaquin</em></span><span class="repere d" style="left:50%;top:52%;--i:3" data-i="3"><b>4</b><em>Dossier ajouré</em></span><span class="repere d" style="left:50%;top:81%;--i:4" data-i="4"><b>5</b><em>Panneaux sculptés</em></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 02 / 07</span>
-        <h3>Les stalles du sanctuaire</h3>
-        <p class="plan-meta">Composition et plans de Prosper Morey<br>Vingt stalles, dix de chaque côté du chœur</p>
-        <p>Chaque arcature qui précède l’autel est divisée en cinq stalles. L’exécution s’écarte un peu des plans de Morey, mais, note l’auteur, « les proportions en sont heureuses ».</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>Pignon</strong> Chaque dais est coiffé d’un pignon aigu terminé par une croix fleuronnée.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Anges musiciens</strong> Les pignons des baldaquins sont reliés entre eux par des anges musiciens.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Dais ou baldaquin</strong> Le dais abrite le chanoine assis ; son arc est garni de quadrilobes ajourés.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Dossier ajouré</strong> Les dossiers sont percés pour ne pas arrêter la lumière des vitraux placés derrière.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Panneaux sculptés</strong> Le bas de la stalle est fermé de panneaux à rinceaux sculptés dans le chêne.</span></li></ol>
-      </div>
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 02 / 07</span>
+      <h3>Les stalles du sanctuaire</h3>
+      <p class="plan-meta">Composition et plans de Prosper Morey · Vingt stalles, dix de chaque côté du chœur</p>
+      <p class="plan-intro">Chaque arcature qui précède l’autel est divisée en cinq stalles. L’exécution s’écarte un peu des plans de Morey, mais, note l’auteur, « les proportions en sont heureuses ».</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="0" style="--i:0"><strong>Pignon</strong> Chaque dais est coiffé d’un pignon aigu terminé par une croix fleuronnée.</li><li class="note" data-i="1" style="--i:1"><strong>Anges musiciens</strong> Les pignons des baldaquins sont reliés entre eux par des anges musiciens.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:403 / 1933;--ar:0.20848422141748577"><div class="trace" role="img" aria-label="Les stalles du sanctuaire, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/stalle.svg?v=2)"></div><button type="button" class="repere" style="left:48%;top:9%;--i:0" data-i="0" aria-label="Pignon"><b>1</b></button><button type="button" class="repere" style="left:9%;top:12%;--i:1" data-i="1" aria-label="Anges musiciens"><b>2</b></button><button type="button" class="repere" style="left:50%;top:33%;--i:2" data-i="2" aria-label="Dais ou baldaquin"><b>3</b></button><button type="button" class="repere" style="left:50%;top:52%;--i:3" data-i="3" aria-label="Dossier ajouré"><b>4</b></button><button type="button" class="repere" style="left:50%;top:81%;--i:4" data-i="4" aria-label="Panneaux sculptés"><b>5</b></button><div class="bulle" data-i="0" role="tooltip"><strong>Pignon</strong>Chaque dais est coiffé d’un pignon aigu terminé par une croix fleuronnée.</div><div class="bulle" data-i="1" role="tooltip"><strong>Anges musiciens</strong>Les pignons des baldaquins sont reliés entre eux par des anges musiciens.</div><div class="bulle" data-i="2" role="tooltip"><strong>Dais ou baldaquin</strong>Le dais abrite le chanoine assis ; son arc est garni de quadrilobes ajourés.</div><div class="bulle" data-i="3" role="tooltip"><strong>Dossier ajouré</strong>Les dossiers sont percés pour ne pas arrêter la lumière des vitraux placés derrière.</div><div class="bulle" data-i="4" role="tooltip"><strong>Panneaux sculptés</strong>Le bas de la stalle est fermé de panneaux à rinceaux sculptés dans le chêne.</div></figure>
+      <ol class="notes d"><li class="note" data-i="2" style="--i:2"><strong>Dais ou baldaquin</strong> Le dais abrite le chanoine assis ; son arc est garni de quadrilobes ajourés.</li><li class="note" data-i="3" style="--i:3"><strong>Dossier ajouré</strong> Les dossiers sont percés pour ne pas arrêter la lumière des vitraux placés derrière.</li><li class="note" data-i="4" style="--i:4"><strong>Panneaux sculptés</strong> Le bas de la stalle est fermé de panneaux à rinceaux sculptés dans le chêne.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
   <section class="bande b-papier plan" id="obj-ostensoir">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:541 / 1400;--ar:0.38642857142857145"><img class="trace photo" src="/assets/img/mobilier/ostensoir.webp" alt="L’ostensoir, planche de la monographie de 1890" loading="lazy" decoding="async"><span class="repere d" style="left:50%;top:22%;--i:0" data-i="0"><b>1</b><em>La tour de la basilique</em></span><span class="repere g" style="left:24%;top:45%;--i:1" data-i="1"><b>2</b><em>Tourelles</em></span><span class="repere d" style="left:50%;top:59%;--i:2" data-i="2"><b>3</b><em>Lunette et quatre anges</em></span><span class="repere d" style="left:88%;top:52%;--i:3" data-i="3"><b>4</b><em>Rayons</em></span><span class="repere d" style="left:50%;top:77%;--i:4" data-i="4"><b>5</b><em>Nœud d’acanthe</em></span><span class="repere d" style="left:50%;top:95%;--i:5" data-i="5"><b>6</b><em>Pied hexagonal</em></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 03 / 07</span>
-        <h3>L’ostensoir</h3>
-        <p class="plan-meta">Composé et exécuté par M. Daubrée<br>Vieil argent<br>Offert par Mgr Trouillet</p>
-        <p>L’orfèvre s’est inspiré des monstrances d’Allemagne. La pièce reproduit en réduction la basilique elle-même : sa tour, son campanile, et le soleil qui l’éclaire.</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>La tour de la basilique</strong> La flèche centrale reproduit la tour de Saint-Epvre ; elle sert de haut baldaquin au petit ciborium.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Tourelles</strong> De chaque côté, deux tourelles rappellent la forme du campanile de la basilique.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Lunette et quatre anges</strong> La lunette, qui reçoit l’hostie, est gardée par quatre anges. Des statuettes de saints de Lorraine et d’anges musiciens peuplent les clochetons.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Rayons</strong> Rayons droits et rayons en flamme alternent, comme un soleil : In sole posuit tabernaculum suum.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Nœud d’acanthe</strong> Le nœud est fait de feuilles d’acanthe retroussées vers le haut et vers le bas.</span></li><li data-i="5" style="--i:5"><b>6</b><span><strong>Pied hexagonal</strong> Ses compartiments triangulaires portent les symboles des quatre évangélistes, le buste du prélat et son chiffre.</span></li></ol>
-      </div>
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 03 / 07</span>
+      <h3>L’ostensoir</h3>
+      <p class="plan-meta">Composé et exécuté par M. Daubrée · Vieil argent · Offert par Mgr Trouillet</p>
+      <p class="plan-intro">L’orfèvre s’est inspiré des monstrances d’Allemagne. La pièce reproduit en réduction la basilique elle-même : sa tour, son campanile, et le soleil qui l’éclaire.</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="1" style="--i:1"><strong>Tourelles</strong> De chaque côté, deux tourelles rappellent la forme du campanile de la basilique.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:541 / 1400;--ar:0.38642857142857145"><img class="trace photo" src="/assets/img/mobilier/ostensoir.webp" alt="L’ostensoir, planche de la monographie de 1890" loading="lazy" decoding="async"><button type="button" class="repere" style="left:50%;top:22%;--i:0" data-i="0" aria-label="La tour de la basilique"><b>1</b></button><button type="button" class="repere" style="left:24%;top:45%;--i:1" data-i="1" aria-label="Tourelles"><b>2</b></button><button type="button" class="repere" style="left:50%;top:59%;--i:2" data-i="2" aria-label="Lunette et quatre anges"><b>3</b></button><button type="button" class="repere" style="left:88%;top:52%;--i:3" data-i="3" aria-label="Rayons"><b>4</b></button><button type="button" class="repere" style="left:50%;top:77%;--i:4" data-i="4" aria-label="Nœud d’acanthe"><b>5</b></button><button type="button" class="repere" style="left:50%;top:95%;--i:5" data-i="5" aria-label="Pied hexagonal"><b>6</b></button><div class="bulle" data-i="0" role="tooltip"><strong>La tour de la basilique</strong>La flèche centrale reproduit la tour de Saint-Epvre ; elle sert de haut baldaquin au petit ciborium.</div><div class="bulle" data-i="1" role="tooltip"><strong>Tourelles</strong>De chaque côté, deux tourelles rappellent la forme du campanile de la basilique.</div><div class="bulle" data-i="2" role="tooltip"><strong>Lunette et quatre anges</strong>La lunette, qui reçoit l’hostie, est gardée par quatre anges. Des statuettes de saints de Lorraine et d’anges musiciens peuplent les clochetons.</div><div class="bulle" data-i="3" role="tooltip"><strong>Rayons</strong>Rayons droits et rayons en flamme alternent, comme un soleil : In sole posuit tabernaculum suum.</div><div class="bulle" data-i="4" role="tooltip"><strong>Nœud d’acanthe</strong>Le nœud est fait de feuilles d’acanthe retroussées vers le haut et vers le bas.</div><div class="bulle" data-i="5" role="tooltip"><strong>Pied hexagonal</strong>Ses compartiments triangulaires portent les symboles des quatre évangélistes, le buste du prélat et son chiffre.</div></figure>
+      <ol class="notes d"><li class="note" data-i="0" style="--i:0"><strong>La tour de la basilique</strong> La flèche centrale reproduit la tour de Saint-Epvre ; elle sert de haut baldaquin au petit ciborium.</li><li class="note" data-i="2" style="--i:2"><strong>Lunette et quatre anges</strong> La lunette, qui reçoit l’hostie, est gardée par quatre anges. Des statuettes de saints de Lorraine et d’anges musiciens peuplent les clochetons.</li><li class="note" data-i="3" style="--i:3"><strong>Rayons</strong> Rayons droits et rayons en flamme alternent, comme un soleil : In sole posuit tabernaculum suum.</li><li class="note" data-i="4" style="--i:4"><strong>Nœud d’acanthe</strong> Le nœud est fait de feuilles d’acanthe retroussées vers le haut et vers le bas.</li><li class="note" data-i="5" style="--i:5"><strong>Pied hexagonal</strong> Ses compartiments triangulaires portent les symboles des quatre évangélistes, le buste du prélat et son chiffre.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
   <section class="bande b-navy plan" id="obj-pupitre">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:770 / 2047;--ar:0.3761602344894968"><div class="trace" role="img" aria-label="Le lutrin de Metz, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/pupitre.svg)"></div><span class="repere g" style="left:37%;top:5%;--i:0" data-i="0"><b>1</b><em>Croix de Lorraine</em></span><span class="repere d" style="left:56%;top:17%;--i:1" data-i="1"><b>2</b><em>Aigles</em></span><span class="repere g" style="left:48%;top:31%;--i:2" data-i="2"><b>3</b><em>Inscription « Metz 1723 »</em></span><span class="repere d" style="left:62%;top:52%;--i:3" data-i="3"><b>4</b><em>Rinceaux</em></span><span class="repere g" style="left:45%;top:78%;--i:4" data-i="4"><b>5</b><em>Initiales D. G.</em></span><span class="cote v"><span>≈ 1,80 m</span></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 04 / 07</span>
-        <h3>Le lutrin de Metz</h3>
-        <p class="plan-meta">Fer forgé, Metz, 1723<br>Dessin de Joseph Jacquot</p>
-        <p>Installé dans le chœur pour servir de lutrin aux chantres, ce pupitre a été importé de Metz. La cathédrale de Metz en possède un semblable, peut-être du même artiste.</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>Croix de Lorraine</strong> Ajoutée récemment, elle remplace un petit globe ; son pied est formé d’alérions en tôle repoussée.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Aigles</strong> À droite et à gauche du pupitre, deux aigles en tôle repoussée.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Inscription « Metz 1723 »</strong> Sur une face du pupitre on lit Metz 1723, sur l’autre les initiales I.-C., peut-être un insigne capitulaire.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Rinceaux</strong> Des rinceaux compliqués, dans le genre des grilles de Jean Lamour, garnissent le pied.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Initiales D. G.</strong> Dans les enroulements du pied, les lettres D. G. : peut-être Danbon et Gangel, dessinateurs de Metz.</span></li></ol>
-      </div>
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 04 / 07</span>
+      <h3>Le lutrin de Metz</h3>
+      <p class="plan-meta">Fer forgé, Metz, 1723 · Dessin de Joseph Jacquot</p>
+      <p class="plan-intro">Installé dans le chœur pour servir de lutrin aux chantres, ce pupitre a été importé de Metz. La cathédrale de Metz en possède un semblable, peut-être du même artiste.</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="0" style="--i:0"><strong>Croix de Lorraine</strong> Ajoutée récemment, elle remplace un petit globe ; son pied est formé d’alérions en tôle repoussée.</li><li class="note" data-i="2" style="--i:2"><strong>Inscription « Metz 1723 »</strong> Sur une face du pupitre on lit Metz 1723, sur l’autre les initiales I.-C., peut-être un insigne capitulaire.</li><li class="note" data-i="4" style="--i:4"><strong>Initiales D. G.</strong> Dans les enroulements du pied, les lettres D. G. : peut-être Danbon et Gangel, dessinateurs de Metz.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:770 / 2047;--ar:0.3761602344894968"><div class="trace" role="img" aria-label="Le lutrin de Metz, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/pupitre.svg?v=2)"></div><button type="button" class="repere" style="left:37%;top:5%;--i:0" data-i="0" aria-label="Croix de Lorraine"><b>1</b></button><button type="button" class="repere" style="left:56%;top:17%;--i:1" data-i="1" aria-label="Aigles"><b>2</b></button><button type="button" class="repere" style="left:48%;top:31%;--i:2" data-i="2" aria-label="Inscription « Metz 1723 »"><b>3</b></button><button type="button" class="repere" style="left:62%;top:52%;--i:3" data-i="3" aria-label="Rinceaux"><b>4</b></button><button type="button" class="repere" style="left:45%;top:78%;--i:4" data-i="4" aria-label="Initiales D. G."><b>5</b></button><span class="cote v"><span>≈ 1,80 m</span></span><div class="bulle" data-i="0" role="tooltip"><strong>Croix de Lorraine</strong>Ajoutée récemment, elle remplace un petit globe ; son pied est formé d’alérions en tôle repoussée.</div><div class="bulle" data-i="1" role="tooltip"><strong>Aigles</strong>À droite et à gauche du pupitre, deux aigles en tôle repoussée.</div><div class="bulle" data-i="2" role="tooltip"><strong>Inscription « Metz 1723 »</strong>Sur une face du pupitre on lit Metz 1723, sur l’autre les initiales I.-C., peut-être un insigne capitulaire.</div><div class="bulle" data-i="3" role="tooltip"><strong>Rinceaux</strong>Des rinceaux compliqués, dans le genre des grilles de Jean Lamour, garnissent le pied.</div><div class="bulle" data-i="4" role="tooltip"><strong>Initiales D. G.</strong>Dans les enroulements du pied, les lettres D. G. : peut-être Danbon et Gangel, dessinateurs de Metz.</div></figure>
+      <ol class="notes d"><li class="note" data-i="1" style="--i:1"><strong>Aigles</strong> À droite et à gauche du pupitre, deux aigles en tôle repoussée.</li><li class="note" data-i="3" style="--i:3"><strong>Rinceaux</strong> Des rinceaux compliqués, dans le genre des grilles de Jean Lamour, garnissent le pied.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
-  <section class="bande b-papier plan large sans-etiquettes" id="obj-chasse">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:1232 / 636;--ar:1.9371069182389937"><img class="trace photo" src="/assets/img/mobilier/chasse.webp" alt="La châsse de saint Epvre, planche de la monographie de 1890" loading="lazy" decoding="async"><span class="repere g" style="left:34%;top:4%;--i:0" data-i="0"><b>1</b><em>Crête à cabochons</em></span><span class="repere d" style="left:50%;top:19%;--i:1" data-i="1"><b>2</b><em>Croix de Lorraine</em></span><span class="repere g" style="left:28%;top:71%;--i:2" data-i="2"><b>3</b><em>Fond losangé</em></span><span class="repere g" style="left:9%;top:72%;--i:3" data-i="3"><b>4</b><em>Anges à genoux</em></span><span class="repere d" style="left:87%;top:92%;--i:4" data-i="4"><b>5</b><em>Griffons ailés</em></span><span class="cote h"><span>≈ 1,10 m</span></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 05 / 07</span>
-        <h3>La châsse de saint Epvre</h3>
-        <p class="plan-meta">Travail italien, auteur inconnu<br>Ciselures, pierres précieuses, émaux<br>Longueur 1,10 m, largeur 0,55 m</p>
-        <p>Placée dans le sépulcre du maître-autel, elle renferme le chef de saint Epvre. Mgr Trouillet l’avait acquise « d’une façon assez curieuse », que seuls quelques amis connaissaient.</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>Crête à cabochons</strong> Une petite crête aux tiges déliées, ornée de cabochons, court sur le faîte.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Croix de Lorraine</strong> Les croix du couvercle et des côtés se combinent pour dessiner une croix de Lorraine.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Fond losangé</strong> Les croix se détachent sur un fond losangé, doux de ton.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Anges à genoux</strong> Deux anges agenouillés aux extrémités dressent leurs ailes, qui se rejoignent pour garnir les côtés.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Griffons ailés</strong> La châsse est portée par quatre petits griffons ailés et repose sur les talons des anges.</span></li></ol>
-      </div>
+  <section class="bande b-papier plan large" id="obj-chasse">
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 05 / 07</span>
+      <h3>La châsse de saint Epvre</h3>
+      <p class="plan-meta">Travail italien, auteur inconnu · Ciselures, pierres précieuses, émaux · Longueur 1,10 m, largeur 0,55 m</p>
+      <p class="plan-intro">Placée dans le sépulcre du maître-autel, elle renferme le chef de saint Epvre. Mgr Trouillet l’avait acquise « d’une façon assez curieuse », que seuls quelques amis connaissaient.</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="0" style="--i:0"><strong>Crête à cabochons</strong> Une petite crête aux tiges déliées, ornée de cabochons, court sur le faîte.</li><li class="note" data-i="2" style="--i:2"><strong>Fond losangé</strong> Les croix se détachent sur un fond losangé, doux de ton.</li><li class="note" data-i="3" style="--i:3"><strong>Anges à genoux</strong> Deux anges agenouillés aux extrémités dressent leurs ailes, qui se rejoignent pour garnir les côtés.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:1232 / 636;--ar:1.9371069182389937"><img class="trace photo" src="/assets/img/mobilier/chasse.webp" alt="La châsse de saint Epvre, planche de la monographie de 1890" loading="lazy" decoding="async"><button type="button" class="repere" style="left:34%;top:4%;--i:0" data-i="0" aria-label="Crête à cabochons"><b>1</b></button><button type="button" class="repere" style="left:50%;top:19%;--i:1" data-i="1" aria-label="Croix de Lorraine"><b>2</b></button><button type="button" class="repere" style="left:28%;top:71%;--i:2" data-i="2" aria-label="Fond losangé"><b>3</b></button><button type="button" class="repere" style="left:9%;top:72%;--i:3" data-i="3" aria-label="Anges à genoux"><b>4</b></button><button type="button" class="repere" style="left:87%;top:92%;--i:4" data-i="4" aria-label="Griffons ailés"><b>5</b></button><span class="cote h"><span>≈ 1,10 m</span></span><div class="bulle" data-i="0" role="tooltip"><strong>Crête à cabochons</strong>Une petite crête aux tiges déliées, ornée de cabochons, court sur le faîte.</div><div class="bulle" data-i="1" role="tooltip"><strong>Croix de Lorraine</strong>Les croix du couvercle et des côtés se combinent pour dessiner une croix de Lorraine.</div><div class="bulle" data-i="2" role="tooltip"><strong>Fond losangé</strong>Les croix se détachent sur un fond losangé, doux de ton.</div><div class="bulle" data-i="3" role="tooltip"><strong>Anges à genoux</strong>Deux anges agenouillés aux extrémités dressent leurs ailes, qui se rejoignent pour garnir les côtés.</div><div class="bulle" data-i="4" role="tooltip"><strong>Griffons ailés</strong>La châsse est portée par quatre petits griffons ailés et repose sur les talons des anges.</div></figure>
+      <ol class="notes d"><li class="note" data-i="1" style="--i:1"><strong>Croix de Lorraine</strong> Les croix du couvercle et des côtés se combinent pour dessiner une croix de Lorraine.</li><li class="note" data-i="4" style="--i:4"><strong>Griffons ailés</strong> La châsse est portée par quatre petits griffons ailés et repose sur les talons des anges.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
-  <section class="bande b-navy plan sans-etiquettes" id="obj-grille">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:1184 / 1559;--ar:0.7594611930724824"><div class="trace" role="img" aria-label="La grille de la crypte, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/grille.svg)"></div><span class="repere d" style="left:50%;top:5%;--i:0" data-i="0"><b>1</b><em>Fleuron central</em></span><span class="repere g" style="left:41%;top:9%;--i:1" data-i="1"><b>2</b><em>Pointes et lances</em></span><span class="repere g" style="left:30%;top:41%;--i:2" data-i="2"><b>3</b><em>Enroulements</em></span><span class="repere g" style="left:43%;top:32%;--i:3" data-i="3"><b>4</b><em>Rosaces</em></span><span class="repere g" style="left:25%;top:82%;--i:4" data-i="4"><b>5</b><em>Montants et traverses</em></span><span class="repere g" style="left:5%;top:30%;--i:5" data-i="5"><b>6</b><em>Colonnettes</em></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 06 / 07</span>
-        <h3>La grille de la crypte</h3>
-        <p class="plan-meta">Composition de M. Cuny, architecte diocésain<br>Forgée par Ventz Herboit, serrurier à Lunéville<br>Dessin à la plume de Joseph Jacquot</p>
-        <p>La plus importante des grilles de fer forgé qui ferment le sanctuaire, les chapelles et les fonts. Leurs auteurs se sont inspirés des modèles rhénans, sans les copier servilement.</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>Fleuron central</strong> Le montant du milieu s’achève par un fleuron feuillagé, plus haut que les autres pointes.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Pointes et lances</strong> Comme au Moyen Âge, les grilles se terminent en lances pour en rendre l’escalade difficile aux malfaiteurs.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Enroulements</strong> Des rinceaux de fer sont retenus par des montants et des traverses : un système à la fois décoratif et solide.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Rosaces</strong> Des rosaces marquent la croisée des montants et des traverses.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Montants et traverses</strong> Le bas de la porte, plus sobre, n’est qu’un quadrillage rivé de rosettes.</span></li><li data-i="5" style="--i:5"><b>6</b><span><strong>Colonnettes</strong> La grille s’inscrit dans l’arc de la porte, entre deux colonnettes à chapiteaux.</span></li></ol>
-      </div>
+  <section class="bande b-navy plan" id="obj-grille">
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 06 / 07</span>
+      <h3>La grille de la crypte</h3>
+      <p class="plan-meta">Composition de M. Cuny, architecte diocésain · Forgée par Ventz Herboit, serrurier à Lunéville · Dessin à la plume de Joseph Jacquot</p>
+      <p class="plan-intro">La plus importante des grilles de fer forgé qui ferment le sanctuaire, les chapelles et les fonts. Leurs auteurs se sont inspirés des modèles rhénans, sans les copier servilement.</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="1" style="--i:1"><strong>Pointes et lances</strong> Comme au Moyen Âge, les grilles se terminent en lances pour en rendre l’escalade difficile aux malfaiteurs.</li><li class="note" data-i="2" style="--i:2"><strong>Enroulements</strong> Des rinceaux de fer sont retenus par des montants et des traverses : un système à la fois décoratif et solide.</li><li class="note" data-i="3" style="--i:3"><strong>Rosaces</strong> Des rosaces marquent la croisée des montants et des traverses.</li><li class="note" data-i="4" style="--i:4"><strong>Montants et traverses</strong> Le bas de la porte, plus sobre, n’est qu’un quadrillage rivé de rosettes.</li><li class="note" data-i="5" style="--i:5"><strong>Colonnettes</strong> La grille s’inscrit dans l’arc de la porte, entre deux colonnettes à chapiteaux.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:1657 / 2182;--ar:0.7593950504124656"><div class="trace" role="img" aria-label="La grille de la crypte, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/grille.svg?v=2)"></div><button type="button" class="repere" style="left:50%;top:5%;--i:0" data-i="0" aria-label="Fleuron central"><b>1</b></button><button type="button" class="repere" style="left:41%;top:9%;--i:1" data-i="1" aria-label="Pointes et lances"><b>2</b></button><button type="button" class="repere" style="left:30%;top:41%;--i:2" data-i="2" aria-label="Enroulements"><b>3</b></button><button type="button" class="repere" style="left:43%;top:32%;--i:3" data-i="3" aria-label="Rosaces"><b>4</b></button><button type="button" class="repere" style="left:25%;top:82%;--i:4" data-i="4" aria-label="Montants et traverses"><b>5</b></button><button type="button" class="repere" style="left:5%;top:30%;--i:5" data-i="5" aria-label="Colonnettes"><b>6</b></button><div class="bulle" data-i="0" role="tooltip"><strong>Fleuron central</strong>Le montant du milieu s’achève par un fleuron feuillagé, plus haut que les autres pointes.</div><div class="bulle" data-i="1" role="tooltip"><strong>Pointes et lances</strong>Comme au Moyen Âge, les grilles se terminent en lances pour en rendre l’escalade difficile aux malfaiteurs.</div><div class="bulle" data-i="2" role="tooltip"><strong>Enroulements</strong>Des rinceaux de fer sont retenus par des montants et des traverses : un système à la fois décoratif et solide.</div><div class="bulle" data-i="3" role="tooltip"><strong>Rosaces</strong>Des rosaces marquent la croisée des montants et des traverses.</div><div class="bulle" data-i="4" role="tooltip"><strong>Montants et traverses</strong>Le bas de la porte, plus sobre, n’est qu’un quadrillage rivé de rosettes.</div><div class="bulle" data-i="5" role="tooltip"><strong>Colonnettes</strong>La grille s’inscrit dans l’arc de la porte, entre deux colonnettes à chapiteaux.</div></figure>
+      <ol class="notes d"><li class="note" data-i="0" style="--i:0"><strong>Fleuron central</strong> Le montant du milieu s’achève par un fleuron feuillagé, plus haut que les autres pointes.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
-  <section class="bande b-papier plan sans-etiquettes" id="obj-chandeliers">
-    <div class="plan-grille">
-      <figure class="plan-fig" style="aspect-ratio:1292 / 2005;--ar:0.6443890274314215"><div class="trace" role="img" aria-label="Chandelier, candélabre et applique, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/chandeliers.svg)"></div><span class="repere g" style="left:11%;top:34%;--i:0" data-i="0"><b>1</b><em>Bobèche et guivres</em></span><span class="repere g" style="left:11%;top:51%;--i:1" data-i="1"><b>2</b><em>Nœud émaillé</em></span><span class="repere g" style="left:11%;top:72%;--i:2" data-i="2"><b>3</b><em>Trois anges</em></span><span class="repere d" style="left:50%;top:6%;--i:3" data-i="3"><b>4</b><em>Lampe en quatre-feuilles</em></span><span class="repere g" style="left:40%;top:84%;--i:4" data-i="4"><b>5</b><em>Arcs-boutants</em></span><span class="repere d" style="left:82%;top:45%;--i:5" data-i="5"><b>6</b><em>Applique</em></span></figure>
-      <div class="plan-texte">
-        <span class="plan-num">Pl. 07 / 07</span>
-        <h3>Chandelier, candélabre et applique</h3>
-        <p class="plan-meta">Chandeliers de la maison Marggraff<br>Appliques des frères Dehin, à Liège<br>Cuivre ciselé et émaillé</p>
-        <p>Les grands chandeliers du maître-autel mesurent 1,20 m du pied à la bobèche. Faute de lustres, qui auraient gâché la perspective, chaque pilier porte une applique de cuivre à quatre ou six becs de gaz.</p>
-        <ol class="legende"><li data-i="0" style="--i:0"><b>1</b><span><strong>Bobèche et guivres</strong> La bobèche est reliée à la tige par trois guivres délicatement recourbées.</span></li><li data-i="1" style="--i:1"><b>2</b><span><strong>Nœud émaillé</strong> Le milieu de la tige est coupé d’un nœud de trois quatre-feuilles émaillés, réunis en triangle.</span></li><li data-i="2" style="--i:2"><b>3</b><span><strong>Trois anges</strong> Le pied est formé de trois anges, un genou à terre, qui portent un écusson.</span></li><li data-i="3" style="--i:3"><b>4</b><span><strong>Lampe en quatre-feuilles</strong> Les candélabres-couronnes, hauts d’environ 1,50 m, servent de luminaire au Saint-Sacrement ; ils s’achèvent par une petite lampe en quatre-feuilles posée de champ.</span></li><li data-i="4" style="--i:4"><b>5</b><span><strong>Arcs-boutants</strong> La tige centrale est maintenue par des arcs-boutants qui donnent au pied son empattement.</span></li><li data-i="5" style="--i:5"><b>6</b><span><strong>Applique</strong> Une applique de cuivre à chaque pilier de la nef, du chœur et des bas-côtés.</span></li></ol>
-      </div>
+  <section class="bande b-papier plan" id="obj-chandeliers">
+    <div class="plan-tete">
+      <span class="plan-num">Pl. 07 / 07</span>
+      <h3>Chandelier, candélabre et applique</h3>
+      <p class="plan-meta">Chandeliers de la maison Marggraff · Appliques des frères Dehin, à Liège · Cuivre ciselé et émaillé</p>
+      <p class="plan-intro">Les grands chandeliers du maître-autel mesurent 1,20 m du pied à la bobèche. Faute de lustres, qui auraient gâché la perspective, chaque pilier porte une applique de cuivre à quatre ou six becs de gaz.</p>
     </div>
+    <div class="plan-scene">
+      <ol class="notes g"><li class="note" data-i="0" style="--i:0"><strong>Bobèche et guivres</strong> La bobèche est reliée à la tige par trois guivres délicatement recourbées.</li><li class="note" data-i="1" style="--i:1"><strong>Nœud émaillé</strong> Le milieu de la tige est coupé d’un nœud de trois quatre-feuilles émaillés, réunis en triangle.</li><li class="note" data-i="2" style="--i:2"><strong>Trois anges</strong> Le pied est formé de trois anges, un genou à terre, qui portent un écusson.</li><li class="note" data-i="4" style="--i:4"><strong>Arcs-boutants</strong> La tige centrale est maintenue par des arcs-boutants qui donnent au pied son empattement.</li></ol>
+      <figure class="plan-fig" style="aspect-ratio:1292 / 2005;--ar:0.6443890274314215"><div class="trace" role="img" aria-label="Chandelier, candélabre et applique, gravure vectorisée d'après la monographie de 1890" style="--src:url(/assets/ornements/mobilier/chandeliers.svg?v=2)"></div><button type="button" class="repere" style="left:11%;top:34%;--i:0" data-i="0" aria-label="Bobèche et guivres"><b>1</b></button><button type="button" class="repere" style="left:11%;top:51%;--i:1" data-i="1" aria-label="Nœud émaillé"><b>2</b></button><button type="button" class="repere" style="left:11%;top:72%;--i:2" data-i="2" aria-label="Trois anges"><b>3</b></button><button type="button" class="repere" style="left:50%;top:6%;--i:3" data-i="3" aria-label="Lampe en quatre-feuilles"><b>4</b></button><button type="button" class="repere" style="left:40%;top:84%;--i:4" data-i="4" aria-label="Arcs-boutants"><b>5</b></button><button type="button" class="repere" style="left:82%;top:45%;--i:5" data-i="5" aria-label="Applique"><b>6</b></button><div class="bulle" data-i="0" role="tooltip"><strong>Bobèche et guivres</strong>La bobèche est reliée à la tige par trois guivres délicatement recourbées.</div><div class="bulle" data-i="1" role="tooltip"><strong>Nœud émaillé</strong>Le milieu de la tige est coupé d’un nœud de trois quatre-feuilles émaillés, réunis en triangle.</div><div class="bulle" data-i="2" role="tooltip"><strong>Trois anges</strong>Le pied est formé de trois anges, un genou à terre, qui portent un écusson.</div><div class="bulle" data-i="3" role="tooltip"><strong>Lampe en quatre-feuilles</strong>Les candélabres-couronnes, hauts d’environ 1,50 m, servent de luminaire au Saint-Sacrement ; ils s’achèvent par une petite lampe en quatre-feuilles posée de champ.</div><div class="bulle" data-i="4" role="tooltip"><strong>Arcs-boutants</strong>La tige centrale est maintenue par des arcs-boutants qui donnent au pied son empattement.</div><div class="bulle" data-i="5" role="tooltip"><strong>Applique</strong>Une applique de cuivre à chaque pilier de la nef, du chœur et des bas-côtés.</div></figure>
+      <ol class="notes d"><li class="note" data-i="3" style="--i:3"><strong>Lampe en quatre-feuilles</strong> Les candélabres-couronnes, hauts d’environ 1,50 m, servent de luminaire au Saint-Sacrement ; ils s’achèvent par une petite lampe en quatre-feuilles posée de champ.</li><li class="note" data-i="5" style="--i:5"><strong>Applique</strong> Une applique de cuivre à chaque pilier de la nef, du chœur et des bas-côtés.</li></ol>
+      <svg class="traits" aria-hidden="true"></svg>
+    </div>
+    <p class="plan-aide">Touchez un numéro pour lire ce qu’il désigne.</p>
   </section>
   </div>
 </main>
@@ -1144,31 +1179,67 @@
     });
 
 
-    // Planches du mobilier : apparition, longueur des lignes de rappel, liens repère ↔ légende
+    // Planches du mobilier : notes au crayon reliées à leur point (ordinateur), bulles au toucher (téléphone)
     (function () {
-      var plans = document.querySelectorAll('.plan');
-      function rappels() {
-        plans.forEach(function (pl) {
-          var f = pl.querySelector('.plan-fig'), w = f.clientWidth;
-          pl.querySelectorAll('.repere').forEach(function (r) {
-            var x = parseFloat(r.style.left) / 100 * w;
-            r.style.setProperty('--rappel', Math.round((r.classList.contains('g') ? x : w - x) + 18) + 'px');
+      var plans = [].slice.call(document.querySelectorAll('.plan')), NS = 'http://www.w3.org/2000/svg';
+      var bureau = matchMedia('(min-width: 981px)');
+      function place(pl) {
+        var sc = pl.querySelector('.plan-scene'), fig = pl.querySelector('.plan-fig'), svg = pl.querySelector('.traits');
+        if (!bureau.matches) return;
+        var R = sc.getBoundingClientRect(), F = fig.getBoundingClientRect();
+        svg.setAttribute('viewBox', '0 0 ' + R.width + ' ' + R.height); svg.innerHTML = '';
+        ['g', 'd'].forEach(function (cote) {
+          var ol = pl.querySelector('.notes.' + cote), O = ol.getBoundingClientRect(), notes = [].slice.call(ol.children), bas = 0;
+          var items = notes.map(function (n) { var r = pl.querySelector('.repere[data-i="' + n.dataset.i + '"]'); return { n: n, px: F.left + parseFloat(r.style.left) / 100 * F.width, py: F.top + parseFloat(r.style.top) / 100 * F.height }; });
+          items.sort(function (a, b) { return a.py - b.py; });
+          items.forEach(function (it) { it.h = it.n.offsetHeight; it.y = Math.max(it.py - O.top - 14, bas); bas = it.y + it.h + 14; });
+          items.forEach(function (it) {
+            it.n.style.top = Math.max(0, it.y) + 'px';
+            var ax = cote === 'g' ? O.right - R.left + 8 : O.left - R.left - 8, ay = O.top - R.top + Math.max(0, it.y) + 14;
+            var bx = it.px - R.left, by = it.py - R.top, mx = (ax + bx) / 2;
+            var p = document.createElementNS(NS, 'path');
+            p.setAttribute('d', 'M' + ax + ' ' + ay + ' C' + (mx) + ' ' + (ay + (by - ay) * .1) + ' ' + (mx) + ' ' + (by - (by - ay) * .1) + ' ' + bx + ' ' + by);
+            p.dataset.i = it.n.dataset.i; p.style.setProperty('--i', it.n.dataset.i);
+            var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', bx); c.setAttribute('cy', by); c.setAttribute('r', 3.2); c.style.setProperty('--i', it.n.dataset.i);
+            svg.appendChild(p); svg.appendChild(c);
+            var L = Math.ceil(p.getTotalLength()); p.style.setProperty('--l', L);
           });
+          ol.style.minHeight = Math.max(0, bas - 14) + 'px';
         });
       }
-      addEventListener('resize', rappels); addEventListener('load', rappels); rappels();
+      // filtre « crayon » partagé : un léger tremblé sur les traits
+      var defs = document.createElementNS(NS, 'svg'); defs.setAttribute('width', 0); defs.setAttribute('height', 0); defs.style.position = 'absolute';
+      defs.innerHTML = '<filter id="crayon" filterUnits="userSpaceOnUse" x="-200" y="-200" width="4000" height="4000"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>';
+      document.body.appendChild(defs);
+      function tout() { plans.forEach(place); }
+      plans.forEach(function (pl) { pl.querySelectorAll('img').forEach(function (im) { im.addEventListener('load', function () { place(pl); }); }); });
+      if ('ResizeObserver' in window) { var ro = new ResizeObserver(function (es) { es.forEach(function (e) { place(e.target.closest('.plan')); }); }); plans.forEach(function (pl) { ro.observe(pl.querySelector('.plan-fig')); }); }
+      addEventListener('resize', tout); addEventListener('load', tout); if (document.fonts) document.fonts.ready.then(tout); tout();
       if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .35 });
+        var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { threshold: .3 });
         plans.forEach(function (p) { io.observe(p); });
       } else plans.forEach(function (p) { p.classList.add('vu'); });
       plans.forEach(function (pl) {
         function lie(i, on) { pl.querySelectorAll('[data-i="' + i + '"]').forEach(function (el) { el.classList.toggle('actif', on); }); }
-        pl.querySelectorAll('[data-i]').forEach(function (el) {
-          el.addEventListener('mouseenter', function () { lie(el.dataset.i, true); });
-          el.addEventListener('mouseleave', function () { lie(el.dataset.i, false); });
-          el.addEventListener('click', function () { var on = !el.classList.contains('actif'); pl.querySelectorAll('.actif').forEach(function (a) { a.classList.remove('actif'); }); if (on) lie(el.dataset.i, true); });
+        pl.querySelectorAll('.note').forEach(function (n) {
+          n.addEventListener('mouseenter', function () { lie(n.dataset.i, true); }); n.addEventListener('mouseleave', function () { lie(n.dataset.i, false); });
+        });
+        // bulle au toucher, placée au-dessus ou au-dessous du point
+        pl.querySelectorAll('.repere').forEach(function (r) {
+          r.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var b = pl.querySelector('.bulle[data-i="' + r.dataset.i + '"]'), deja = b.classList.contains('ouverte');
+            pl.querySelectorAll('.bulle.ouverte, .repere.actif').forEach(function (x) { x.classList.remove('ouverte', 'actif'); });
+            if (deja) return;
+            b.classList.add('ouverte'); r.classList.add('actif');
+            var fig = pl.querySelector('.plan-fig'), F = fig.getBoundingClientRect(), W = fig.clientWidth, H = fig.clientHeight, x = parseFloat(r.style.left) / 100 * W, y = parseFloat(r.style.top) / 100 * H;
+            var g = Math.max(12 - F.left, Math.min(innerWidth - 12 - F.left - b.offsetWidth, x - b.offsetWidth / 2));
+            b.style.left = g + 'px';
+            b.style.top = (y > H * .55 ? y - b.offsetHeight - 22 : y + 22) + 'px';
+          });
         });
       });
+      document.addEventListener('click', function () { document.querySelectorAll('.bulle.ouverte, .repere.actif').forEach(function (x) { x.classList.remove('ouverte', 'actif'); }); });
     })();
 
 

@@ -410,6 +410,12 @@
     .mesures span { display: block; margin-top: .4rem; font: 500 .78rem var(--titre); letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
     .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
     /* ── Articles de presse : grand numéro et source à gauche, texte à droite ── */
+    /* Tracés du mobilier, d'après la monographie, sous la source de certains articles */
+    .art-trace { margin: 2.2rem 0 0; max-width: 260px; }
+    .art-trace .orn { width: 100%; max-height: 46vh; max-height: 46svh; color: inherit; opacity: .9; -webkit-mask-position: left bottom; mask-position: left bottom; }
+    .art-trace figcaption { margin-top: .9rem; font: 500 .82rem/1.45 var(--titre); opacity: .7; }
+    .art-trace a { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 820px) { .art-trace { display: flex; align-items: flex-end; gap: 1rem; max-width: none; margin-top: 1.4rem; } .art-trace .orn { width: 90px; flex: none; max-height: 220px; } }
     .art-gauche { position: sticky; top: 110px; }
     .art-gauche .b-num { font-size: clamp(5rem, 11vw, 8.5rem); }
     .art-source { display: block; margin-top: 1.2rem; font: 500 .9rem/1.4 var(--titre); letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
@@ -443,7 +449,7 @@
 
   <section class="bande art b-papier" id="article-1">
     <div class="bande-grille">
-      <div class="art-gauche"><span class="b-num">01</span><span class="art-source">Le Patriote · 12 et 18 février 1886</span></div>
+      <div class="art-gauche"><span class="b-num">01</span><span class="art-source">Le Patriote · 12 et 18 février 1886</span><figure class="art-trace"><div class="orn" style="--src:url(../assets/ornements/mobilier/chandeliers.svg);aspect-ratio:1292 / 2005" role="img" aria-label="Chandelier, candélabre et applique du maître-autel, gravure vectorisée d'après la monographie de 1890"></div><figcaption>Chandelier, candélabre et applique du maître-autel<br><a href="/musee-virtuel/#mobilier">D'après la monographie de 1890</a></figcaption></figure></div>
       <div class="bande-texte">
         <h2>Service funèbre pour le repos de l'âme de Mme la comtesse de Chambord</h2>
         <p>Hier a eu lieu, à Saint-Epvre, le service religieux annoncé pour le repos de l'âme de Mme la comtesse de Chambord. Mgr Trouillet officiait lui-même. Tous les piliers étaient voilés de noir. Un catafalque entouré de cierges et orné de magnifiques couronnes blanches, offertes par les dames de Nancy, se dressait au-devant de l'autel. Une foule nombreuse remplissait la nef.</p>
@@ -455,7 +461,7 @@
   </section>
   <section class="bande art b-bordeaux" id="article-2">
     <div class="bande-grille">
-      <div class="art-gauche"><span class="b-num">02</span><span class="art-source">La Meurthe · Mars 1887</span></div>
+      <div class="art-gauche"><span class="b-num">02</span><span class="art-source">La Meurthe · Mars 1887</span><figure class="art-trace"><div class="orn" style="--src:url(../assets/ornements/mobilier/chaire.svg);aspect-ratio:635 / 2023" role="img" aria-label="La chaire à prêcher, où Mgr Trouillet prêchait, gravure vectorisée d'après la monographie de 1890"></div><figcaption>La chaire à prêcher, où Mgr Trouillet prêchait<br><a href="/musee-virtuel/#mobilier">D'après la monographie de 1890</a></figcaption></figure></div>
       <div class="bande-texte">
         <h2>Les derniers jours de Mgr Trouillet</h2>
         <p><strong>La santé de M. Trouillet</strong></p>
@@ -512,7 +518,7 @@
   </section>
   <section class="bande art b-papier" id="article-5">
     <div class="bande-grille">
-      <div class="art-gauche"><span class="b-num">05</span><span class="art-source">1887</span></div>
+      <div class="art-gauche"><span class="b-num">05</span><span class="art-source">1887</span><figure class="art-trace"><div class="orn" style="--src:url(../assets/ornements/mobilier/stalle.svg);aspect-ratio:403 / 1933" role="img" aria-label="Une stalle du sanctuaire, gravure vectorisée d'après la monographie de 1890"></div><figcaption>Une stalle du sanctuaire<br><a href="/musee-virtuel/#mobilier">D'après la monographie de 1890</a></figcaption></figure></div>
       <div class="bande-texte">
         <h2>Installation du curé de Saint-Epvre</h2>
         <p>C'est lundi dernier, fête de l'Assomption, que le successeur de Mgr Trouillet, à Saint-Epvre, a été solennellement installé par M. le vicaire général Jambois, au milieu d'un grand concours de clergé et de notabilités nancéiennes.</p>
@@ -522,7 +528,7 @@
   </section>
   <section class="bande art b-bordeaux" id="article-6">
     <div class="bande-grille">
-      <div class="art-gauche"><span class="b-num">06</span></div>
+      <div class="art-gauche"><span class="b-num">06</span><figure class="art-trace"><div class="orn" style="--src:url(../assets/ornements/mobilier/autel-saint-epvre.svg);aspect-ratio:1014 / 1181" role="img" aria-label="L’autel de saint Epvre, gravure vectorisée d'après la monographie de 1890"></div><figcaption>L’autel de saint Epvre<br><a href="/musee-virtuel/#mobilier">D'après la monographie de 1890</a></figcaption></figure></div>
       <div class="bande-texte">
         <h2>Un pieux coup de pied</h2>
         <blockquote>— Encore un autel neuf ! Où prends-tu l'argent ?<br>
@@ -558,7 +564,7 @@
   </section>
   <section class="bande art b-navy" id="article-8">
     <div class="bande-grille">
-      <div class="art-gauche"><span class="b-num">08</span><span class="art-source">L'Espérance · 1887</span></div>
+      <div class="art-gauche"><span class="b-num">08</span><span class="art-source">L'Espérance · 1887</span><figure class="art-trace"><div class="orn" style="--src:url(../assets/ornements/mobilier/pupitre.svg);aspect-ratio:770 / 2047" role="img" aria-label="Le lutrin de Metz, 1723, gravure vectorisée d'après la monographie de 1890"></div><figcaption>Le lutrin de Metz, 1723<br><a href="/musee-virtuel/#mobilier">D'après la monographie de 1890</a></figcaption></figure></div>
       <div class="bande-texte">
         <h2>Vente mobilière de Mgr Trouillet</h2>
         <p>La vente des objets mobiliers provenant de la succession de Mgr Trouillet s'est terminée vendredi par un produit de plus de onze mille francs. Le mobilier proprement dit n'entre dans cette somme que pour une très faible part, car il était de la dernière simplicité. Ce qui a fait de l'argent, ce sont les dons offerts au vénérable curé, notamment à l'occasion de ses noces d'or, et sa cave alimentée par les dons de la reconnaissance.</p>
@@ -630,7 +636,7 @@
   </section>
   <section class="bande art b-papier" id="article-13">
     <div class="bande-grille">
-      <div class="art-gauche"><span class="b-num">13</span><span class="art-source">Messe commémorative de la mort du roi Louis XVI</span></div>
+      <div class="art-gauche"><span class="b-num">13</span><span class="art-source">Messe commémorative de la mort du roi Louis XVI</span><figure class="art-trace"><div class="orn" style="--src:url(../assets/ornements/mobilier/grille.svg);aspect-ratio:1184 / 1559" role="img" aria-label="La grille de la crypte, gravure vectorisée d'après la monographie de 1890"></div><figcaption>La grille de la crypte<br><a href="/musee-virtuel/#mobilier">D'après la monographie de 1890</a></figcaption></figure></div>
       <div class="bande-texte">
         <h2>La messe du 21 janvier à Nancy</h2>
         <p>Avant-hier a eu lieu, à Saint-Epvre, une pieuse et émouvante cérémonie : la messe commémorative de la mort du roi Louis XVI. Cette tradition, conservée religieusement à Nancy du vivant du comte de Chambord par le parti royaliste, a été soigneusement perpétuée par M. le comte de Paris.</p>

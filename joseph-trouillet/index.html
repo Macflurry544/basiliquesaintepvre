@@ -242,7 +242,7 @@
     /* ══ Nouveau style (comme l'accueil) : grotesque capitale, aplats bordeaux, l'ancien gardé dans les gravures ══ */
     .ouverture { background: var(--bordeaux); color: var(--blanc); padding-bottom: 4rem; }
     .ouverture .courant { color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.3); }
-    .ouverture h1 { color: var(--blanc); font-weight: 500; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; font-size: clamp(3.4rem, 12.5vw, 11rem); }
+    .ouverture h1 { color: var(--blanc); font-weight: 500; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; font-size: clamp(2.6rem, 9vw, 8rem); max-width: 100%; margin-inline: auto; }
     .ouverture .sous { color: rgba(255,255,255,.85); }
     .ouverture .orgue { color: var(--blanc); }
     .ouverture figcaption { color: rgba(255,255,255,.7); }
@@ -419,6 +419,9 @@
     .sources-t { max-width: 820px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
     .sources-t h3 { font: 600 .85rem var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
     .sources-t li { margin-bottom: .5rem; }
+    li.avec-ico { list-style: none; position: relative; padding-left: 2.6rem; margin-bottom: 1rem; }
+    li.avec-ico .ico { position: absolute; left: 0; top: .05em; width: 1.7rem; height: 1.7rem; color: inherit; }
+    ul:has(> li.avec-ico) { padding-left: 0; }
 </style>
 </head>
 <body>
@@ -453,19 +456,14 @@
       <div class="bande-texte">
         <span class="b-num">I</span>
         <h2>Enfance &amp; formation</h2>
-        <p>Joseph Trouillet naquit le <strong>24 septembre 1809</strong> à Lixheim (alors en Meurthe, aujourd'hui Moselle), issu d'une famille modeste d'agriculteurs. Troisième fils de Martin et Anne Trouillet, il fait ses humanités en parallèle du travail des champs.</p>
-        <p>Il entre en <strong>1828</strong>, à l'âge de 19 ans, au grand séminaire de Nancy sur la recommandation de l'abbé Heim, curé de Lixheim. Ses premiers maîtres furent l'instituteur de Lixheim, M. Fourlemann, et le curé de Brouderdorf, M. Toni.</p>
-
+        <p>Joseph Trouillet naît le <strong>24 septembre 1809</strong> à Lixheim, un village alors en Meurthe (aujourd'hui en Moselle). Ses parents, Martin et Anne, sont de modestes cultivateurs ; il est leur troisième fils. Enfant, il étudie tout en aidant aux travaux des champs.</p>
+        <p>Il apprend à lire et à écrire avec l'instituteur du village, M. Fourlemann, puis avec M. Toni, le curé de Brouderdorf. Son instituteur se souvient d'un garçon sérieux et généreux :</p>
         <blockquote>
           « Docile, charitable, il partageait volontiers son déjeuner avec un camarade pauvre. Il était assidu au travail. Les autres enfants l'appelaient le bûcheur. »
-          — M. Fourlemann, instituteur de Lixheim, dans une lettre à propos du jeune Joseph.
+          — M. Fourlemann, instituteur de Lixheim
         </blockquote>
-
-        <p>Cinq années d'études de philosophie et de théologie lui donnent sa formation sacerdotale : il est tonsuré le <strong>5 juillet 1829</strong> et ordonné prêtre le <strong>27 novembre 1833</strong>.</p>
-
-        <a href="https://gw.geneanet.org/phil68?lang=fr&n=trouillet&oc=0&p=joseph&type=timeline" class="lien-source" target="_blank" rel="noopener">
-          Généalogie sur Geneanet →
-        </a>
+        <p>À 19 ans, en <strong>1828</strong>, il entre au grand séminaire de Nancy, recommandé par l'abbé Heim, curé de Lixheim. Après cinq ans de philosophie et de théologie, il reçoit la tonsure le 5 juillet 1829, puis il est ordonné prêtre le <strong>27 novembre 1833</strong>.</p>
+        <a href="https://gw.geneanet.org/phil68?lang=fr&n=trouillet&oc=0&p=joseph&type=timeline" class="lien-source" target="_blank" rel="noopener">Sa généalogie sur Geneanet →</a>
       </div>
     </div>
   </section>
@@ -475,9 +473,9 @@
       <div class="bande-texte">
         <span class="b-num">II</span>
         <h2>Les débuts à Lunéville</h2>
-        <p>Sa longue carrière ecclésiastique débute à <strong>Lunéville</strong>, où l'abbé Trouillet sert comme vicaire de l'église Saint-Jacques (1833–1838) et aumônier de l'hôpital civil et militaire. En 1838, il est nommé curé de Chanteheux (Meurthe), poste qu'il occupe jusqu'en 1849.</p>
-        <p>À Lunéville, il fonde la paroisse Saint-Maur (1849–1865), bâtit son église paroissiale et, fidèle à sa vocation éducative, y crée deux écoles primaires et un collège d'enseignement secondaire — l'Institution Saint-Pierre Fourier — pour évangéliser les ouvriers de la ville, en grande partie déchristianisés.</p>
-        <p>Parallèlement, il veille à la régularisation des unions matrimoniales ouvrières, conscient des mœurs de son époque, aidant la population ouvrière à rétablir l'ordre matrimonial.</p>
+        <p>Tout commence à <strong>Lunéville</strong>. Le jeune abbé y est d'abord vicaire de l'église Saint-Jacques, de 1833 à 1838, et aumônier de l'hôpital civil et militaire. Il devient ensuite curé de Chanteheux, un village voisin, jusqu'en 1849.</p>
+        <p>Cette année-là, il revient à Lunéville pour fonder une nouvelle paroisse, <strong>Saint-Maur</strong>, qu'il dirige jusqu'en 1865. Il y fait construire l'église, ouvre deux écoles primaires et un collège, l'Institution Saint-Pierre Fourier.</p>
+        <p>Son but : aller vers les ouvriers de la ville, dont beaucoup se sont éloignés de l'Église. Il aide aussi de nombreux couples ouvriers qui vivaient ensemble sans être mariés à régulariser leur union.</p>
       </div>
     </div>
   </section>
@@ -487,18 +485,15 @@
       <div class="bande-texte">
         <span class="b-num">III</span>
         <h2>Le bâtisseur</h2>
-        <p>Monseigneur Trouillet n'en est pas à sa première conception lorsqu'il prend la relève dans le projet Saint-Epvre. Dès 1838, il accepte avec joie la charge de l'aumônerie militaire, rénove et agrandit la chapelle de l'hôpital, y installe une tribune pour les militaires blessés — puisant dans ses propres ressources pour financer les travaux.</p>
-        <p>Partout, il mène des chantiers pour bâtir ou rénover églises, chapelles, écoles et hospices, souvent grâce au mécénat des familles nobles lorraines et des souverains d'Europe. Parmi ses réalisations :</p>
-
+        <p>Quand il arrive à Saint-Epvre, Joseph Trouillet a déjà beaucoup construit. Aumônier militaire à Lunéville, il avait agrandi la chapelle de l'hôpital et y avait ajouté une tribune pour les soldats blessés, en payant une partie des travaux de sa poche.</p>
+        <p>Toute sa vie, il bâtit ou restaure églises, chapelles, écoles et hospices, souvent grâce aux dons de familles nobles de Lorraine et de souverains d'Europe. Parmi ses chantiers :</p>
         <ul>
-          <li>Rénovation de la chapelle de l'hôpital de Lunéville et de l'église Saint-Martin de Moncel-lès-Lunéville</li>
-          <li>Travaux dans les églises Saint-Mansuy et Saint-Pierre de Nancy</li>
-          <li>Construction d'un asile et de deux hospices à Lunéville</li>
-          <li>Achèvement du Collège Saint-Maur de Lunéville (Institution Saint-Pierre Fourier) en 1863</li>
-          <li>Érection en 1882 d'une statue équestre du duc René II sur le parvis de Saint-Epvre</li>
+          <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M10 4h4"/><path d="M6 21V11l6-5 6 5v10z"/><path d="M10 21v-4a2 2 0 0 1 4 0v4"/></svg>Rénovation de la chapelle de l'hôpital de Lunéville et de l'église Saint-Martin de Moncel-lès-Lunéville</li>
+          <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l4-3 4 3v11"/><path d="M13 21v-8l3-2 3 2v8"/><path d="M9 4v3M8 5h2"/></svg>Travaux dans les églises Saint-Mansuy et Saint-Pierre de Nancy</li>
+          <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8h16v13"/><path d="M2 21h20"/><path d="M12 11v6M9 14h6"/><path d="M8 8V4h8v4"/></svg>Construction d'un asile et de deux hospices à Lunéville</li>
+          <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>Achèvement du Collège Saint-Maur de Lunéville (Institution Saint-Pierre Fourier) en 1863</li>
+          <li class="avec-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21h10M8 21v-4h8v4"/><path d="M9 17c0-3 1-5 3-6l3-1 1-3 2 1-1 3c1 2 0 4-2 6"/><path d="M12 11l-1-4 2-1"/></svg>Érection en 1882 d'une statue équestre du duc René II sur le parvis de Saint-Epvre</li>
         </ul>
-
-        <p class="note-bas">* Le titre de prélat d'honneur est un titre honorifique donnant droit à l'appellation de « Monseigneur », mais ne confère nullement le titre d'évêque.</p>
       </div>
     </div>
   </section>
@@ -508,12 +503,12 @@
       <div class="bande-texte">
         <span class="b-num">IV</span>
         <h2>La basilique Saint-Epvre</h2>
-        <p>L'œuvre la plus emblématique de Monseigneur Trouillet reste la <strong>basilique Saint-Epvre</strong> à Nancy, élevée au rang de basilique mineure en 1874. En 1864, la première pierre est posée, mais les fonds font défaut. Joseph Trouillet, qui succède en 1865 au curé fondateur abbé Simon, accélère grandement le chantier.</p>
-        <p>Il parcourt l'Europe pour recueillir des dons : il sollicite la famille impériale d'Autriche (propriétaire des tombeaux des anciens ducs de Lorraine enfouis sous Saint-Epvre), le Pape Pie IX, Napoléon III et l'impératrice Eugénie. Sur certains vitraux de Saint-Epvre, on peut apercevoir les <strong>blasons des donateurs</strong> en reconnaissance de leur générosité.</p>
-        <p>L'église est inaugurée le <strong>20 mars 1871</strong>, en pleine guerre franco-allemande, ce qui illustre bien l'attachement local à ce projet.</p>
-
+        <p>Son grand œuvre, c'est la <strong>basilique Saint-Epvre</strong>. La première pierre est posée en 1864, mais l'argent manque vite. En 1865, Joseph Trouillet succède à l'abbé Simon, le curé qui avait lancé le projet, et donne un vrai coup d'accélérateur au chantier.</p>
+        <p>Pour trouver des fonds, il frappe aux portes de toute l'Europe : la famille impériale d'Autriche, descendante des ducs de Lorraine, le pape Pie IX, Napoléon III et l'impératrice Eugénie. Sur plusieurs vitraux, on voit encore les <strong>blasons de ces donateurs</strong>, en remerciement.</p>
+        <p>L'église est inaugurée le <strong>20 mars 1871</strong>, alors que la guerre franco-allemande n'est pas encore officiellement terminée. En 1874, le pape l'élève au rang de basilique.</p>
         <blockquote>
-          Ses contemporains le décrivent comme un « pasteur au sens large du mot, ouvert sur le monde de son temps, utilisant les moyens du moment pour évangéliser ». — Geneviève Tresse, historienne.
+          « Un pasteur au sens large du mot, ouvert sur le monde de son temps, utilisant les moyens du moment pour évangéliser. »
+          — Geneviève Tresse, historienne
         </blockquote>
       </div>
     </div>
@@ -524,15 +519,15 @@
       <div class="bande-texte">
         <span class="b-num">V</span>
         <h2>Honneurs &amp; distinctions</h2>
-        <p>Ses talents de négociateur lui ouvrent les portes des cours et des chancelleries d'Europe. En tant que curé de Saint-Epvre et gardien des tombeaux des ducs de Lorraine, il reçoit de nombreuses distinctions :</p>
-
+        <p>Habile négociateur, il est reçu dans les cours d'Europe. Curé de Saint-Epvre, il est aussi le gardien des tombeaux des ducs de Lorraine. Il reçoit de nombreux honneurs :</p>
         <ul>
-          <li>Chevalier de l'<strong>ordre impérial de François-Joseph d'Autriche</strong>, décerné par l'empereur en personne</li>
-          <li><strong>Légion d'honneur</strong> remise par l'impératrice Eugénie en 1866</li>
-          <li>Nommé <strong>prélat d'honneur de Sa Sainteté</strong> par le pape Léon XIII en 1879</li>
-          <li>Fonctions de <strong>protonotaire apostolique</strong> (dignité suprême des prélats inférieurs)</li>
-          <li>Chanoine honoraire de Nancy et de trois autres cathédrales</li>
+          <li>chevalier de l'<strong>ordre de François-Joseph</strong>, décerné par l'empereur d'Autriche lui-même ;</li>
+          <li>la <strong>Légion d'honneur</strong>, remise par l'impératrice Eugénie en 1866 ;</li>
+          <li><strong>prélat d'honneur</strong> du pape Léon XIII en 1879 : c'est ce titre qui fait de lui « Monseigneur »* ;</li>
+          <li><strong>protonotaire apostolique</strong>, le plus haut rang parmi ces prélats d'honneur ;</li>
+          <li>chanoine honoraire de Nancy et de trois autres cathédrales.</li>
         </ul>
+        <p class="note-bas">* Le titre de prélat d'honneur permet d'être appelé « Monseigneur », mais il ne fait pas de lui un évêque.</p>
       </div>
     </div>
   </section>
@@ -542,11 +537,10 @@
       <div class="bande-texte">
         <span class="b-num">VI</span>
         <h2>Derniers jours &amp; héritage</h2>
-        <p>Monseigneur Trouillet s'éteint le <strong>12 mars 1887</strong> à Nancy, peu après avoir célébré la messe dominicale. Dès 1883, lors de son jubilé sacerdotal (50 ans de prêtrise), des cortèges de fidèles, 18 prélats, 3 abbés mitrés et une centaine de prêtres participèrent à l'hommage solennel, devant environ <strong>vingt mille fidèles</strong>.</p>
-        <p>À ses funérailles, le <strong>22 mars 1887</strong>, Monseigneur Turinaz (évêque de Nancy) préside une cérémonie grandiose à la basilique Saint-Epvre. Son tombeau, dans le transept droit de la basilique qu'il a fait achever, est symboliquement encadré par deux grands Lorrains : Epvre et Fourier.</p>
-        <p>Après sa mort, <strong>deux rues</strong> portent son nom, à Nancy et à Lunéville. Son souvenir reste profondément attaché au paysage nancéien et à l'histoire religieuse et sociale de la région.</p>
-
-        <p class="note-bas">* Le comité d'érection de l'orant de Trouillet était composé des membres du Conseil de fabrique, de M. Olry (premier vicaire de la paroisse), du curé de Saint-Vincent-Saint-Fiacre et d'un architecte.</p>
+        <p>En 1883, pour ses <strong>cinquante ans de prêtrise</strong>, une grande fête est organisée en son honneur : 18 prélats, 3 abbés mitrés et une centaine de prêtres sont présents, devant environ <strong>vingt mille fidèles</strong>.</p>
+        <p>Il meurt à Nancy le <strong>12 mars 1887</strong>, peu après avoir célébré la messe du dimanche. Ses funérailles ont lieu le <strong>22 mars</strong> à Saint-Epvre, présidées par Mgr Turinaz, évêque de Nancy. Il repose dans le transept droit de la basilique qu'il a fait achever, entre deux grandes figures lorraines : saint Epvre et saint Pierre Fourier.</p>
+        <p>Une rue porte aujourd'hui son nom à Nancy, une autre à Lunéville.</p>
+        <p class="note-bas">Un comité fut formé pour lui élever une statue en prière (un « orant ») : il réunissait le conseil de fabrique de la paroisse, M. Olry, premier vicaire, le curé de Saint-Vincent-Saint-Fiacre et un architecte.</p>
       </div>
     </div>
   </section>

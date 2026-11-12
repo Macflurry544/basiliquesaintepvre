@@ -450,39 +450,18 @@
     li.avec-ico .ico { position: absolute; left: 0; top: .05em; width: 1.7rem; height: 1.7rem; color: inherit; }
     ul:has(> li.avec-ico) { padding-left: 0; }
 
-    /* ══ Les cloches à l'échelle : une planche gravée, les cloches pendues au joug du beffroi ══ */
-    .beffroi { position: relative; margin: 2.4rem 0 1.4rem; padding: 2.4rem 1.4rem 1.6rem; border: 1px solid var(--navy); outline: 1px solid var(--navy); outline-offset: 5px; background: #fff; color: var(--navy); }
-    .beffroi-titre { position: absolute; top: 0; left: 50%; translate: -50% -50%; padding: .35rem 1.2rem; background: #fff; font: 600 .74rem/1 var(--titre); letter-spacing: .22em; text-transform: uppercase; color: var(--bordeaux); white-space: nowrap; }
-    .beffroi-joug { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; row-gap: 2.2rem; }
-    .cl { margin: 0; flex: 1 1 140px; max-width: 190px; display: flex; flex-direction: column; align-items: center; text-align: center;
-      background: linear-gradient(var(--navy), var(--navy)) top / 100% 4px no-repeat, linear-gradient(rgba(33,52,72,.35), rgba(33,52,72,.35)) 0 7px / 100% 1px no-repeat; padding-top: 7px; }
-    .cl-suspente { position: relative; height: 172px; display: flex; flex-direction: column; align-items: center; transform-origin: 50% 0; }
-    .cl-corde { display: block; width: 2px; height: calc(18px + (1 - var(--s)) * 70px); background: var(--navy); }
-    .cl-svg { width: calc(118px * var(--s)); height: auto; color: var(--navy); overflow: visible; }
-    .cl-corps { fill: url(#hachure); stroke: var(--navy); stroke-width: 1.6; stroke-linejoin: round; }
-    .cl-ombre { fill: var(--navy); opacity: .14; }
-    .cl-filet { fill: none; stroke: var(--navy); stroke-width: 1.2; opacity: .8; }
-    .cl-battant { fill: var(--bordeaux); }
-    .cl-note { position: absolute; right: -6px; bottom: 6px; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--bordeaux); background: #fff; font: 600 .74rem/1 var(--titre); color: var(--bordeaux); }
-    .cl figcaption { display: flex; flex-direction: column; align-items: center; gap: .15rem; margin-top: .6rem; padding: 0 .4rem; }
-    .cl-num { font: 600 .7rem/1 var(--titre); letter-spacing: .24em; color: var(--gris); }
-    .cl-kg { font: 500 1.9rem/1 var(--titre); letter-spacing: -.04em; color: var(--bordeaux); margin-top: .3rem; }
-    .cl-kg small { font-size: .45em; letter-spacing: 0; margin-left: .2em; color: var(--gris); }
-    .cl-kg.nd { font-size: 1rem; letter-spacing: 0; color: var(--gris); padding: .45rem 0 .2rem; }
-    .cl strong { font: 600 .82rem/1.25 var(--titre); letter-spacing: .1em; text-transform: uppercase; margin-top: .35rem; }
-    .cl em { font-size: .9rem; color: var(--gris); }
-    .cl-f { font-size: .85rem; line-height: 1.35; color: var(--gris); }
-    .volee .cl-suspente { flex-direction: row; align-items: flex-start; gap: 2px; }
-    .volee .mini { display: flex; flex-direction: column; align-items: center; transform-origin: 50% 0; }
-    .volee .mini .cl-corde { height: calc(14px + var(--k) * 6px); }
-    .volee .cl-svg { width: 30px; opacity: .75; }
-    .beffroi-aide { margin: 1.6rem 0 0; text-align: center; font: 400 1.15rem/1.2 'Caveat', cursive; color: var(--gris); }
-    /* le branle : la cloche bat autour de son point d'attache */
-    @keyframes branle { 0% { rotate: 0deg; } 15% { rotate: 14deg; } 35% { rotate: -11deg; } 55% { rotate: 7deg; } 75% { rotate: -4deg; } 100% { rotate: 0deg; } }
-    .cl.sonne .cl-suspente, .cl.sonne .mini { animation: branle 1.8s cubic-bezier(.36,.07,.19,.97); }
-    .volee.sonne .mini { animation-delay: calc(var(--k) * .12s); }
-    @media (prefers-reduced-motion: reduce) { .cl.sonne .cl-suspente, .cl.sonne .mini { animation: none; } }
-    @media (max-width: 560px) { .cl { flex-basis: 46%; } .beffroi { padding: 2.2rem .8rem 1.4rem; } }
+    /* Cloches : la photo du bourdon (monographie) et la liste des poids, comme les chronologies du site */
+    .bourdon-fig { margin: 2rem 0 0; }
+    .bourdon-fig img { width: min(100%, 360px); border-radius: 50% / 46%; display: block; filter: sepia(.15); }
+    .bourdon-fig figcaption { margin-top: .7rem; font-size: .9rem; color: var(--gris); }
+    .poids { list-style: none; margin: 2rem 0 1.2rem; padding: 0; border-top: 1px solid currentColor; }
+    .poids-l { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 1.2rem; align-items: baseline; padding: 1.2rem 0; border-bottom: 1px solid rgba(127,127,127,.3); }
+    .poids-kg { font: 500 clamp(1.8rem, 3.2vw, 2.5rem)/1 var(--titre); letter-spacing: -.04em; color: var(--bordeaux); white-space: nowrap; }
+    .poids-kg small { font-size: .42em; letter-spacing: 0; margin-left: .25em; color: var(--gris); }
+    .poids h3 { margin: 0 0 .3rem; font: 500 1.3rem/1.15 var(--titre); letter-spacing: -.015em; }
+    .poids p { margin: 0 !important; color: var(--gris); }
+    .poids p b { color: var(--navy); font-weight: 600; }
+    @media (max-width: 560px) { .poids-l { grid-template-columns: 1fr; gap: .3rem; } }
 </style>
 </head>
 <body>
@@ -556,58 +535,7 @@
         <span class="b-num">IV</span>
         <h2>Tableau comparatif des cloches</h2>
         
-        <div class="beffroi" aria-label="Les cloches, dessinées à l’échelle de leur poids"><span class="beffroi-titre">Planche · les cloches à l’échelle</span><div class="beffroi-joug"><figure class="cl" style="--s:0.999;--i:0">
-    <div class="cl-suspente"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg><span class="cl-note">Fa♯2</span></div>
-    <figcaption><span class="cl-num">I</span><span class="cl-kg">≈ 1 570<small>kg</small></span><strong>Grosse cloche Le bourdon</strong><em>1591, refondue en 1747</em><span class="cl-f">Jean de Laître · Burel, Bassigny</span></figcaption>
-  </figure><figure class="cl" style="--s:1.000;--i:1">
-    <div class="cl-suspente"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg></div>
-    <figcaption><span class="cl-num">II</span><span class="cl-kg">≈ 1 574<small>kg</small></span><strong>Cloche du beffroi</strong><em>1576</em><span class="cl-f">Jehan de Challegny</span></figcaption>
-  </figure><figure class="cl" style="--s:0.872;--i:2">
-    <div class="cl-suspente"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg><span class="cl-note">Do♯3</span></div>
-    <figcaption><span class="cl-num">III</span><span class="cl-kg">≈ 1 045<small>kg</small></span><strong>Grand timbre d’horloge</strong><em>1751</em><span class="cl-f">J.-F. Despois, Nancy</span></figcaption>
-  </figure><figure class="cl" style="--s:0.771;--i:3">
-    <div class="cl-suspente"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg><span class="cl-note">Mi♭3</span></div>
-    <figcaption><span class="cl-num">IV</span><span class="cl-kg">≈ 720<small>kg</small></span><strong>Petit timbre d’horloge</strong><em>1562</em><span class="cl-f">Fondeur inconnu</span></figcaption>
-  </figure><figure class="cl volee" style="--s:.42;--i:4">
-    <div class="cl-suspente"><span class="mini" style="--k:0"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg></span><span class="mini" style="--k:1"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg></span><span class="mini" style="--k:2"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg></span><span class="mini" style="--k:3"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg></span><span class="mini" style="--k:4"><span class="cl-corde"></span><svg class="cl-svg" viewBox="0 0 100 112" aria-hidden="true"><defs><pattern id="hachure" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1" opacity=".55"/></pattern></defs>
-<path class="cl-corps" d="M44 4h12v9C71 15 77 28 78 48c1 22 6 37 16 45 3 3 2 8-3 8H9c-5 0-6-5-3-8 10-8 15-23 16-45 1-20 7-33 22-35z"/>
-<path class="cl-ombre" d="M62 16c9 6 13 17 14 32 1 22 6 37 16 45 1 1 1 2 1 3-14-2-24-14-27-34-2-16-1-34-4-46z"/>
-<path class="cl-filet" d="M17 84h66M12 92h76M24 30h52"/>
-<circle class="cl-battant" cx="50" cy="104" r="5"/></svg></span></div>
-    <figcaption><span class="cl-num">V</span><span class="cl-kg nd">poids inconnu</span><strong>Cloches de volée</strong><em>XIXᵉ – XXᵉ siècle</em><span class="cl-f">Ateliers budapestois, en partie</span></figcaption>
-  </figure></div><p class="beffroi-aide">Survolez ou touchez une cloche pour la mettre en branle.</p></div>
+        <figure class="bourdon-fig"><img src="/assets/img/site/bourdon-monographie.webp" alt="Le bourdon de la basilique, photographie de la monographie de 1890" loading="lazy"><figcaption>Le bourdon, photographié pour la monographie de 1890.</figcaption></figure><ol class="poids"><li class="poids-l"><span class="poids-kg">≈ 1 570<small>kg</small></span><div><h3>Grosse cloche, le bourdon</h3><p>1591, refondue en 1747 · Jean de Laître, puis Burel, de Bassigny · <b>Fa♯2</b></p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 574<small>kg</small></span><div><h3>Cloche du beffroi</h3><p>1576 · Jehan de Challegny</p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 045<small>kg</small></span><div><h3>Grand timbre d’horloge</h3><p>1751 · J.-F. Despois, Nancy · <b>Do♯3</b></p></div></li><li class="poids-l"><span class="poids-kg">≈ 720<small>kg</small></span><div><h3>Petit timbre d’horloge</h3><p>1562 · Fondeur inconnu · <b>Mi♭3</b></p></div></li><li class="poids-l"><span class="poids-kg">—</span><div><h3>Cloches de volée</h3><p>XIXᵉ – XXᵉ siècle · Cinq cloches, en partie fondues à Budapest</p></div></li></ol>
           <p class="note-bas">Sources : Léon Germain (1889) ; Deblaye (1868) ; archives de la Société d'histoire de la Lorraine.</p>
       </div>
     </div>
@@ -745,15 +673,5 @@
 </script>
 <script defer src="../assets/js/nav.js?v=12"></script>
 <script src="/assets/js/visionneuse.js?v=2"></script>
-<script>
-  // Les cloches se mettent en branle au survol, au toucher, et une fois à leur arrivée à l'écran
-  (function () {
-    var cl = [].slice.call(document.querySelectorAll('.beffroi .cl'));
-    function sonne(c) { c.classList.remove('sonne'); void c.offsetWidth; c.classList.add('sonne'); }
-    cl.forEach(function (c) { c.addEventListener('mouseenter', function () { sonne(c); }); c.addEventListener('click', function () { sonne(c); }); });
-    var b = document.querySelector('.beffroi');
-    if (b && 'IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { cl.forEach(function (c, i) { setTimeout(function () { sonne(c); }, 250 + i * 180); }); io.disconnect(); } }, { threshold: .4 }); io.observe(b); }
-  })();
-</script>
 </body>
 </html>

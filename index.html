@@ -111,6 +111,18 @@
   .bienvenue a { font-size: .9rem; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; opacity: .85; }
 
   /* Horaires en très grands chiffres */
+  /* Ornements tirés de la monographie : appliques de part et d'autre des horaires, chandelier près de « À lire » */
+  .ouvert .deux { position: relative; }
+  .ouvert .deux > .applique { position: absolute; top: 50%; translate: 0 -40%; width: clamp(90px, 9vw, 130px); aspect-ratio: 447 / 900; padding: 0; border: 0; pointer-events: none; filter: drop-shadow(0 0 0 rgba(255,214,150,0)); animation: veille 5s ease-in-out infinite; }
+  .ouvert .deux > .applique .orn { width: 100%; height: 100%; color: var(--blanc); opacity: .9; }
+  .ouvert .deux > .applique.d { right: calc(-1 * clamp(70px, 8vw, 140px)); }
+  .ouvert .deux > .applique.g { left: calc(-1 * clamp(70px, 8vw, 140px)); scale: -1 1; }
+  @keyframes veille { 0%, 100% { filter: drop-shadow(0 0 6px rgba(255,214,150,.15)); } 50% { filter: drop-shadow(0 0 18px rgba(255,214,150,.45)); } }
+  @media (max-width: 1400px) { .ouvert .deux > .applique.d { right: -10px; } .ouvert .deux > .applique.g { left: -10px; } .ouvert .deux > div:not(.applique) { padding-left: clamp(90px, 10vw, 140px); padding-right: clamp(90px, 10vw, 140px); } }
+  @media (max-width: 900px) { .ouvert .deux > .applique { display: none; } .ouvert .deux > div:not(.applique) { padding-left: 1.5rem; padding-right: 1.5rem; } }
+  .titre-orne { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; }
+  .titre-orne .chandelier { flex: none; width: clamp(54px, 6vw, 84px); aspect-ratio: 269 / 933; color: var(--navy); }
+  @media (prefers-reduced-motion: reduce) { .ouvert .deux > .applique { animation: none; } }
   .ouvert { padding-bottom: 6rem; }
   .ouvert .deux { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.4); padding-top: 4rem; }
   .ouvert .deux > div { text-align: center; padding: 1rem 1.5rem 2rem; }
@@ -192,6 +204,9 @@
   .bloc.vu .ogive { transform: none; opacity: 1; }
   .bloc:hover .ogive { transform: scale(1.06); }
   .blocs.trois .bloc .ogive { width: min(330px, 92%) !important; }
+  /* Blocs : gravures vectorisées de la monographie à la place des photos */
+  .bloc .ogive.gravure { background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+  .bloc.w .ogive.gravure { color: var(--bordeaux); }
   @media (prefers-reduced-motion: reduce) { .bloc .ogive, .bloc.vu .ogive, .bloc:hover .ogive { transform: none; opacity: 1; transition: none; } }
   .pied .rosace-pied { width: 96px; height: 96px; }
 
@@ -249,6 +264,8 @@
     <div class="deux">
       <div class="apparait"><small>Ouverte le samedi</small><b>16h30–18h30</b><span>Dernière entrée à 18 h 20</span></div>
       <div class="apparait"><small>Messe du dimanche</small><b>9h30 · 11h</b><span>Samedi 18 h 30 et semaine 8 h 30, à la crypte</span></div>
+      <div class="applique g" aria-hidden="true"><div class="orn" style="--src:url(/assets/ornements/applique.svg?v=1)"></div></div>
+      <div class="applique d" aria-hidden="true"><div class="orn" style="--src:url(/assets/ornements/applique.svg?v=1)"></div></div>
     </div>
     <div class="boutons">
       <a href="/horaires-douverture/">Horaires d'ouverture <span>→</span></a>
@@ -274,28 +291,28 @@
   <div class="explorer large">
     <div class="titre-lien"><h2 class="geant apparait" style="margin:0">Explorer</h2><a href="/photos/">Toutes les photographies →</a></div>
     <div class="blocs un">
-      <a class="bloc b apparait" href="/histoire/"><h3>L'histoire</h3><span class="ogive" style="background-image:url(/assets/img/accueil/facade.jpg)"></span><p>De la paroisse médiévale à la basilique de Prosper Morey</p></a>
+      <a class="bloc b apparait" href="/histoire/"><h3>L'histoire</h3><span class="ogive gravure" style="--src:url(/assets/ornements/facade.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>De la paroisse médiévale à la basilique de Prosper Morey</p></a>
     </div>
     <div class="blocs deux">
-      <a class="bloc n apparait" href="/les-vitraux/"><h3>Les vitraux</h3><span class="ogive" style="background-image:url(/assets/img/accueil/rosace.jpg)"></span><p>Une nef de lumière</p></a>
-      <a class="bloc w apparait" href="/les-grandes-orgues/"><h3>Les orgues</h3><span class="ogive" style="background-image:url(/assets/img/orgues/tuyaux.jpg)"></span><p>Inaugurées par Bruckner en 1869</p></a>
+      <a class="bloc n apparait" href="/les-vitraux/"><h3>Les vitraux</h3><span class="ogive gravure" style="--src:url(/assets/ornements/vitrail.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Une nef de lumière</p></a>
+      <a class="bloc w apparait" href="/les-grandes-orgues/"><h3>Les orgues</h3><span class="ogive gravure" style="--src:url(/assets/ornements/orgue.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Inaugurées par Bruckner en 1869</p></a>
     </div>
     <div class="blocs deux">
       <a class="bloc n mince apparait" href="/photos/"><h3>Photographies de la basilique</h3></a>
       <a class="bloc b mince apparait" href="/carte/"><h3>Venir place Saint-Epvre</h3></a>
     </div>
     <div class="blocs un">
-      <a class="bloc w apparait" href="/musee-virtuel/"><h3>Le musée virtuel</h3><span class="ogive" style="background-image:url(/assets/img/musee/m76-0.webp?v=2)"></span><p>Les peintures murales, une à une, et leur signification</p></a>
+      <a class="bloc w apparait" href="/musee-virtuel/"><h3>Le musée virtuel</h3><span class="ogive gravure" style="--src:url(/assets/ornements/saint-michel.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Les peintures murales, une à une, et leur signification</p></a>
     </div>
     <div class="blocs trois">
-      <a class="bloc w apparait" href="/les-cloches/"><h3>Les cloches</h3><span class="ogive" style="background-image:url(/assets/img/accueil/vitrail.jpg)"></span><p>Leurs noms et leurs inscriptions</p></a>
-      <a class="bloc b apparait" href="/joseph-trouillet/"><h3>Mgr Trouillet</h3><span class="ogive" style="background-image:url(/assets/img/accueil/nef-principale.jpg)"></span><p>Le curé bâtisseur</p></a>
-      <a class="bloc w apparait" href="/sauvegarde-et-restauration/"><h3>Sauvegarde</h3><span class="ogive" style="background-image:url(/assets/img/orgues/plaque.jpg)"></span><p>Restaurer la basilique</p></a>
+      <a class="bloc w apparait" href="/les-cloches/"><h3>Les cloches</h3><span class="ogive gravure" style="--src:url(/assets/ornements/clocher.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Leurs noms et leurs inscriptions</p></a>
+      <a class="bloc b apparait" href="/joseph-trouillet/"><h3>Mgr Trouillet</h3><span class="ogive gravure" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Le curé bâtisseur</p></a>
+      <a class="bloc w apparait" href="/sauvegarde-et-restauration/"><h3>Sauvegarde</h3><span class="ogive gravure" style="--src:url(/assets/ornements/mobilier/grille.svg?v=1)" role="img" aria-label="Gravure de la monographie de 1890"></span><p>Restaurer la basilique</p></a>
     </div>
   </div>
 
   <div class="lire large">
-    <h2 class="geant apparait">À lire</h2>
+    <div class="titre-orne"><h2 class="geant apparait">À lire</h2><div class="orn chandelier apparait" style="--src:url(/assets/ornements/chandelier.svg?v=1)" aria-hidden="true"></div></div>
     <ul class="liste">
       <li><a href="/bibliographie/" class="apparait"><span class="vign" style="background-image:url(/assets/img/biblio/mono-titre.jpg)"></span><span><small>Tournai, 1890</small><h3>Monographie de la basilique</h3><p>Et toutes les sources du site, sur l'étagère de la bibliographie.</p></span><span class="fl">→</span></a></li>
     </ul>

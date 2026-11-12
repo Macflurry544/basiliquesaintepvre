@@ -7,6 +7,7 @@
     { href: '/les-grandes-orgues/', label: 'Grandes Orgues' },
     { href: '/les-vitraux/',         label: 'Vitraux' },
     { href: '/les-cloches/',         label: 'Cloches' },
+    { href: '/musee-virtuel/',       label: 'Musée virtuel' },
     { href: '/photos/',              label: 'Photos' },
     { href: '/horaires-douverture/', label: 'Horaires' },
     { href: '/contact/',             label: 'Contact' },
@@ -19,6 +20,7 @@
       { href: '/les-grandes-orgues/', label: 'Grandes Orgues' },
       { href: '/les-vitraux/',        label: 'Vitraux' },
       { href: '/les-cloches/',        label: 'Cloches' },
+      { href: '/musee-virtuel/',      label: 'Musée virtuel' },
       { href: '/photos/',             label: 'Photos' },
     ]},
     { title: 'Visiter', links: [

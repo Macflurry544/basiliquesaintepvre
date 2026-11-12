@@ -21,6 +21,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://basiliquesaintepvre.com/musee-virtuel/</loc>
+  </url>
 
   <url>
     <loc>https://basiliquesaintepvre.com/les-grandes-orgues/</loc>

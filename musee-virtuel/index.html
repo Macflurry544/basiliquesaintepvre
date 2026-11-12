@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Musée virtuel — Basilique Saint-Epvre</title>
+  <meta name="description" content="Les peintures murales de la Basilique Saint-Epvre à Nancy, toiles marouflées de Sublet, présentées une à une avec leur signification, d'après la monographie de 1890.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4a1518">
+  <link rel="canonical" href="https://basiliquesaintepvre.com/musee-virtuel/">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://basiliquesaintepvre.com/musee-virtuel/">
+  <meta property="og:title" content="Musée virtuel — Basilique Saint-Epvre">
+  <meta property="og:description" content="Les peintures murales de la basilique, une à une, avec leur signification.">
+  <meta property="og:image" content="https://basiliquesaintepvre.com/assets/img/musee/m76-0.webp">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Basilique Saint-Epvre">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/nav.css?v=9">
+  <style>
+    :root {
+      --bordeaux: #4a1518; --bordeaux-f: #330e10; --or: #d9b77a; --blanc: #fff; --creme: #f3e9d8;
+      --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { background: var(--bordeaux-f); color: var(--blanc); font-family: var(--texte); font-size: 18px; line-height: 1.6; overflow: hidden; }
+    img { display: block; max-width: 100%; }
+
+    /* Le mur : bordeaux, lambris verticaux, halo de la lampe */
+    .salle { position: fixed; inset: 0; overflow: hidden;
+      background:
+        radial-gradient(ellipse 46% 60% at 50% 34%, rgba(255,214,160,.22), transparent 70%),
+        repeating-linear-gradient(90deg, transparent 0 calc(33.33vw - 2px), rgba(0,0,0,.28) calc(33.33vw - 2px) 33.33vw),
+        linear-gradient(180deg, #5a1a1e 0%, var(--bordeaux) 55%, var(--bordeaux-f) 100%); }
+    .salle::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9vh; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.6)); border-top: 1px solid rgba(255,255,255,.08); }
+
+    .oeuvre { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr); align-items: center; gap: clamp(20px, 3vw, 56px); padding: 92px clamp(22px, 3.5vw, 64px) 13vh; opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility 0s .7s; }
+    .oeuvre.ici { opacity: 1; visibility: visible; transition: opacity .7s ease .15s, visibility 0s; }
+
+    .cartel { align-self: start; padding-top: 6vh; }
+    .cartel .lieu { font: 500 .8rem var(--titre); letter-spacing: .18em; text-transform: uppercase; color: var(--or); }
+    .cartel h2 { margin: .8rem 0 1rem; font: 500 clamp(2rem, 3.6vw, 3.6rem)/.92 var(--titre); letter-spacing: -.04em; text-transform: uppercase; }
+    .cartel .tech { font-size: .95rem; color: rgba(255,255,255,.72); line-height: 1.45; }
+    .cartel .latin { margin-top: 1.4rem; font-style: italic; color: rgba(255,255,255,.8); font-size: .98rem; border-left: 2px solid var(--or); padding-left: .9rem; }
+
+    .mur { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; min-height: 0; }
+    .lampe { position: absolute; top: 0; left: 50%; translate: -50% 0; width: 40%; max-width: 360px; height: 14px; border-radius: 8px; background: linear-gradient(180deg, #e8cf9c, #9b7a45); box-shadow: 0 10px 40px 10px rgba(255,220,160,.25); }
+    .lampe::before, .lampe::after { content: ""; position: absolute; top: 12px; width: 3px; height: 40px; background: #9b7a45; }
+    .lampe::before { left: 20%; rotate: 8deg; } .lampe::after { right: 20%; rotate: -8deg; }
+    .cadre { position: relative; margin-top: 60px; max-height: calc(100% - 60px); padding: clamp(10px, 1.3vw, 20px); background: linear-gradient(135deg, #e9d3a4, #b28d52 45%, #f0dcaf 55%, #9e7b44); box-shadow: 0 30px 60px -20px rgba(0,0,0,.75), inset 0 0 0 2px rgba(0,0,0,.25); cursor: zoom-in; }
+    .cadre img { max-height: calc(100vh - 92px - 13vh - 60px - 40px); width: auto; max-width: 100%; background: var(--creme); box-shadow: inset 0 0 0 1px rgba(0,0,0,.3); }
+
+    .lecture { align-self: start; padding-top: 6vh; font-size: 1.02rem; color: rgba(255,255,255,.9); max-height: 100%; overflow: auto; scrollbar-width: thin; }
+    .lecture p { margin: 0 0 1rem; }
+    .lecture p:first-child::first-letter { float: left; font: 500 3.4rem/.8 var(--titre); padding: .3rem .5rem 0 0; color: var(--or); }
+
+    /* Ouverture */
+    .entree { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-bottom: 14vh; }
+    .entree .lieu { font: 500 .85rem var(--titre); letter-spacing: .22em; text-transform: uppercase; color: var(--or); }
+    .entree h1 { margin: 1rem 0; font: 500 clamp(3rem, 10vw, 9rem)/.86 var(--titre); letter-spacing: -.05em; text-transform: uppercase; }
+    .entree p { max-width: 40rem; margin: 0 auto 1rem; color: rgba(255,255,255,.85); }
+    .entree .go { margin-top: 1.4rem; display: inline-flex; gap: .6rem; align-items: center; padding: .9rem 1.6rem; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; background: none; color: inherit; font: 500 1rem var(--titre); cursor: pointer; }
+    .entree .go:hover { background: var(--blanc); color: var(--bordeaux); }
+
+    /* Commandes */
+    .barre { position: fixed; left: 0; right: 0; bottom: 0; height: 9vh; min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 clamp(16px, 3.5vw, 64px); z-index: 5; font: 500 .9rem var(--titre); }
+    .barre button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45); background: none; color: inherit; font-size: 1.2rem; cursor: pointer; }
+    .barre button:hover:not(:disabled) { background: var(--blanc); color: var(--bordeaux); }
+    .barre button:disabled { opacity: .3; cursor: default; }
+    .barre .fleches { display: flex; gap: .6rem; align-items: center; }
+    .compteur { min-width: 5.5rem; text-align: center; letter-spacing: .08em; }
+    .salles { flex: 1; display: flex; gap: .4rem; justify-content: center; overflow-x: auto; scrollbar-width: none; }
+    .salles a { white-space: nowrap; padding: .35rem .8rem; border-radius: 999px; color: rgba(255,255,255,.65); text-decoration: none; font-size: .8rem; letter-spacing: .06em; }
+    .salles a.ici { background: rgba(255,255,255,.14); color: var(--blanc); }
+    .progres { position: fixed; left: 0; bottom: 0; height: 2px; background: var(--or); z-index: 6; transition: width .5s ease; }
+
+    /* Agrandissement */
+    .loupe { position: fixed; inset: 0; z-index: 20; background: rgba(20,5,6,.96); display: none; overflow: auto; cursor: zoom-out; }
+    .loupe.ouverte { display: block; }
+    .loupe img { margin: 3vh auto; max-width: none; width: min(1400px, 96vw); }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .oeuvre { grid-template-columns: 1fr; align-content: start; overflow-y: auto; padding: 84px 22px 110px; gap: 1.4rem; }
+      .cartel, .lecture { padding-top: 0; max-height: none; overflow: visible; }
+      .mur { height: auto; min-height: auto; order: -1; flex-shrink: 0; }
+      .oeuvre > * { min-height: auto; }
+      .cadre { max-height: none; margin-top: 40px; }
+      .cadre img { max-height: 58vh; }
+      .lampe { width: 60%; }
+      .salles { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { .oeuvre, .oeuvre.ici { transition: none; } }
+  </style>
+</head>
+<body>
+
+<main class="salle" id="salle" aria-live="polite"></main>
+<div class="progres" id="progres"></div>
+<nav class="barre" aria-label="Parcours du musée">
+  <div class="fleches"><button id="prec" aria-label="Œuvre précédente">←</button><span class="compteur" id="compteur"></span><button id="suiv" aria-label="Œuvre suivante">→</button></div>
+  <div class="salles" id="salles"></div>
+</nav>
+<div class="loupe" id="loupe" role="dialog" aria-label="Agrandissement"><img alt=""></div>
+
+<script>
+(function () {
+  var M = '/assets/img/musee/';
+  // Textes d'après la Monographie de la basilique Saint-Epvre (1890), chapitre VII.
+  var S = [
+    { salle: 'Les Vertus', lieu: 'Entrée de la basilique', oeuvres: [
+      ['m68-0', 'La Charité', 'Caritas — Diligite invicem sicut dilexi vos', 'Une femme lève les yeux au ciel et rapproche deux enfants dans un baiser fraternel : ils représentent toute l’humanité. C’est la première peinture qu’on voit en entrant, car la charité est la première des vertus.', 'Dessous, le pélican qui nourrit ses petits de son sang, symbole le plus élevé de l’amour. Plus bas, le vice opposé : Caïn méditant le meurtre de son frère Abel.'],
+      ['m68-1', 'La Munificence', 'Apertis thesauris suis obtulerunt ei aurum, thus et myrrham', 'Une reine porte une église dans ses mains. C’est un hommage délicat à la maison d’Autriche, généreuse donatrice de la basilique.', 'L’écusson montre les présents des Mages. En dessous, l’avarice : Judas s’indigne que Marie-Madeleine verse un parfum de prix sur les pieds de Jésus.'],
+      ['m68-2', 'La Justice', 'Sicut audio judico, et judicium meum justum est', 'Glaive à deux tranchants dans une main, balances dans l’autre, regard fixé sur les plateaux : le glaive n’agit pas encore, mais il n’est plus au repos. Un serpent et une colombe figurent le mal et le bien.', 'Les tables de la Loi l’accompagnent. En opposition, l’Injustice : Pilate livre Jésus, dont il reconnaît pourtant l’innocence.'],
+      ['m68-3', 'La Miséricorde', 'Diliges proximum tuum tanquam teipsum', 'Une femme baisse un regard plein de pitié sur deux enfants serrés contre elle et les couvre de son manteau.', 'L’écusson porte une brebis tondue, image des dons que cette vertu inspire. Dessous, la Dureté : un pauvre tend la main à la porte du temple et ne reçoit qu’un regard de mépris.'],
+      ['m70-0', 'L’Espérance', 'In nomine ejus gentes sperabunt', 'Les yeux au ciel, les mains jointes, le coude appuyé sur une ancre : « une ancre sûre et ferme pour notre âme », dit saint Paul. Son emblème est une colombe posée sur une ancre.', 'Le vice opposé est le Désespoir : Judas, après avoir livré son maître, sort du temple les doigts crispés dans les cheveux.'],
+      ['m70-1', 'La Foi', 'Ego lux in mundum veni', 'Elle tient un flambeau dont la lumière est l’hostie elle-même, la lumière venue dans le monde.', 'En opposition, l’Incrédulité : Thomas aux pieds du Christ, qui prend sa main pour la poser sur son côté ouvert. « Heureux ceux qui n’ont pas vu et qui ont cru. »']
+    ]},
+    { salle: 'La Colère', lieu: 'Transept est', oeuvres: [
+      ['m74-0', 'Le Christ roi et juge', 'Parce, Domine, ne disperdas populum tuum', 'Sur un trône oriental, le Christ lève le bras pour commander aux anges de sa justice ; sur son genou, le livre aux sept sceaux que nul ne peut ouvrir.', 'À genoux, la Vierge tente d’arrêter le bras de son Fils et saint Pierre lui présente le calice et l’hostie, souvenir de la Passion. Sept lampes brûlent devant le trône.'],
+      ['m72-0', 'Les fléaux, I', 'Quia sanguinem sanctorum effuderunt', 'Vêtus de blanc, les anges ministres de la colère portent sur leur ceinture le nom du fléau qu’ils répandent : la guerre, la famine, la discorde… Chacun incline sa coupe sur le monde.', 'En dessous, deux des cavaliers de l’Apocalypse : le Vainqueur couronné sur son cheval blanc, et la Guerre sur son cheval couleur de sang. Ces scènes furent composées peu après les désastres de 1870.'],
+      ['m72-1', 'Les fléaux, II', 'Exite de illa, populus meus', 'D’autres anges versent la sécheresse et les ténèbres.', 'Dessous, la Famine sur un cheval noir, une balance à la main pour dire la cherté des vivres, et la Mort sur son cheval pâle.']
+    ]},
+    { salle: 'La Gloire', lieu: 'Transept ouest', oeuvres: [
+      ['m76-0', 'La Sainte Famille dans la gloire', 'Ecce tabernaculum Dei cum hominibus', 'Le Christ, la Vierge et saint Joseph sont couronnés et assis ensemble au ciel. Marie presse sur son cœur la main de son Fils ; c’est Jésus qui prend celle de Joseph.', 'Pie IX lui-même aurait exigé cette place pour saint Joseph : « Au ciel, il n’est pas ailleurs que là. »'],
+      ['m78-0', 'Les Béatitudes, I', 'Beati pauperes spiritu…', 'L’Église triomphante : chaque béatitude est portée par la sainte qui l’a le mieux vécue, couronnée, une palme à la main.', 'Marie-Madeleine pour les pauvres en esprit, sainte Clotilde pour les doux, sainte Monique pour ceux qui pleurent, sainte Paule pour ceux qui ont faim et soif de justice.'],
+      ['m78-1', 'Les Béatitudes, II', 'Beati misericordes…', 'Sainte Élisabeth de Hongrie pour les miséricordieux, sainte Cécile pour les cœurs purs.', 'Sainte Catherine de Sienne, qui ramena le pape d’Avignon à Rome, pour les artisans de paix ; sainte Perpétue, martyre, pour les persécutés.'],
+      ['m78-2', 'L’Église', 'Gaudeamus et exultemus', 'Une femme couronnée dans une auréole d’or où rayonnent sept colombes, les sept dons de l’Esprit. Elle tient le calice de la nouvelle alliance et les clefs.', 'Un ange tient l’Évangile ouvert, un autre retient le dragon enchaîné à ses pieds.'],
+      ['m78-3', 'Saint Michel', 'Nunc facta est salus', 'L’archange terrasse le dragon, dont l’orgueil voulait s’égaler à Dieu.', '']
+    ]},
+    { salle: 'Chapelle Saint-Michel', lieu: 'Soubassement, chapelle Saint-Michel', oeuvres: [
+      ['m88-1', 'L’échelle de Jacob', '', 'Jacob voit en songe une échelle où les anges montent et descendent.', 'Les soubassements de cette chapelle racontent les apparitions des anges.'],
+      ['m88-0', 'Jacob lutte avec l’ange', '', 'Le soleil pointe à l’horizon : « Laisse-moi, voici l’aurore. » L’ange touche la cuisse de Jacob et le combat prend fin.', 'Il y a à peine quelques traits, note l’auteur, et pourtant le sujet est complet.'],
+      ['m88-2', 'Raphaël et Tobie', '', 'L’archange dit au jeune Tobie de saisir le poisson qui guérira son père aveugle.', ''],
+      ['m88-3', 'Le mariage de Tobie', '', 'Sur le conseil de Raphaël, Raguël donne sa fille Sara pour épouse à Tobie.', ''],
+      ['m88-5', 'Gabriel apparaît à Zacharie', '', 'Pendant que Zacharie offre l’encens dans le temple, l’ange lui annonce la naissance de Jean-Baptiste.', ''],
+      ['m88-4', 'L’annonce aux bergers', '', 'La nuit de Noël, un ange apparaît aux bergers : « Il vous est né un Sauveur. »', ''],
+      ['m88-6', 'L’agonie au jardin', '', 'Quelques heures avant la Passion, un ange présente un calice à Jésus au jardin des Oliviers.', ''],
+      ['m88-7', 'Les saintes femmes au tombeau', '', 'Un ange annonce aux femmes venues au sépulcre que Jésus est vraiment ressuscité.', '']
+    ]},
+    { salle: 'Chapelles de la Vierge et du Sacré-Cœur', lieu: 'Soubassements des chapelles rayonnantes', oeuvres: [
+      ['m84-3', 'Marie rencontre Jésus', '', 'Jésus, chargé de sa croix, croise sa mère. Trois personnages seulement.', 'Chapelle de la Vierge : après la vie de Marie, les trois moments les plus douloureux de la Passion.'],
+      ['m84-4', 'La Crucifixion', '', 'Trois figures, et pourtant aucune monotonie malgré les grandes lignes droites qu’impose le sujet.', 'Chapelle de la Vierge.'],
+      ['m84-6', 'La Descente de croix', '', 'Jésus, descendu de la croix, est déposé sur les genoux de sa mère.', 'Chapelle de la Vierge.'],
+      ['m84-7', 'La Mise au tombeau', '', 'Quatre figures dans un espace minuscule : le peintre, dit l’auteur, « se fait un jeu de surmonter les difficultés ».', 'Chapelle de la Vierge.'],
+      ['m84-5', 'Le Baptême', '', 'Pour le baptême, le peintre a choisi la crucifixion : Longin perce le côté du Christ, d’où sortent le sang et l’eau.', 'Chapelle du Sacré-Cœur, consacrée aux sept sacrements. Selon saint Augustin, tous les sacrements découlent de cette source.'],
+      ['m84-2', 'La Confirmation', '', 'L’Esprit Saint plane en haut du médaillon ; Jésus impose les mains à ses apôtres.', 'Chapelle du Sacré-Cœur.'],
+      ['m84-1', 'La Pénitence', '', 'Marie-Madeleine a versé son parfum et baise les pieds du Seigneur, qui lève la main pour l’absoudre : « Va, et ne pèche plus. »', 'Chapelle du Sacré-Cœur.'],
+      ['m84-0', 'L’Extrême-onction', '', 'Jésus fait lui-même les onctions suprêmes à son père nourricier, saint Joseph.', 'Chapelle du Sacré-Cœur.']
+    ]},
+    { salle: 'Chapelle Saint-Joseph', lieu: 'Soubassement, chapelle Saint-Joseph', oeuvres: [
+      ['m90-2', 'La Nativité', '', 'Joseph et Marie, premiers adorateurs de la crèche.', ''],
+      ['m90-6', 'La Circoncision', '', 'Dans le temple, devant le grand prêtre, avec Marie et Joseph pour témoins.', ''],
+      ['m90-4', 'La Présentation au Temple', '', 'Joseph tient les deux tourterelles, offrande des pauvres ; le vieillard Siméon prophétise sur l’enfant.', ''],
+      ['m90-0', 'Le songe de Joseph', '', 'L’ange avertit Joseph du massacre ordonné par Hérode et lui commande de fuir en Égypte.', ''],
+      ['m90-3', 'La Fuite en Égypte', '', 'La scène rappelle Fra Angelico, avec des personnages plus gracieux.', ''],
+      ['m90-1', 'Le second songe', '', 'Un ange ordonne à Joseph de revenir d’Égypte. Une scène, dit l’auteur, « très bien groupée ».', ''],
+      ['m90-5', 'Jésus retrouvé au Temple', '', 'Marie et Joseph retrouvent l’enfant qui enseigne les docteurs : « Ton père et moi, nous te cherchions, tout affligés. »', ''],
+      ['m90-7', 'La mort de saint Joseph', '', 'Le patriarche meurt assisté de Jésus et de Marie.', '']
+    ]},
+    { salle: 'Chapelle des Âmes du Purgatoire', lieu: 'Soubassement, chapelle des Âmes du Purgatoire', oeuvres: [
+      ['m94-3', 'Loth fuit Sodome', '', 'Il faut fuir le péché dont la punition est le feu. L’ange, dessous, tient un coq et la devise Vigilantia.', 'Les sujets de cette chapelle sont dessinés dans des étoiles à huit pointes.'],
+      ['m94-0', 'Les trois enfants dans la fournaise', '', 'Jetés au feu par Nabuchodonosor, ils ne brûlent pas : un ange écarte les flammes. La prière rafraîchit de même les âmes du purgatoire.', ''],
+      ['m94-1', 'Daniel dans la fosse aux lions', '', 'Le peintre voit dans ce tourment une figure du purgatoire.', ''],
+      ['m94-2', 'Judas Maccabée', '', 'Il envoie des aumônes à Jérusalem pour offrir des sacrifices en expiation des péchés des soldats morts au combat.', '']
+    ]},
+    { salle: 'Le Transept', lieu: 'Soubassements du transept', oeuvres: [
+      ['m94-4', 'L’Adoration des bergers', '', 'Côté de l’Évangile : les petits viennent adorer.', 'Grands et petits doivent le même culte à Dieu.'],
+      ['m94-5', 'L’Adoration des Mages', '', 'Les grands de la terre viennent à leur tour.', ''],
+      ['m94-6', 'Le Bon Pasteur', '', 'Placé près de l’autel de saint Epvre, qui fut lui-même un bon pasteur des âmes.', ''],
+      ['m94-7', 'Pais mes brebis', '', 'Jésus établit saint Pierre chef de son Église.', ''],
+      ['m92-2', 'L’Architecture', '', 'Une femme assise sur un trône tient un plan d’église : c’est exactement celui de Saint-Epvre, signé « P. Morey invenit et arch. »', 'L’idée de cette série : l’Église inspire tout ce qui est beau. Les figures ont l’allure des Vertus d’Andrea Pisano au baptistère de Florence.'],
+      ['m92-3', 'La Sculpture', '', 'Ciseau et maillet en mains.', ''],
+      ['m92-4', 'La Peinture', '', 'Suffisamment désignée par sa palette.', ''],
+      ['m92-5', 'La Musique', '', 'Un ange joue de la harpe.', ''],
+      ['m92-1', 'La Poésie chrétienne', '', 'Un ange tient une palme et une banderole où commence l’hymne Gloria in excelsis Deo.', ''],
+      ['m92-6', 'La Théologie', '', 'La tête dans les nuages, car son principe est au ciel. Elle tient l’Ancien et le Nouveau Testament et foule l’hérésie, dragon à tête de femme.', ''],
+      ['m92-7', 'La Philosophie', '', 'Ange pensif, couronné d’un nimbe où l’on lit Ethica, Logica, Physica. Sous ses pieds, l’erreur, dragon aux ailes de chauve-souris.', ''],
+      ['m92-0', 'L’Éloquence chrétienne', '', 'Une langue de feu sur la tête, comme à la Pentecôte, et les bras en croix : l’orateur chrétien annonce Jésus crucifié.', '']
+    ]},
+    { salle: 'Soubassements', lieu: 'Vues d’ensemble', oeuvres: [
+      ['m86-0', 'Soubassement de la chapelle de la Vierge', '', 'En haut, quatre sujets dans des quadrilobes gothiques ; en bas, de petits anges tiennent l’écusson qui les explique.', 'Tout est au trait : figures sur fond d’or redessinées en noir, sur un fond brun-rouge éteint. Un ton « très doux quoique très riche ».'],
+      ['m80-0', 'Soubassement de la chapelle du Sacré-Cœur', '', 'La même composition : sujets en haut, anges porteurs d’écussons en bas.', ''],
+      ['m82-0', 'Soubassement de la chapelle des Âmes du Purgatoire', '', 'Ici les sujets prennent place dans des étoiles à huit pointes.', '']
+    ]}
+  ];
+
+  var liste = [], salleEl = document.getElementById('salle'), sallesEl = document.getElementById('salles');
+  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // Ouverture
+  var e = document.createElement('section');
+  e.className = 'oeuvre entree';
+  e.innerHTML = '<div><div class="lieu">Basilique Saint-Epvre · Nancy</div><h1>Musée<br>virtuel</h1>' +
+    '<p>Les murs de la basilique ne sont pas peints directement : les peintures sont exécutées à l’huile sur toile, puis <strong>marouflées</strong>, c’est-à-dire collées au mur. Le peintre, Sublet, élève d’Hippolyte Flandrin, a gardé les tons mats de la fresque et détaché ses figures sur un fond d’or.</p>' +
+    '<p>Des Vertus de l’entrée jusqu’aux anges de l’Apocalypse, elles forment un seul poème. Voici chacune d’elles, avec sa signification, d’après la monographie de 1890.</p>' +
+    '<button class="go" type="button">Entrer dans le musée <span aria-hidden="true">→</span></button></div>';
+  salleEl.appendChild(e); liste.push({ el: e, s: -1 });
+  e.querySelector('.go').onclick = function () { va(1); };
+
+  S.forEach(function (s, si) {
+    var a = document.createElement('a'); a.href = '#'; a.textContent = s.salle;
+    a.onclick = function (ev) { ev.preventDefault(); va(s.debut); };
+    sallesEl.appendChild(a); s.lien = a; s.debut = liste.length;
+    s.oeuvres.forEach(function (o) {
+      var el = document.createElement('section'); el.className = 'oeuvre';
+      el.innerHTML = '<div class="cartel"><div class="lieu">' + esc(s.lieu) + '</div><h2>' + esc(o[1]) + '</h2>' +
+        '<div class="tech">Huile sur toile marouflée<br>Sublet, élève de Flandrin</div>' +
+        (o[2] ? '<div class="latin">' + esc(o[2]) + '</div>' : '') + '</div>' +
+        '<div class="mur"><span class="lampe" aria-hidden="true"></span><div class="cadre"><img loading="lazy" src="' + M + o[0] + '.webp?v=2" alt="' + esc(o[1]) + ', gravure de la monographie de 1890"></div></div>' +
+        '<div class="lecture"><p>' + esc(o[3]) + '</p>' + (o[4] ? '<p>' + esc(o[4]) + '</p>' : '') + '</div>';
+      salleEl.appendChild(el); liste.push({ el: el, s: si });
+    });
+  });
+
+  var i = 0, n = liste.length - 1;
+  function va(k, sansHash) {
+    i = Math.max(0, Math.min(n, k));
+    liste.forEach(function (x, j) {
+      x.el.classList.toggle('ici', j === i);
+      if (Math.abs(j - i) <= 1) { var im = x.el.querySelector('img'); if (im) im.loading = 'eager'; }
+    });
+    S.forEach(function (s, si) { s.lien.classList.toggle('ici', si === liste[i].s); });
+    var lien = liste[i].s >= 0 && S[liste[i].s].lien; if (lien) lien.scrollIntoView({ block: 'nearest', inline: 'center' });
+    document.getElementById('compteur').textContent = i ? i + ' / ' + n : 'Entrée';
+    document.getElementById('prec').disabled = i === 0;
+    document.getElementById('suiv').disabled = i === n;
+    document.getElementById('progres').style.width = (i / n * 100) + '%';
+    if (!sansHash) history.replaceState(null, '', i ? '#' + i : location.pathname);
+    liste[i].el.scrollTop = 0;
+  }
+  document.getElementById('prec').onclick = function () { va(i - 1); };
+  document.getElementById('suiv').onclick = function () { va(i + 1); };
+
+  var loupe = document.getElementById('loupe');
+  salleEl.addEventListener('click', function (ev) {
+    var c = ev.target.closest('.cadre'); if (!c) return;
+    loupe.querySelector('img').src = c.querySelector('img').src; loupe.querySelector('img').alt = c.querySelector('img').alt;
+    loupe.classList.add('ouverte'); loupe.scrollTop = 0;
+  });
+  loupe.onclick = function () { loupe.classList.remove('ouverte'); };
+
+  addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') { loupe.classList.remove('ouverte'); return; }
+    if (loupe.classList.contains('ouverte')) return;
+    if (ev.key === 'ArrowRight' || ev.key === 'PageDown' || ev.key === ' ') { ev.preventDefault(); va(i + 1); }
+    if (ev.key === 'ArrowLeft' || ev.key === 'PageUp') { ev.preventDefault(); va(i - 1); }
+    if (ev.key === 'Home') va(0); if (ev.key === 'End') va(n);
+  });
+  // Balayage sur écran tactile
+  var x0 = null, y0 = null;
+  salleEl.addEventListener('touchstart', function (ev) { x0 = ev.touches[0].clientX; y0 = ev.touches[0].clientY; }, { passive: true });
+  salleEl.addEventListener('touchend', function (ev) {
+    if (x0 === null) return; var dx = ev.changedTouches[0].clientX - x0, dy = ev.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) va(i + (dx < 0 ? 1 : -1)); x0 = null;
+  });
+  // Molette (bureau) : une œuvre par cran, avec un temps de repos
+  var repos = 0;
+  addEventListener('wheel', function (ev) {
+    if (innerWidth <= 900 || loupe.classList.contains('ouverte')) return;
+    var lec = ev.target.closest('.lecture'); if (lec && lec.scrollHeight > lec.clientHeight) return;
+    var t = Date.now(); if (t < repos || Math.abs(ev.deltaY) < 20) return; repos = t + 900; va(i + (ev.deltaY > 0 ? 1 : -1));
+  }, { passive: true });
+
+  addEventListener("hashchange", function () { va(parseInt(location.hash.slice(1), 10) || 0, true); });
+  va(parseInt(location.hash.slice(1), 10) || 0, true);
+})();
+</script>
+<script defer src="../assets/js/nav.js?v=11"></script>
+</body>
+</html>

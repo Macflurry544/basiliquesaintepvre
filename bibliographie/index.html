@@ -190,6 +190,12 @@
       .livre, .vu .livre, .vu .livre:hover, .vu .livre.choisi { translate: none; rotate: none; opacity: 1; transition: none; }
       .plat::after { display: none; } .fiche-carte .couv { animation: none; }
     }
+
+    /* Une seule rangée : les livres sont centrés, des serre-livres séparent les rayons */
+    .etagere { justify-content: safe center; }
+    .serre { flex: none; align-self: flex-end; position: relative; width: 22px; height: 150px; margin: 0 8px; border-radius: 4px 4px 0 0; background: linear-gradient(90deg, #2c3f55, var(--navy) 60%, #1a2a3a); }
+    .serre span { position: absolute; left: 50%; bottom: calc(100% + 10px); translate: -50% 0; writing-mode: vertical-rl; rotate: 180deg; white-space: nowrap; font: 600 .66rem/1 var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
+    .serre.premier { margin-left: 0; }
 </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
   <link rel="stylesheet" href="/assets/css/refonte.css?v=8">
@@ -322,10 +328,13 @@
 
     var zone = document.getElementById('etageres'), fiche = document.getElementById('fiche');
     var tous = [], i = 0;
-    RAYONS.forEach(function (r) {
-      var sec = document.createElement('section'); sec.className = 'rayon';
-      sec.innerHTML = '<h2 class="rayon-titre">' + r.titre + ' <small>' + r.note + '</small></h2>';
-      var et = document.createElement('div'); et.className = 'etagere';
+    // Une seule étagère pour toute la bibliothèque ; un serre-livres marque le passage d'un rayon à l'autre
+    var sec = document.createElement('section'); sec.className = 'rayon';
+    sec.innerHTML = '<h2 class="rayon-titre">Toute la bibliothèque <small>' + RAYONS.reduce(function (n, r) { return n + r.livres.length; }, 0) + ' ouvrages, de la monographie aux archives</small></h2>';
+    var et = document.createElement('div'); et.className = 'etagere';
+    RAYONS.forEach(function (r, ri) {
+      if (ri) { var s = document.createElement('span'); s.className = 'serre'; s.setAttribute('aria-hidden', 'true'); s.innerHTML = '<span>' + r.titre + '</span>'; et.appendChild(s); }
+      else { var s0 = document.createElement('span'); s0.className = 'serre premier'; s0.setAttribute('aria-hidden', 'true'); s0.innerHTML = '<span>' + r.titre + '</span>'; et.appendChild(s0); }
       r.livres.forEach(function (b) {
         b.n = ++i; tous.push(b);
         var el = document.createElement('button'); el.type = 'button';
@@ -338,8 +347,8 @@
         el.innerHTML = '<span class="dos"><span class="orn o" style="--src:' + ROSACE + '"></span><span class="t">' + b.court + '</span><span class="a">' + b.auteur + '</span></span>' + plat;
         et.appendChild(el);
       });
-      sec.appendChild(et); zone.appendChild(sec);
     });
+    sec.appendChild(et); zone.appendChild(sec);
 
     var survol = window.matchMedia('(hover: hover)').matches;
     var livres = zone.querySelectorAll('.livre');

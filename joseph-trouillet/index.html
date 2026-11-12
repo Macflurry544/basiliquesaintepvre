@@ -9,7 +9,9 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#2C3930">
   <link rel="canonical" href="https://basiliquesaintepvre.com/joseph-trouillet/">
-  <link rel="icon" href="/assets/favicon_io/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_io/favicon.svg?v=2">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/favicon_io/apple-touch-icon.png?v=2">
   <!-- Open Graph -->
   <meta property="og:type"        content="article">
   <meta property="og:url"         content="https://basiliquesaintepvre.com/joseph-trouillet/">
@@ -422,6 +424,9 @@
     li.avec-ico { list-style: none; position: relative; padding-left: 2.6rem; margin-bottom: 1rem; }
     li.avec-ico .ico { position: absolute; left: 0; top: .05em; width: 1.7rem; height: 1.7rem; color: inherit; }
     ul:has(> li.avec-ico) { padding-left: 0; }
+
+    /* Ce qui suit une bande empilée doit passer au-dessus d'elle, sinon la bande collée le recouvre et la page semble bloquée */
+    main > .bande ~ :not(.bande) { position: relative; z-index: 1; background: var(--papier); }
 </style>
 </head>
 <body>

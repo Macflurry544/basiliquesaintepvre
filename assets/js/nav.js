@@ -278,4 +278,62 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenu();
   });
+
+  /* Grande flèche de retour à l'accueil, juste avant le pied de page (toutes les pages sauf l'accueil) */
+  (function () {
+    var pied = document.querySelector('footer.pied');
+    if (!pied || location.pathname === '/' || location.pathname === '/index.html') return;
+    var st = document.createElement('style');
+    st.textContent = [
+      '.retour-accueil{display:block;max-width:1240px;margin:0 auto;padding:3.4rem max(22px,env(safe-area-inset-left,0px)) 4.4rem;text-decoration:none;color:#4a1518;font-family:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif}',
+      '.retour-accueil .ra-filet{display:block;border-top:1px solid rgba(33,52,72,.18);margin-bottom:2.4rem}',
+      '.retour-accueil .ra-lab{display:block;font-weight:600;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:#59626e;margin-bottom:1rem}',
+      '.retour-accueil .ra-ligne{display:flex;align-items:center;gap:clamp(1rem,3vw,2.4rem)}',
+      '.retour-accueil svg{flex:none;width:clamp(90px,16vw,230px);height:auto;overflow:visible;transition:transform .5s cubic-bezier(.22,1,.36,1)}',
+      '.retour-accueil b{font-weight:500;font-size:clamp(2.4rem,7.5vw,6.2rem);line-height:.9;letter-spacing:-.045em;text-transform:uppercase}',
+      '.retour-accueil:hover svg,.retour-accueil:focus-visible svg{transform:translateX(-14px)}',
+      '@media (prefers-reduced-motion:reduce){.retour-accueil svg{transition:none}}'
+    ].join('');
+    document.head.appendChild(st);
+    var a = document.createElement('a');
+    a.className = 'retour-accueil'; a.href = '/';
+    a.innerHTML = '<span class="ra-filet" aria-hidden="true"></span><span class="ra-lab">Basilique Saint-Epvre</span>'
+      + '<span class="ra-ligne"><svg viewBox="0 0 230 60" aria-hidden="true"><path d="M228 30H8M34 4 6 30l28 26" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square"/></svg><b>Retour à l’accueil</b></span>';
+    var avant = document.querySelector('.cul-de-lampe') && document.querySelector('.cul-de-lampe').nextElementSibling === pied ? document.querySelector('.cul-de-lampe') : pied;
+    pied.parentNode.insertBefore(a, avant);
+  })();
+
+  /* Petite flèche de retour en haut à gauche : courte, épaisse, attirée par la souris */
+  (function () {
+    if (location.pathname === '/' || location.pathname === '/index.html' || /^\/carte\//.test(location.pathname)) return;
+    var st = document.createElement('style');
+    st.textContent = [
+      '.retour-haut{position:absolute;z-index:60;top:calc(18px + env(safe-area-inset-top,0px));left:max(18px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:.55rem;padding:.55rem .7rem;text-decoration:none;font:600 .78rem/1 "Familjen Grotesk","Helvetica Neue",Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#fff;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .3s}',
+      '.retour-haut.clair{color:#4a1518}',
+      '.retour-haut svg{width:34px;height:22px;overflow:visible}',
+      '.retour-haut span{opacity:.85}',
+      '@media (max-width:700px){.retour-haut span{display:none}.retour-haut{top:calc(22px + env(safe-area-inset-top,0px))}}'
+    ].join('');
+    document.head.appendChild(st);
+    var a = document.createElement('a');
+    a.className = 'retour-haut'; a.href = '/'; a.setAttribute('aria-label', 'Retour à l’accueil');
+    a.innerHTML = '<svg viewBox="0 0 34 22" aria-hidden="true"><path d="M32 11H5M14 2 4 11l10 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg><span>Accueil</span>';
+    document.body.appendChild(a);
+    // couleur selon le fond derrière : blanc sur bordeaux ou bleu, bordeaux sur papier
+    function teinte() {
+      a.style.visibility = 'hidden'; var r = a.getBoundingClientRect(), el = document.elementFromPoint(r.left + 10, r.top + r.height / 2 + scrollY - scrollY); a.style.visibility = '';
+      var bg = 'rgba(0, 0, 0, 0)'; while (el && (bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent')) { bg = getComputedStyle(el).backgroundColor; el = el.parentElement; }
+      var m = bg.match(/\d+/g) || [255, 255, 255], lum = (+m[0] * .3 + +m[1] * .59 + +m[2] * .11);
+      a.classList.toggle('clair', lum > 160);
+    }
+    addEventListener('load', teinte); teinte();
+    // attirée par la souris, sans jamais trop s'éloigner
+    if (matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      addEventListener('mousemove', function (e) {
+        var r = a.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, dx = e.clientX - cx, dy = e.clientY - cy, d = Math.hypot(dx, dy);
+        if (d < 150) { var f = (1 - d / 150) * .35; a.style.transform = 'translate(' + (dx * f).toFixed(1) + 'px,' + (dy * f).toFixed(1) + 'px)'; }
+        else if (a.style.transform) a.style.transform = '';
+      }, { passive: true });
+    }
+  })();
 })();

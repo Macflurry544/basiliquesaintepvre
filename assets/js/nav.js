@@ -8,6 +8,7 @@
     { href: '/les-vitraux/',         label: 'Vitraux' },
     { href: '/les-cloches/',         label: 'Cloches' },
     { href: '/musee-virtuel/',       label: 'Musée virtuel' },
+    { href: '/inventaire/',          label: 'Inventaire' },
     { href: '/photos/',              label: 'Photos' },
     { href: '/horaires-douverture/', label: 'Horaires' },
     { href: '/contact/',             label: 'Contact' },
@@ -21,6 +22,7 @@
       { href: '/les-vitraux/',        label: 'Vitraux' },
       { href: '/les-cloches/',        label: 'Cloches' },
       { href: '/musee-virtuel/',      label: 'Musée virtuel' },
+      { href: '/inventaire/',         label: 'Inventaire' },
       { href: '/photos/',             label: 'Photos' },
     ]},
     { title: 'Visiter', links: [

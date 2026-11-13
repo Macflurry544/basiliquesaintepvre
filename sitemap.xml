@@ -29,6 +29,13 @@
   </url>
 
   <url>
+    <loc>https://basiliquesaintepvre.com/inventaire/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://basiliquesaintepvre.com/les-grandes-orgues/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>

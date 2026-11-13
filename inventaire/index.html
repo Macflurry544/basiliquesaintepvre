@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Inventaire — Basilique Saint-Epvre</title>
+  <meta name="description" content="Inventaire illustré des beaux objets de la Basilique Saint-Epvre de Nancy : mobilier, trésor, cloches et architecture, redessinés d'après les planches de la monographie de 1890.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4a1518">
+  <link rel="canonical" href="https://basiliquesaintepvre.com/inventaire/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_io/favicon.svg?v=2">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/favicon_io/apple-touch-icon.png?v=2">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://basiliquesaintepvre.com/inventaire/">
+  <meta property="og:title" content="Inventaire — Basilique Saint-Epvre">
+  <meta property="og:description" content="Mobilier, trésor, cloches et architecture, d'après la monographie de 1890.">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Basilique Saint-Epvre">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/nav.css?v=9">
+  <style>
+    :root { --bordeaux: #4a1518; --navy: #213448; --papier: #fbf9f5; --blanc: #fff; --gris: #59626e; --filet: rgba(33,52,72,.14);
+      --titre: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --texte: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font: 400 18px/1.6 var(--texte); overflow-x: hidden; }
+    a { color: inherit; }
+    .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+    .ouverture { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 8rem 22px 4rem; }
+    .ouverture h1 { margin: 0; font: 500 clamp(3rem, 11vw, 9rem)/.86 var(--titre); letter-spacing: -.05em; text-transform: uppercase; }
+    .ouverture p { margin: 1.2rem auto 0; max-width: 36ch; font: 400 1.15rem/1.45 var(--titre); opacity: .88; }
+    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; margin: 2.5rem 0 0; }
+    .lecture { max-width: 1240px; margin: 0 auto; padding: 5rem max(22px, env(safe-area-inset-left, 0px)) 3rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.6rem, 4vw, 3.2rem)/1.12 var(--titre); letter-spacing: -.025em; }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+    .filtres { position: sticky; top: 80px; z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 1240px; margin: 0 auto 2.4rem; padding: .8rem 22px; }
+    .f { padding: .55rem 1.1rem; border-radius: 999px; border: 1px solid rgba(33,52,72,.3); background: var(--blanc); color: var(--navy); font: 600 .9rem/1 var(--titre); cursor: pointer; transition: background .25s, color .25s; }
+    .f small { font-weight: 500; opacity: .6; margin-left: .2rem; }
+    .f.actif { background: var(--navy); color: var(--blanc); border-color: var(--navy); }
+    .grille-inv { max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)) 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px; }
+    .fiche { display: flex; flex-direction: column; background: var(--blanc); border: 1px solid var(--filet); border-radius: 18px; overflow: hidden; opacity: 0; translate: 0 18px; transition: opacity .6s ease calc(var(--i) * .06s), translate .6s ease calc(var(--i) * .06s), box-shadow .3s; }
+    .fiche.vu { opacity: 1; translate: 0 0; }
+    .fiche[hidden] { display: none; }
+    .fiche:hover { box-shadow: 0 22px 40px -26px rgba(33,52,72,.55); }
+    .vue { --h: 300px; height: var(--h); overflow: hidden; display: grid; place-items: center; padding: 26px; background: linear-gradient(to right, rgba(33,52,72,.05) 1px, transparent 1px) 0 0 / 22px 22px, linear-gradient(to bottom, rgba(33,52,72,.05) 1px, transparent 1px) 0 0 / 22px 22px, var(--papier); border-bottom: 1px solid var(--filet); }
+    .vue .trace { display: block; max-width: 100%; height: calc(var(--h) - 52px); color: var(--navy); background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; transition: scale .5s cubic-bezier(.22,1,.36,1); }
+    .fiche:nth-child(3n+2) .vue .trace { color: var(--bordeaux); }
+    .vue.photo img { max-width: 100%; max-height: calc(var(--h) - 52px); object-fit: contain; mix-blend-mode: multiply; transition: scale .5s cubic-bezier(.22,1,.36,1); }
+    .fiche:hover .trace, .fiche:hover .vue.photo img { scale: 1.05; }
+    .texte { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+    .num { font: 600 .7rem/1 var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
+    .fiche h2 { margin: .55rem 0 .4rem; font: 500 1.35rem/1.1 var(--titre); letter-spacing: -.02em; }
+    .det { margin: 0 0 .6rem; font: 500 .85rem/1.4 var(--titre); color: var(--gris); }
+    .texte p { margin: 0 0 .8rem; font-size: .95rem; }
+    .voir { margin-top: auto; align-self: flex-start; font: 600 .85rem var(--titre); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+    .voir span { display: inline-block; transition: translate .3s; }
+    .voir:hover span { translate: 4px 0; }
+    .source { max-width: 740px; margin: 0 auto; padding: 0 22px 3rem; font-size: .92rem; color: var(--gris); text-align: center; }
+    .cul-de-lampe { padding: 1rem 22px 4.5rem; text-align: center; }
+    .cul-de-lampe .orn { width: min(300px, 74vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 3.2rem 22px calc(3.2rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; }
+    .pied b { font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--titre); text-transform: uppercase; letter-spacing: -.03em; }
+    .pied .rosace-pied { width: 96px; height: 96px; margin: 1.6rem auto 1.4rem; color: var(--blanc); }
+    .pied span { font: 500 .82rem var(--titre); letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+    @media (max-width: 560px) { .vue { --h: 260px; } .filtres { top: 70px; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; } .f { flex: none; } }
+    @media (prefers-reduced-motion: reduce) { .fiche { opacity: 1; translate: none; transition: none; } .lecture-texte span { transition: none; } }
+  </style>
+</head>
+<body>
+
+<header class="ouverture">
+  <h1>Inventaire</h1>
+  <p>Les beaux objets de la basilique, d’après la monographie de 1890</p>
+</header>
+
+<div class="orn ferronnerie" style="--src:url(/assets/ornements/grille-lorraine.svg?v=4)" aria-hidden="true"></div>
+
+<main>
+  <section class="lecture"><p class="lecture-texte" aria-label="La monographie de 1890 ne décrit pas seulement l’édifice : elle recense ce que Mgr Trouillet y avait rassemblé, de la chaire aux calices, des cloches aux grilles. Voici ces pièces, redessinées d’après ses planches."><span>La</span> <span>monographie</span> <span>de</span> <span>1890</span> <span>ne</span> <span>décrit</span> <span>pas</span> <span>seulement</span> <span>l’édifice</span> <span>:</span> <span>elle</span> <span>recense</span> <span>ce</span> <span>que</span> <span>Mgr</span> <span>Trouillet</span> <span>y</span> <span>avait</span> <span>rassemblé,</span> <span>de</span> <span>la</span> <span>chaire</span> <span>aux</span> <span>calices,</span> <span>des</span> <span>cloches</span> <span>aux</span> <span>grilles.</span> <span>Voici</span> <span>ces</span> <span>pièces,</span> <span>redessinées</span> <span>d’après</span> <span>ses</span> <span>planches.</span></p></section>
+  <nav class="filtres" aria-label="Filtrer l’inventaire"><button class="f actif" data-f="tout" type="button">Tout <small>23</small></button><button class="f" data-f="mobilier" type="button">Mobilier <small>7</small></button><button class="f" data-f="tresor" type="button">Trésor <small>6</small></button><button class="f" data-f="cloches" type="button">Cloches <small>4</small></button><button class="f" data-f="architecture" type="button">Architecture <small>6</small></button></nav>
+  <section class="grille-inv" id="grille">
+    <article class="fiche" data-cat="mobilier" style="--i:1">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=2);aspect-ratio:678/2032" role="img" aria-label="La chaire à prêcher, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 01 · Mobilier</span><h2>La chaire à prêcher</h2><p class="det">Plans de Prosper Morey · sculpture des frères Klem, de Colmar · chêne polychromé</p><p>Octogonale, portée par un faisceau de colonnettes, avec son escalier courbe et son abat-voix surmonté d’une flèche de clochetons.</p><a class="voir" href="/musee-virtuel/#obj-chaire">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="mobilier" style="--i:2">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/mobilier/stalle.svg?v=2);aspect-ratio:403/1933" role="img" aria-label="Les stalles du sanctuaire, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 02 · Mobilier</span><h2>Les stalles du sanctuaire</h2><p class="det">Composition de Prosper Morey · vingt stalles</p><p>Cinq stalles par arcature, des dossiers ajourés pour laisser passer la lumière des vitraux, des anges musiciens entre les pignons.</p><a class="voir" href="/musee-virtuel/#obj-stalle">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="mobilier" style="--i:3">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/mobilier/pupitre.svg?v=2);aspect-ratio:770/2047" role="img" aria-label="Le lutrin de Metz, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 03 · Mobilier</span><h2>Le lutrin de Metz</h2><p class="det">Fer forgé · Metz, 1723 · dessin de Joseph Jacquot</p><p>Importé de Metz pour servir de lutrin aux chantres ; une croix de Lorraine sur des alérions a remplacé le globe d’origine.</p><a class="voir" href="/musee-virtuel/#obj-pupitre">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="mobilier" style="--i:4">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/mobilier/autel-saint-epvre.svg?v=1);aspect-ratio:1014/1181" role="img" aria-label="L’autel de saint Epvre, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 04 · Mobilier</span><h2>L’autel de saint Epvre</h2><p class="det">Planche des autels de la basilique</p><p>Coiffé de la statue de l’évêque de Toul, encadré de pinacles et de candélabres, le retable déroule des scènes sculptées.</p></div>
+    </article>
+    <article class="fiche" data-cat="mobilier" style="--i:5">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/inventaire/portes.svg?v=1);aspect-ratio:675/1957" role="img" aria-label="Une porte sculptée, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 05 · Mobilier</span><h2>Une porte sculptée</h2><p class="det">Bois sculpté · lithographie de la monographie</p><p>Sous une rose à huit lobes, deux vantaux à remplages et panneaux ouvragés, dans le style de l’édifice.</p></div>
+    </article>
+    <article class="fiche" data-cat="mobilier" style="--i:0">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/mobilier/grille.svg?v=2);aspect-ratio:1657/2182" role="img" aria-label="La grille de la crypte, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 06 · Mobilier</span><h2>La grille de la crypte</h2><p class="det">Composition de M. Cuny · forgée par Ventz Herboit, de Lunéville</p><p>Des enroulements tenus par des montants et des traverses, terminés en lances « pour en rendre l’escalade difficile ».</p><a class="voir" href="/musee-virtuel/#obj-grille">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="mobilier" style="--i:1">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/orgue.svg?v=2);aspect-ratio:993/954" role="img" aria-label="Le buffet des grandes orgues, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 07 · Mobilier</span><h2>Le buffet des grandes orgues</h2><p class="det">Dessin de Prosper Morey · orgue Merklin, 1867</p><p>Le buffet gothique de la tribune, tel que Morey l’avait dessiné ; le sculpteur Klem en modifia la balustrade.</p><a class="voir" href="/les-grandes-orgues/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="tresor" style="--i:2">
+      <div class="vue photo"><img src="/assets/img/mobilier/ostensoir.webp" alt="L’ostensoir, d’après la monographie de 1890" loading="lazy" decoding="async"></div>
+      <div class="texte"><span class="num">N° 08 · Trésor</span><h2>L’ostensoir</h2><p class="det">Composé et exécuté par M. Daubrée · vieil argent</p><p>La tour de la basilique en baldaquin, une lunette gardée par quatre anges et des rayons alternés comme un soleil.</p><a class="voir" href="/musee-virtuel/#obj-ostensoir">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="tresor" style="--i:3">
+      <div class="vue photo"><img src="/assets/img/mobilier/chasse.webp" alt="La châsse de saint Epvre, d’après la monographie de 1890" loading="lazy" decoding="async"></div>
+      <div class="texte"><span class="num">N° 09 · Trésor</span><h2>La châsse de saint Epvre</h2><p class="det">Travail italien · 1,10 m sur 0,55 m</p><p>Elle renferme le chef du saint ; ses croix dessinent une croix de Lorraine, et des griffons ailés la portent.</p><a class="voir" href="/musee-virtuel/#obj-chasse">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="tresor" style="--i:4">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/inventaire/calice.svg?v=1);aspect-ratio:1159/1367" role="img" aria-label="Le calice, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 10 · Trésor</span><h2>Le calice</h2><p class="det">Trésor de la basilique · planche de la monographie</p><p>Un nœud à fortes saillies et un pied finement ouvragé : l’orfèvrerie du trésor rassemblé par Mgr Trouillet.</p></div>
+    </article>
+    <article class="fiche" data-cat="tresor" style="--i:5">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/inventaire/aiguiere.svg?v=1);aspect-ratio:794/1260" role="img" aria-label="L’aiguière, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 11 · Trésor</span><h2>L’aiguière</h2><p class="det">Trésor de la basilique · planche de la monographie</p><p>Une panse ornée de rinceaux et de croix, un médaillon au monogramme sur l’anse, un pélican sur le couvercle.</p></div>
+    </article>
+    <article class="fiche" data-cat="tresor" style="--i:0">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/inventaire/croix.svg?v=1);aspect-ratio:443/845" role="img" aria-label="La médaille des confrères, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 12 · Trésor</span><h2>La médaille des confrères</h2><p class="det">Frappée à l’image de la basilique · 1875</p><p>En forme de croix, elle porte la façade de Saint-Epvre et la date de 1875, année de la consécration de l’église.</p></div>
+    </article>
+    <article class="fiche" data-cat="tresor" style="--i:1">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/mobilier/chandeliers.svg);aspect-ratio:1292/2005" role="img" aria-label="Chandelier, candélabre et applique, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 13 · Trésor</span><h2>Chandelier, candélabre et applique</h2><p class="det">Maison Marggraff · frères Dehin, à Liège · cuivre ciselé et émaillé</p><p>Trois anges au pied des chandeliers du maître-autel ; à chaque pilier, une applique à quatre ou six becs de gaz.</p><a class="voir" href="/musee-virtuel/#obj-chandeliers">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="cloches" style="--i:2">
+      <div class="vue photo"><img src="/assets/img/site/bourdon-monographie.webp" alt="Le bourdon, d’après la monographie de 1890" loading="lazy" decoding="async"></div>
+      <div class="texte"><span class="num">N° 14 · Cloches</span><h2>Le bourdon</h2><p class="det">Fondu en mai 1867 · 3 372 kg</p><p>Fondu par Ignace Hilzer et monté par Joseph Pozdech, de Pest ; on ne le sonnait jamais qu’avec lui seul.</p><a class="voir" href="/les-cloches/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="cloches" style="--i:3">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/cloches/pozdech.svg?v=1);aspect-ratio:966/1740" role="img" aria-label="La suspension Pozdech, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 15 · Cloches</span><h2>La suspension Pozdech</h2><p class="det">Système de Joseph Pozdech, de Pest</p><p>Une couronne de métal fondue avec la cloche permet de la tourner douze fois ; un seul homme suffit à la mettre en branle.</p><a class="voir" href="/les-cloches/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="cloches" style="--i:4">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/cloches/empreinte-sauveur.svg?v=1);aspect-ratio:648/540" role="img" aria-label="Le médaillon du Sauveur, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 16 · Cloches</span><h2>Le médaillon du Sauveur</h2><p class="det">Empreinte du gros timbre de 1751</p><p>Le buste du Christ de profil, fondu sur la cloche de François Despois ; la Vierge à l’Enfant orne l’autre face.</p><a class="voir" href="/les-cloches/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="cloches" style="--i:5">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/cloches/empreinte-ecu.svg?v=1);aspect-ratio:540/668" role="img" aria-label="L’écu d’une ancienne cloche, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 17 · Cloches</span><h2>L’écu d’une ancienne cloche</h2><p class="det">Empreinte · ancienne église Saint-Epvre</p><p>Deux bars adossés, semés de croix : l’empreinte relevée sur une cloche de l’église démolie en 1867.</p><a class="voir" href="/les-cloches/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="architecture" style="--i:0">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/facade.svg?v=1);aspect-ratio:1253/1976" role="img" aria-label="La façade principale, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 18 · Architecture</span><h2>La façade principale</h2><p class="det">Dessin de Prosper Morey</p><p>Le portail, la tour et sa flèche de 84 mètres, la plus haute de la ville.</p><a class="voir" href="/histoire/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="architecture" style="--i:1">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/architecture/plan.svg?v=1);aspect-ratio:1312/1774" role="img" aria-label="Le plan au sol, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 19 · Architecture</span><h2>Le plan au sol</h2><p class="det">Plan géométral de Prosper Morey</p><p>À la croisée, quatre piliers distants de dix mètres portent une voûte de plus de 100 m² à 24 mètres de haut.</p><a class="voir" href="/histoire/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="architecture" style="--i:2">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/architecture/coupe-longitudinale.svg?v=1);aspect-ratio:1632/1224" role="img" aria-label="La coupe longitudinale, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 20 · Architecture</span><h2>La coupe longitudinale</h2><p class="det">Planche de la monographie</p><p>Soixante-quatorze fenêtres, cinq portes, cinq rosaces : « les vides, ici, prédominent sur les pleins ».</p><a class="voir" href="/histoire/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="architecture" style="--i:3">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/clocher.svg?v=2);aspect-ratio:1044/4482" role="img" aria-label="Le clocher, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 21 · Architecture</span><h2>Le clocher</h2><p class="det">Flèche de 84 mètres</p><p>Une tour carrée qui passe à l’octogone, des pans ajourés semés de crochets, et la croix au sommet.</p><a class="voir" href="/les-cloches/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="architecture" style="--i:4">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/vitrail.svg?v=1);aspect-ratio:490/1144" role="img" aria-label="Un vitrail du chœur, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 22 · Architecture</span><h2>Un vitrail du chœur</h2><p class="det">Planche des vitraux de la monographie</p><p>Quatre lancettes sous une rose et deux quadrilobes ; les figures de saints y occupent le registre central.</p><a class="voir" href="/les-vitraux/">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+    <article class="fiche" data-cat="architecture" style="--i:5">
+      <div class="vue"><span class="trace" style="--src:url(/assets/ornements/saint-michel.svg?v=1);aspect-ratio:499/479" role="img" aria-label="Saint Michel terrassant le dragon, gravure vectorisée d’après la monographie de 1890"></span></div>
+      <div class="texte"><span class="num">N° 23 · Architecture</span><h2>Saint Michel terrassant le dragon</h2><p class="det">Peinture murale de Sublet · transept ouest</p><p>L’archange, dans un quadrilobe, terrasse le dragon dont l’orgueil voulait s’égaler à Dieu.</p><a class="voir" href="/musee-virtuel/#gloire">Voir dans le site <span aria-hidden="true">→</span></a></div>
+    </article>
+  </section>
+  <p class="source">Gravures vectorisées d’après les planches de la <a href="/bibliographie/#monographie">Monographie de la basilique de Saint-Epvre</a> (1890), exemplaires numérisés par Internet Archive.</p>
+</main>
+
+<div class="cul-de-lampe" aria-hidden="true"><div class="orn" style="--src:url(/assets/ornements/ange-banderole.svg?v=3)"></div></div>
+
+<footer class="pied">
+  <b>Saint-Epvre</b>
+  <div class="orn rosace-pied" style="--src:url(/assets/ornements/rosace-p.svg?v=2)" aria-hidden="true"></div>
+  <span>Nancy · Lorraine · France</span>
+</footer>
+
+<script src="/assets/js/nav.js?v=13"></script>
+<script>
+  (function () {
+    // apparition des fiches
+    var fiches = [].slice.call(document.querySelectorAll('.fiche'));
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px' });
+      fiches.forEach(function (f) { io.observe(f); });
+    } else fiches.forEach(function (f) { f.classList.add('vu'); });
+    // filtres
+    document.querySelectorAll('.f').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.f').forEach(function (x) { x.classList.toggle('actif', x === b); });
+        var f = b.dataset.f;
+        fiches.forEach(function (c) { c.hidden = !(f === 'tout' || c.dataset.cat === f); if (!c.hidden) c.classList.add('vu'); });
+      });
+    });
+    // le chapeau se lit au défilement
+    var mots = document.querySelectorAll('.lecture-texte span'), bloc = document.querySelector('.lecture');
+    function maj() { var r = bloc.getBoundingClientRect(), h = innerHeight, p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25))), n = Math.round(p * mots.length);
+      mots.forEach(function (m, i) { m.classList.toggle('lu', i < n); }); }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) mots.forEach(function (m) { m.classList.add('lu'); });
+    else { addEventListener('scroll', function () { requestAnimationFrame(maj); }, { passive: true }); maj(); }
+  })();
+</script>
+<script src="/assets/js/visionneuse.js?v=2"></script>
+</body>
+</html>

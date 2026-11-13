@@ -28,7 +28,7 @@
   <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=9">
   <style>
     /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
@@ -412,6 +412,15 @@
     .mesures b { display: block; font: 500 clamp(2.2rem, 5vw, 3.6rem)/1 var(--titre); letter-spacing: -.04em; }
     .mesures span { display: block; margin-top: .4rem; font: 500 .78rem var(--titre); letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
     .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
+
+    /* Extraits de la monographie : planche vectorisée et citation */
+    .extrait { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 1.4rem; align-items: start; margin: 2.4rem 0 .4rem; padding: 1.5rem 0 0; border-top: 1px solid currentColor; }
+    .extrait-grav { width: 100%; background: currentColor; opacity: .92; }
+    .extrait-lab { display: block; font: 600 .72rem/1 var(--titre); letter-spacing: .22em; text-transform: uppercase; opacity: .7; margin-bottom: .7rem; }
+    .extrait blockquote { margin: 0 0 .7rem; font: 400 1.6rem/1.15 'Caveat', cursive; }
+    .extrait p { margin: 0 0 .6rem !important; font-size: .98rem; }
+    .extrait cite { font: italic 400 .85rem/1.4 var(--texte); opacity: .7; }
+    @media (max-width: 560px) { .extrait { grid-template-columns: 90px minmax(0, 1fr); gap: 1rem; } .extrait blockquote { font-size: 1.35rem; } }
 </style>
 </head>
 <body>
@@ -432,7 +441,7 @@
     <div style="--i:0"><small>01</small><b>1080</b><span>Fondation de la paroisse par le duc Thierry II.</span></div>
     <div style="--i:1"><small>02</small><b>1864</b><span>Première pierre de la nouvelle église.</span></div>
     <div style="--i:2"><small>03</small><b>1874</b><span>Pie IX l'élève au rang de basilique.</span></div>
-    <div style="--i:3"><small>04</small><b>87&#8239;m</b><span>La flèche, la plus haute de la ville.</span></div>
+    <div style="--i:3"><small>04</small><b>84&#8239;m</b><span>La flèche, la plus haute de la ville.</span></div>
   </section>
 
   <nav class="sommaire col apparait" aria-label="Sommaire">
@@ -518,10 +527,11 @@
           </li>
         </ol>
         <div class="mesures">
-          <div><b>87 m</b><span>Flèche</span></div>
+          <div><b>84 m</b><span>Flèche</span></div>
           <div><b>84 m</b><span>Longueur de la nef</span></div>
           <div><b>24 m</b><span>Hauteur sous voûte</span></div>
         </div>
+        <aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/architecture/plan.svg?v=1);aspect-ratio:1312 / 1774" role="img" aria-label="Planche de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« Il lui fallait suspendre à 24 mètres de hauteur une voûte de plus de 100 mètres carrés. »</blockquote><p>À la croisée du transept, les quatre piliers du centre, distants de dix mètres, n’ont guère plus de masse que ceux de la nef ; c’est pourtant sur eux que Morey a posé la grande voûte. Sous la tour, quatre arcs-doubleaux très puissants portent tout le poids d’un clocher de 84 mètres.</p><cite>Monographie de la basilique, 1890, chapitre V</cite></div></aside><aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/architecture/coupe-longitudinale.svg?v=1);aspect-ratio:1632 / 1224" role="img" aria-label="Planche de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« Les vides, ici, prédominent sur les pleins. »</blockquote><p>Soixante-quatorze fenêtres, cinq portes et cinq rosaces : pour l’auteur, les vides et les pleins sont « les dactyles ou les spondées » du poème de l’architecte. Dans la crypte reposent les deux curés constructeurs, et le dallage du chœur est fait de marbres noirs d’Afrique, trouvés dans les déblais de la voie Appienne, à Rome.</p><cite>Monographie de la basilique, 1890, chapitre V</cite></div></aside>
       </div>
     </div>
   </section>

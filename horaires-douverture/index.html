@@ -53,17 +53,39 @@
     .pied b { font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--grot); text-transform: uppercase; letter-spacing: -.03em; }
     .pied .rosace { width: 90px; height: 90px; margin: 1.6rem auto 1.4rem; background: currentColor; -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
     .pied span { font: 500 .85rem var(--grot); letter-spacing: .24em; text-transform: uppercase; opacity: .75; }
-  </style>
+  
+    /* Ornements de la monographie : appliques de part et d'autre du titre, allumées quand la basilique est ouverte */
+    .tete { position: relative; overflow: hidden; }
+    .applique { position: absolute; top: 50%; translate: 0 -38%; width: clamp(64px, 11vw, 150px); aspect-ratio: 447 / 900; background: var(--blanc); opacity: .85;
+      -webkit-mask: url(/assets/ornements/applique.svg?v=1) center / contain no-repeat; mask: url(/assets/ornements/applique.svg?v=1) center / contain no-repeat;
+      filter: drop-shadow(0 0 0 rgba(255,214,150,0)); transition: filter 1.2s ease; }
+    .applique.d { right: clamp(10px, 6vw, 120px); }
+    .applique.g { left: clamp(10px, 6vw, 120px); scale: -1 1; }
+    body.ouverte .applique { animation: lueur 4s ease-in-out infinite; }
+    @keyframes lueur { 0%, 100% { filter: drop-shadow(0 0 8px rgba(255,214,150,.35)); } 50% { filter: drop-shadow(0 0 22px rgba(255,214,150,.7)); } }
+    .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
+    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; margin: 2.5rem 0 0; }
+    .avec-chandeliers { display: flex; align-items: flex-end; gap: .7rem; }
+    .avec-chandeliers .chandelier { width: 22px; aspect-ratio: 269 / 933; background: var(--bordeaux); -webkit-mask: url(/assets/ornements/chandelier.svg?v=1) center / contain no-repeat; mask: url(/assets/ornements/chandelier.svg?v=1) center / contain no-repeat; }
+    .cul-de-lampe { padding: 0 22px 4.5rem; text-align: center; }
+    .cul-de-lampe .orn { width: min(300px, 74vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
+    @media (max-width: 560px) { .tete { padding-left: 62px; padding-right: 62px; } .tete h1 { font-size: clamp(2rem, 9.5vw, 2.6rem); } .applique { width: 46px; opacity: .7; } }
+    @media (prefers-reduced-motion: reduce) { body.ouverte .applique { animation: none; filter: drop-shadow(0 0 14px rgba(255,214,150,.55)); } }
+</style>
 </head>
 <body>
 
 <header class="tete">
+  <div class="applique g" aria-hidden="true"></div>
+  <div class="applique d" aria-hidden="true"></div>
   <div class="col">
     <h1>Horaires d'ouverture</h1>
     <p>La basilique est ouverte le samedi. Entrée libre.</p>
     <div class="trait" aria-hidden="true"></div>
   </div>
 </header>
+
+<div class="orn ferronnerie" style="--src:url(/assets/ornements/grille-lorraine.svg?v=4)" aria-hidden="true"></div>
 
 <main class="col">
   <p class="etat" id="etat" aria-live="polite"></p>
@@ -78,7 +100,7 @@
   </section>
 
   <section>
-    <h2>Messes</h2>
+    <h2 class="avec-chandeliers"><span class="chandelier" aria-hidden="true"></span>Messes<span class="chandelier" aria-hidden="true"></span></h2>
     <ul>
       <li>Le <strong>dimanche</strong> à <strong>9h30</strong> et <strong>11h</strong>.</li>
       <li>Le <strong>samedi</strong> à <strong>18h30</strong>, à la crypte.</li>
@@ -96,6 +118,8 @@
   </section>
 </main>
 
+<div class="cul-de-lampe" aria-hidden="true"><div class="orn" style="--src:url(/assets/ornements/ange-banderole.svg?v=3)"></div></div>
+
 <footer class="pied">
   <b>Saint-Epvre</b>
   <div class="rosace" aria-hidden="true"></div>
@@ -110,7 +134,7 @@
     function maj() {
       var d = new Date(), m = d.getHours() * 60 + d.getMinutes(), sam = d.getDay() === 6;
       var ouverte = sam && m >= 990 && m < 1100;
-      e.classList.toggle('ouverte', ouverte);
+      e.classList.toggle('ouverte', ouverte); document.body.classList.toggle('ouverte', ouverte);
       e.textContent = ouverte ? 'Ouverte en ce moment, jusqu\'à 18h30' : sam && m < 990 ? 'Ouverture aujourd\'hui à 16h30' : 'Fermée en ce moment · prochaine ouverture samedi à 16h30';
     }
     maj(); setInterval(maj, 60000);

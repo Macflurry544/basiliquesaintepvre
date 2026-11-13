@@ -397,6 +397,38 @@
     .visuel .eventail { overflow: visible; height: 400px; }
     .visuel .eventail .carte { width: 120px; margin-left: -60px; transform-origin: 50% 260%; }
     @media (max-width: 560px) { .visuel .eventail { height: 340px; } .visuel .eventail .carte { width: 96px; margin-left: -48px; } }
+
+    /* ══ Anatomie d'un tuyau : dessins d'Audsley annotés, échelle des pieds ══ */
+    .anatomie { margin-top: 4rem; }
+    .anatomie h3 { margin: 3rem 0 .8rem; font: 500 clamp(1.8rem, 3.6vw, 2.8rem)/1 var(--titre); letter-spacing: -.035em; }
+    .anatomie-intro { max-width: 62ch; opacity: .85; }
+    .tuyaux { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin: 2.4rem 0 1rem; }
+    .tuyau-fig { margin: 0; }
+    .tuyau-zone { position: relative; height: 460px; }
+    .tuyau { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 70px; height: 100%; background: currentColor; }
+    .tuyau-zone ol { list-style: none; margin: 0; padding: 0; }
+    .an { position: absolute; width: calc(50% - 46px); translate: 0 -50%; font: 400 .9rem/1.3 var(--texte); opacity: .9; }
+    .an b { display: block; font: 600 .78rem/1.2 var(--titre); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .2rem; }
+    .an.g { left: 0; text-align: right; }
+    .an.d { right: 0; }
+    .an::before { content: ""; position: absolute; top: .55em; width: 30px; border-top: 1px solid currentColor; opacity: .55; }
+    .an.g::before { right: -38px; } .an.d::before { left: -38px; }
+    .tuyau-fig figcaption { margin-top: 1rem; text-align: center; font-size: .95rem; opacity: .8; }
+    .tuyau-fig figcaption strong { display: block; font: 500 1.25rem/1.2 var(--titre); opacity: 1; }
+    .echelle { list-style: none; margin: 2rem 0 1.6rem; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.2rem; align-items: end; }
+    .echelle li { display: flex; flex-direction: column; gap: .3rem; }
+    .echelle .barre { display: block; width: 14px; height: calc(var(--p) * 9px); max-height: 290px; background: currentColor; border-radius: 3px 3px 0 0; margin-bottom: .5rem; opacity: .85; }
+    .echelle b { font: 500 2.2rem/1 var(--titre); letter-spacing: -.04em; }
+    .echelle em { font-style: normal; font: 600 .82rem var(--titre); letter-spacing: .1em; opacity: .7; }
+    .echelle small { font-size: .88rem; line-height: 1.4; opacity: .85; }
+    @media (max-width: 820px) {
+      .tuyaux { grid-template-columns: 1fr; gap: 3rem; }
+      .tuyau-zone { height: 380px; }
+      .echelle { grid-template-columns: 1fr; }
+      .echelle li { display: grid; grid-template-columns: auto 4.2rem 1fr; gap: .2rem 1rem; align-items: end; }
+      .echelle .barre { height: calc(var(--p) * 3px + 10px); grid-row: span 2; margin: 0; }
+      .echelle small { grid-column: 2 / -1; }
+    }
 </style>
   <script type="application/ld+json">
   {
@@ -521,7 +553,16 @@
       </div>
     </div><div class="bande-jeux">
     <div class="facade-jeux" data-orgue="grand" aria-label="Composition du grand orgue"></div>
-    <p class="jeux-note">Composition du grand orgue : un clavier par onglet, une carte par jeu, le tuyau dessiné à l'échelle de sa taille en pieds. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p></div>
+    <p class="jeux-note">Composition du grand orgue : un clavier par onglet, une carte par jeu, le tuyau dessiné à l'échelle de sa taille en pieds. Source : Inventaire des orgues ; dessins de tuyaux d'Audsley (1905).</p>
+    <div class="anatomie">
+      <h3>Anatomie d’un tuyau</h3>
+      <p class="anatomie-intro">Un orgue ne joue que de l’air : chaque tuyau ne donne qu’une seule note, et chaque jeu aligne un tuyau par touche. Deux familles se partagent le buffet : les tuyaux <strong>à bouche</strong>, qui sonnent comme une flûte, et les tuyaux <strong>à anche</strong>, où une languette vibre.</p>
+      <div class="tuyaux"><figure class="tuyau-fig"><div class="tuyau-zone"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/montre.svg)" aria-hidden="true"></span><ol><li class="an d" style="top:3%"><b>Le haut du corps</b>On l’accorde en le roulant ou en l’entaillant : plus il est court, plus il sonne aigu.</li><li class="an g" style="top:45%"><b>Le corps</b>Sa longueur fixe la note ; sa largeur, la couleur du son.</li><li class="an d" style="top:81%"><b>La bouche</b>L’air sort par une fente et se brise sur la lèvre supérieure : le tuyau parle.</li><li class="an g" style="top:93%"><b>Le pied</b>Il amène l’air du sommier. Son trou règle la force du son.</li></ol></div><figcaption><strong>La montre</strong>Tuyau à bouche, en étain</figcaption></figure><figure class="tuyau-fig"><div class="tuyau-zone"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/trompette.svg)" aria-hidden="true"></span><ol><li class="an g" style="top:20%"><b>Le résonateur</b>En cône évasé : il donne au son son éclat de cuivre.</li><li class="an d" style="top:77%"><b>La rasette</b>Ce fil appuie sur la languette ; en la faisant glisser, on accorde le jeu.</li><li class="an g" style="top:90%"><b>L’anche et la languette</b>Cachées dans le pied : une lame de laiton bat contre une rigole, comme l’anche d’une clarinette.</li></ol></div><figcaption><strong>La trompette</strong>Tuyau à anche</figcaption></figure><figure class="tuyau-fig"><div class="tuyau-zone"><span class="tuyau orn" style="--src:url(../assets/ornements/jeux/bourdon.svg)" aria-hidden="true"></span><ol><li class="an d" style="top:8%"><b>La calotte</b>Le tuyau est fermé en haut : il sonne une octave plus bas que sa longueur.</li><li class="an g" style="top:45%"><b>Le corps carré</b>En chêne ou en sapin, pour les grands jeux graves.</li><li class="an d" style="top:73%"><b>La bouche</b>Même principe que la montre, mais en bois : le son est doux et rond.</li></ol></div><figcaption><strong>Le bourdon</strong>Tuyau bouché, en bois</figcaption></figure></div>
+      <h3>Du plus grand au plus petit</h3>
+      <p class="anatomie-intro">La taille d’un jeu se dit en <strong>pieds</strong> (′), d’après la longueur de son tuyau le plus grave. Le grand orgue de Saint-Epvre descend jusqu’à 32 pieds.</p>
+      <ol class="echelle"><li><span class="barre" style="--p:32"></span><b>32′</b><em>≈ 10 m</em><small>La soubasse de la pédale, la note la plus grave de l’orgue (bouchée, elle ne mesure que la moitié).</small></li><li><span class="barre" style="--p:16"></span><b>16′</b><em>≈ 5 m</em><small>Les grands jeux graves : principal, bourdon, bombarde.</small></li><li><span class="barre" style="--p:8"></span><b>8′</b><em>≈ 2,50 m</em><small>La hauteur « normale », celle d’un piano : montres, flûtes, trompettes.</small></li><li><span class="barre" style="--p:4"></span><b>4′</b><em>≈ 1,25 m</em><small>Une octave au-dessus : prestant, flûte octaviante.</small></li><li><span class="barre" style="--p:2"></span><b>2′</b><em>≈ 60 cm</em><small>Deux octaves au-dessus : flageolet, doublette.</small></li></ol>
+      <p class="anatomie-intro">Les tuyaux de façade, les <strong>montres</strong>, sont en étain poli ; ceux de l’intérieur en <strong>étoffe</strong>, un alliage d’étain et de plomb ; les plus graves en zinc ou en bois.</p>
+    </div></div>
   </section>
 
   <section class="bande b-papier" id="style">

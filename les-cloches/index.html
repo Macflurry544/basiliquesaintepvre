@@ -472,6 +472,9 @@
     .extrait p { margin: 0 0 .6rem !important; font-size: .98rem; }
     .extrait cite { font: italic 400 .85rem/1.4 var(--texte); opacity: .7; }
     @media (max-width: 560px) { .extrait { grid-template-columns: 84px minmax(0, 1fr); gap: 1rem; } .extrait blockquote { font-size: 1.35rem; } }
+
+    /* Bande du tableau comparatif : une marge blanche en bas pour que la bande suivante ne recouvre pas la fin de la liste */
+    #section-3 { padding-bottom: calc(clamp(4rem, 9vh, 7rem) + 30vh); }
 </style>
 </head>
 <body>

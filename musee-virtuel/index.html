@@ -216,6 +216,19 @@
       .cote.v { left: -26px; }
     }
     @media (prefers-reduced-motion: reduce) { .plan .trace, .note, .traits path, .traits circle, .repere b, .cote { transition: none; } }
+
+    /* ══ Téléphone : page allégée (pas d'empilement collant, pas de flou, vitrine sans animation continue) ══ */
+    @media (max-width: 820px) {
+      .bande { position: relative !important; top: auto !important; }
+      .guide { -webkit-backdrop-filter: none; backdrop-filter: none; background: #fff; }
+      .vit-piste { animation: none !important; padding: 0 16px; }
+      .vit-rail { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .vit-rail::-webkit-scrollbar { display: none; }
+      .tableau[aria-hidden="true"] { display: none; }
+      .tableau { scroll-snap-align: center; }
+      .vit-tete p { display: none; }
+    }
+    .vit-rail.hors-champ .vit-piste { animation-play-state: paused; }
     .sources-h { max-width: 740px; margin: 4rem auto 0; padding: 0 22px; font-size: .95rem; color: var(--gris); }
     .cul-de-lampe { padding: 4rem 22px 4.5rem; text-align: center; }
     .cul-de-lampe .orn { width: min(340px, 78vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
@@ -1264,6 +1277,12 @@
 
     // Vitrine : un toucher met le défilement en pause, un second le relance
     (function () { var r = document.querySelector('.vit-rail'); if (!r) return; r.addEventListener('touchstart', function (e) { if (!e.target.closest('.tableau')) return; r.classList.add('tenu'); clearTimeout(r._t); r._t = setTimeout(function () { r.classList.remove('tenu'); }, 4000); }, { passive: true }); })();
+
+
+    // La vitrine ne défile que lorsqu'elle est à l'écran (économise la batterie et la mémoire)
+    (function () { var r = document.querySelector('.vit-rail'); if (!r || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (es) { r.classList.toggle('hors-champ', !es[0].isIntersecting); }).observe(r); })();
+    // Sur téléphone, les bandes ne sont plus collantes : inutile de recalculer leur décalage
 
     // Bandes empilées : une bande plus haute que l'écran reste collée par le bas
     (function () {

@@ -462,6 +462,16 @@
     .poids p { margin: 0 !important; color: var(--gris); }
     .poids p b { color: var(--navy); font-weight: 600; }
     @media (max-width: 560px) { .poids-l { grid-template-columns: 1fr; gap: .3rem; } }
+
+    /* Extraits de la monographie : gravure vectorisée et citation */
+    .extrait { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 1.4rem; align-items: start; margin: 2.4rem 0 .4rem; padding: 1.5rem 0 0; border-top: 1px solid currentColor; }
+    .extrait.sans-grav { grid-template-columns: 1fr; }
+    .extrait-grav { width: 100%; background: currentColor; opacity: .9; }
+    .extrait-lab { display: block; font: 600 .72rem/1 var(--titre); letter-spacing: .22em; text-transform: uppercase; opacity: .7; margin-bottom: .7rem; }
+    .extrait blockquote { margin: 0 0 .7rem; font: 400 1.6rem/1.15 'Caveat', cursive; }
+    .extrait p { margin: 0 0 .6rem !important; font-size: .98rem; }
+    .extrait cite { font: italic 400 .85rem/1.4 var(--texte); opacity: .7; }
+    @media (max-width: 560px) { .extrait { grid-template-columns: 84px minmax(0, 1fr); gap: 1rem; } .extrait blockquote { font-size: 1.35rem; } }
 </style>
 </head>
 <body>
@@ -511,6 +521,7 @@
         <p>L'ancienne église Saint-Epvre (détruite en 1867) possédait au moins trois cloches : le bourdon du clocher (environ 1 570 kg), un timbre d'horloge de 1751 et un second timbre de 1562. La cloche du clocher portait l'inscription en latin <em>« Jehan de Challegny ma faict, 1576 »</em>. Lors de la reconstruction de la basilique (1864–1875) et l'aménagement du nouveau beffroi, ces trois cloches furent réinstallées — portant le total à 9 cloches : 8 dans la tour centrale et 1 dédiée à l'horloge.</p>
           <p>La plus imposante du nouvel ensemble est la grosse cloche, fondue en 1591 à Clinchamp (Haute-Marne) par Jean de Laître et son frère Jacques. Son inscription latine complète fait figurer le comte Jean de Salm, gouverneur de Nancy, et la duchesse Charlotte, épouse de Charles III. Ayant cassé au XVIIIᵉ siècle, elle fut refondue en 1747 par les Burel du Bassigny.</p>
           <p>D'autres cloches de la basilique ont été fondues ou refondues aux XIXᵉ et XXᵉ siècles. Les travaux de rénovation comportèrent même un nouveau système de montage des cloches, certaines étant coulées en Hongrie selon un opuscule technique de l'époque.</p>
+        <aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/cloches/empreinte-ecu.svg?v=1);aspect-ratio:540 / 668" role="img" aria-label="Gravure de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« Les cloches à Saint-Epvre sont au nombre de huit, non comprise celle du campanile. »</blockquote><p>La plus ancienne, et aussi la plus petite, date de 1502. C’est Prosper Morey qui la fit lui-même passer de la vieille tour au nouveau beffroi, « pour la consolation des vieux paroissiens » ; elle avait sans doute échappé à la Révolution parce qu’elle sonnait les heures. L’écu ci-contre est l’empreinte d’une cloche de l’ancienne église.</p><cite>Monographie de la basilique, 1890, p. 85-86</cite></div></aside>
       </div>
     </div>
   </section>
@@ -525,6 +536,7 @@
           <p><strong>Poids et dimensions.</strong> La grosse cloche pèse environ 1 570 kg pour un diamètre d'environ 1,4 m. Le grand timbre d'horloge avoisine 1 045 kg et le petit timbre 720 kg. Les cinq autres cloches ont des diamètres de 0,6 à 1,0 m ; leurs poids exacts ne sont pas tous documentés.</p>
           <p><strong>Notes musicales.</strong> L'accord de la volée a été réglé à l'oreille pour éviter les dissonances entre cloches anciennes et nouvelles. La plupart sonnent les notes fa♯2 (bourdon), do♯3, mi♭3, constituant une mélodie liturgique cohérente.</p>
           <p><strong>Mécanique.</strong> Historiquement actionnées à la main via des roues à bascule, les cloches sont désormais dotées d'un système électromécanique permettant l'angélus automatique et les sonneries d'horloge. Les cérémonies majeures (messe solennelle, funérailles, commémorations) mobilisent encore des sonneries manuelles pour les volées complexes.</p>
+        <aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/cloches/pozdech.svg?v=1);aspect-ratio:966 / 1740" role="img" aria-label="Gravure de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« Pour sonner une cloche de cent quintaux, la force d’un seul homme suffit. »</blockquote><p>Les cloches sont suspendues selon le système de Joseph Pozdech, de Pest : une couronne de métal fondue avec la cloche permet de la tourner douze fois, pour que le battant ne frappe jamais au même endroit, et le beffroi tient un tiers de place en moins. L’auteur, lui, préfère le carillon à la grande volée, qui ébranle les clochers.</p><cite>Monographie de la basilique, 1890, p. 84-86</cite></div></aside>
       </div>
     </div>
   </section>
@@ -535,8 +547,8 @@
         <span class="b-num">IV</span>
         <h2>Tableau comparatif des cloches</h2>
         
-        <figure class="bourdon-fig"><img src="/assets/img/site/bourdon-monographie.webp" alt="Le bourdon de la basilique, photographie de la monographie de 1890" loading="lazy"><figcaption>Le bourdon, photographié pour la monographie de 1890.</figcaption></figure><ol class="poids"><li class="poids-l"><span class="poids-kg">≈ 1 570<small>kg</small></span><div><h3>Grosse cloche, le bourdon</h3><p>1591, refondue en 1747 · Jean de Laître, puis Burel, de Bassigny · <b>Fa♯2</b></p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 574<small>kg</small></span><div><h3>Cloche du beffroi</h3><p>1576 · Jehan de Challegny</p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 045<small>kg</small></span><div><h3>Grand timbre d’horloge</h3><p>1751 · J.-F. Despois, Nancy · <b>Do♯3</b></p></div></li><li class="poids-l"><span class="poids-kg">≈ 720<small>kg</small></span><div><h3>Petit timbre d’horloge</h3><p>1562 · Fondeur inconnu · <b>Mi♭3</b></p></div></li><li class="poids-l"><span class="poids-kg">—</span><div><h3>Cloches de volée</h3><p>XIXᵉ – XXᵉ siècle · Cinq cloches, en partie fondues à Budapest</p></div></li></ol>
-          <p class="note-bas">Sources : Léon Germain (1889) ; Deblaye (1868) ; archives de la Société d'histoire de la Lorraine.</p>
+        <figure class="bourdon-fig"><img src="/assets/img/site/bourdon-monographie.webp" alt="Le bourdon de la basilique, photographie de la monographie de 1890" loading="lazy"><figcaption>Le bourdon, photographié pour la monographie de 1890.</figcaption></figure><ol class="poids"><li class="poids-l"><span class="poids-kg">3 372<small>kg</small></span><div><h3>Le bourdon de 1867</h3><p>Fondu en mai 1867 par Ignace Hilzer, monté par Joseph Pozdech de Pest · offert par Mgr Trouillet</p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 570<small>kg</small></span><div><h3>Grosse cloche de 1591</h3><p>1591, refondue en 1747 · Jean de Laître, puis Burel, de Bassigny · <b>Fa♯2</b></p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 574<small>kg</small></span><div><h3>Cloche du beffroi</h3><p>1576 · Jehan de Challegny</p></div></li><li class="poids-l"><span class="poids-kg">≈ 1 045<small>kg</small></span><div><h3>Grand timbre d’horloge</h3><p>1751 · J.-F. Despois, Nancy · <b>Do♯3</b></p></div></li><li class="poids-l"><span class="poids-kg">≈ 720<small>kg</small></span><div><h3>Petit timbre d’horloge</h3><p>1562 · Fondeur inconnu · <b>Mi♭3</b></p></div></li><li class="poids-l"><span class="poids-kg">—</span><div><h3>Cloches de volée</h3><p>XIXᵉ – XXᵉ siècle · Cinq cloches, en partie fondues à Budapest</p></div></li></ol>
+          <p class="note-bas">Sources : monographie de la basilique (1890) ; Léon Germain (1889) ; Deblaye (1868) ; archives de la Société d'histoire de la Lorraine.</p>
       </div>
     </div>
   </section>
@@ -570,6 +582,7 @@
           </div>
 
           <p>On note que saint Epvre lui-même n'apparaît pas sur les cloches. Ce sont les commanditaires et saints patrons des donateurs qui sont mis à l'honneur : le comte Jean de Salm, gouverneur de Nancy, et la duchesse Charlotte, épouse de Charles III de Lorraine.</p>
+        <aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/cloches/empreinte-sauveur.svg?v=1);aspect-ratio:648 / 540" role="img" aria-label="Gravure de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« D’un côté, un petit médaillon circulaire représentant de profil le buste du Sauveur. »</blockquote><p>C’est le décor du gros timbre fondu à Nancy en 1751 par François Despois ; sur l’autre face, la Vierge tenant l’Enfant, entourée de têtes d’anges. Une autre cloche, baptisée « Léon » en 1879, porte un poème en vers à la gloire de Mgr Trouillet : « Léon je fus nommée / En Avril baptisée / Trouillet qui m’a donnée… »</p><cite>Monographie de la basilique, 1890, p. 86-87</cite></div></aside>
       </div>
     </div>
   </section>
@@ -591,6 +604,7 @@
           </ul>
 
           <p style="margin-top:1.2rem;">L'installation électrique moderne permet de jouer les carillons horaires et l'angélus même en l'absence de sonneur. Cependant, les plus anciennes cloches résonnent à la main pour les grands offices, offrant un timbre plus vivant que la sonnerie automatique.</p>
+        <aside class="extrait sans-grav"><div><span class="extrait-lab">La monographie raconte</span><blockquote>« On ne le sonne jamais que seul, afin d’en mieux apprécier les qualités. »</blockquote><p>Le bourdon, fondu en mai 1867 et offert par Mgr Trouillet, pèse 3 372 kilogrammes. L’auteur soupçonne une autre raison : des journaux s’étaient plaints de la sonnerie de Saint-Epvre. Une autre cloche servait au guetteur pour sonner l’alarme, et une vieille requête des sonneurs réclamait un salaire pour sonner « pendant le temps des froidures et gelées, foudres et tempêtes d’été ».</p><cite>Monographie de la basilique, 1890, p. 86-87</cite></div></aside>
       </div>
     </div>
   </section>

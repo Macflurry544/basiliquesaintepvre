@@ -65,8 +65,11 @@
     @keyframes lueur { 0%, 100% { filter: drop-shadow(0 0 8px rgba(255,214,150,.35)); } 50% { filter: drop-shadow(0 0 22px rgba(255,214,150,.7)); } }
     .orn { -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; background: currentColor; }
     .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; margin: 2.5rem 0 0; }
-    .avec-chandeliers { display: flex; align-items: flex-end; gap: .7rem; }
-    .avec-chandeliers .chandelier { width: 22px; aspect-ratio: 269 / 933; background: var(--bordeaux); -webkit-mask: url(/assets/ornements/chandelier.svg?v=1) center / contain no-repeat; mask: url(/assets/ornements/chandelier.svg?v=1) center / contain no-repeat; }
+    /* Un grand chandelier de la monographie, dressé le long du paragraphe des messes */
+    .messes { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(1.4rem, 4vw, 3rem); align-items: stretch; }
+    .messes > div:last-child { grid-column: 1; grid-row: 1; }
+    .chandelier-grand { grid-column: 2; grid-row: 1; width: clamp(48px, 7vw, 74px); min-height: 100%; background: var(--bordeaux); opacity: .9;
+      -webkit-mask: url(/assets/ornements/chandelier.svg?v=1) center / contain no-repeat; mask: url(/assets/ornements/chandelier.svg?v=1) center / contain no-repeat; }
     .cul-de-lampe { padding: 0 22px 4.5rem; text-align: center; }
     .cul-de-lampe .orn { width: min(300px, 74vw); aspect-ratio: 2175 / 1920; margin: 0 auto; color: var(--navy); }
     @media (max-width: 560px) { .tete { padding-left: 62px; padding-right: 62px; } .tete h1 { font-size: clamp(2rem, 9.5vw, 2.6rem); } .applique { width: 46px; opacity: .7; } }
@@ -99,14 +102,18 @@
     </ul>
   </section>
 
-  <section>
-    <h2 class="avec-chandeliers"><span class="chandelier" aria-hidden="true"></span>Messes<span class="chandelier" aria-hidden="true"></span></h2>
+  <section class="messes">
+    <div class="chandelier-grand" aria-hidden="true"></div>
+    <div>
+    
+    <h2>Messes</h2>
     <ul>
       <li>Le <strong>dimanche</strong> à <strong>9h30</strong> et <strong>11h</strong>.</li>
       <li>Le <strong>samedi</strong> à <strong>18h30</strong>, à la crypte.</li>
       <li>Du <strong>lundi au vendredi</strong> à <strong>8h30</strong>, à la crypte.</li>
       <li>Horaires à jour sur le <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/" target="_blank" rel="noopener">site de l'Oratoire ↗</a>.</li>
     </ul>
+  </div>
   </section>
 
   <section>

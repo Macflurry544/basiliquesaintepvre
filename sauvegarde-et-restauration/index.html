@@ -441,7 +441,7 @@
     .ouverture h1 { font-size: clamp(2.8rem, 8.4vw, 7.4rem) !important; overflow-wrap: anywhere; }
 
     /* Ce qui suit une bande empilée doit passer au-dessus d'elle, sinon la bande collée le recouvre et la page semble bloquée */
-    main > .bande ~ :not(.bande) { position: relative; z-index: 1; background: var(--papier); }
+    main > .pile ~ * { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
@@ -470,70 +470,74 @@
     <ol><li><a href="#projet"><span>Le vitrail de saint Nicolas et sainte Odile</span></a></li><li><a href="#histoire-vitrail"><span>Un vitrail et son histoire</span></a></li><li><a href="#pourquoi"><span>Pourquoi donner</span></a></li><li><a href="#fondation"><span>Un mécénat ouvert à tous</span></a></li></ol>
   </nav>
 
-  <section class="bande b-bordeaux" id="projet">
-    <div class="bande-grille">
-      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/sauvegarde/vitrail.jpg)" role="img" aria-label="La basilique vue de la place"></div><p class="visuel-leg">La basilique vue de la place</p></div>
-      <div class="bande-texte">
-        <span class="b-num">I</span>
-        <h2>Restaurer le vitrail de saint Nicolas et sainte Odile</h2>
-        <p class="argument">Collecte en cours avec la Fondation du patrimoine</p>
-        <p>La verrière doit être déposée et restaurée dans un atelier spécialisé : les montants en pierre seront consolidés, les plombs entièrement repris, et les verres cassés ou déformés remplacés à l'identique.</p>
-        <p>La surface vitrée de la basilique avoisine les 2 300 m² : 71 verrières et trois rosaces.</p>
-        <div class="projet-stats"><div><b>27 792 €</b><span>Dons collectés</span></div><div><b>40 000 €</b><span>Objectif de la collecte</span></div><div><b>145</b><span>Donateurs</span></div><div><b>72 293 €</b><span>Financement total</span></div></div>
-        <div class="barre"><i></i></div>
-        <div class="barre-meta"><span>69 % de l'objectif atteint</span><span>Objectif : 40 000 €</span></div>
-        <div class="boutons-don"><a class="plein" href="https://www.fondation-patrimoine.org/les-projets/vitrail-st-nicolas-et-ste-odile-de-la-basilique-st-epvre-a-nancy/78170/faire-un-don" target="_blank" rel="noopener">Faire un don →</a><a class="vide" href="https://www.fondation-patrimoine.org/les-projets/vitrail-st-nicolas-et-ste-odile-de-la-basilique-st-epvre-a-nancy/78170" target="_blank" rel="noopener">Voir le projet</a></div>
-      </div>
-    </div>
-  </section>
-  <section class="bande b-papier" id="histoire-vitrail">
-    <div class="bande-grille">
-      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/sauvegarde/detail.jpg)" role="img" aria-label="Détail de l'œuvre de Jacques Gruber"></div><p class="visuel-leg">Détail de l'œuvre de Jacques Gruber</p></div>
-      <div class="bande-texte">
-        <span class="b-num">II</span>
-        <h2>Un vitrail et son histoire</h2>
-        <p class="argument">De l'Autriche impériale à la tempête de 1999</p>
-        <ol class="jalons"><li class="jalon"><span class="jalon-date">1867</span><p>Inauguration de la basilique. Le couple impérial <strong>François et Élisabeth d'Autriche</strong> offre un vitrail représentant leurs saints patrons.</p></li><li class="jalon"><span class="jalon-date">1914–18</span><p>La Grande Guerre endommage sévèrement la basilique. <strong>Le vitrail autrichien est détruit</strong>.</p></li><li class="jalon"><span class="jalon-date">1921</span><p>Le verrier <strong>Jacques Gruber</strong> réalise le nouveau vitrail : saint Nicolas et sainte Odile, patrons de la Lorraine et de l'Alsace retrouvée. En bas, les portraits du général de Castelnau et du maréchal Foch.</p></li><li class="jalon"><span class="jalon-date">1999</span><p>La <strong>tempête de décembre</strong> détériore le vitrail : plombs distordus, verres brisés, montants en pierre fragilisés.</p></li><li class="jalon"><span class="jalon-date">Aujourd'hui</span><p><strong>Collecte en cours</strong> avec la Fondation du patrimoine : 69 % de l'objectif atteint grâce à 145 donateurs.</p></li></ol>
-        <div class="duo"><figure><img src="/assets/img/sauvegarde/etat.jpg" alt="Le vitrail aujourd'hui, abîmé par la tempête de 1999" loading="lazy"><figcaption>État actuel, après la tempête de 1999</figcaption></figure><figure><img src="/assets/img/sauvegarde/detail.jpg" alt="Détail du vitrail de Jacques Gruber" loading="lazy"><figcaption>Détail de l'œuvre, Jacques Gruber, 1921</figcaption></figure></div>
-      </div>
-    </div>
-  </section>
-  <section class="bande b-navy" id="pourquoi">
-    <div class="bande-grille">
-      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK.jpg)" role="img" aria-label="La rosace ouest"></div><p class="visuel-leg">La rosace ouest</p></div>
-      <div class="bande-texte">
-        <span class="b-num">III</span>
-        <h2>Pourquoi donner</h2>
-        <p class="argument">Le patrimoine, un investissement qui rapporte</p>
-        <div class="args">
-          <div class="arg"><b>21,17 €</b><div><h3>de retombées pour 1 € donné</h3><p>Emplois, tourisme, artisanat, savoir-faire : chaque euro versé profite à l'économie locale. En 2019, les 55 millions d'euros d'aides de la Fondation du patrimoine ont généré 1,2 milliard d'euros de retombées et soutenu 15 370 emplois.</p><small>Étude Pluricité pour la Fondation du patrimoine, 2021</small></div></div>
-          <div class="arg"><b>66 %</b><div><h3>de réduction d'impôt</h3><p>Tout don à la Fondation du patrimoine ouvre droit à 66 % de réduction d'impôt sur le revenu : 100 € donnés coûtent 34 €.</p><small>Article 200 du Code général des impôts</small></div></div>
-          <div class="arg"><b>500 000</b><div><h3>emplois non délocalisables</h3><p>Maçons, verriers, charpentiers, restaurateurs : le patrimoine culturel fait vivre les métiers d'art dans les territoires.</p><small>Ministère de la Culture</small></div></div>
+  <div class="pile">
+    <section class="bande b-bordeaux" id="projet">
+      <div class="bande-grille">
+        <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/sauvegarde/vitrail.jpg)" role="img" aria-label="La basilique vue de la place"></div><p class="visuel-leg">La basilique vue de la place</p></div>
+        <div class="bande-texte">
+          <span class="b-num">I</span>
+          <h2>Restaurer le vitrail de saint Nicolas et sainte Odile</h2>
+          <p class="argument">Collecte en cours avec la Fondation du patrimoine</p>
+          <p>La verrière doit être déposée et restaurée dans un atelier spécialisé : les montants en pierre seront consolidés, les plombs entièrement repris, et les verres cassés ou déformés remplacés à l'identique.</p>
+          <p>La surface vitrée de la basilique avoisine les 2 300 m² : 71 verrières et trois rosaces.</p>
+          <div class="projet-stats"><div><b>27 792 €</b><span>Dons collectés</span></div><div><b>40 000 €</b><span>Objectif de la collecte</span></div><div><b>145</b><span>Donateurs</span></div><div><b>72 293 €</b><span>Financement total</span></div></div>
+          <div class="barre"><i></i></div>
+          <div class="barre-meta"><span>69 % de l'objectif atteint</span><span>Objectif : 40 000 €</span></div>
+          <div class="boutons-don"><a class="plein" href="https://www.fondation-patrimoine.org/les-projets/vitrail-st-nicolas-et-ste-odile-de-la-basilique-st-epvre-a-nancy/78170/faire-un-don" target="_blank" rel="noopener">Faire un don →</a><a class="vide" href="https://www.fondation-patrimoine.org/les-projets/vitrail-st-nicolas-et-ste-odile-de-la-basilique-st-epvre-a-nancy/78170" target="_blank" rel="noopener">Voir le projet</a></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <section class="bande b-papier" id="histoire-vitrail">
+      <div class="bande-grille">
+        <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/sauvegarde/detail.jpg)" role="img" aria-label="Détail de l'œuvre de Jacques Gruber"></div><p class="visuel-leg">Détail de l'œuvre de Jacques Gruber</p></div>
+        <div class="bande-texte">
+          <span class="b-num">II</span>
+          <h2>Un vitrail et son histoire</h2>
+          <p class="argument">De l'Autriche impériale à la tempête de 1999</p>
+          <ol class="jalons"><li class="jalon"><span class="jalon-date">1867</span><p>Inauguration de la basilique. Le couple impérial <strong>François et Élisabeth d'Autriche</strong> offre un vitrail représentant leurs saints patrons.</p></li><li class="jalon"><span class="jalon-date">1914–18</span><p>La Grande Guerre endommage sévèrement la basilique. <strong>Le vitrail autrichien est détruit</strong>.</p></li><li class="jalon"><span class="jalon-date">1921</span><p>Le verrier <strong>Jacques Gruber</strong> réalise le nouveau vitrail : saint Nicolas et sainte Odile, patrons de la Lorraine et de l'Alsace retrouvée. En bas, les portraits du général de Castelnau et du maréchal Foch.</p></li><li class="jalon"><span class="jalon-date">1999</span><p>La <strong>tempête de décembre</strong> détériore le vitrail : plombs distordus, verres brisés, montants en pierre fragilisés.</p></li><li class="jalon"><span class="jalon-date">Aujourd'hui</span><p><strong>Collecte en cours</strong> avec la Fondation du patrimoine : 69 % de l'objectif atteint grâce à 145 donateurs.</p></li></ol>
+          <div class="duo"><figure><img src="/assets/img/sauvegarde/etat.jpg" alt="Le vitrail aujourd'hui, abîmé par la tempête de 1999" loading="lazy"><figcaption>État actuel, après la tempête de 1999</figcaption></figure><figure><img src="/assets/img/sauvegarde/detail.jpg" alt="Détail du vitrail de Jacques Gruber" loading="lazy"><figcaption>Détail de l'œuvre, Jacques Gruber, 1921</figcaption></figure></div>
+        </div>
+      </div>
+    </section>
+    <section class="bande b-navy" id="pourquoi">
+      <div class="bande-grille">
+        <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1bayLGVxg43hvRHLc3nyj1ImZP0ScNDIK.jpg)" role="img" aria-label="La rosace ouest"></div><p class="visuel-leg">La rosace ouest</p></div>
+        <div class="bande-texte">
+          <span class="b-num">III</span>
+          <h2>Pourquoi donner</h2>
+          <p class="argument">Le patrimoine, un investissement qui rapporte</p>
+          <div class="args">
+            <div class="arg"><b>21,17 €</b><div><h3>de retombées pour 1 € donné</h3><p>Emplois, tourisme, artisanat, savoir-faire : chaque euro versé profite à l'économie locale. En 2019, les 55 millions d'euros d'aides de la Fondation du patrimoine ont généré 1,2 milliard d'euros de retombées et soutenu 15 370 emplois.</p><small>Étude Pluricité pour la Fondation du patrimoine, 2021</small></div></div>
+            <div class="arg"><b>66 %</b><div><h3>de réduction d'impôt</h3><p>Tout don à la Fondation du patrimoine ouvre droit à 66 % de réduction d'impôt sur le revenu : 100 € donnés coûtent 34 €.</p><small>Article 200 du Code général des impôts</small></div></div>
+            <div class="arg"><b>500 000</b><div><h3>emplois non délocalisables</h3><p>Maçons, verriers, charpentiers, restaurateurs : le patrimoine culturel fait vivre les métiers d'art dans les territoires.</p><small>Ministère de la Culture</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
   <section class="grande-citation">
     <p>« Pour moi, un vitrail représente la cloison transparente entre mon cœur et le cœur du monde. Il doit vivre à travers la lumière perçue. »</p>
     <cite>Marc Chagall, entretien avec André Verdet, 1984</cite>
   </section>
 
-  <section class="bande b-papier" id="fondation">
-    <div class="bande-grille">
-      <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1oHDx7WGFwbSldaG8HEjzs5Y10mZ_4lxN.jpg)" role="img" aria-label="La façade de la basilique"></div><p class="visuel-leg">La façade de la basilique</p></div>
-      <div class="bande-texte">
-        <span class="b-num">IV</span>
-        <h2>Un mécénat ouvert à tous</h2>
-        <p class="argument">La Fondation du patrimoine, partenaire de la basilique</p>
-        <p>La Fondation du patrimoine organise des collectes ouvertes aux particuliers comme aux entreprises. La délégation Lorraine est joignable au <strong>03 83 46 86 35</strong> ou à <a href="mailto:lorraine@fondation-patrimoine.org">lorraine@fondation-patrimoine.org</a>.</p>
-        <div class="defisc"><b>66 %</b><span>de réduction d'impôt : 100 € donnés = 34 € de coût réel.</span></div>
-        <p><a href="https://www.fondation-patrimoine.org/les-projets?q=saint-epvre" target="_blank" rel="noopener">Tous les projets Saint-Epvre sur fondation-patrimoine.org →</a></p>
-        <h3 style="margin-top:2.6rem;font:500 1.6rem/1.15 var(--titre);letter-spacing:-.02em">D'autres chantiers à venir</h3>
-        <p>D'autres projets sont en préparation, notamment pour la sacristie des prêtres, gravement endommagée lors de l'incendie de 2018.</p>
+  <div class="pile">
+    <section class="bande b-papier" id="fondation">
+      <div class="bande-grille">
+        <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1oHDx7WGFwbSldaG8HEjzs5Y10mZ_4lxN.jpg)" role="img" aria-label="La façade de la basilique"></div><p class="visuel-leg">La façade de la basilique</p></div>
+        <div class="bande-texte">
+          <span class="b-num">IV</span>
+          <h2>Un mécénat ouvert à tous</h2>
+          <p class="argument">La Fondation du patrimoine, partenaire de la basilique</p>
+          <p>La Fondation du patrimoine organise des collectes ouvertes aux particuliers comme aux entreprises. La délégation Lorraine est joignable au <strong>03 83 46 86 35</strong> ou à <a href="mailto:lorraine@fondation-patrimoine.org">lorraine@fondation-patrimoine.org</a>.</p>
+          <div class="defisc"><b>66 %</b><span>de réduction d'impôt : 100 € donnés = 34 € de coût réel.</span></div>
+          <p><a href="https://www.fondation-patrimoine.org/les-projets?q=saint-epvre" target="_blank" rel="noopener">Tous les projets Saint-Epvre sur fondation-patrimoine.org →</a></p>
+          <h3 style="margin-top:2.6rem;font:500 1.6rem/1.15 var(--titre);letter-spacing:-.02em">D'autres chantiers à venir</h3>
+          <p>D'autres projets sont en préparation, notamment pour la sacristie des prêtres, gravement endommagée lors de l'incendie de 2018.</p>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  
+  </div></main>
 
 <div class="cul-de-lampe" aria-hidden="true">
   <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=3)"></div>

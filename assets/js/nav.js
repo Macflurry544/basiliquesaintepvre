@@ -20,6 +20,7 @@
   var MOBILE_GROUPS = [
     { title: 'Découvrir', links: [
       { href: '/histoire/',           label: 'Histoire' },
+      { href: '/architecture/',       label: 'Architecture' },
       { href: '/les-grandes-orgues/', label: 'Grandes Orgues' },
       { href: '/les-vitraux/',        label: 'Vitraux' },
       { href: '/les-cloches/',        label: 'Cloches' },

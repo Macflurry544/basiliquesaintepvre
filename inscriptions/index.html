@@ -80,6 +80,13 @@
     .insc blockquote { margin: .8rem 0 1rem; padding: 1.2rem 1.4rem; background: #fff; border: 1px solid rgba(33,52,72,.14); font: 400 1.05rem/1.6 Georgia, 'Times New Roman', serif; font-variant: small-caps; letter-spacing: .03em; overflow-wrap: anywhere; }
     .insc .trad { font-style: italic; opacity: .85; }
     .src { font-size: .9rem; opacity: .7; font-style: italic; }
+
+    .lecture { margin-bottom: 4.5rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.6rem, 4vw, 2.6rem)/1.15 var(--grot); letter-spacing: -.025em; }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+    @media (prefers-reduced-motion: reduce) { .lecture-texte span { transition: none; color: var(--navy); } }
+    .insc h3 { font-style: italic; text-transform: none; letter-spacing: .02em; font-size: .95rem; font-weight: 500; font-family: var(--sans); }
   </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Inscriptions", "item": "https://basiliquesaintepvre.com/inscriptions/"}]}</script>
 </head>
@@ -94,9 +101,7 @@
 </header>
 
 <main class="col">
-  <section>
-    <p>L’épigraphie « joue un grand rôle à Saint-Epvre », note la monographie de 1890. Plaques de marbre, cuivre gravé, lettres d’or : voici les principales inscriptions de la basilique, avec leur traduction quand elles sont en latin.</p>
-  </section>
+  <section class="lecture"><p class="lecture-texte" aria-label="L’épigraphie « joue un grand rôle à Saint-Epvre », note la monographie de 1890. Plaques de marbre, cuivre gravé, lettres d’or : voici les principales inscriptions de la basilique, avec leur traduction quand elles sont en latin."><span>L’épigraphie</span> <span>«</span> <span>joue</span> <span>un</span> <span>grand</span> <span>rôle</span> <span>à</span> <span>Saint-Epvre</span> <span>»,</span> <span>note</span> <span>la</span> <span>monographie</span> <span>de</span> <span>1890.</span> <span>Plaques</span> <span>de</span> <span>marbre,</span> <span>cuivre</span> <span>gravé,</span> <span>lettres</span> <span>d’or</span> <span>:</span> <span>voici</span> <span>les</span> <span>principales</span> <span>inscriptions</span> <span>de</span> <span>la</span> <span>basilique,</span> <span>avec</span> <span>leur</span> <span>traduction</span> <span>quand</span> <span>elles</span> <span>sont</span> <span>en</span> <span>latin.</span></p></section>
   <section>
     <div class="insc"><h3>Près de la sacristie, côté ouest</h3><h2>La visite de l’empereur</h2><blockquote>En l’an de grâce mil huit cent soixante-sept, le vingt-deuxième jour d’octobre, à quatre heures après-midi, Sa Majesté Impériale, Royale, Apostolique François-Joseph, empereur d’Autriche et roi de Hongrie, pendant le séjour qu’elle a fait à Nancy, a daigné visiter l’église en construction de la paroisse Saint-Epvre…</blockquote><p>La plaque de marbre, encadrée des armes de l’empereur, rappelle que François-Joseph signa ce jour-là une feuille conservée dans les archives de la paroisse.</p></div>
     <div class="insc"><h3>Près de la sacristie</h3><h2>Les ossements des fondations</h2><blockquote>Ossa insignia in hujus ecclesiæ fundamentis inventa et pie recollecta hic deposuit Josephus Trouillet, rector.</blockquote><p class="trad">Les ossements trouvés dans les fondations de cette église, pieusement recueillis, ont été déposés ici par Joseph Trouillet, curé.</p><p>En creusant les fondations, on retrouva les sépultures de l’ancienne église : Trouillet les fit rassembler et inhumer dans la nouvelle.</p></div>
@@ -117,5 +122,19 @@
 </footer>
 
 <script src="/assets/js/nav.js?v=16"></script>
+<script>
+  (function () {
+    var mots = document.querySelectorAll('.lecture-texte span'); if (!mots.length) return;
+    var bloc = document.querySelector('.lecture');
+    function maj() {
+      var r = bloc.getBoundingClientRect(), h = innerHeight;
+      var p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25)));
+      var lus = Math.round(p * mots.length);
+      mots.forEach(function (m, i) { m.classList.toggle('lu', i < lus); });
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
+    var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
+  })();
+</script>
 </body>
 </html>

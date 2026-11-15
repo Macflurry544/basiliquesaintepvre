@@ -18,7 +18,7 @@
   <meta property="og:site_name" content="Basilique Saint-Epvre">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=9">
   <style>
     :root {
@@ -169,7 +169,7 @@
     .plan.vu .trace { opacity: 1; }
     /* notes manuscrites, au crayon */
     .notes { position: relative; list-style: none; margin: 0; padding: 0; min-width: 0; }
-    .note { position: absolute; left: 0; right: 0; font: 400 1.32rem/1.12 'Caveat', 'Segoe Print', cursive; color: var(--crayon); opacity: 0; translate: 0 6px; transition: opacity .4s ease calc(.55s + var(--i) * .07s), translate .4s ease calc(.55s + var(--i) * .07s), color .25s; }
+    .note { position: absolute; left: 0; right: 0; font: italic 400 1.03rem/1.12 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; color: var(--crayon); opacity: 0; translate: 0 6px; transition: opacity .4s ease calc(.55s + var(--i) * .07s), translate .4s ease calc(.55s + var(--i) * .07s), color .25s; }
     .note strong { display: block; font-weight: 700; font-size: 1.5rem; margin-bottom: .1rem; }
     .notes.g .note { text-align: right; }
     .plan.vu .note { opacity: 1; translate: 0 0; }
@@ -186,7 +186,7 @@
     .bulle { display: none; }
     .plan-aide { display: none; }
     /* cotes */
-    .cote { position: absolute; opacity: 0; transition: opacity .6s ease 1s; font: 400 1.15rem/1 'Caveat', cursive; color: var(--crayon); }
+    .cote { position: absolute; opacity: 0; transition: opacity .6s ease 1s; font: italic 400 0.9rem/1 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; color: var(--crayon); }
     .cote.v { top: 0; bottom: 0; left: -30px; width: 1px; border-left: 1px solid currentColor; }
     .cote.v::before, .cote.v::after { content: ""; position: absolute; left: -6px; width: 12px; border-top: 1px solid currentColor; }
     .cote.v::before { top: 0; } .cote.v::after { bottom: 0; }
@@ -212,7 +212,7 @@
       .bulle strong { display: block; font: 600 .95rem/1.2 var(--titre); margin-bottom: .25rem; color: var(--bordeaux); }
       .bulle.ouverte { display: block; opacity: 1; visibility: visible; translate: 0 0; animation: bulle .25s ease; }
       @keyframes bulle { from { opacity: 0; translate: 0 6px; } }
-      .plan-aide { display: block; text-align: center; margin: 2.2rem 22px 0; font: 400 1.2rem/1.3 'Caveat', cursive; color: var(--crayon); }
+      .plan-aide { display: block; text-align: center; margin: 2.2rem 22px 0; font: italic 400 0.94rem/1.3 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; color: var(--crayon); }
       .cote.v { left: -26px; }
     }
     @media (prefers-reduced-motion: reduce) { .plan .trace, .note, .traits path, .traits circle, .repere b, .cote { transition: none; } }

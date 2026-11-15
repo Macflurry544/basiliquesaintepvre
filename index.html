@@ -247,6 +247,15 @@
   .ouverture.tactile .titre h1 { transition: translate 1.2s cubic-bezier(.22,1,.36,1); }
   .ouverture.tactile .titre p, .ouverture.tactile .voile { transition: opacity 1s ease .3s; }
   .ouverture.tactile .scene.titre-visible { --ty: 0%; --op: 1; }
+
+  .livret { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(1.2rem, 3vw, 2.6rem); margin-top: clamp(3rem, 7vw, 6rem); margin-bottom: clamp(3rem, 7vw, 6rem); padding: clamp(1.6rem, 4vw, 2.6rem); background: #4a1518; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.28); border-radius: 4px; }
+  .livret-orn { width: 34px; height: 140px; background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+  .livret-t small { display: block; font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; opacity: .7; margin-bottom: .4rem; }
+  .livret-t b { display: block; font-family: "Familjen Grotesk", sans-serif; font-size: clamp(1.6rem, 3.6vw, 2.4rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .livret-t > span { display: block; margin-top: .5rem; opacity: .85; max-width: 52ch; }
+  .livret-btn { padding: .8rem 1.4rem; border: 1px solid #fff; border-radius: 999px; font-weight: 600; white-space: nowrap; transition: background .25s, color .25s; }
+  .livret:hover .livret-btn { background: #fff; color: #4a1518; }
+  @media (max-width: 640px) { .livret { grid-template-columns: auto minmax(0, 1fr); } .livret-btn { grid-column: 1 / -1; justify-self: start; } .livret-orn { height: 110px; } }
 </style>
 </head>
 <body>
@@ -297,6 +306,12 @@
     <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/" class="apparait"><span class="ph" style="background-image:url(/assets/img/orgues/clavier.jpg)"></span><small>Prier</small><h3>Messes et offices</h3><p>Laudes, vêpres et messes, avec la Congrégation de l'Oratoire.</p><span class="fl">→</span></a>
     <a href="/bibliographie/" class="apparait"><span class="ph" style="background-image:url(/assets/img/biblio/mono.jpg)"></span><small>Lire</small><h3>Les livres de la basilique</h3><p>La monographie de 1890 et toutes nos sources.</p><span class="fl">→</span></a>
   </div>
+
+  <a class="livret large apparait" href="/assets/livret/livret-basilique-saint-epvre.pdf" download>
+    <span class="livret-orn orn" style="--src:url(/assets/ornements/clocher.svg?v=2)" aria-hidden="true"></span>
+    <span class="livret-t"><small>À télécharger</small><b>Le livret de visite</b><span>14 pages illustrées des gravures de la monographie : histoire, vitraux, trésor, cloches, orgue. PDF, 5 Mo.</span></span>
+    <span class="livret-btn">Télécharger <span aria-hidden="true">↓</span></span>
+  </a>
 
   <div class="temps large">
     <h2 class="geant apparait">Les grandes<br>orgues de 1867</h2>

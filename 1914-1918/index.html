@@ -87,11 +87,11 @@
   .lecture-texte span.lu { color: #213448; }
   .lecture-note { margin: 2rem 0 0; max-width: 640px; font: italic 400 1rem/1.5 var(--s); opacity: .75; }
   @media (prefers-reduced-motion: reduce) { .lecture-texte span { transition: none; } }
-  .frise-g { max-width: 900px; margin: 0 auto; padding: 1rem 22px 4rem; list-style: none; position: relative; }
-  .frise-g::before { content: ''; position: absolute; left: calc(22px + 5.2rem); top: 1.4rem; bottom: 4rem; border-left: 2px solid rgba(74,21,24,.25); }
-  .etape { display: grid; grid-template-columns: 5.2rem 1fr; gap: 0 2.2rem; padding: 1.6rem 0; position: relative; }
-  .etape::before { content: ''; position: absolute; left: calc(5.2rem - 7px); top: 2.15rem; width: 12px; height: 12px; border-radius: 50%; background: var(--b); }
-  .etape .q { font: 600 1rem/1.2 var(--g); color: var(--b); padding-top: .2rem; }
+  .frise-g { --c: 7rem; max-width: 900px; margin: 0 auto; padding: 1rem 22px 4rem; list-style: none; position: relative; }
+  .frise-g::before { content: ''; position: absolute; left: calc(22px + var(--c) + 1.1rem - 1px); top: 1.4rem; bottom: 4rem; border-left: 2px solid rgba(74,21,24,.25); }
+  .etape { display: grid; grid-template-columns: var(--c) 1fr; gap: 0 2.2rem; padding: 1.6rem 0; position: relative; }
+  .etape::before { content: ''; position: absolute; left: calc(var(--c) + 1.1rem - 6px); top: 2.15rem; width: 12px; height: 12px; border-radius: 50%; background: var(--b); }
+  .etape .q { text-align: right; font: 600 1rem/1.2 var(--g); color: var(--b); padding-top: .2rem; }
   .etape .q small { display: block; font-weight: 500; opacity: .7; }
   .etape h2 { margin: 0 0 .5rem; font: 500 clamp(1.5rem, 3vw, 2rem)/1.1 var(--g); letter-spacing: -.025em; }
   .etape p { margin: 0 0 .8rem; }
@@ -100,7 +100,7 @@
   .etape figcaption { font-style: italic; font-size: .88rem; opacity: .75; margin-top: .5rem; }
   .etape .src { font-style: italic; font-size: .85rem; opacity: .7; }
   .etape .suite { font-weight: 600; color: inherit; }
-  @media (max-width: 560px) { .frise-g::before { left: 22px; } .etape { grid-template-columns: 1fr; padding-left: 1.6rem; } .etape::before { left: -6px; } }
+  @media (max-width: 560px) { .frise-g::before { left: 22px; } .etape { grid-template-columns: 1fr; padding-left: 1.6rem; } .etape .q { text-align: left; margin-bottom: .4rem; } .etape::before { left: -6px; } }
 </style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "1914 – 1918", "item": "https://basiliquesaintepvre.com/1914-1918/"}]}</script>
 </head>
 <body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Monseigneur Trouillet — Basilique Saint-Epvre</title>
+  <title>Mgr Joseph Trouillet (1809-1887), bâtisseur de Saint-Epvre de Nancy</title>
   <!-- SEO -->
   <meta name="description" content="Monseigneur Joseph Trouillet, figure emblématique de la Basilique Saint-Epvre à Nancy. Biographie et œuvre de ce prêtre lorrain du XIXe siècle.">
   <meta name="robots" content="index, follow">
@@ -27,7 +27,7 @@
   <meta name="twitter:image"       content="https://basiliquesaintepvre.com/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/nav.css?v=9">
   <style>
     /* ══ Les Grandes Orgues — mise en page inspirée de la Monographie de 1890 ══
@@ -427,7 +427,28 @@
 
     /* Ce qui suit une bande empilée doit passer au-dessus d'elle, sinon la bande collée le recouvre et la page semble bloquée */
     main > .pile ~ * { position: relative; z-index: 1; }
+    /* Le saviez-vous ? : volets dépliables tirés de la monographie */
+    .savez-liste { margin: 3rem 0 .5rem; }
+    .savez-h { margin: 0 0 1rem; font: 500 clamp(1.5rem, 3vw, 2.2rem)/1.05 var(--titre); letter-spacing: -.03em; }
+    .savez { border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+    .savez:last-of-type { border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+    .savez summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 22px; gap: .2rem 1rem; align-items: center; padding: 1rem 0; }
+    .savez summary::-webkit-details-marker { display: none; }
+    .savez-lab { grid-column: 1; font: 400 1.2rem/1 'Caveat', cursive; opacity: .75; }
+    .savez-t { grid-column: 1; font: 500 1.2rem/1.2 var(--titre); letter-spacing: -.01em; }
+    .savez-plus { grid-column: 2; grid-row: 1 / span 2; width: 22px; height: 22px; position: relative; transition: rotate .3s; }
+    .savez-plus::before, .savez-plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 2px; background: currentColor; translate: -50% -50%; }
+    .savez-plus::after { rotate: 90deg; transition: opacity .3s; }
+    .savez[open] .savez-plus { rotate: 180deg; }
+    .savez[open] .savez-plus::after { opacity: 0; }
+    .savez summary:hover .savez-t { text-decoration: underline; text-underline-offset: 4px; }
+    .savez-c { padding: 0 2.4rem 1.2rem 0; max-width: 64ch; }
+    .savez-c p { margin: 0 0 .7rem !important; font-size: .98rem; }
+    .savez[open] .savez-c { animation: savez .4s ease; }
+    @keyframes savez { from { opacity: 0; translate: 0 -6px; } }
+    .savez-src { margin-top: .8rem !important; font: italic 400 .85rem/1.4 var(--texte); opacity: .7; }
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Mgr Trouillet", "item": "https://basiliquesaintepvre.com/joseph-trouillet/"}]}</script>
 </head>
 <body>
 
@@ -546,6 +567,7 @@
           <p>En 1883, pour ses <strong>cinquante ans de prêtrise</strong>, une grande fête est organisée en son honneur : 18 prélats, 3 abbés mitrés et une centaine de prêtres sont présents, devant environ <strong>vingt mille fidèles</strong>.</p>
           <p>Il meurt à Nancy le <strong>12 mars 1887</strong>, peu après avoir célébré la messe du dimanche. Ses funérailles ont lieu le <strong>22 mars</strong> à Saint-Epvre, présidées par Mgr Turinaz, évêque de Nancy. Il repose dans le transept droit de la basilique qu'il a fait achever, entre deux grandes figures lorraines : saint Epvre et saint Pierre Fourier.</p>
           <p>Une rue porte aujourd'hui son nom à Nancy, une autre à Lunéville.</p>
+          <div class="savez-liste"><details class="savez"><summary><span class="savez-lab">Le saviez-vous ?</span><span class="savez-t">Curé d’un village sans presbytère</span><span class="savez-plus" aria-hidden="true"></span></summary><div class="savez-c"><p>En 1838, la petite paroisse de Chanteheux, à trois quarts d’heure de Lunéville, perd son curé. Elle n’a pas de presbytère, et personne n’en veut. L’abbé Trouillet court à l’évêché la demander : il sera curé de Chanteheux tout en restant vicaire et aumônier de l’hôpital de Lunéville, et fera les deux besognes à la fois.</p></div></details><details class="savez"><summary><span class="savez-lab">Le saviez-vous ?</span><span class="savez-t">Un million pour dégager la basilique</span><span class="savez-plus" aria-hidden="true"></span></summary><div class="savez-c"><p>Pour que son église « se détache dans un espace libre », Mgr Trouillet rachète les vieilles maisons qui l’enserraient, pour près d’un million de francs, et en fait démolir la plus grande partie. La place Saint-Epvre et ses escaliers monumentaux lui doivent leur forme actuelle.</p></div></details><details class="savez"><summary><span class="savez-lab">Le saviez-vous ?</span><span class="savez-t">Des dons venus de toute l’Europe et d’Afrique</span><span class="savez-plus" aria-hidden="true"></span></summary><div class="savez-c"><p>Pour ses noces d’or, les présents arrivent de Nancy, de Lunéville et de toute la Lorraine, mais aussi d’Autriche, de Bohême, de Hongrie, de Belgique, de Hollande et d’Afrique. Un album, gardé à la sacristie, conserve le nom et l’offrande de chaque donateur.</p></div></details><p class="savez-src">D’après la monographie de la basilique, 1890.</p></div>
           <p class="note-bas">Un comité fut formé pour lui élever une statue en prière (un « orant ») : il réunissait le conseil de fabrique de la paroisse, M. Olry, premier vicaire, le curé de Saint-Vincent-Saint-Fiacre et un architecte.</p>
         </div>
       </div>

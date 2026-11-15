@@ -37,6 +37,8 @@
     ]},
     { title: 'Patrimoine', links: [
       { href: '/joseph-trouillet/',           label: 'Joseph Trouillet' },
+      { href: '/personnages/',                label: 'Personnages' },
+      { href: '/images-anciennes/',           label: 'Images anciennes' },
       { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },
       { href: '/presse/',                     label: 'Presse' },
       { href: '/bibliographie/',              label: 'Bibliographie' },

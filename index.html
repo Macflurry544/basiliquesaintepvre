@@ -254,8 +254,10 @@
   .livret-t b { display: block; font-family: "Familjen Grotesk", sans-serif; font-size: clamp(1.6rem, 3.6vw, 2.4rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
   .livret-t > span { display: block; margin-top: .5rem; opacity: .85; max-width: 52ch; }
   .livret-btn { padding: .8rem 1.4rem; border: 1px solid #fff; border-radius: 999px; font-weight: 600; white-space: nowrap; transition: background .25s, color .25s; }
-  .livret:hover .livret-btn { background: #fff; color: #4a1518; }
-  @media (max-width: 640px) { .livret { grid-template-columns: auto minmax(0, 1fr); } .livret-btn { grid-column: 1 / -1; justify-self: start; } .livret-orn { height: 110px; } }
+  .livret-l { display: flex; flex-direction: column; gap: .5rem; }
+  .livret-btn { color: #fff; text-decoration: none; text-align: center; }
+  .livret-btn:hover { background: #fff; color: #4a1518; }
+  @media (max-width: 640px) { .livret { grid-template-columns: auto minmax(0, 1fr); } .livret-l { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; } .livret-orn { height: 110px; } }
 </style>
 </head>
 <body>
@@ -307,11 +309,15 @@
     <a href="/bibliographie/" class="apparait"><span class="ph" style="background-image:url(/assets/img/biblio/mono.jpg)"></span><small>Lire</small><h3>Les livres de la basilique</h3><p>La monographie de 1890 et toutes nos sources.</p><span class="fl">→</span></a>
   </div>
 
-  <a class="livret large apparait" href="/assets/livret/livret-basilique-saint-epvre.pdf" download>
+  <div class="livret large apparait">
     <span class="livret-orn orn" style="--src:url(/assets/ornements/clocher.svg?v=2)" aria-hidden="true"></span>
-    <span class="livret-t"><small>À télécharger</small><b>Le livret de visite</b><span>Un parcours en huit arrêts, du parvis jusqu’au chœur, illustré des gravures de la monographie. 16 pages, PDF.</span></span>
-    <span class="livret-btn">Télécharger <span aria-hidden="true">↓</span></span>
-  </a>
+    <span class="livret-t"><small>À télécharger · gratuit</small><b>Le petit guide de visite</b><span>Un parcours en huit arrêts, du parvis jusqu’à l’autel, illustré des gravures de la monographie. 16 pages à imprimer ou à garder sur son téléphone.</span></span>
+    <span class="livret-l">
+      <a class="livret-btn" href="/assets/livret/guide-saint-epvre-fr.pdf" download hreflang="fr">Français <span aria-hidden="true">↓</span></a>
+      <a class="livret-btn" href="/assets/livret/guide-saint-epvre-en.pdf" download hreflang="en">English <span aria-hidden="true">↓</span></a>
+      <a class="livret-btn" href="/assets/livret/guide-saint-epvre-de.pdf" download hreflang="de">Deutsch <span aria-hidden="true">↓</span></a>
+    </span>
+  </div>
 
   <div class="temps large">
     <h2 class="geant apparait">Les grandes<br>orgues de 1867</h2>

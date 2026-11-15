@@ -341,3 +341,113 @@
     }
   })();
 })();
+
+/* Glossaire : un petit « i » après les mots difficiles, avec leur définition au survol ou au toucher */
+(function () {
+  'use strict';
+  var G = [
+    ['cappa magna', 'Grande chape à très longue traîne, portée par les évêques et certains prélats lors des cérémonies solennelles.'],
+    ['amict', 'Linge de lin que le prêtre pose sur ses épaules et autour du cou, sous l’aube.'],
+    ['aube', 'Longue tunique de lin blanc portée par le prêtre sous la chasuble.'],
+    ['cingulum', 'Cordon qui serre l’aube à la taille.'],
+    ['chasuble', 'Vêtement sans manches que le prêtre revêt par-dessus l’aube pour célébrer la messe.'],
+    ['chape', 'Grand manteau liturgique en demi-cercle, porté pour les processions et les offices solennels.'],
+    ['dalmatique', 'Vêtement à manches courtes porté par le diacre.'],
+    ['étole', 'Longue bande d’étoffe que le prêtre porte autour du cou, insigne de son ministère.'],
+    ['orfroi', 'Large bande brodée, souvent d’or, qui orne un vêtement liturgique.'],
+    ['chaperon', 'Pièce en forme d’écusson cousue au dos d’une chape, souvent richement brodée.'],
+    ['missel', 'Livre qui contient les prières et les lectures de la messe.'],
+    ['marouflée', 'Peinte sur une toile, puis collée sur le mur.'],
+    ['marouflées', 'Peintes sur une toile, puis collées sur le mur.'],
+    ['abat-voix', 'Dais placé au-dessus de la chaire pour renvoyer la voix du prédicateur vers les fidèles.'],
+    ['lutrin', 'Grand pupitre sur lequel on pose les livres de chant.'],
+    ['stalles', 'Sièges de bois alignés dans le chœur, réservés au clergé.'],
+    ['châsse', 'Coffre précieux qui renferme les reliques d’un saint.'],
+    ['reliquaire', 'Objet d’orfèvrerie qui contient des reliques.'],
+    ['ostensoir', 'Pièce d’orfèvrerie en forme de soleil où l’on présente l’hostie aux fidèles.'],
+    ['ciboire', 'Vase sacré à couvercle où l’on conserve les hosties.'],
+    ['burettes', 'Petits flacons qui contiennent l’eau et le vin de la messe.'],
+    ['conseil de fabrique', 'Assemblée de paroissiens laïcs qui gérait les biens et l’argent de la paroisse.'],
+    ['basilique mineure', 'Titre d’honneur donné par le pape à une église remarquable.'],
+    ['transept', 'Nef transversale qui coupe la nef principale et donne à l’église son plan en croix.'],
+    ['croisée', 'Endroit où le transept croise la nef principale.'],
+    ['quadrilobe', 'Ornement formé de quatre arcs de cercle, comme un trèfle à quatre feuilles.'],
+    ['remplages', 'Armature de pierre découpée qui divise une fenêtre gothique.'],
+    ['pinacle', 'Petite pyramide de pierre élancée qui couronne un contrefort.'],
+    ['clochetons', 'Petits clochers décoratifs, purement ornementaux.'],
+    ['protonotaire', 'Titre de prélat d’honneur accordé par le pape, qui permet d’être appelé « Monseigneur ».'],
+    ['prélat', 'Haut dignitaire de l’Église : évêque, abbé, ou prêtre honoré de ce titre.'],
+    ['prélats', 'Hauts dignitaires de l’Église : évêques, abbés, ou prêtres honorés de ce titre.'],
+    ['noces d’or', 'Ici, les cinquante ans de prêtrise.'],
+    ['Concordat', 'Accord de 1801 entre Bonaparte et le pape, qui rétablit le culte catholique après la Révolution.'],
+    ['indulgences', 'Remises de peine accordées par l’Église pour des péchés déjà pardonnés.'],
+    ['bourdon', 'La plus grosse et la plus grave des cloches.'],
+    ['montres', 'Tuyaux d’orgue placés en façade, visibles depuis la nef.'],
+    ['machine Barker', 'Mécanisme à air comprimé, inventé par Charles Barker, qui allège le toucher des claviers de l’orgue.'],
+    ['fonts baptismaux', 'Cuve de pierre qui contient l’eau du baptême.'],
+    ['chanoine', 'Prêtre membre du chapitre d’une cathédrale ou d’une collégiale.'],
+    ['épigraphie', 'Étude des inscriptions gravées.'],
+    ['phylactère', 'Banderole portant une inscription, tenue par un personnage peint ou sculpté.'],
+    ['ex-voto', 'Objet ou plaque offert en remerciement d’une grâce obtenue.'],
+    ['nimbe', 'Cercle de lumière autour de la tête d’un saint.'],
+    ['crosse', 'Bâton recourbé de l’évêque, signe du pasteur.'],
+    ['mitre', 'Haute coiffure de l’évêque, en forme de bouclier pointu.'],
+    ['vicaire', 'Prêtre qui assiste le curé de la paroisse.'],
+    ['sacristie', 'Salle où l’on garde les vêtements et objets du culte, et où le prêtre se prépare.']
+  ];
+  var zone = document.querySelector('main') || document.body;
+  if (!zone || document.body.dataset.glossaire === 'non') return;
+  var st = document.createElement('style');
+  st.textContent = [
+    '.gl{white-space:nowrap}',
+    '.gl-i{display:inline-grid;place-items:center;width:1.05em;height:1.05em;margin-left:.18em;vertical-align:.12em;border:1px solid currentColor;border-radius:50%;background:none;color:inherit;font:600 .62em/1 Georgia,serif;font-style:italic;cursor:help;opacity:.7;padding:0}',
+    '.gl-i:hover,.gl-i:focus-visible,.gl-i[aria-expanded="true"]{opacity:1}',
+    '.gl-bulle{position:fixed;z-index:200;max-width:min(300px,calc(100vw - 32px));padding:.75rem .9rem;background:#213448;color:#fbf9f5;border-radius:4px;font:400 .9rem/1.45 "Source Sans 3","Helvetica Neue",Arial,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);border:1px solid rgba(251,249,245,.25);white-space:normal;text-transform:none;letter-spacing:0;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .18s,transform .18s}',
+    '.gl-bulle b{display:block;font:600 .72rem/1.2 "Familjen Grotesk",Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-bottom:.3rem}',
+    '.gl-bulle.on{opacity:1;transform:none}'
+  ].join('');
+  document.head.appendChild(st);
+  var bulle = document.createElement('div'); bulle.className = 'gl-bulle'; bulle.setAttribute('role', 'tooltip'); bulle.id = 'gl-bulle';
+  document.body.appendChild(bulle);
+  var ouvert = null;
+  function montre(btn) {
+    ouvert = btn; btn.setAttribute('aria-expanded', 'true');
+    bulle.innerHTML = '<b>' + btn.dataset.t + '</b>' + btn.dataset.d;
+    bulle.classList.add('on');
+    var r = btn.getBoundingClientRect(), w = bulle.offsetWidth, h = bulle.offsetHeight;
+    var x = Math.min(Math.max(16, r.left + r.width / 2 - w / 2), innerWidth - w - 16);
+    var y = r.top - h - 10; if (y < 12) y = r.bottom + 10;
+    bulle.style.left = x + 'px'; bulle.style.top = y + 'px';
+  }
+  function cache() { if (ouvert) ouvert.setAttribute('aria-expanded', 'false'); ouvert = null; bulle.classList.remove('on'); }
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  var fait = {};
+  var exclus = 'a,button,script,style,h1,h2,nav,header .tete,.gl,.gl-bulle,summary,cite,figcaption,.kick,.num,[aria-hidden="true"],.lecture-texte,code,svg';
+  G.forEach(function (g) {
+    var re = new RegExp('(^|[^\\p{L}\\-])(' + esc(g[0]) + ')(?![\\p{L}\\-])', 'iu');
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      if (!n.nodeValue.trim() || !n.parentElement || n.parentElement.closest(exclus)) return NodeFilter.FILTER_REJECT;
+      return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    } });
+    var n = w.nextNode(); if (!n || fait[g[0].toLowerCase()]) return;
+    fait[g[0].toLowerCase()] = 1;
+    var m = n.nodeValue.match(re), i = m.index + m[1].length, mot = m[2];
+    var apres = n.splitText(i); apres.nodeValue = apres.nodeValue.slice(mot.length);
+    var s = document.createElement('span'); s.className = 'gl';
+    s.appendChild(document.createTextNode(mot));
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'gl-i'; b.textContent = 'i';
+    b.dataset.t = g[0]; b.dataset.d = g[1];
+    b.setAttribute('aria-label', 'Définition : ' + g[0]); b.setAttribute('aria-describedby', 'gl-bulle'); b.setAttribute('aria-expanded', 'false');
+    s.appendChild(b); n.parentNode.insertBefore(s, apres);
+  });
+  document.addEventListener('mouseover', function (e) { var b = e.target.closest && e.target.closest('.gl-i'); if (b) montre(b); });
+  document.addEventListener('mouseout', function (e) { var b = e.target.closest && e.target.closest('.gl-i'); if (b && matchMedia('(hover: hover)').matches) cache(); });
+  document.addEventListener('focusin', function (e) { if (e.target.classList && e.target.classList.contains('gl-i')) montre(e.target); });
+  document.addEventListener('focusout', function (e) { if (e.target.classList && e.target.classList.contains('gl-i')) cache(); });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.gl-i');
+    if (b) { e.preventDefault(); e.stopPropagation(); if (ouvert === b) cache(); else montre(b); } else cache();
+  });
+  addEventListener('scroll', cache, { passive: true });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape') cache(); });
+})();

@@ -633,6 +633,9 @@
       function cale() { document.querySelectorAll('.bande').forEach(function (b) { b.style.setProperty('--st', Math.min(0, VH - b.offsetHeight) + 'px'); }); }
       addEventListener('resize', function () { if (Math.abs(innerWidth - VW) > 40) { VW = innerWidth; VH = innerHeight; } cale(); });
       addEventListener('load', cale); cale();
+      // un volet « Le saviez-vous ? » qui s'ouvre agrandit la bande : on recale aussitôt
+      document.addEventListener('toggle', cale, true);
+      if (window.ResizeObserver) { var ro = new ResizeObserver(cale); document.querySelectorAll('.bande').forEach(function (b) { ro.observe(b); }); }
     })();
     // la façade se dresse quand elle arrive à l'écran
     if ('IntersectionObserver' in window) {
@@ -649,7 +652,7 @@
     document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=16"></script>
+<script defer src="../assets/js/nav.js?v=17"></script>
 <script src="/assets/js/visionneuse.js?v=2"></script>
 </body>
 </html>

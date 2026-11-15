@@ -442,6 +442,29 @@
     .savez[open] .savez-c { animation: savez .4s ease; }
     @keyframes savez { from { opacity: 0; translate: 0 -6px; } }
     .savez-src { margin-top: .8rem !important; font: italic 400 .85rem/1.4 var(--texte); opacity: .7; }
+    /* III · La querelle des architectes */
+    .querelle .q-col { max-width: 1040px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+    .querelle h2 { max-width: 22ch; }
+    .q-sous { max-width: 62ch; font-size: 1.15rem; opacity: .85; margin: 0 0 2.6rem; }
+    .q-facades { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2.6rem); align-items: end; margin: 0 0 3.4rem; }
+    .q-facades figure { margin: 0; }
+    .q-facades .orn { display: block; width: 100%; max-height: 420px; margin: 0 auto; background: currentColor; -webkit-mask: var(--src) center bottom / contain no-repeat; mask: var(--src) center bottom / contain no-repeat; }
+    .q-facades figcaption { margin-top: 1rem; font-size: .92rem; line-height: 1.45; opacity: .85; }
+    .q-facades figcaption b { display: block; font: 600 .78rem/1.3 var(--titre); letter-spacing: .16em; text-transform: uppercase; margin-bottom: .3rem; }
+    .q-recit { max-width: 68ch; }
+    .q-recit h3 { margin: 2.8rem 0 1rem; font: 500 clamp(1.5rem, 3vw, 2.1rem)/1.1 var(--titre); letter-spacing: -.03em; }
+    .q-recit h3 span { display: block; font: 600 .75rem/1 var(--titre); letter-spacing: .24em; text-transform: uppercase; color: #4a1518; margin-bottom: .6rem; }
+    .q-recit p { margin: 0 0 1.1em; }
+    .q-recit blockquote { margin: 1.6rem 0; padding-left: 1.2rem; border-left: 3px solid #4a1518; font-style: italic; font-size: 1.15rem; line-height: 1.5; }
+    .q-recit blockquote cite { display: block; margin-top: .5rem; font-size: .85rem; opacity: .7; }
+    .q-camps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin: 2.6rem 0 1.6rem; }
+    .q-camps > div { padding: 1.3rem 1.4rem; border: 1px solid rgba(33,52,72,.18); background: rgba(255,255,255,.55); }
+    .q-camps h4 { margin: 0 0 .6rem; font: 600 .8rem/1.3 var(--titre); letter-spacing: .16em; text-transform: uppercase; }
+    .q-camps p { margin: 0; font-size: .97rem; }
+    .q-note { font-size: .97rem; opacity: .85; }
+    .q-sources { margin-top: 2.4rem; font-size: .85rem; font-style: italic; opacity: .7; max-width: 80ch; }
+    .q-sources a { color: inherit; }
+    @media (max-width: 700px) { .q-facades { grid-template-columns: 1fr 1fr; } .q-facades figure:last-child { grid-column: 1 / -1; max-width: 60%; justify-self: center; } .q-camps { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Histoire", "item": "https://basiliquesaintepvre.com/histoire/"}]}</script>
 </head>
@@ -568,11 +591,53 @@
       </div>
     </div>
   </section>
+  <section class="bande b-papier querelle" id="concours">
+    <div class="q-col">
+      <span class="b-num">III</span>
+      <h2>Un concours, deux architectes et un procès en plagiat</h2>
+      <p class="q-sous">1862 – 1891 · La basilique a failli ne jamais ressembler à ce que vous voyez. Voici l’histoire du concours, racontée par ses deux camps.</p>
+
+      <div class="q-facades">
+        <figure><span class="orn" style="--src:url(/assets/ornements/architecture/premier-projet-morey.svg?v=1);aspect-ratio:853 / 1317" role="img" aria-label="Le premier projet de Prosper Morey, avec la vieille tour conservée"></span><figcaption><b>N° 5 · Morey</b>« Fais ce que dois, advienne que pourra ». La vieille tour est conservée, coiffée de machicoulis.</figcaption></figure>
+        <figure><span class="orn" style="--src:url(/assets/ornements/architecture/projet-gigout.svg?v=1);aspect-ratio:1085 / 1837" role="img" aria-label="Le projet lauréat de Léopold Gigout, à deux flèches"></span><figcaption><b>N° 6 · Gigout, 1ᵉʳ prix</b>« Seigneur, j’ai aimé la beauté de votre maison ». Deux flèches, cinq nefs, un plan en croix de Lorraine.</figcaption></figure>
+        <figure><span class="orn" style="--src:url(/assets/ornements/facade.svg?v=1);aspect-ratio:1253 / 1976" role="img" aria-label="La façade réellement construite, par Morey"></span><figcaption><b>Construite · Morey</b>Une seule tour, la vieille tour abattue : le projet revu après le concours.</figcaption></figure>
+      </div>
+
+      <div class="q-recit">
+        <h3><span>Acte I</span>Un concours ouvert à tous… ou presque</h3>
+        <p>Le 31 janvier 1862, le maire, le baron Buquet, ouvre un concours public : l’opinion l’exige. Le programme fixe une dépense de 500 000 à 600 000 francs et demande, « autant que possible », de conserver la vieille tour. Mais son article VI réserve à la Ville le droit de faire exécuter le projet de son choix « par l’architecte de son choix ».</p>
+        <p>Prosper Morey, architecte de la ville et prix de Rome, travaille au sujet depuis des années : Gigout signale dans les archives de la mairie un plan de sa main daté de 1855. Il expose son projet, le n° 5. Le 30 avril, vers quatre heures, la veille de la clôture, arrive le n° 6, déposé par un jeune garçon qui refuse de dire d’où il vient. Selon Gigout, Morey, « atterré », demande dès le lendemain à se retirer du concours.</p>
+        <blockquote>« Le plan qui porte le n° 1 ne mérite que l’oubli. » <cite>L’Impartial, 9 mai 1862, ouvrant sa revue des neuf projets</cite></blockquote>
+        <p>La presse nancéienne ne retient que deux projets sérieux, les n° 5 et 6. Elle admire chez le n° 6 l’emploi du terrain : « pas un pouce de terrain n’a été perdu ».</p>
+
+        <h3><span>Acte II</span>Le jury parisien</h3>
+        <p>Le Conseil des bâtiments civils, à Paris, classe premier le n° 6, celui de Léopold Gigout, vingt-cinq ans, devant le n° 8 et le n° 3 de Toussaint. Mais il juge les trois projets « assez faibles ». La Ville lui a aussi soumis le projet de Morey, que celui-ci avait retiré, et le conseil le trouve « bien conçu, dans d’excellentes proportions, d’un très heureux effet ».</p>
+        <p>Gigout, lui, accuse : un « grand personnage » serait venu à Paris convaincre le jury, et le projet envoyé n’était plus celui exposé à Nancy, mais une version « revue, corrigée », débarrassée de la vieille tour.</p>
+
+        <h3><span>Acte III</span>Le conseil municipal tranche</h3>
+        <p>Le 19 août 1862, en pleines vacances, le conseil municipal confie les travaux à Morey, à l’unanimité. Gigout l’apprend en octobre. Le 13 octobre, une lettre du maire lui annonce sa médaille d’or et sa prime de 2 000 francs, sans un mot de regret. On lui remet la médaille à la mairie, et les 2 000 francs à la Recette générale.</p>
+        <blockquote>« Si M. Morey veut bâtir une église il fera bien d’aller en voir. » <cite>Viollet-le-Duc sur le projet exposé au Salon de 1863, Moniteur universel, 10 juin 1863, cité par Gigout</cite></blockquote>
+
+        <h3><span>Épilogue</span>La découverte de Bonsecours</h3>
+        <p>Vingt-cinq ans plus tard, en voyage en Normandie, Gigout monte à Notre-Dame de Bonsecours, au-dessus de Rouen. C’est son fils qui l’appelle le premier. Devant la façade, il croit rêver : « le Portail, un peu réduit, mais tout entier et très au complet de l’Église Saint-Epvre ». Mêmes gâbles sur les trois portes, même rosace, même flèche octogonale ajourée.</p>
+        <p>Bonsecours, œuvre de l’architecte rouennais Jacques-Eugène Barthélémy, avait été commencée en 1840, bien avant Saint-Epvre. En juin 1891, cinq ans après la mort de Morey, Gigout publie <em>La Vérité sur la reconstruction de la basilique de St-Epvre</em> : 205 pages où il accuse son rival de plagiat et dresse une liste de cinquante défauts de l’édifice.</p>
+        <blockquote>« Mieux vaut rester petit et ignoré, mais constamment digne, que d’être grand en entachant son honneur ! » <cite>Léopold Gigout, conclusion de La Vérité…, 1891</cite></blockquote>
+
+        <div class="q-camps">
+          <div><h4>Ce que dit la monographie (1890)</h4><p>Morey se retire du concours ; le jury juge les projets primés faibles mais admire le n° 5, que le conseil adopte à l’unanimité. Pas un mot sur Bonsecours.</p></div>
+          <div><h4>Ce que dit Gigout (1891)</h4><p>Un concours « leurre pour le public et duperie pour les concurrents », un projet de Morey réécrit en secret, et une façade copiée sur Bonsecours. Il a perdu le chantier : son récit n’est pas neutre.</p></div>
+        </div>
+        <p class="q-note">Le directeur de <em>L’Immeuble et la Construction dans l’Est</em>, Émile Jacquemin, fils de l’entrepreneur du chantier, salue le livre tout en jugeant que « les deux auteurs vont un peu loin, chacun dans son sens ». Gigout, lui, reconnaît à Saint-Epvre des « qualités sérieuses » et des transepts dont les roses sont « les deux seules belles pièces de la Basilique ». Selon lui, Morey les lui aurait empruntées.</p>
+      </div>
+
+      <p class="q-sources">Sources : Léopold Gigout, <em>La Vérité sur la reconstruction de la basilique de St-Epvre à Nancy</em>, Nancy, R. Vagner, 1891, chap. II et III, <a href="https://gallica.bnf.fr/ark:/12148/bpt6k9625291w" target="_blank" rel="noopener">Gallica ↗</a> ; <em>Monographie de l’église Saint-Epvre</em>, 1890, p. 32-33, <a href="https://archive.org/details/gri_33125013356007/page/n51/mode/1up" target="_blank" rel="noopener">Internet Archive ↗</a>. Les dessins des projets n° 5 et 6 sont vectorisés d’après les vignettes de la monographie.</p>
+    </div>
+  </section>
   <section class="bande b-navy" id="xxe-siecle">
     <div class="bande-grille">
       <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya.jpg)" role="img" aria-label="La flèche et les toits aujourd'hui"></div><p class="visuel-leg">La flèche et les toits aujourd'hui</p></div>
       <div class="bande-texte">
-        <span class="b-num">III</span>
+        <span class="b-num">IV</span>
         <h2>Blessures et renaissances</h2>
         <p class="argument">1914 – aujourd'hui — Bombardements, tempête, restaurations : la basilique traverse le siècle.</p>
         <ol class="jalons">
@@ -649,6 +714,9 @@
       function cale() { document.querySelectorAll('.bande').forEach(function (b) { b.style.setProperty('--st', Math.min(0, VH - b.offsetHeight) + 'px'); }); }
       addEventListener('resize', function () { if (Math.abs(innerWidth - VW) > 40) { VW = innerWidth; VH = innerHeight; } cale(); });
       addEventListener('load', cale); cale();
+      // un volet « Le saviez-vous ? » qui s'ouvre agrandit la bande : on recale aussitôt
+      document.addEventListener('toggle', cale, true);
+      if (window.ResizeObserver) { var ro = new ResizeObserver(cale); document.querySelectorAll('.bande').forEach(function (b) { ro.observe(b); }); }
     })();
     // la façade se dresse quand elle arrive à l'écran
     if ('IntersectionObserver' in window) {
@@ -665,7 +733,7 @@
     document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=16"></script>
+<script defer src="../assets/js/nav.js?v=17"></script>
 <script src="/assets/js/visionneuse.js?v=2"></script>
 </body>
 </html>

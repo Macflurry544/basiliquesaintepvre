@@ -34,15 +34,26 @@
     :root { --bordeaux: #4a1518; --navy: #213448; --papier: #fbf9f5; --blanc: #fff; --gris: #59626e; --filet: rgba(33,52,72,.16);
       --grot: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--blanc); color: var(--navy); font: 400 18px/1.65 var(--sans); overflow-x: hidden; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font: 400 18px/1.65 var(--sans); overflow-x: hidden; }
     a { color: inherit; }
     .large { max-width: 1240px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
 
-    /* ── Tête : rosace, titre, sous-titre ── */
-    .tete { text-align: center; padding: 8.5rem 22px 1rem; }
-    .tete .rosace { width: 44px; height: 44px; margin: 0 auto 1.4rem; background: var(--bordeaux); -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
-    .tete h1 { margin: 0; font: 500 clamp(3.4rem, 11vw, 8.5rem)/.88 var(--grot); letter-spacing: -.045em; text-transform: uppercase; }
-    .tete p { margin: 1.2rem 0 0; font: 500 .9rem var(--grot); letter-spacing: .3em; text-transform: uppercase; color: var(--gris); }
+    /* ── Tête bordeaux, comme les autres pages ── */
+    .orn { display: block; background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+    .tete { position: relative; overflow: hidden; background: var(--bordeaux); color: #fff; padding: 9rem 22px 5.5rem; text-align: center; }
+    .tete .kick { display: block; font: 600 .8rem var(--grot); letter-spacing: .3em; text-transform: uppercase; opacity: .75; margin-bottom: 1.4rem; }
+    .tete h1 { margin: 0; font: 600 clamp(3rem, 11vw, 8rem)/.88 var(--grot); letter-spacing: -.05em; text-transform: uppercase; }
+    .tete p { max-width: 36ch; margin: 1.6rem auto 0; font: 400 clamp(1.1rem, 2.2vw, 1.4rem)/1.4 var(--grot); opacity: .9; }
+    .tete .ap { position: absolute; top: 50%; translate: 0 -50%; width: clamp(60px, 9vw, 130px); height: clamp(130px, 19vw, 260px); opacity: .32; color: #fff; }
+    .tete .ap.g { left: clamp(10px, 6vw, 110px); } .tete .ap.d { right: clamp(10px, 6vw, 110px); transform: scaleX(-1); }
+    @media (max-width: 560px) { .tete .ap { display: none; } }
+    .frise { height: 34px; background: var(--bordeaux); opacity: .55; -webkit-mask: url(/assets/ornements/grille-lorraine.svg) 0 100% / auto 100% repeat-x; mask: url(/assets/ornements/grille-lorraine.svg) 0 100% / auto 100% repeat-x; margin-top: 2.4rem; }
+    /* ── Chapeau lu au défilement ── */
+    .lecture { max-width: 1240px; margin: 0 auto; padding: 5rem 22px 2rem; }
+    .lecture-texte { margin: 0; font: 500 clamp(1.7rem, 4.4vw, 3.6rem)/1.12 var(--grot); letter-spacing: -.025em; color: var(--navy); }
+    .lecture-texte span { color: rgba(33,52,72,.2); transition: color .25s; }
+    .lecture-texte span.lu { color: var(--navy); }
+    @media (prefers-reduced-motion: reduce) { .lecture-texte span { transition: none; } }
 
     /* ── L'arc de vitraux autour du texte ── */
     .arc { position: relative; height: calc(var(--R) + var(--c) * 1.45 + 110px); margin: 3rem auto 0; max-width: 1240px; }
@@ -70,7 +81,7 @@
     .citation cite { display: block; margin-top: 1.2rem; font: 500 .85rem var(--grot); font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
 
     /* ── Les 74 verrières et 3 rosaces ── */
-    .baies { background: var(--papier); margin-top: 7rem; padding: 6rem 0 7rem; }
+    .baies { background: var(--blanc); margin-top: 7rem; padding: 6rem 0 7rem; }
     .baies h2 { margin: 0; font: 500 clamp(3rem, 9vw, 7rem)/.9 var(--grot); letter-spacing: -.045em; text-transform: uppercase; }
     .filtres { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2.4rem 0 3rem; }
     .filtres button { font: 500 .95rem var(--grot); padding: .6rem 1.1rem; border-radius: 999px; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); cursor: pointer; }
@@ -99,7 +110,7 @@
     .vision .leg span { font-size: .95rem; opacity: .75; }
     .vision button { background: none; border: 0; color: inherit; cursor: pointer; }
     .vision .fl svg { width: clamp(40px, 5vw, 70px); }
-    .vision .fermer { position: absolute; top: 16px; right: 18px; font: 600 1rem var(--grot); }
+    .vision .fermer { position: absolute; top: 14px; right: 14px; width: 64px; height: 64px; padding: 14px; transition: transform .3s; } .vision .fermer:hover { transform: rotate(90deg); } .vision .fermer svg { width: 100%; height: 100%; }
 
     .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 4rem 22px calc(4.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; }
     .pied b { font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--grot); text-transform: uppercase; letter-spacing: -.03em; }
@@ -134,13 +145,18 @@
 <body>
 
 <header class="tete">
-  <div class="rosace" aria-hidden="true"></div>
+  <span class="ap g orn" style="--src:url(/assets/ornements/pinacle.svg?v=2)" aria-hidden="true"></span>
+  <span class="ap d orn" style="--src:url(/assets/ornements/pinacle.svg?v=2)" aria-hidden="true"></span>
+  <span class="kick">1864 – 1925</span>
   <h1>Les vitraux</h1>
+  <p>Une nef de lumière, baie après baie.</p>
 </header>
+<div class="frise" aria-hidden="true"></div>
+<section class="lecture"><p class="lecture-texte" aria-label="Soixante-quatorze verrières et trois rosaces, sorties des ateliers de Vienne et de Metz, racontent les saints de Lorraine, les papes et les donateurs qui ont payé chaque baie."><span>Soixante-quatorze</span> <span>verrières</span> <span>et</span> <span>trois</span> <span>rosaces,</span> <span>sorties</span> <span>des</span> <span>ateliers</span> <span>de</span> <span>Vienne</span> <span>et</span> <span>de</span> <span>Metz,</span> <span>racontent</span> <span>les</span> <span>saints</span> <span>de</span> <span>Lorraine,</span> <span>les</span> <span>papes</span> <span>et</span> <span>les</span> <span>donateurs</span> <span>qui</span> <span>ont</span> <span>payé</span> <span>chaque</span> <span>baie.</span></p></section>
 
 <section class="arc" id="arc" aria-label="Quelques vitraux">
   <div class="arc-centre">
-    <h2>Une nef de lumière,<br>baie après baie</h2>
+    <h2>Quelques baies</h2>
     <p class="credit">Ateliers Carl Geyling (Vienne) &amp; Maréchal (Metz) · Photographies Denis Krieger</p>
     <a class="bouton" href="#baies">Voir les 74 verrières et 3 rosaces <span>↓</span></a>
   </div>
@@ -167,7 +183,7 @@
 </section>
 
 <div class="vision" id="vision" role="dialog" aria-modal="true" aria-label="Vitrail">
-  <button class="fermer" id="vFermer">Fermer ✕</button>
+  <button class="fermer" id="vFermer" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
   <button class="fl prec" id="vPrec" aria-label="Vitrail précédent"><svg viewBox="0 0 84 60" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" style="transform:scaleX(-1)"><path d="M4 30h76"/><path d="M58 4q0 26 22 26q-22 0-22 26"/></svg></button>
   <img id="vImg" alt="">
   <button class="fl suiv" id="vSuiv" aria-label="Vitrail suivant"><svg viewBox="0 0 84 60" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M4 30h76"/><path d="M58 4q0 26 22 26q-22 0-22 26"/></svg></button>
@@ -252,6 +268,15 @@
   var x0 = null;
   vision.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
   vision.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (dx < -40) document.getElementById('vSuiv').click(); else if (dx > 40) document.getElementById('vPrec').click(); x0 = null; });
+})();
+</script>
+<script>
+(function () {
+  var mots = document.querySelectorAll('.lecture-texte span'); if (!mots.length) return;
+  var bloc = document.querySelector('.lecture');
+  function maj() { var r = bloc.getBoundingClientRect(), h = innerHeight; var p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .25))); var lus = Math.round(p * mots.length); mots.forEach(function (m, i) { m.classList.toggle('lu', i < lus); }); }
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { mots.forEach(function (m) { m.classList.add('lu'); }); return; }
+  var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true }); maj();
 })();
 </script>
 </body>

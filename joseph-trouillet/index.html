@@ -447,6 +447,8 @@
     .savez[open] .savez-c { animation: savez .4s ease; }
     @keyframes savez { from { opacity: 0; translate: 0 -6px; } }
     .savez-src { margin-top: .8rem !important; font: italic 400 .85rem/1.4 var(--texte); opacity: .7; }
+  .lien-perso { color: inherit; text-decoration: underline; text-decoration-color: rgba(168,36,43,.45); text-decoration-thickness: 1.5px; text-underline-offset: .18em; }
+  .lien-perso:hover { text-decoration-color: currentColor; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Mgr Trouillet", "item": "https://basiliquesaintepvre.com/joseph-trouillet/"}]}</script>
 </head>
@@ -530,8 +532,8 @@
         <div class="bande-texte">
           <span class="b-num">IV</span>
           <h2>La basilique Saint-Epvre</h2>
-          <p>Son grand œuvre, c'est la <strong>basilique Saint-Epvre</strong>. La première pierre est posée en 1864, mais l'argent manque vite. En 1865, Joseph Trouillet succède à l'abbé Simon, le curé qui avait lancé le projet, et donne un vrai coup d'accélérateur au chantier.</p>
-          <p>Pour trouver des fonds, il frappe aux portes de toute l'Europe : la famille impériale d'Autriche, descendante des ducs de Lorraine, le pape Pie IX, Napoléon III et l'impératrice Eugénie. Sur plusieurs vitraux, on voit encore les <strong>blasons de ces donateurs</strong>, en remerciement.</p>
+          <p>Son grand œuvre, c'est la <strong>basilique Saint-Epvre</strong>. La première pierre est posée en 1864, mais l'argent manque vite. En 1865, Joseph Trouillet succède à l'<a class="lien-perso" href="/personnages/#simon">abbé Simon</a>, le curé qui avait lancé le projet, et donne un vrai coup d'accélérateur au chantier.</p>
+          <p>Pour trouver des fonds, il frappe aux portes de toute l'Europe : la famille impériale d'Autriche, descendante des ducs de Lorraine, le pape <a class="lien-perso" href="/personnages/#pie9">Pie IX</a>, Napoléon III et l'impératrice Eugénie. Sur plusieurs vitraux, on voit encore les <strong>blasons de ces donateurs</strong>, en remerciement.</p>
           <p>L'église est inaugurée le <strong>20 mars 1871</strong>, alors que la guerre franco-allemande n'est pas encore officiellement terminée. En 1874, le pape l'élève au rang de basilique.</p>
           <blockquote>
             « Un pasteur au sens large du mot, ouvert sur le monde de son temps, utilisant les moyens du moment pour évangéliser. »
@@ -548,7 +550,7 @@
           <h2>Honneurs &amp; distinctions</h2>
           <p>Habile négociateur, il est reçu dans les cours d'Europe. Curé de Saint-Epvre, il est aussi le gardien des tombeaux des ducs de Lorraine. Il reçoit de nombreux honneurs :</p>
           <ul>
-            <li>chevalier de l'<strong>ordre de François-Joseph</strong>, décerné par l'empereur d'Autriche lui-même ;</li>
+            <li>chevalier de l'<strong>ordre de <a class="lien-perso" href="/personnages/#fj">François-Joseph</a></strong>, décerné par l'empereur d'Autriche lui-même ;</li>
             <li>la <strong>Légion d'honneur</strong>, remise par l'impératrice Eugénie en 1866 ;</li>
             <li><strong>prélat d'honneur</strong> du pape Léon XIII en 1879 : c'est ce titre qui fait de lui « Monseigneur »* ;</li>
             <li><strong>protonotaire apostolique</strong>, le plus haut rang parmi ces prélats d'honneur ;</li>
@@ -653,7 +655,7 @@
     document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=19"></script>
+<script defer src="../assets/js/nav.js?v=20"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
 </body>
 </html>

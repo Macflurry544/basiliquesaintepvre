@@ -72,7 +72,8 @@
   .sources { max-width: 1180px; margin: 0 auto; padding: 0 22px 3rem; font: italic 400 .88rem/1.6 var(--s); opacity: .75; }
   .sources a { color: inherit; }
   .galerie { max-width: 1180px; margin: 0 auto; padding: 2.5rem 22px 4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 2.4rem 2rem; align-items: start; }
-  .img-ancienne { margin: 0; }
+  .img-ancienne { margin: 0; scroll-margin-top: 90px; }
+  .img-ancienne:target img { outline: 3px solid var(--b); outline-offset: 6px; }
   .img-ancienne img { display: block; width: 100%; height: auto; background: #eee; border: 1px solid rgba(33,52,72,.12); box-shadow: 0 10px 28px rgba(33,52,72,.12); }
   .img-ancienne figcaption { margin-top: 1rem; font-size: .97rem; line-height: 1.5; }
   .img-ancienne .date { display: block; font: 600 .74rem var(--g); letter-spacing: .2em; text-transform: uppercase; color: var(--b); }
@@ -101,7 +102,7 @@
   <section class="lecture"><p class="lecture-texte" aria-label="De la vieille église gothique de 1850 aux cartes postales du début du XXᵉ siècle, voici la basilique telle que l’ont vue nos arrière-grands-parents."><span>De</span> <span>la</span> <span>vieille</span> <span>église</span> <span>gothique</span> <span>de</span> <span>1850</span> <span>aux</span> <span>cartes</span> <span>postales</span> <span>du</span> <span>début</span> <span>du</span> <span>XXᵉ</span> <span>siècle,</span> <span>voici</span> <span>la</span> <span>basilique</span> <span>telle</span> <span>que</span> <span>l’ont</span> <span>vue</span> <span>nos</span> <span>arrière-grands-parents.</span></p>
   <p class="lecture-note">Toutes ces images sont dans le domaine public ou sous licence libre ; leur source est indiquée sous chacune.</p></section>
   <div class="galerie">
-    <figure class="img-ancienne">
+    <figure class="img-ancienne" id="ancienne-eglise">
       <img data-leg="La place Saint-Epvre et l’ancienne église · 1850" src="/assets/img/cartes/place-1850.webp" width="1200" height="926" loading="lazy" alt="La place Saint-Epvre et l’ancienne église, 1850">
       <figcaption><span class="date">1850</span><b>La place Saint-Epvre et l’ancienne église</b>La vieille église gothique et sa tour carrée, avant la démolition. Lithographie d’après Jean-Joseph Thorelle.<small>Bibliothèque-médiathèque de Nancy · domaine public · <a href="https://commons.wikimedia.org/wiki/File:F54_Nancy_Place-Saint-Epvre_%281850%29.jpg" target="_blank" rel="noopener">source ↗</a></small></figcaption>
     </figure>
@@ -109,7 +110,7 @@
       <img data-leg="L’ancienne église en plan et en élévation · XIXᵉ siècle" src="/assets/img/cartes/vue-xixe.webp" width="1000" height="1400" loading="lazy" alt="L’ancienne église en plan et en élévation, XIXᵉ siècle">
       <figcaption><span class="date">XIXᵉ siècle</span><b>L’ancienne église en plan et en élévation</b>Une seule nef, une tour au portail : l’église que Trouillet et le curé Simon voulaient remplacer.<small>Bibliothèque municipale de Nancy (Limédia) · domaine public · <a href="https://commons.wikimedia.org/wiki/File:Nancy._%C3%89glise_de_Saint_Epvre_-_3_P-FG-ES-00323.jpg" target="_blank" rel="noopener">source ↗</a></small></figcaption>
     </figure>
-    <figure class="img-ancienne">
+    <figure class="img-ancienne" id="chantier">
       <img data-leg="Le chantier · 1864 – 1871" src="/assets/img/cartes/chantier-1864-1871.webp" width="1400" height="1159" loading="lazy" alt="Le chantier, 1864 – 1871">
       <figcaption><span class="date">1864 – 1871</span><b>Le chantier</b>Les échafaudages montent derrière les maisons ; la vieille tour est encore debout, à gauche. Les maisons du premier plan seront rachetées et abattues par Mgr Trouillet.<small>Bibliothèque municipale de Nancy (Limédia) · domaine public · <a href="https://commons.wikimedia.org/wiki/File:Construction_de_l%27%C3%A9glise_Saint-Epvre_-_24_M-TS-ES-00017.jpg" target="_blank" rel="noopener">source ↗</a></small></figcaption>
     </figure>
@@ -137,7 +138,7 @@
       <img data-leg="L’intérieur · 1890 – 1902" src="/assets/img/cartes/cp-interieur.webp" width="920" height="1400" loading="lazy" alt="L’intérieur, 1890 – 1902">
       <figcaption><span class="date">1890 – 1902</span><b>L’intérieur</b>Carte postale : la nef, la grande rose et les stalles du chœur.<small>Bibliothèque municipale de Nancy (Limédia) · domaine public · <a href="https://commons.wikimedia.org/wiki/File:Nancy._Int%C3%A9rieur_de_la_Basilique_Saint-Epvre_P-FG-CP-01124.jpg" target="_blank" rel="noopener">source ↗</a></small></figcaption>
     </figure>
-    <figure class="img-ancienne">
+    <figure class="img-ancienne" id="portails">
       <img data-leg="Les portails · 1903 – 1908" src="/assets/img/cartes/cp-portails.webp" width="1400" height="938" loading="lazy" alt="Les portails, 1903 – 1908">
       <figcaption><span class="date">1903 – 1908</span><b>Les portails</b>Carte postale : les trois portails et le grand escalier.<small>Bibliothèque municipale de Nancy (Limédia) · domaine public · <a href="https://commons.wikimedia.org/wiki/File:Nancy._Portails_de_Saint-Epvre_P-FG-CP-01119.jpg" target="_blank" rel="noopener">source ↗</a></small></figcaption>
     </figure>
@@ -257,7 +258,7 @@
       <img data-leg="La statue de René II · 1909 – 1914" src="/assets/img/cartes/cp-01346.webp" loading="lazy" alt="Carte postale : La statue de René II">
       <figcaption><span class="date">1909 – 1914</span><b>La statue de René II</b><small>Bibliothèques de Nancy, P-FG-CP-01346 · domaine public · <a href="https://galeries.limedia.fr/ark:/31124/d8wlqx7hfqp7nfkn/" target="_blank" rel="noopener">Limédia ↗</a></small></figcaption>
     </figure>
-    <figure class="img-ancienne">
+    <figure class="img-ancienne" id="zeppelin">
       <img data-leg="Dégâts causés à l&#x27;église Saint-Epvre par les bombes du Zeppelin, le 26 décembre 1914 · 1914" src="/assets/img/cartes/cp-00075.webp" loading="lazy" alt="Carte postale : Dégâts causés à l&#x27;église Saint-Epvre par les bombes du Zeppelin, le 26 décembre 1914">
       <figcaption><span class="date">1914</span><b>Dégâts causés à l&#x27;église Saint-Epvre par les bombes du Zeppelin, le 26 décembre 1914</b>Les dégâts du bombardement par un Zeppelin allemand, le 26 décembre 1914.<small>Bibliothèques de Nancy, P-FG-CP-00075 · domaine public · <a href="https://galeries.limedia.fr/ark:/31124/dq595r39z26s9lg1/" target="_blank" rel="noopener">Limédia ↗</a></small></figcaption>
     </figure>
@@ -289,7 +290,7 @@
   <div class="rosace" aria-hidden="true"></div>
   <span>Nancy · Lorraine · France</span>
 </footer>
-<script src="/assets/js/nav.js?v=19"></script>
+<script src="/assets/js/nav.js?v=20"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
 <script>
 (function () {

@@ -475,6 +475,8 @@
 
     /* Bande du tableau comparatif : une marge blanche en bas pour que la bande suivante ne recouvre pas la fin de la liste */
     #section-3 { padding-bottom: calc(clamp(4rem, 9vh, 7rem) + 30vh); }
+  .lien-perso { color: inherit; text-decoration: underline; text-decoration-color: rgba(168,36,43,.45); text-decoration-thickness: 1.5px; text-underline-offset: .18em; }
+  .lien-perso:hover { text-decoration-color: currentColor; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Les cloches", "item": "https://basiliquesaintepvre.com/les-cloches/"}]}</script>
 </head>
@@ -523,9 +525,9 @@
         <h2>Historique des cloches</h2>
         
         <p>L'ancienne église Saint-Epvre (détruite en 1867) possédait au moins trois cloches : la grosse cloche du clocher (environ 1 570 kg), un timbre d'horloge de 1751 et un second timbre de 1562. La cloche du clocher portait l'inscription en latin <em>« Jehan de Challegny ma faict, 1576 »</em>. Lors de la reconstruction de la basilique (1864–1875) et l'aménagement du nouveau beffroi, ces trois cloches furent réinstallées — portant le total à 9 cloches : 8 dans la tour centrale et 1 dédiée à l'horloge.</p>
-          <p>La plus imposante du nouvel ensemble est le bourdon, fondu en mai 1867 par Ignace Hilzer et monté par Joseph Pozdech, de Pest : il pèse 3 372 kg et fut offert par Mgr Trouillet. La grosse cloche de l'ancienne église, elle, avait été fondue en 1591 à Clinchamp (Haute-Marne) par Jean de Laître et son frère Jacques ; son inscription latine fait figurer le comte Jean de Salm, gouverneur de Nancy, et la duchesse Charlotte, épouse de Charles III. Ayant cassé au XVIIIᵉ siècle, elle fut refondue en 1747 par les Burel du Bassigny.</p>
+          <p>La plus imposante du nouvel ensemble est le bourdon, fondu en mai 1867 par <a class="lien-perso" href="/personnages/#hilzer">Ignace Hilzer</a> et monté par Joseph Pozdech, de Pest : il pèse 3 372 kg et fut offert par <a class="lien-perso" href="/personnages/#trouillet">Mgr Trouillet</a>. La grosse cloche de l'ancienne église, elle, avait été fondue en 1591 à Clinchamp (Haute-Marne) par Jean de Laître et son frère Jacques ; son inscription latine fait figurer le comte Jean de Salm, gouverneur de Nancy, et la duchesse Charlotte, épouse de Charles III. Ayant cassé au XVIIIᵉ siècle, elle fut refondue en 1747 par les Burel du Bassigny.</p>
           <p>D'autres cloches de la basilique ont été fondues ou refondues aux XIXᵉ et XXᵉ siècles. Les travaux de rénovation comportèrent même un nouveau système de montage des cloches, certaines étant coulées en Hongrie selon un opuscule technique de l'époque.</p>
-        <aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/cloches/empreinte-ecu.svg?v=1);aspect-ratio:540 / 668" role="img" aria-label="Gravure de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« Les cloches à Saint-Epvre sont au nombre de huit, non comprise celle du campanile. »</blockquote><p>La plus ancienne, et aussi la plus petite, date de 1502. C’est Prosper Morey qui la fit lui-même passer de la vieille tour au nouveau beffroi, « pour la consolation des vieux paroissiens » ; elle avait sans doute échappé à la Révolution parce qu’elle sonnait les heures. L’écu ci-contre est l’empreinte d’une cloche de l’ancienne église.</p><cite>Monographie de la basilique, 1890, p. 85-86</cite></div></aside>
+        <aside class="extrait"><div class="extrait-grav orn" style="--src:url(/assets/ornements/cloches/empreinte-ecu.svg?v=1);aspect-ratio:540 / 668" role="img" aria-label="Gravure de la monographie de 1890"></div><div><span class="extrait-lab">La monographie raconte</span><blockquote>« Les cloches à Saint-Epvre sont au nombre de huit, non comprise celle du campanile. »</blockquote><p>La plus ancienne, et aussi la plus petite, date de 1502. C’est <a class="lien-perso" href="/personnages/#morey">Prosper Morey</a> qui la fit lui-même passer de la vieille tour au nouveau beffroi, « pour la consolation des vieux paroissiens » ; elle avait sans doute échappé à la Révolution parce qu’elle sonnait les heures. L’écu ci-contre est l’empreinte d’une cloche de l’ancienne église.</p><cite>Monographie de la basilique, 1890, p. 85-86</cite></div></aside>
       </div>
     </div>
   </section>
@@ -689,7 +691,7 @@
     document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=19"></script>
+<script defer src="../assets/js/nav.js?v=20"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
 </body>
 </html>

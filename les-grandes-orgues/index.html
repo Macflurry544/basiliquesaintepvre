@@ -429,6 +429,8 @@
       .echelle .barre { height: calc(var(--p) * 3px + 10px); grid-row: span 2; margin: 0; }
       .echelle small { grid-column: 2 / -1; }
     }
+  .lien-perso { color: inherit; text-decoration: underline; text-decoration-color: rgba(168,36,43,.45); text-decoration-thickness: 1.5px; text-underline-offset: .18em; }
+  .lien-perso:hover { text-decoration-color: currentColor; }
 </style>
   <script type="application/ld+json">
   {
@@ -505,9 +507,9 @@
       <div class="bande-texte">
         <span class="b-num">II</span>
         <h2>Commande et construction, 1867</h2>
-        <p class="argument">Mgr Trouillet et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p>
+        <p class="argument"><a class="lien-perso" href="/personnages/#trouillet">Mgr Trouillet</a> et la maison Merklin-Schütze — L'orgue de l'Exposition universelle.</p>
 
-    <p>Pour la nouvelle église en construction, Mgr Joseph Trouillet passa commande d'un instrument neuf auprès de la maison Merklin-Schütze, à Paris. Il acquit l'orgue que Joseph Merklin présentait à l'Exposition universelle de 1867.</p>
+    <p>Pour la nouvelle église en construction, Mgr Joseph Trouillet passa commande d'un instrument neuf auprès de la maison Merklin-Schütze, à Paris. Il acquit l'orgue que <a class="lien-perso" href="/personnages/#merklin">Joseph Merklin</a> présentait à l'Exposition universelle de 1867.</p>
     <div class="fort">
       <div class="orn" style="--src:url(../assets/ornements/rosace-p.svg?v=2)" aria-hidden="true"></div>
       <p>L'instrument remporta la <strong>médaille d'or de l'Exposition de 1867</strong> et valut à Merklin la croix de la Légion d'honneur ainsi que de nombreuses louanges de la presse musicale. Le journal <i>La Meurthe</i> estima son prix à près de <strong>80 000 francs-or</strong>.</p>
@@ -534,7 +536,7 @@
         <p class="argument">Deux concerts, les 28 et 29 avril 1869 — « Le ménestrel de Dieu ».</p>
 
     <p>La mise en place de l'orgue sur la tribune fut suivie d'une inauguration solennelle : deux grands concerts furent organisés les <strong>28 et 29 avril 1869</strong> pour dédier l'instrument.</p>
-    <p>L'Autrichien <strong>Anton Bruckner</strong>, alors âgé de 44 ans, surnommé « le ménestrel de Dieu » par Franz Liszt et organiste à la cour de François-Joseph, y fut invité comme artiste vedette. Choisi par l'empereur d'Autriche pour représenter son pays, il joua lors de ces concerts inauguraux.</p>
+    <p>L'Autrichien <strong>Anton Bruckner</strong>, alors âgé de 44 ans, surnommé « le ménestrel de Dieu » par Franz Liszt et organiste à la cour de <a class="lien-perso" href="/personnages/#fj">François-Joseph</a>, y fut invité comme artiste vedette. Choisi par l'empereur d'Autriche pour représenter son pays, il joua lors de ces concerts inauguraux.</p>
     <p>Les journaux locaux relatèrent qu'il éblouit le public par ses improvisations, ce qui assura au nouvel orgue une renommée immédiate en France et en Europe.</p>
       </div>
     </div>
@@ -546,7 +548,7 @@
       <div class="bande-texte">
         <span class="b-num">IV</span>
         <h2>Caractéristiques techniques</h2>
-        <p class="argument">Quarante-quatre jeux, trois claviers et un pédalier — Le buffet de Prosper Morey — La machine Barker.</p>
+        <p class="argument">Quarante-quatre jeux, trois claviers et un pédalier — Le buffet de <a class="lien-perso" href="/personnages/#morey">Prosper Morey</a> — La machine Barker.</p>
 
     <p>Le grand orgue compte <strong>44 jeux</strong> répartis sur trois claviers manuels et un pédalier indépendant.</p>
     <p>La console, de style néo-gothique, est indépendante. Le buffet, dessiné par l'architecte Prosper Morey, adopte le style néo-gothique flamboyant de la basilique. La transmission est entièrement mécanique suspendue, assistée d'une <strong>machine Barker</strong>, dispositif pneumatique breveté en 1839, pour alléger le toucher.</p>
@@ -769,7 +771,7 @@
     document.querySelectorAll('.sommaire a').forEach(function (a) { io.observe(a); });
   })();
 </script>
-<script defer src="../assets/js/nav.js?v=19"></script>
+<script defer src="../assets/js/nav.js?v=20"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
 </body>
 </html>

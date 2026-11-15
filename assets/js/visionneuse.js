@@ -28,7 +28,7 @@
     img.src = src; img.alt = el.getAttribute('aria-label') || el.alt || '';
     var l = el.getAttribute('aria-label') || el.alt || '';
     var cap = el.closest('figure, .visuel'); var c = cap && cap.querySelector('figcaption, .visuel-leg');
-    leg.textContent = c ? c.textContent : l;
+    leg.textContent = el.getAttribute('data-leg') || (c ? c.textContent : l);
     vz.classList.add('ouverte'); document.body.style.overflow = 'hidden';
   }
   function ferme() { vz.classList.remove('ouverte'); document.body.style.overflow = ''; }

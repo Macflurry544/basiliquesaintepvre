@@ -457,6 +457,17 @@
     .q-recit p { margin: 0 0 1.1em; }
     .q-recit blockquote { margin: 1.6rem 0; padding-left: 1.2rem; border-left: 3px solid #4a1518; font-style: italic; font-size: 1.15rem; line-height: 1.5; }
     .q-recit blockquote cite { display: block; margin-top: .5rem; font-size: .85rem; opacity: .7; }
+    .q-acte { border-top: 1px solid rgba(33,52,72,.2); }
+    .q-acte:last-of-type { border-bottom: 1px solid rgba(33,52,72,.2); }
+    .q-acte summary { list-style: none; cursor: pointer; position: relative; padding: 1.3rem 2.6rem 1.3rem 0; font: 500 clamp(1.35rem, 2.6vw, 1.8rem)/1.15 var(--titre); letter-spacing: -.02em; }
+    .q-acte summary::-webkit-details-marker { display: none; }
+    .q-acte summary span { display: block; font: 600 .75rem/1 var(--titre); letter-spacing: .24em; text-transform: uppercase; color: #4a1518; margin-bottom: .55rem; }
+    .q-acte summary::after { content: '+'; position: absolute; right: .2rem; top: 50%; translate: 0 -50%; font: 300 2rem/1 var(--titre); transition: rotate .3s; }
+    .q-acte[open] summary::after { rotate: 45deg; }
+    .q-acte summary:hover { color: #4a1518; }
+    .q-acte-c { padding: 0 0 1.4rem; }
+    .q-acte[open] .q-acte-c { animation: qa .4s ease; }
+    @keyframes qa { from { opacity: 0; translate: 0 -6px; } }
     .q-camps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin: 2.6rem 0 1.6rem; }
     .q-camps > div { padding: 1.3rem 1.4rem; border: 1px solid rgba(33,52,72,.18); background: rgba(255,255,255,.55); }
     .q-camps h4 { margin: 0 0 .6rem; font: 600 .8rem/1.3 var(--titre); letter-spacing: .16em; text-transform: uppercase; }
@@ -604,24 +615,28 @@
       </div>
 
       <div class="q-recit">
-        <h3><span>Acte I</span>Un concours ouvert à tous… ou presque</h3>
+        <details class="q-acte"><summary><span>Acte I</span>Un concours ouvert à tous… ou presque</summary><div class="q-acte-c">
         <p>Le 31 janvier 1862, le maire, le baron Buquet, ouvre un concours public : l’opinion l’exige. Le programme fixe une dépense de 500 000 à 600 000 francs et demande, « autant que possible », de conserver la vieille tour. Mais son article VI réserve à la Ville le droit de faire exécuter le projet de son choix « par l’architecte de son choix ».</p>
         <p>Prosper Morey, architecte de la ville et prix de Rome, travaille au sujet depuis des années : Gigout signale dans les archives de la mairie un plan de sa main daté de 1855. Il expose son projet, le n° 5. Le 30 avril, vers quatre heures, la veille de la clôture, arrive le n° 6, déposé par un jeune garçon qui refuse de dire d’où il vient. Selon Gigout, Morey, « atterré », demande dès le lendemain à se retirer du concours.</p>
         <blockquote>« Le plan qui porte le n° 1 ne mérite que l’oubli. » <cite>L’Impartial, 9 mai 1862, ouvrant sa revue des neuf projets</cite></blockquote>
         <p>La presse nancéienne ne retient que deux projets sérieux, les n° 5 et 6. Elle admire chez le n° 6 l’emploi du terrain : « pas un pouce de terrain n’a été perdu ».</p>
+        </div></details>
 
-        <h3><span>Acte II</span>Le jury parisien</h3>
+        <details class="q-acte"><summary><span>Acte II</span>Le jury parisien</summary><div class="q-acte-c">
         <p>Le Conseil des bâtiments civils, à Paris, classe premier le n° 6, celui de Léopold Gigout, vingt-cinq ans, devant le n° 8 et le n° 3 de Toussaint. Mais il juge les trois projets « assez faibles ». La Ville lui a aussi soumis le projet de Morey, que celui-ci avait retiré, et le conseil le trouve « bien conçu, dans d’excellentes proportions, d’un très heureux effet ».</p>
         <p>Gigout, lui, accuse : un « grand personnage » serait venu à Paris convaincre le jury, et le projet envoyé n’était plus celui exposé à Nancy, mais une version « revue, corrigée », débarrassée de la vieille tour.</p>
+        </div></details>
 
-        <h3><span>Acte III</span>Le conseil municipal tranche</h3>
+        <details class="q-acte"><summary><span>Acte III</span>Le conseil municipal tranche</summary><div class="q-acte-c">
         <p>Le 19 août 1862, en pleines vacances, le conseil municipal confie les travaux à Morey, à l’unanimité. Gigout l’apprend en octobre. Le 13 octobre, une lettre du maire lui annonce sa médaille d’or et sa prime de 2 000 francs, sans un mot de regret. On lui remet la médaille à la mairie, et les 2 000 francs à la Recette générale.</p>
         <blockquote>« Si M. Morey veut bâtir une église il fera bien d’aller en voir. » <cite>Viollet-le-Duc sur le projet exposé au Salon de 1863, Moniteur universel, 10 juin 1863, cité par Gigout</cite></blockquote>
+        </div></details>
 
-        <h3><span>Épilogue</span>La découverte de Bonsecours</h3>
+        <details class="q-acte"><summary><span>Épilogue</span>La découverte de Bonsecours</summary><div class="q-acte-c">
         <p>Vingt-cinq ans plus tard, en voyage en Normandie, Gigout monte à Notre-Dame de Bonsecours, au-dessus de Rouen. C’est son fils qui l’appelle le premier. Devant la façade, il croit rêver : « le Portail, un peu réduit, mais tout entier et très au complet de l’Église Saint-Epvre ». Mêmes gâbles sur les trois portes, même rosace, même flèche octogonale ajourée.</p>
         <p>Bonsecours, œuvre de l’architecte rouennais Jacques-Eugène Barthélémy, avait été commencée en 1840, bien avant Saint-Epvre. En juin 1891, cinq ans après la mort de Morey, Gigout publie <em>La Vérité sur la reconstruction de la basilique de St-Epvre</em> : 205 pages où il accuse son rival de plagiat et dresse une liste de cinquante défauts de l’édifice.</p>
         <blockquote>« Mieux vaut rester petit et ignoré, mais constamment digne, que d’être grand en entachant son honneur ! » <cite>Léopold Gigout, conclusion de La Vérité…, 1891</cite></blockquote>
+        </div></details>
 
         <div class="q-camps">
           <div><h4>Ce que dit la monographie (1890)</h4><p>Morey se retire du concours ; le jury juge les projets primés faibles mais admire le n° 5, que le conseil adopte à l’unanimité. Pas un mot sur Bonsecours.</p></div>
@@ -647,6 +662,16 @@
             <p>Les bombes d’un dirigeable allemand tombent sur la Ville-Vieille et touchent la basilique : la toiture et <strong>une partie des vitraux</strong> sont endommagées. Les Archives de Nancy datent les dégâts du 26 décembre 1914 ; d’autres sources parlent de la nuit du 25 au 26 septembre. Jacques Gruber, maître de l'École de Nancy, restaure les vitraux de 1919 à 1925.</p>
           </li>
           <li class="jalon">
+            <span class="jalon-date">1940</span>
+            <h3>Nancy occupée</h3>
+            <p>Le 10 mai, la Luftwaffe bombarde Nancy pour la première fois ; le 18 juin, la Wehrmacht entre dans la ville sans combat. Pendant quatre ans, la Ville-Vieille vit à l’heure allemande. Le 2 mars 1943, une trentaine de jeunes gens venus passer une visite médicale sont raflés dans le quartier, autour de la rue Saint-Dizier.</p>
+          </li>
+          <li class="jalon">
+            <span class="jalon-date">1944</span>
+            <h3>Libérée le jour de la Saint-Epvre</h3>
+            <p>Le 15 septembre, le 134ᵉ régiment d’infanterie américain de la IIIᵉ armée de Patton entre dans Nancy. Ce jour-là, on fête <strong>saint Epvre</strong>, le patron de la basilique.</p>
+          </li>
+          <li class="jalon">
             <span class="jalon-date">1996</span>
             <h3>L'Oratoire</h3>
             <p>La paroisse est confiée à la congrégation de l'Oratoire de saint Philippe Néri.</p>
@@ -668,7 +693,7 @@
   </section>
 </main>
 
-<p class="sources-h">Sources : article « Basilique Saint-Epvre de Nancy » de Wikipédia, archives municipales de Nancy et monographie de la basilique (1890).</p>
+<p class="sources-h">Sources : article « Basilique Saint-Epvre de Nancy » de Wikipédia, archives municipales de Nancy et monographie de la basilique (1890). Pour 1940-1944 : <a href="https://archives.nancy.fr/fileadmin/ARCHIV/PDF/Atelier_Nancy_a_l_heure_allemande.pdf" target="_blank" rel="noopener">Archives municipales de Nancy, « Nancy à l’heure allemande »</a>, article Wikipédia « Libération de Nancy » et <a href="https://ne.ng.mil/Media/News/News-Article-View/Article/3527002/the-liberation-of-nancy-france/" target="_blank" rel="noopener">Garde nationale du Nebraska</a>.</p>
 
 <div class="cul-de-lampe" aria-hidden="true">
   <div class="orn" style="--src:url(../assets/ornements/ange-banderole.svg?v=3)"></div>

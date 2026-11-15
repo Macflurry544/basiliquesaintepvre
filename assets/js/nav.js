@@ -9,8 +9,10 @@
     { href: '/les-cloches/',         label: 'Cloches' },
     { href: '/musee-virtuel/',       label: 'Musée virtuel' },
     { href: '/inventaire/',          label: 'Inventaire' },
+    { href: '/inscriptions/',        label: 'Inscriptions' },
     { href: '/photos/',              label: 'Photos' },
     { href: '/horaires-douverture/', label: 'Horaires' },
+    { href: '/questions-frequentes/', label: 'Questions' },
     { href: '/contact/',             label: 'Contact' },
   ];
 
@@ -23,12 +25,14 @@
       { href: '/les-cloches/',        label: 'Cloches' },
       { href: '/musee-virtuel/',      label: 'Musée virtuel' },
       { href: '/inventaire/',         label: 'Inventaire' },
+      { href: '/inscriptions/',       label: 'Inscriptions' },
       { href: '/photos/',             label: 'Photos' },
     ]},
     { title: 'Visiter', links: [
       { href: '/',                     label: 'Accueil' },
       { href: '/horaires-douverture/', label: "Horaires d'ouverture" },
       { href: '/carte/',               label: 'Carte' },
+      { href: '/questions-frequentes/', label: 'Questions fréquentes' },
       { href: '/contact/',             label: 'Contact' },
     ]},
     { title: 'Patrimoine', links: [

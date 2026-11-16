@@ -41,6 +41,7 @@
       { href: '/joseph-trouillet/anecdotes-joseph-trouillet/', label: 'Anecdotes' },
       { href: '/personnages/',                label: 'Personnages' },
       { href: '/images-anciennes/',           label: 'Images anciennes' },
+      { href: '/basilique-3d/',               label: 'Saint-Epvre en 3D' },
       { href: '/1914-1918/',                  label: '1914 – 1918' },
       { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },
       { href: '/presse/',                     label: 'Presse' },

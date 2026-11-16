@@ -130,4 +130,10 @@
   <url>
     <loc>https://basiliquesaintepvre.com/architecture/</loc>
   </url>
+  <url>
+    <loc>https://basiliquesaintepvre.com/basilique-3d/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

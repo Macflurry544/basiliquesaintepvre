@@ -83,7 +83,9 @@
   .sec-i { max-width: 62ch; margin: 0 0 2.4rem; font-size: 1.05rem; }
   .sec-i em { font-style: italic; }
   .fond { background: #fff; }
-  .chiffres { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 1px; background: rgba(33,52,72,.14); border: 1px solid rgba(33,52,72,.14); }
+  .chiffres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(33,52,72,.14); border: 1px solid rgba(33,52,72,.14); }
+  @media (max-width: 820px) { .chiffres { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px) { .chiffres { grid-template-columns: 1fr; } }
   .chiffres div { background: var(--p); padding: 1.5rem 1.3rem; }
   .chiffres b { display: block; font: 500 clamp(2.2rem, 5vw, 3rem)/1 var(--g); letter-spacing: -.04em; color: var(--b); }
   .chiffres span { display: block; margin-top: .5rem; font-size: .95rem; line-height: 1.4; }
@@ -265,17 +267,6 @@
 <main>
   <section class="lecture"><p class="lecture-texte" aria-label="Une église longue de 84 mètres, une tour haute de 84 mètres. Prosper Morey a dessiné Saint-Epvre comme une cathédrale du XIVᵉ siècle, et prévu dès le plan la place de chaque autel."><span>Une</span> <span>église</span> <span>longue</span> <span>de</span> <span>84</span> <span>mètres,</span> <span>une</span> <span>tour</span> <span>haute</span> <span>de</span> <span>84</span> <span>mètres.</span> <span>Prosper</span> <span>Morey</span> <span>a</span> <span>dessiné</span> <span>Saint-Epvre</span> <span>comme</span> <span>une</span> <span>cathédrale</span> <span>du</span> <span>XIVᵉ</span> <span>siècle,</span> <span>et</span> <span>prévu</span> <span>dès</span> <span>le</span> <span>plan</span> <span>la</span> <span>place</span> <span>de</span> <span>chaque</span> <span>autel.</span></p></section>
 
-  <section class="sec" aria-labelledby="t-chiffres">
-    <h2 class="sec-t" id="t-chiffres">En chiffres</h2>
-    <div class="chiffres">
-      <div><b>84 m</b><span>de long, autant que la hauteur de la tour : un rapport « conforme aux bons principes ».</span></div>
-      <div><b>24 m</b><span>sous la voûte de la grande nef ; 11,30 m sous celle des bas-côtés.</span></div>
-      <div><b>40 × 27 m</b><span>le transept, mesuré hors-œuvre.</span></div>
-      <div><b>74</b><span>fenêtres d’environ 15 m² chacune, sans compter les cinq rosaces et les cinq portes.</span></div>
-      <div><b>7 · 5 · 3</b><span>travées pour la nef, le transept et le chœur, et cinq chapelles rayonnantes.</span></div>
-      <div><b>10 m</b><span>entre les quatre piliers de la croisée.</span></div>
-    </div>
-  </section>
 
   <section class="sec fond" id="plan" aria-labelledby="t-plan">
     <h2 class="sec-t" id="t-plan">Le plan</h2>
@@ -380,6 +371,18 @@
     <h2 class="sec-t" id="t-pl">Les planches de 1890</h2>
     <p class="sec-i">Le second volume de la monographie réunit les planches gravées, lithographiées ou photographiées de l’église et de son mobilier. Faites défiler, touchez une planche pour zoomer.</p>
     <div class="car"><div class="car-piste" tabindex="0" aria-label="Planches de la monographie"><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/facade.webp" data-titre="Façade principale"><img src="/assets/img/monographie/facade.webp" loading="lazy" alt="Façade principale, planche de la monographie de 1890"></div><figcaption><span>01</span><b>Façade principale</b>Élévation de Prosper Morey</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/coupe-transversale.webp" data-titre="Coupe transversale"><img src="/assets/img/monographie/coupe-transversale.webp" loading="lazy" alt="Coupe transversale, planche de la monographie de 1890"></div><figcaption><span>02</span><b>Coupe transversale</b>Le transept et sa rose</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/ostensoir.webp" data-titre="L’ostensoir"><img src="/assets/img/monographie/ostensoir.webp" loading="lazy" alt="L’ostensoir, planche de la monographie de 1890"></div><figcaption><span>03</span><b>L’ostensoir</b>Vieil argent, trésor de la basilique</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/chaire.webp" data-titre="La chaire à prêcher"><img src="/assets/img/monographie/chaire.webp" loading="lazy" alt="La chaire à prêcher, planche de la monographie de 1890"></div><figcaption><span>04</span><b>La chaire à prêcher</b>Frères Klem, d’après Morey</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/stalle.webp" data-titre="Une stalle du sanctuaire"><img src="/assets/img/monographie/stalle.webp" loading="lazy" alt="Une stalle du sanctuaire, planche de la monographie de 1890"></div><figcaption><span>05</span><b>Une stalle du sanctuaire</b>Dossier et profil</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/orgue.webp" data-titre="Le grand orgue"><img src="/assets/img/monographie/orgue.webp" loading="lazy" alt="Le grand orgue, planche de la monographie de 1890"></div><figcaption><span>06</span><b>Le grand orgue</b>Buffet de Morey, orgue Merklin</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/portes.webp" data-titre="Portes en bois sculpté"><img src="/assets/img/monographie/portes.webp" loading="lazy" alt="Portes en bois sculpté, planche de la monographie de 1890"></div><figcaption><span>07</span><b>Portes en bois sculpté</b>Œuvre de Klem</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/autels-marggraff.webp" data-titre="Autels secondaires"><img src="/assets/img/monographie/autels-marggraff.webp" loading="lazy" alt="Autels secondaires, planche de la monographie de 1890"></div><figcaption><span>08</span><b>Autels secondaires</b>Ateliers Marggraff, Munich</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/chasse.webp" data-titre="La grande châsse"><img src="/assets/img/monographie/chasse.webp" loading="lazy" alt="La grande châsse, planche de la monographie de 1890"></div><figcaption><span>09</span><b>La grande châsse</b>Elle renferme le chef de saint Epvre</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/chandeliers.webp" data-titre="Chandelier, candélabre, applique"><img src="/assets/img/monographie/chandeliers.webp" loading="lazy" alt="Chandelier, candélabre, applique, planche de la monographie de 1890"></div><figcaption><span>10</span><b>Chandelier, candélabre, applique</b>Dessins de Joseph Jacquot</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/calices.webp" data-titre="Calices du trésor"><img src="/assets/img/monographie/calices.webp" loading="lazy" alt="Calices du trésor, planche de la monographie de 1890"></div><figcaption><span>11</span><b>Calices du trésor</b>Flavigny, Munich, Vienne</figcaption></figure><figure class="car-i"><div class="car-img zoomable lightbox" style="aspect-ratio:813 / 1300" data-src="/assets/img/monographie/grille-crypte.webp" data-titre="La grille de la crypte"><img src="/assets/img/monographie/grille-crypte.webp" loading="lazy" alt="La grille de la crypte, planche de la monographie de 1890"></div><figcaption><span>12</span><b>La grille de la crypte</b>Fer forgé, Lunéville</figcaption></figure></div><div class="car-nav"><button type="button" class="car-p" aria-label="Planche précédente">←</button><span class="car-n">1 / 12</span><button type="button" class="car-s" aria-label="Planche suivante">→</button></div></div>
+  </section>
+
+  <section class="sec" aria-labelledby="t-chiffres">
+    <h2 class="sec-t" id="t-chiffres">Pour retenir</h2>
+    <div class="chiffres">
+      <div><b>84 m</b><span>de long, autant que la hauteur de la tour : un rapport « conforme aux bons principes ».</span></div>
+      <div><b>24 m</b><span>sous la voûte de la grande nef ; 11,30 m sous celle des bas-côtés.</span></div>
+      <div><b>40 × 27 m</b><span>le transept, mesuré hors-œuvre.</span></div>
+      <div><b>74</b><span>fenêtres d’environ 15 m² chacune, sans compter les cinq rosaces et les cinq portes.</span></div>
+      <div><b>7 · 5 · 3</b><span>travées pour la nef, le transept et le chœur, et cinq chapelles rayonnantes.</span></div>
+      <div><b>10 m</b><span>entre les quatre piliers de la croisée.</span></div>
+    </div>
   </section>
 
   <blockquote class="citation-v">« L’église gothique du XIXᵉ siècle la mieux comprise. »<cite>Le jugement de Viollet-le-Duc sur Saint-Epvre, rapporté par la monographie de 1890</cite></blockquote>

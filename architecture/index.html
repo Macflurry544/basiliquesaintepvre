@@ -279,6 +279,27 @@
   .sec-t::before { content: counter(sec, decimal-leading-zero); flex: none; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 2px solid currentColor; border-radius: 50%; font: 600 1rem var(--g); letter-spacing: 0; }
   /* La gravure du profil penche d'environ 0,8° : on la redresse */
   [data-schema="coupe"] .dessin .orn { rotate: .82deg; }
+  /* Balade cinématique sur le plan */
+  .balade { position: relative; height: calc(var(--n) * 90vh); background: var(--p); }
+  .bal-scene { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .bal-cam { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+  .bal-cam .orn { position: absolute; inset: 0; color: var(--n); }
+  .bal-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .bal-route { fill: none; stroke: #a8242b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .bal-pt { fill: #a8242b; stroke: #fff; stroke-width: 3; vector-effect: non-scaling-stroke; }
+  .bal-txts { position: absolute; right: max(22px, calc((100vw - 1180px) / 2)); top: 50%; translate: 0 -50%; width: min(380px, 38vw); }
+  .bal-t { position: absolute; inset: auto 0 auto 0; top: 0; translate: 0 -50%; opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .8s cubic-bezier(.22,1,.36,1); pointer-events: none; background: rgba(251,249,245,.92); padding: 1.4rem 0 1.4rem 1.4rem; border-left: 3px solid #a8242b; }
+  .bal-t.on { opacity: 1; transform: none; }
+  .bal-t span { font: 600 .78rem var(--g); letter-spacing: .22em; text-transform: uppercase; color: #a8242b; }
+  .bal-t h3 { margin: .35rem 0 .6rem; font: 500 clamp(1.7rem, 3.4vw, 2.6rem)/1.02 var(--g); letter-spacing: -.035em; color: var(--b); }
+  .bal-t p { margin: 0; font-size: 1.05rem; }
+  .bal-prog { position: absolute; left: 22px; right: 22px; bottom: 22px; height: 2px; background: rgba(74,21,24,.15); }
+  .bal-prog i { display: block; height: 100%; width: 0; background: #a8242b; }
+  @media (max-width: 820px) {
+    .bal-txts { left: 16px; right: 16px; width: auto; top: auto; bottom: 46px; translate: none; }
+    .bal-t { top: auto; bottom: 0; translate: none; padding: 1rem 1rem 1.1rem 1.2rem; background: rgba(251,249,245,.95); box-shadow: 0 10px 30px rgba(33,52,72,.12); }
+    .bal-t h3 { font-size: 1.5rem; } .bal-t p { font-size: .97rem; }
+  }
   .citation-v { max-width: 820px; margin: 0 auto; padding: 4rem 22px; text-align: center; font: 500 clamp(1.4rem, 3vw, 2.1rem)/1.3 var(--g); letter-spacing: -.02em; }
   .citation-v cite { display: block; margin-top: 1rem; font: italic 400 1rem var(--s); opacity: .7; }
   .sources-a { max-width: 900px; margin: 0 auto; padding: 0 22px 4rem; font-size: .9rem; opacity: .8; }
@@ -293,7 +314,6 @@
 </head>
 <body>
 <header class="tete">
-  <span class="kick">Prosper Morey · 1864 – 1875</span>
   <h1>Architecture</h1>
   <p>Le plan, la tour, les voûtes et la pierre de Saint-Epvre.</p>
 </header>
@@ -302,12 +322,11 @@
   <section class="lecture"><p class="lecture-texte" aria-label="Une église longue de 84 mètres, une tour haute de 84 mètres. Prosper Morey a dessiné Saint-Epvre comme une cathédrale du XIVᵉ siècle, et prévu dès le plan la place de chaque autel."><span>Une</span> <span>église</span> <span>longue</span> <span>de</span> <span>84</span> <span>mètres,</span> <span>une</span> <span>tour</span> <span>haute</span> <span>de</span> <span>84</span> <span>mètres.</span> <span>Prosper</span> <span>Morey</span> <span>a</span> <span>dessiné</span> <span>Saint-Epvre</span> <span>comme</span> <span>une</span> <span>cathédrale</span> <span>du</span> <span>XIVᵉ</span> <span>siècle,</span> <span>et</span> <span>prévu</span> <span>dès</span> <span>le</span> <span>plan</span> <span>la</span> <span>place</span> <span>de</span> <span>chaque</span> <span>autel.</span></p></section>
 
 
-  <section class="sec fond" id="plan" aria-labelledby="t-plan">
-    <h2 class="sec-t" id="t-plan">Le plan</h2>
-    <p class="sec-i">Une croix latine : l’entrée en bas, le chœur en haut. La monographie le rapproche des grandes églises du XIVᵉ siècle : peu de chapelles, des lignes simples, « les parties de l’édifice se lisent parfaitement ».</p>
-    <div class="schema" data-schema="plan">
-      <div class="dessin revele" style="max-width:380px;aspect-ratio:1262 / 2583" data-src="/assets/ornements/architecture/plan.svg"><span class="orn" style="--src:url(/assets/ornements/architecture/plan.svg?v=2)" role="img" aria-label="Dessin de Prosper Morey, vectorisé d’après la monographie de 1890"></span><button class="pt" type="button" style="left:49%;top:93%" data-k="0" aria-pressed="true" aria-label="Le portail et la tour">1</button><button class="pt" type="button" style="left:49%;top:64%" data-k="1" aria-pressed="false" aria-label="La grande nef">2</button><button class="pt" type="button" style="left:49%;top:40%" data-k="2" aria-pressed="false" aria-label="La croisée">3</button><button class="pt" type="button" style="left:10%;top:40%" data-k="3" aria-pressed="false" aria-label="Le transept et ses portails">4</button><button class="pt" type="button" style="left:50%;top:28%" data-k="4" aria-pressed="false" aria-label="Le chœur">5</button><button class="pt" type="button" style="left:49%;top:10%" data-k="5" aria-pressed="false" aria-label="Les cinq chapelles rayonnantes">6</button><button class="pt" type="button" style="left:30%;top:58%" data-k="6" aria-pressed="false" aria-label="Le mobilier prévu dès le plan">7</button></div>
-      <div class="fiches-pt"><div class="fpt on" data-k="0"><span class="n">1 / 7</span><h3>Le portail et la tour</h3><p>Trois portes sur la façade, celle du milieu coupée en deux par un trumeau. Au-dessus, la tour : elle repose sur quatre arcs-doubleaux « très puissants », car ils portent tout le poids d’un clocher de 84 mètres.</p></div><div class="fpt" data-k="1"><span class="n">2 / 7</span><h3>La grande nef</h3><p>Sept travées jusqu’au transept, sans compter celle de la tour. La voûte culmine à <strong>24 mètres</strong> ; les bas-côtés, à 11,30 m. Au-dessus d’eux court une tribune, le triforium, qui fait le tour de l’église.</p></div><div class="fpt" data-k="2"><span class="n">3 / 7</span><h3>La croisée</h3><p>Quatre piliers distants de <strong>dix mètres</strong> portent une voûte de plus de 100 m² à 24 m de haut, alors qu’ils ne sont guère plus massifs que ceux de la nef. Les nervures dessinent une étoile à quatre branches.</p><blockquote>« Le spectateur qui se trouve à un des piliers du centre ne peut s’empêcher d’éprouver quelques instants une certaine terreur en présence d’un pareil vide. »</blockquote></div><div class="fpt" data-k="3"><span class="n">4 / 7</span><h3>Le transept et ses portails</h3><p>Cinq travées, 40 mètres hors-œuvre sur 27. À chaque bout, un portail et une grande rose. La crypte, creusée grâce à la pente du terrain, s’ouvre sous le portail est.</p></div><div class="fpt" data-k="4"><span class="n">5 / 7</span><h3>Le chœur</h3><p>Trois travées, le maître-autel de Klem et les stalles. Le sol devant l’autel est fait de marbres noirs africains retrouvés dans les décombres de la voie Appienne et donnés par Pie IX.</p></div><div class="fpt" data-k="5"><span class="n">6 / 7</span><h3>Les cinq chapelles rayonnantes</h3><p>Toutes de même taille, à pans coupés, largement ouvertes sur le déambulatoire. Les nombres impairs reviennent partout : 7 travées, 5 pour le transept, 3 pour le chœur, 5 chapelles.</p></div><div class="fpt" data-k="6"><span class="n">7 / 7</span><h3>Le mobilier prévu dès le plan</h3><p>Fait rare selon la monographie : Morey a dessiné sur son plan la place des autels, des confessionnaux, du chemin de croix, du banc d’œuvre et de la table de communion. Rien n’a été casé après coup.</p></div><div class="nav-pt" aria-label="Points du schéma"><button type="button" data-k="0" aria-pressed="true">1</button><button type="button" data-k="1" aria-pressed="false">2</button><button type="button" data-k="2" aria-pressed="false">3</button><button type="button" data-k="3" aria-pressed="false">4</button><button type="button" data-k="4" aria-pressed="false">5</button><button type="button" data-k="5" aria-pressed="false">6</button><button type="button" data-k="6" aria-pressed="false">7</button></div><p class="aide"><span class="txt">Touchez un numéro sur le dessin.</span> <button type="button" class="zoom-l" data-zoom>Agrandir le dessin ⤢</button></p></div>
+  <section class="balade" id="plan" aria-label="Balade sur le plan" style="--n:9">
+    <div class="bal-scene">
+      <div class="bal-cam"><span class="orn" style="--src:url(/assets/ornements/architecture/plan.svg?v=2)" role="img" aria-label="Plan de Saint-Epvre par Prosper Morey"></span><svg class="bal-svg" aria-hidden="true"><path class="bal-route"/><circle class="bal-pt" r="7"/></svg></div>
+      <div class="bal-txts no-gl"><div class="bal-t" data-k="0"><span>&nbsp;</span><h3>Le plan de Morey</h3><p>Une croix latine de 84 mètres. On entre en bas, par la façade ; le chœur est tout en haut. Laissez-vous guider.</p></div><div class="bal-t" data-k="1"><span>Arrêt 1</span><h3>Sur le parvis</h3><p>Trois portes, celle du milieu coupée par un trumeau. Au-dessus de vous, la tour : quatre arcs « très puissants » portent un clocher de 84 mètres.</p></div><div class="bal-t" data-k="2"><span>Arrêt 2</span><h3>Dans la nef</h3><p>Sept travées, des piliers sveltes, une voûte à 24 mètres. Au-dessus des bas-côtés court une tribune qui fait le tour de l’église.</p></div><div class="bal-t" data-k="3"><span>Arrêt 3</span><h3>Le long des bas-côtés</h3><p>Les confessionnaux, le chemin de croix, le banc d’œuvre : Morey en avait dessiné la place sur son plan, avant même la première pierre.</p></div><div class="bal-t" data-k="4"><span>Arrêt 4</span><h3>Au bout du transept</h3><p>Un portail et une grande rose à chaque extrémité. Sous le portail est, la crypte, creusée grâce à la pente du terrain.</p></div><div class="bal-t" data-k="5"><span>Arrêt 5</span><h3>Sous la croisée</h3><p>Quatre piliers à dix mètres l’un de l’autre portent une voûte de plus de 100 m². La monographie avoue « une certaine terreur en présence d’un pareil vide ».</p></div><div class="bal-t" data-k="6"><span>Arrêt 6</span><h3>Devant le chœur</h3><p>Trois travées, les stalles et le maître-autel de Klem, haut d’environ quinze mètres. Au sol, du marbre noir venu de la voie Appienne.</p></div><div class="bal-t" data-k="7"><span>Arrêt 7</span><h3>Les chapelles rayonnantes</h3><p>Cinq chapelles de même taille ferment l’église. Partout, des nombres impairs : 7, 5, 3, 5.</p></div><div class="bal-t" data-k="8"><span>&nbsp;</span><h3>Fin de la balade</h3><p>Vous avez traversé l’église de la porte au chevet, sur les pas du plan dessiné en 1863.</p></div></div>
+      <div class="bal-prog" aria-hidden="true"><i></i></div>
     </div>
   </section>
 
@@ -435,7 +454,7 @@
   <div class="rosace" aria-hidden="true"></div>
   <span>Nancy · Lorraine · France</span>
 </footer>
-<script src="/assets/js/nav.js?v=20"></script>
+<script src="/assets/js/nav.js?v=22"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
 <script>
 (function () {
@@ -523,6 +542,37 @@
       lp.style.left = e.clientX - 95 + 'px'; lp.style.top = e.clientY - 95 + 'px';
       lp.style.backgroundSize = r.width * Z + 'px ' + r.height * Z + 'px'; lp.style.backgroundPosition = (95 - x * Z) + 'px ' + (95 - y * Z) + 'px'; });
   });
+  // balade : la caméra suit le plan au défilement
+  (function () {
+    var sec = document.querySelector('.balade'); if (!sec) return;
+    var S = [[50, 62, 1], [49, 95, 2.4], [49, 70, 2], [33, 52, 2.6], [11, 40, 2.6], [49, 40, 2.6], [50, 27, 2.4], [49, 10, 2.4], [50, 55, 1]], R = [[49, 95], [49, 70], [49, 60], [33, 60], [33, 52], [33, 40], [11, 40], [49, 40], [50, 27], [49, 10]], A = [0, 1, 4, 6, 7, 8, 9], cam = sec.querySelector('.bal-cam'), svg = sec.querySelector('.bal-svg'), route = sec.querySelector('.bal-route'), dot = sec.querySelector('.bal-pt'),
+        txt = sec.querySelectorAll('.bal-t'), bar = sec.querySelector('.bal-prog i'), W, H, segs, tot, LA, reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function mesure() {
+      var mob = innerWidth < 820; H = innerHeight * (mob ? .62 : .9); W = H * 1262 / 2583;
+      cam.style.width = W + 'px'; cam.style.height = H + 'px'; svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      var pts = R.map(function (s) { return [s[0] / 100 * W, s[1] / 100 * H]; });
+      route.setAttribute('d', 'M' + pts.map(function (p) { return p.join(' '); }).join(' L'));
+      segs = [0]; for (var i = 1; i < pts.length; i++) segs.push(segs[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+      tot = segs[segs.length - 1]; route.style.strokeDasharray = tot; LA = A.map(function (i) { return segs[i]; }); maj();
+    }
+    function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function maj() {
+      var r = sec.getBoundingClientRect(), course = sec.offsetHeight - innerHeight, p = Math.min(1, Math.max(0, -r.top / course)), f = p * (S.length - 1);
+      var i = Math.min(S.length - 2, Math.floor(f)), t = reduit ? Math.round(f - i) : ease(f - i), a = S[i], b = S[i + 1];
+      var fx = (a[0] + (b[0] - a[0]) * t) / 100, fy = (a[1] + (b[1] - a[1]) * t) / 100, k = a[2] + (b[2] - a[2]) * t;
+      var mob = innerWidth < 820, cx = mob ? innerWidth / 2 : Math.min(innerWidth * .36, innerWidth / 2 - 120), cy = mob ? innerHeight * .36 : innerHeight / 2;
+      if (k <= 1.01) { cx = mob ? innerWidth / 2 : innerWidth * .36; }
+      cam.style.transform = 'translate(' + (cx - fx * W * k) + 'px,' + (cy - fy * H * k) + 'px) scale(' + k + ')';
+      // trajet : de l'arrêt 1 au dernier arrêt
+      var g = Math.min(LA.length - 1, Math.max(0, f - 1)), j = Math.min(LA.length - 2, Math.floor(g)), done = f < 1 ? 0 : LA[j] + (LA[j + 1] - LA[j]) * Math.min(1, reduit ? Math.round(g - j) : ease(g - j)); route.style.strokeDashoffset = tot - done;
+      var pt = route.getPointAtLength(Math.max(0, done)); dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y); dot.style.opacity = f < .6 || f > S.length - 1.6 ? 0 : 1;
+      if (f >= 1 && f <= S.length - 2) cam.style.transform = 'translate(' + (cx - pt.x * k) + 'px,' + (cy - pt.y * k) + 'px) scale(' + k + ')';
+      txt.forEach(function (e, n) { e.classList.toggle('on', Math.abs(f - n) < .42); });
+      bar.style.width = p * 100 + '%';
+    }
+    var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true });
+    addEventListener('resize', mesure); mesure();
+  })();
   // échelle : les barres montent à l'écran, une légende par barre
   var ech = document.querySelector('.echelle'), leg = ech.querySelector('.echelle-leg');
   function montre(g) { ech.querySelectorAll('.barre').forEach(function (x) { x.classList.toggle('on', x === g); }); leg.textContent = g.dataset.l; }

@@ -427,7 +427,7 @@
   function cache() { if (ouvert) ouvert.setAttribute('aria-expanded', 'false'); ouvert = null; bulle.classList.remove('on'); }
   function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
   var fait = {};
-  var exclus = 'a,button,script,style,h1,h2,nav,header .tete,.gl,.gl-bulle,summary,cite,figcaption,.kick,.num,[aria-hidden="true"],.lecture-texte,code,svg';
+  var exclus = 'a,button,script,style,h1,h2,nav,header .tete,.gl,.gl-bulle,summary,cite,figcaption,.kick,.num,[aria-hidden="true"],.lecture-texte,code,svg,h3,.no-gl';
   G.forEach(function (g) {
     var re = new RegExp('(^|[^\\p{L}\\-])(' + esc(g[0]) + ')(?![\\p{L}\\-])', 'iu');
     var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {

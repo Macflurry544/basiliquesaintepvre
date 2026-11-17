@@ -15,27 +15,33 @@ const libre = document.getElementById('libre');
 
 /* ---- Repères mesurés dans le nuage (est, nord, hauteur) ---- */
 const REPERES = [
-  { xyz: [-16.17, 32.70, 81.56], t: 'Sommet de la flèche', s: '81,6 m mesurés', chap: [1, 3] },
-  { xyz: [-3.25, 6.74, 32.84], t: 'Faîte de la nef', s: '33 m', chap: [4, 4] },
-  { xyz: [6.09, -12.62, 32.79], t: 'Croisée du transept', s: '40 × 27 m', chap: [5, 5] },
-  { xyz: [14.97, -31.01, 21.81], t: 'Chevet', s: 'abside à cinq pans', chap: [6, 6] },
-  { xyz: [-9.31, -20.06, 34.07], t: 'Bras nord', s: '', chap: [5, 5] },
-  { xyz: [21.53, -5.17, 32.03], t: 'Bras sud', s: '', chap: [5, 5] },
+  { xyz: [-16.17, 32.70, 81.56], t: 'Sommet de la flèche', s: '81,6 m mesurés', chap: [2, 5] },
+  { xyz: [-3.25, 6.74, 32.84], t: 'Faîte de la nef', s: '33 m', chap: [6, 7] },
+  { xyz: [6.09, -12.62, 32.79], t: 'Croisée du transept', s: '40 × 27 m', chap: [8, 9] },
+  { xyz: [14.97, -31.01, 21.81], t: 'Chevet', s: 'abside à cinq pans', chap: [11, 12] },
+  { xyz: [-9.31, -20.06, 34.07], t: 'Bras nord', s: '', chap: [9, 10] },
+  { xyz: [21.53, -5.17, 32.03], t: 'Bras sud', s: '', chap: [9, 9] },
 ];
 const V = (e, n, h) => new THREE.Vector3(e, h, -n);
 
 /* ---- Trajet du drone : positions et cibles (est, nord, hauteur), un point par chapitre ---- */
 const TRAJET = [
-  { p: V(-175, -60, 6), c: V(-16, 33, 30) },      // 0 départ : au ras de la place, loin au sud-ouest
-  { p: V(-85, 10, 14), c: V(-16, 33, 20) },       // 1 on arrive au pied de la tour
-  { p: V(-52, 62, 52), c: V(-16, 33, 55) },       // 2 on monte le long de la tour
-  { p: V(-34, 48, 96), c: V(-16, 33, 82) },       // 3 au-dessus de la flèche
-  { p: V(-14, 22, 46), c: V(-2, -4, 33) },        // 4 on rase le toit de la nef vers le chœur
-  { p: V(16, -4, 44), c: V(6, -13, 33) },         // 5 la croisée du transept
-  { p: V(44, -46, 28), c: V(15, -31, 22) },       // 6 le chevet, vu du sud-est
-  { p: V(0, -95, 20), c: V(0, -10, 22) },         // 7 on contourne par l’est
-  { p: V(-120, -40, 40), c: V(-6, 0, 24) },       // 8 on reprend du champ
-  { p: V(0.5, 0.5, 175), c: V(0, 0, 0) },         // 9 à la verticale : le plan en croix latine
+  { p: V(-175, -60, 6), c: V(-16, 33, 30) },      // 0 la place : départ au ras du sol, loin au sud-ouest
+  { p: V(-62, 22, 7), c: V(-20, 36, 9) },         // 1 le portail, à hauteur d’homme
+  { p: V(-74, 2, 16), c: V(-16, 33, 22) },        // 2 le pied de la tour et l’escalier
+  { p: V(-56, 48, 40), c: V(-16, 33, 42) },       // 3 le beffroi
+  { p: V(-40, 60, 64), c: V(-16, 33, 62) },       // 4 les clochetons
+  { p: V(-34, 48, 96), c: V(-16, 33, 82) },       // 5 au-dessus de la flèche
+  { p: V(24, 32, 18), c: V(4, 10, 20) },          // 6 le flanc sud : arcs-boutants
+  { p: V(-14, 22, 46), c: V(-2, -4, 33) },        // 7 le toit de la nef vers le chœur
+  { p: V(-2, -2, 60), c: V(6, -13, 40) },         // 8 le campanile de la croisée
+  { p: V(16, -4, 44), c: V(6, -13, 33) },         // 9 la croisée du transept
+  { p: V(-40, -36, 16), c: V(-10, -21, 24) },     // 10 le bras nord et sa rose
+  { p: V(44, -46, 28), c: V(15, -31, 22) },       // 11 le chevet, vu du sud-est
+  { p: V(30, -58, 12), c: V(14, -32, 18) },       // 12 les pinacles des chapelles
+  { p: V(0, -95, 20), c: V(0, -10, 22) },         // 13 on contourne par l’est
+  { p: V(-120, -40, 40), c: V(-6, 0, 24) },       // 14 on reprend du champ
+  { p: V(0.5, 0.5, 175), c: V(0, 0, 0) },         // 15 à la verticale : le plan en croix latine
 ];
 const courbeP = new THREE.CatmullRomCurve3(TRAJET.map(k => k.p), false, 'centripetal', .4);
 const courbeC = new THREE.CatmullRomCurve3(TRAJET.map(k => k.c), false, 'centripetal', .4);
@@ -144,7 +150,33 @@ function mesure() {
   const r = balade.getBoundingClientRect(); const vh = innerHeight;
   avancement = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
 }
-addEventListener('scroll', mesure, { passive: true }); addEventListener('resize', mesure); mesure();
+let dernierDefil = performance.now(), tween = null;
+addEventListener('scroll', () => { mesure(); dernierDefil = performance.now(); if (!tween) continuer.classList.remove('vu'); }, { passive: true });
+addEventListener('resize', mesure); mesure();
+
+/* « Continuer l’expérience » : après quelques secondes sans défilement, un bouton emmène à l’étape suivante */
+const continuer = document.getElementById('continuer');
+function versEtape(k) {
+  const r = balade.getBoundingClientRect(); const h = r.height - innerHeight; const debut = scrollY;
+  const cible = scrollY + r.top + h * Math.min(1, k / (TRAJET.length - 1));
+  const t0 = performance.now(), duree = 2600;
+  cancelAnimationFrame(tween);
+  (function pas(now) {
+    const u = Math.min(1, (now - t0) / duree); const e = u < .5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+    scrollTo(0, debut + (cible - debut) * e);
+    if (u < 1) tween = requestAnimationFrame(pas); else { tween = null; dernierDefil = performance.now(); }
+  })(t0);
+}
+continuer.addEventListener('click', () => {
+  continuer.classList.remove('vu');
+  const seg = Math.floor(avancement * (TRAJET.length - 1) + 1e-6);
+  versEtape(seg + 1);
+});
+function majContinuer() {
+  const inactif = performance.now() - dernierDefil > 4500;
+  const dansBalade = avancement > 0.005 && avancement < 0.985;
+  continuer.classList.toggle('vu', inactif && dansBalade && !enLibre && !tween);
+}
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; controls.dampingFactor = .07; controls.enabled = false;
@@ -167,11 +199,13 @@ function taille() {
 }
 new ResizeObserver(taille).observe(scene3); taille();
 
+let tPrec = performance.now();
 function boucle() {
   requestAnimationFrame(boucle);
+  const now = performance.now(); const dt = Math.min(.1, (now - tPrec) / 1000); tPrec = now;
   const nChap = chapitres.length;
   if (!enLibre) {
-    lisse += (avancement - lisse) * .085;
+    lisse += (avancement - lisse) * (1 - Math.exp(-dt / .19));
     const t = Math.min(.9999, lisse);
     courbeP.getPointAt(t, tmpP); courbeC.getPointAt(t, tmpC);
     // roulis façon drone : on penche dans les virages
@@ -183,9 +217,9 @@ function boucle() {
     camera.up.set(Math.sin(roulis), Math.cos(roulis), 0);
     camera.lookAt(tmpC);
     const seg = Math.min(nChap - 1, Math.floor(lisse * (TRAJET.length - 1) + .5));
-    chapitres.forEach((c, i) => c.classList.toggle('on', i === seg));
+    chapitres.forEach((c, i) => { c.classList.toggle('on', i === seg); if (i !== seg && c.classList.contains('ouvert')) { c.classList.remove('ouvert'); const b = c.querySelector('.lire-btn'); if (b) { b.setAttribute('aria-expanded', 'false'); b.firstChild.textContent = 'Lire '; } } });
     jauge.style.setProperty('--p', lisse);
-    placeReperes(seg, false);
+    placeReperes(seg, false); majContinuer();
   } else {
     controls.update(); placeReperes(0, true);
   }

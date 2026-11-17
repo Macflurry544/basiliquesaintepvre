@@ -99,6 +99,16 @@
   /* ══ La suite, sur le modèle d'un musée : très grands titres, aplats, listes à flèches ══ */
   .large { max-width: 1240px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
   .rouge { background: var(--bordeaux); color: var(--blanc); }
+  .trois-d { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; margin: 3rem auto 0; padding: clamp(2rem, 5vw, 3.6rem); min-height: clamp(300px, 42vw, 460px); color: #fff; text-decoration: none; border-radius: 4px; background: #213448 url(/assets/3d/basilique-3d.jpg) center / cover no-repeat; box-shadow: 0 24px 60px rgba(0,0,0,.3); position: relative; overflow: hidden; }
+  .trois-d::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(33,52,72,.9) 0%, rgba(33,52,72,.3) 55%, rgba(33,52,72,0) 100%); }
+  .trois-d > * { position: relative; }
+  .trois-d small { display: block; font-family: var(--grot); font-size: .78rem; letter-spacing: .28em; text-transform: uppercase; opacity: .8; margin-bottom: .8rem; }
+  .trois-d b { display: block; font-family: var(--grot); font-weight: 500; text-transform: uppercase; letter-spacing: -.035em; line-height: .92; font-size: clamp(2.2rem, 6.5vw, 5.2rem); }
+  .trois-d .trois-d-t > span { display: block; margin-top: 1rem; max-width: 46ch; font-size: 1.05rem; line-height: 1.5; opacity: .9; }
+  .trois-d-btn { display: inline-block; padding: .9rem 1.6rem; border-radius: 999px; background: #fff; color: #213448; font-family: var(--grot); font-weight: 600; font-size: 1rem; white-space: nowrap; transition: transform .3s; }
+  .trois-d:hover .trois-d-btn { transform: translateX(6px); }
+  @media (max-width: 700px) { .trois-d { grid-template-columns: 1fr; gap: 1.4rem; min-height: 0; padding: 1.6rem 1.3rem 1.5rem; } .trois-d b { font-size: clamp(1.9rem, 8.6vw, 2.6rem); } .trois-d-btn { justify-self: start; } }
+
   .ogive { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath d='M0 160V62Q0 18 50 0Q100 18 100 62V160Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; background: var(--papier) center / cover no-repeat; }
 
   /* Bienvenue : le mot défile, il passe en bordeaux sur la photo */
@@ -302,6 +312,11 @@
       <a href="https://www.oratoire-nancy.org/messes-et-offices-a-st-epvre/">Messes et offices <span>→</span></a>
     </div>
   </div>
+
+  <a class="trois-d large apparait" href="/basilique-3d/">
+    <span class="trois-d-t"><small>Nouveau · Visite en 3D</small><b>Survolez Saint‑Epvre<br>comme un drone</b><span>Un nuage de points laser de l’IGN, de la place au sommet de la flèche. Faites défiler, vous pilotez.</span></span>
+    <span class="trois-d-btn">Décoller <span aria-hidden="true">→</span></span>
+  </a>
 
   <div class="large colonnes">
     <a href="/horaires-douverture/" class="apparait"><span class="ph" style="background-image:url(/assets/img/accueil/nef-principale.jpg)"></span><small>Votre visite</small><h3>Une église ouverte à tous</h3><p>Pour la prière, le silence et la contemplation. Entrée libre.</p><span class="fl">→</span></a>

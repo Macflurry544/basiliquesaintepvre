@@ -48,6 +48,8 @@
   /* ---- Balade ---- */
   .balade { position: relative; height: 1050vh; }
   .scene { position: sticky; top: 0; height: 100svh; width: 100%; overflow: hidden; }
+  .scene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(33,52,72,.92) 0%, rgba(33,52,72,.55) 28%, rgba(33,52,72,0) 58%); pointer-events: none; z-index: 1; }
+  body.libre .scene::after { display: none; }
   .scene canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; outline: none; touch-action: pan-y; }
   body:not(.libre) .scene canvas { pointer-events: none; }
   .chargement { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font: 500 1.1rem var(--g); background: var(--n); transition: opacity .8s; z-index: 5; }
@@ -60,12 +62,13 @@
   .rep small { display: block; font: 400 .74rem var(--s); opacity: .8; }
   .rep.vu { opacity: 1; }
   /* chapitres : panneaux fixes, un seul visible */
-  .chap { position: absolute; left: clamp(22px, 6vw, 90px); bottom: clamp(26px, 9vh, 110px); max-width: min(520px, calc(100% - 44px)); opacity: 0; translate: 0 18px; transition: opacity .7s, translate .7s; pointer-events: none; z-index: 3; }
+  .chap { position: absolute; left: clamp(22px, 6vw, 90px); bottom: clamp(26px, 7vh, 90px); max-width: min(560px, calc(100% - 44px)); opacity: 0; translate: 0 18px; transition: opacity .7s, translate .7s; pointer-events: none; z-index: 3; }
   .chap.on { opacity: 1; translate: 0 0; pointer-events: auto; }
   .chap .n { display: block; font: 600 .74rem var(--g); letter-spacing: .28em; text-transform: uppercase; opacity: .65; margin-bottom: .5rem; }
   .chap h2 { margin: 0 0 .7rem; font: 600 clamp(2rem, 6vw, 4.2rem)/.95 var(--g); letter-spacing: -.04em; }
   .chap p { margin: 0; font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.5; text-shadow: 0 1px 12px rgba(33,52,72,.9); max-width: 48ch; }
   .chap p b { font-weight: 600; }
+  .chap .anec { margin-top: .7rem; padding-left: .9rem; border-left: 2px solid rgba(255,255,255,.45); font-size: clamp(.95rem, 1.4vw, 1.05rem); opacity: .92; }
   .chap .src { display: block; margin-top: .6rem; font: italic 400 .8rem var(--s); opacity: .6; }
   .jauge { position: absolute; right: clamp(14px, 3vw, 34px); top: 50%; translate: 0 -50%; height: min(42vh, 300px); width: 2px; background: rgba(255,255,255,.18); z-index: 3; pointer-events: none; }
   .jauge::before { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--p, 0) * 100%); background: #fff; }
@@ -80,7 +83,7 @@
   body.libre .chap, body.libre .jauge, body.libre .libre-bouton { display: none; }
   .aide-libre { position: absolute; left: 50%; top: 80px; translate: -50% 0; font: italic 400 .85rem var(--s); opacity: .7; display: none; text-align: center; white-space: nowrap; z-index: 3; }
   body.libre .aide-libre { display: block; }
-  @media (max-width: 700px) { .chap { left: 18px; right: 18px; max-width: none; bottom: clamp(70px, 10vh, 110px); } .scene[data-fin="1"] .chap { bottom: 150px; } .chap h2 { font-size: clamp(1.9rem, 9vw, 2.8rem); } .chap p { font-size: 1rem; } .jauge { right: 8px; height: 34vh; } .aide-libre { white-space: normal; width: 80%; } }
+  @media (max-width: 700px) { .chap { left: 18px; right: 18px; max-width: none; bottom: clamp(60px, 8vh, 90px); } .chap .anec { font-size: .9rem; } .chap p { font-size: .95rem; line-height: 1.4; } .scene[data-fin="1"] .chap { bottom: 150px; } .chap h2 { font-size: clamp(1.9rem, 9vw, 2.8rem); } .chap p { font-size: 1rem; } .jauge { right: 8px; height: 34vh; } .aide-libre { white-space: normal; width: 80%; } }
   body.sans-anim .chap { transition: none; }
 
   /* ---- Suite de la page ---- */
@@ -105,6 +108,7 @@
   .suite { text-align: center; padding: 0 22px 6rem; }
   .suite a { display: inline-block; padding: .9rem 1.6rem; border: 1px solid rgba(255,255,255,.6); border-radius: 999px; font: 600 1rem var(--g); text-decoration: none; margin: .3rem; }
   .suite a:hover { background: #fff; color: var(--n); }
+  .retour-accueil { color: #fff !important; } .retour-accueil .ra-lab { color: rgba(255,255,255,.6) !important; } .retour-accueil .ra-filet { border-top-color: rgba(255,255,255,.2) !important; }
   .pied { background: var(--b); color: #fff; text-align: center; padding: 4rem 22px calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
   .pied b { display: block; font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--g); text-transform: uppercase; letter-spacing: -.03em; }
   .pied .rosace { width: 90px; height: 90px; margin: 1.6rem auto 1.4rem; background: currentColor; -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
@@ -127,73 +131,22 @@
   <div class="scene" id="scene" aria-label="Balade en drone dans le nuage de points de la basilique">
     <div class="chargement" id="chargement">Chargement du nuage de points…<small id="chargement-txt">1,7 Mo</small><div class="barre"><i id="chargement-barre"></i></div></div>
 
-    <article class="chap on"><span class="n">1 / 10 · Décollage</span><h2>La place</h2><p>Nous partons du sud-ouest, au ras du sol. Devant nous, la basilique telle que le laser l’a vue : les toits et la flèche sont nets, les façades, prises de biais, ne sont qu’esquissées.</p><span class="src">Les points gris au sol sont la place et les rues, allégés à un point tous les 30 cm.</span></article>
-    <article class="chap"><span class="n">2 / 10 · Approche</span><h2>Le pied de la tour</h2><p>Une tour carrée, prise entre les deux bas-côtés. <b>84 mètres</b> jusqu’à la croix, selon la monographie de 1890 : Morey avait tout calculé, le tassement, les vents, les tempêtes.</p></article>
-    <article class="chap"><span class="n">3 / 10 · Ascension</span><h2>Le long de la tour</h2><p>Des cordons horizontaux séparent les étages. Ce sont eux, dit la monographie, qui « rassurent l’œil » sur la solidité d’une tour si haute. Quatre clochetons terminés par les alérions de Lorraine font passer du carré à l’octogone.</p></article>
-    <article class="chap"><span class="n">4 / 10 · Sommet</span><h2>La flèche</h2><p>Huit pans ajourés en pierre d’Euville, semés de crochets. Au sommet, une croix de fer doré de 5 m et 200 kg. Le laser s’arrête à <b>81,6 m</b> au-dessus de la place : la croix, trop fine, ne renvoie presque rien.</p></article>
-    <article class="chap"><span class="n">5 / 10 · Survol</span><h2>La nef</h2><p>Nous rasons le toit d’ardoises. Dessous, <b>24 mètres sous voûte</b>, des bas-côtés de 11,30 m. Les arcs-boutants qui épaulent la nef se lisent en pointillé sur les flancs.</p></article>
-    <article class="chap"><span class="n">6 / 10 · Croisée</span><h2>Le transept</h2><p>Deux bras de part et d’autre : <b>40 mètres</b> d’une extrémité à l’autre, 27 de large. Au centre, la croisée, où le plan en croix latine prend tout son sens.</p></article>
-    <article class="chap"><span class="n">7 / 10 · Chœur</span><h2>Le chevet</h2><p>L’abside à cinq pans, ceinturée de contreforts, ferme l’édifice vers l’est. Le laser y lit les toits en pente et les pinacles, bien mieux que les grandes verrières à l’ombre.</p></article>
-    <article class="chap"><span class="n">8 / 10 · Tour d’horizon</span><h2>Par l’est</h2><p>En contournant par les rues, on voit ce qui manque : un laser aérien tire d’en haut. Portails, sculptures et parties basses restent dans l’ombre des maisons. Une campagne photo au sol pourrait les compléter.</p></article>
-    <article class="chap"><span class="n">9 / 10 · Recul</span><h2>84 mètres de long</h2><p>Le nuage mesure <b>83,4 m</b> le long de l’axe, 40,2 m au transept : à quelques décimètres de la monographie. Précision annoncée par l’IGN : 10 cm en altitude.</p></article>
-    <article class="chap"><span class="n">10 / 10 · À la verticale</span><h2>La croix latine</h2><p>Vu d’en haut, le plan de Prosper Morey se dessine point par point : tour, nef, transept, chœur. Prenez les commandes pour explorer librement, ou lisez comment ce nuage a été fabriqué.</p></article>
-
+    <article class="chap on"><span class="n">1 / 10 · Décollage</span><h2>La place</h2><p>Nous partons du sud-ouest, au ras du sol. Trois églises se sont succédé ici depuis 1080 ; celle-ci est la troisième, voulue par le curé Trouillet et bâtie de 1864 à 1875. Devant elle, la statue de René II, vainqueur de Charles le Téméraire en 1477, offerte par le même curé.</p><p class="anec">Pour dégager la place, Mgr Trouillet a racheté et fait abattre les maisons du premier plan : sur la gravure du chantier, elles cachent encore les échafaudages.</p><span class="src">Histoire, Images anciennes · points gris : la place et les rues, un point tous les 30 cm</span></article>
+    <article class="chap"><span class="n">2 / 10 · Approche</span><h2>Le pied de la tour</h2><p>Trois portes, celle du milieu coupée par un trumeau, et un grand escalier offert par l’empereur François-Joseph d’Autriche, descendant des ducs de Lorraine, venu sur le chantier le 22 octobre 1867. Au-dessus, quatre arcs « très puissants » portent un clocher de <b>84 mètres</b>.</p><p class="anec">Le portail que vous voyez en pointillé n’est pas le laser qui faiblit : il vient d’en haut, et les façades verticales ne lui renvoient presque rien.</p><span class="src">Monographie de 1890, chap. V · Histoire</span></article>
+    <article class="chap"><span class="n">3 / 10 · Ascension</span><h2>Le long de la tour</h2><p>Des cordons horizontaux séparent les étages : ce sont eux, dit la monographie, qui « rassurent l’œil » sur la solidité d’une tour si haute. Au beffroi, deux grandes baies jumelles par face et, derrière, neuf cloches de bronze.</p><p class="anec">Le bourdon de 3 372 kg a été fondu à Pest en 1867 et offert par Mgr Trouillet. La plus petite cloche date de 1502 : Prosper Morey l’a fait passer lui-même de la vieille tour au nouveau beffroi, « pour la consolation des vieux paroissiens ».</p><span class="src">Monographie de 1890, p. 85-86 · page Les cloches</span></article>
+    <article class="chap"><span class="n">4 / 10 · Sommet</span><h2>La flèche</h2><p>Huit pans ajourés en pierre d’Euville, semés de crochets « pour que les lignes obliques ne paraissent pas trop sèches ». Quatre clochetons terminés par les alérions de Lorraine font passer du carré à l’octogone. Au sommet, une croix de fer doré de 5 m et 200 kg, tenue par 523 kg de fers.</p><p class="anec">Le laser s’arrête à <b>81,6 m</b> : la croix, trop fine, ne lui renvoie presque rien. Morey, élève de Viollet-le-Duc, suivait sa règle : pour une forme qui se découpe sur le ciel, les combinaisons les plus simples donnent le plus de grandeur.</p><span class="src">Monographie de 1890 · page Architecture</span></article>
+    <article class="chap"><span class="n">5 / 10 · Survol</span><h2>La nef</h2><p>Nous rasons le toit d’ardoises. Une balustrade ajourée court au bas du toit, et le faîtage porte une crête de cuivre doré : chardons de Nancy, croix et alérions. Dessous, sept travées, des piliers sveltes, <b>24 mètres sous voûte</b>, et une tribune qui fait le tour de l’église.</p><p class="anec">Soixante-quatorze fenêtres, cinq portes, cinq rosaces : « les vides, ici, prédominent sur les pleins ». Plus de 2 300 m² de vitraux, posés par l’atelier viennois Geyling ; Napoléon III et l’impératrice Eugénie en ont offert.</p><span class="src">Monographie de 1890, chap. V · Histoire</span></article>
+    <article class="chap"><span class="n">6 / 10 · Croisée</span><h2>Le transept</h2><p>Deux bras : <b>40 mètres</b> d’une extrémité à l’autre, 27 de large, un portail et une grande rose à chaque bout. Au-dessus de la croisée, un campanile de 20 mètres orné d’anges musiciens. Sous le portail est, la crypte, creusée grâce à la pente du terrain.</p><p class="anec">À l’intérieur, quatre piliers distants de dix mètres portent une voûte de plus de 100 m². L’auteur de la monographie avoue « une certaine terreur en présence d’un pareil vide ».</p><span class="src">Monographie de 1890, chap. V</span></article>
+    <article class="chap"><span class="n">7 / 10 · Chœur</span><h2>Le chevet</h2><p>Cinq chapelles rayonnantes de même taille ferment l’église, ceinturées de contreforts qui se retraitent trois fois et finissent en pinacles à crochets. Partout des nombres impairs : 7 travées, 5 chapelles, 3 portes, 5 rosaces.</p><p class="anec">Devant le maître-autel de Klem, haut de quinze mètres, le sol est en marbre noir trouvé dans les déblais de la voie Appienne : 25 m² envoyés de Rome par le pape Pie IX. Les reliques de saint Epvre, évêque de Toul au VIᵉ siècle, reposent dans l’autel.</p><span class="src">Monographie de 1890 · Histoire</span></article>
+    <article class="chap"><span class="n">8 / 10 · Tour d’horizon</span><h2>Par l’est</h2><p>En contournant par les rues, on voit ce que le laser aérien ignore : portails, sculptures et parties basses restent dans l’ombre des maisons. Pour les rendre, il faudrait une campagne de photos au sol, tout autour de l’édifice.</p><p class="anec">Le 26 décembre 1914, les bombes d’un Zeppelin allemand ont endommagé l’église. En mars 1871, le roi de Prusse, de passage à Nancy, a voulu la visiter : le curé Trouillet, à sa stalle, a fini ses prières avant de lever les yeux.</p><span class="src">Images anciennes · Anecdotes de Mgr Trouillet, n° 1</span></article>
+    <article class="chap"><span class="n">9 / 10 · Recul</span><h2>Deux pierres de la Meuse</h2><p>Toute l’église est en pierre de taille : l’Euville, dure, jusqu’à la hauteur des chapiteaux et pour toute la tour ; la Savonnières, plus tendre et plus légère, pour le haut des murs et les voûtes. Morey n’a mis que la masse nécessaire : « une grande solidité sous des apparences contraires ».</p><p class="anec">Le nuage mesure <b>83,4 m</b> le long de l’axe et 40,2 m au transept, à quelques décimètres des chiffres de 1890. Précision annoncée par l’IGN : 10 cm en altitude.</p><span class="src">Monographie de 1890 · IGN LiDAR HD</span></article>
+    <article class="chap"><span class="n">10 / 10 · À la verticale</span><h2>La croix latine</h2><p>Vu d’en haut, le plan de Prosper Morey se dessine point par point : tour, nef, transept, chœur. En 1862, le concours avait couronné Léopold Gigout ; le conseil municipal confia pourtant le chantier à Morey, grand prix de Rome. Première pierre le 29 mai 1864, basilique mineure en 1874, consécration le 7 juillet 1875.</p><p class="anec">Prenez les commandes pour explorer librement, ou redescendez vers les sources.</p><span class="src">Histoire · Architecture</span></article>
     <div class="jauge" id="jauge" aria-hidden="true"><i style="--k:0"></i><i style="--k:.333"></i><i style="--k:.555"></i><i style="--k:.666"></i><i style="--k:1"></i></div>
     <div class="libre-bouton"><button type="button" class="btn plein" id="libre">Prendre les commandes</button></div>
     <p class="aide-libre">Glisser : tourner · Molette ou pincer : zoom · Clic droit ou deux doigts : déplacer</p>
     <div class="outils-libre"><button type="button" class="btn" id="reprendre">Reprendre la balade</button></div>
   </div>
 </div>
-
-<section class="sec" id="chiffres">
-  <h2 class="sec-t">Ce que mesure le nuage</h2>
-  <p class="sec-i">Le nuage n’est pas une modélisation : c’est une mesure. Ces chiffres en sortent directement, et se comparent à ceux de la monographie de 1890.</p>
-  <div class="chiffres" aria-label="Chiffres du relevé">
-    <div><b>35 822</b><span>points sur la basilique, après nettoyage</span></div>
-    <div><b>83,4 m</b><span>de long dans le nuage · 84 m dans la monographie</span></div>
-    <div><b>40,2 m</b><span>de transept dans le nuage · 40 m dans la monographie</span></div>
-    <div><b>81,6 m</b><span>au point le plus haut, croix non comprise · 84 m avec la croix</span></div>
-  </div>
-</section>
-
-<section class="sec" id="methode">
-  <h2 class="sec-t">D’où viennent ces points</h2>
-  <p class="sec-i">Comment le nuage a été produit, ce qu’il ne peut pas montrer, et comment aller plus loin.</p>
-  <div class="grille-cartes">
-    <article class="carte">
-      <span class="num">1</span>
-      <h3>Le LiDAR HD de l’IGN</h3>
-      <p>Depuis 2021, l’Institut national de l’information géographique et forestière survole toute la France avec un laser aéroporté et publie le résultat en données ouvertes. Pour Nancy, le vol a eu lieu entre le 3 décembre 2023 et le 8 mars 2024, avec un capteur Riegl VQ-1560 II.</p>
-      <p>Chaque dalle d’un kilomètre carré est classée automatiquement : sol, bâti, végétation, eau. La basilique est à cheval sur deux dalles, qui ont été assemblées.</p>
-    </article>
-    <article class="carte">
-      <span class="num">2</span>
-      <h3>Découpe et nettoyage</h3>
-      <p>L’emprise de l’édifice vient de la BD TOPO de l’IGN, élargie d’un mètre et demi pour les contreforts et le parvis. On ne garde que les points qui ne sont ni sol, ni végétation, ni artefact, à plus de 30 cm au-dessus de la place.</p>
-      <p>Les points isolés, souvent des oiseaux ou des échos parasites, sont retirés par un filtre statistique sur leurs dix plus proches voisins. Le sol alentour est conservé pour situer l’édifice.</p>
-    </article>
-    <article class="carte clair">
-      <span class="num">3</span>
-      <h3>Ce qu’un laser aérien ne voit pas</h3>
-      <p>Le faisceau vient d’en haut : toitures, flèche et clochetons sont très bien décrits, les façades verticales beaucoup moins. Portails, sculptures et parties basses à l’ombre des maisons voisines n’apparaissent qu’en pointillé. Rien de l’intérieur : les 24 mètres sous voûte restent à imaginer.</p>
-    </article>
-    <article class="carte">
-      <span class="num">4</span>
-      <h3>Pourquoi pas les 3D de Google ou d’Apple ?</h3>
-      <p>Leurs plans en relief sont séduisants, mais leurs conditions d’utilisation interdisent d’en extraire les maillages, et ces modèles sont photogrammétriques, moins précis en hauteur que le laser. Le LiDAR HD, lui, est public, libre de réutilisation et mesuré à quelques centimètres. Les photos trouvées sur Internet posent le même problème de droits, et sans leurs réglages d’origine elles ne se recalent pas.</p>
-    </article>
-    <article class="carte">
-      <span class="num">5</span>
-      <h3>Pour aller plus loin</h3>
-      <p>Les façades pourraient être complétées par photogrammétrie, à partir d’une série de photographies prises au sol : un tour complet de l’édifice en s’arrêtant tous les cinq mètres, chaque photo recouvrant la précédente aux deux tiers, puis des vues intérieures. Le nuage LiDAR servirait de squelette à l’échelle.</p>
-    </article>
-    <article class="carte">
-      <span class="num">6</span>
-      <h3>Télécharger</h3>
-      <p>Le nuage complet est disponible en <a href="/assets/3d/basilique.laz" download>format LAZ</a> (Lambert-93, altitudes IGN69, classes d’origine), pour CloudCompare, QGIS ou tout logiciel de nuage de points. La version affichée ici est un <a href="/assets/3d/basilique.ply" download>fichier PLY</a> en coordonnées locales.</p>
-    </article>
-  </div>
-</section>
 
 <p class="sources">Sources : IGN, <a href="https://geoservices.ign.fr/lidarhd" rel="noopener">LiDAR HD</a>, nuage de points classé, dalles LHD_FXX_0933_6849 et LHD_FXX_0934_6849, édition du 29 janvier 2025, classement automatique IGN_AUTO_V5, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">licence ouverte Etalab 2.0</a> ; IGN, BD TOPO v3, emprises des bâtiments religieux, même licence. Dimensions historiques : monographie de 1890, voir la page <a href="/architecture/">Architecture</a>. Visionneuse : bibliothèque three.js (licence MIT).</p>
 
@@ -215,6 +168,6 @@
 })();
 </script>
 <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/" } }</script>
-<script type="module" src="/assets/js/basilique-3d.js?v=9"></script>
+<script type="module" src="/assets/js/basilique-3d.js?v=10"></script>
 </body>
 </html>

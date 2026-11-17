@@ -48,6 +48,12 @@ L’écart de 2,4 m au sommet s’explique par la croix de fer, trop fine pour r
 - Rien de l’intérieur.
 - Photogrammétrie : impossible sur les photos du dépôt. Les 80 images de `assets/img/site` font 1 400 px au plus, sans EXIF (donc sans focale), et montrent presque toutes des vitraux ou des documents ; trois vues extérieures isolées ne suffisent pas. Les cartes postales ne sont pas calibrées. COLMAP et Meshroom n’ont donc pas été installés.
 
+## Essai de photogrammétrie sur Wikimedia Commons (17 novembre 2026)
+
+À la demande de l’utilisateur, essai de densification des façades à partir de photos libres. Source : catégorie Commons « Basilique Saint-Epvre de Nancy » et sa sous-catégorie « Portail », 157 fichiers, dont 99 photographies modernes de l’extérieur (CC BY, CC BY-SA, CC0). Le serveur limite les téléchargements : 47 photos récupérées en vignettes 2 048 px (liste et attribution dans `commons/attribution.json` du dossier de session). Reconstruction éparse avec pycolmap 4.2.1 (SIFT 12 000 points par image, appariement exhaustif, cartographie incrémentale) : un seul modèle, 21 images enchaînées, 5 507 points 3D, erreur de reprojection 0,99 px. Le modèle ne couvre que la façade ouest et le portail ; la flèche et les flancs n’y sont pas. La densification (patch-match) de COLMAP exige une carte CUDA, absente sur ce Mac, et aucune alternative installable n’était autorisée. 4 277 points épars n’apportent pas plus que le LiDAR sur la façade : l’essai n’a pas été intégré au nuage publié, pour ne pas y introduire un recalage approximatif.
+
+Ce qu’il faudrait : soit la densification sur une machine avec GPU (COLMAP ou OpenMVS, quelques heures), soit, bien mieux, une série de photos prises exprès (voir ci-dessous), car les photos d’Internet ont des focales inconnues, des recouvrements faibles et des éclairages différents.
+
 ## Pour aller plus loin
 
 1. Campagne photo au sol : un tour complet de l’édifice en s’arrêtant tous les 5 m, chaque photo recouvrant la précédente à 60 % au moins, à hauteur d’œil puis en contre-plongée, par temps couvert, sans changer de focale ; ajouter des vues intérieures (nef, transept, chœur, tribune d’orgue). Environ 300 à 500 photos. Traitement avec COLMAP ou Meshroom, puis recalage sur le nuage LiDAR qui sert d’échelle et de squelette. Résultat attendu : façades et portails au centimètre.

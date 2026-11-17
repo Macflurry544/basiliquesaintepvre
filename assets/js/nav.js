@@ -39,6 +39,7 @@
     { title: 'Patrimoine', links: [
       { href: '/joseph-trouillet/',           label: 'Joseph Trouillet' },
       { href: '/joseph-trouillet/anecdotes-joseph-trouillet/', label: 'Anecdotes' },
+      { href: '/petites-histoires/',          label: 'Petites histoires' },
       { href: '/personnages/',                label: 'Personnages' },
       { href: '/images-anciennes/',           label: 'Images anciennes' },
       { href: '/basilique-3d/',               label: 'Saint-Epvre en 3D' },

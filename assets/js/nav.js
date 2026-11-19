@@ -42,6 +42,7 @@
       { href: '/petites-histoires/',          label: 'Petites histoires' },
       { href: '/personnages/',                label: 'Personnages' },
       { href: '/images-anciennes/',           label: 'Images anciennes' },
+      { href: '/planches/',                   label: 'Planches de 1890' },
       { href: '/basilique-3d/',               label: 'Saint-Epvre en 3D' },
       { href: '/1914-1918/',                  label: '1914 – 1918' },
       { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },

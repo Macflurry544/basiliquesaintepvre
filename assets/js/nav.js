@@ -34,6 +34,7 @@
       { href: '/horaires-douverture/', label: "Horaires d'ouverture" },
       { href: '/carte/',               label: 'Carte' },
       { href: '/questions-frequentes/', label: 'Questions fréquentes' },
+      { href: '/recherche/',           label: 'Recherche' },
       { href: '/contact/',             label: 'Contact' },
     ]},
     { title: 'Patrimoine', links: [

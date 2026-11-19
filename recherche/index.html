@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Recherche — Basilique Saint-Epvre de Nancy</title>
+  <meta name="description" content="Rechercher un nom, une date ou un sujet dans tout le site de la Basilique Saint-Epvre de Nancy.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4a1518">
+  <link rel="canonical" href="https://basiliquesaintepvre.com/recherche/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_io/favicon.svg?v=2">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/favicon_io/apple-touch-icon.png?v=2">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://basiliquesaintepvre.com/recherche/">
+  <meta property="og:title" content="Recherche — Basilique Saint-Epvre de Nancy">
+  <meta property="og:description" content="Chercher un nom, une date, un sujet.">
+  <meta property="og:image" content="https://basiliquesaintepvre.com/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Basilique Saint-Epvre">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/nav.css?v=9">
+  <style>
+    :root { --bordeaux: #4a1518; --navy: #213448; --papier: #fbf9f5; --blanc: #fff;
+      --grot: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font: 400 19px/1.65 var(--sans); }
+    a { color: inherit; }
+    .col { max-width: 820px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+
+    /* Ouverture bordeaux : une phrase, un trait */
+    .tete { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 9rem 0 4.5rem; }
+    .tete h1 { margin: 0; font: 500 clamp(3rem, 10vw, 7.5rem)/.9 var(--grot); letter-spacing: -.045em; text-transform: uppercase; }
+    .tete p { margin: 1.6rem auto 0; max-width: 34ch; font: 400 clamp(1.2rem, 2.4vw, 1.6rem)/1.35 var(--grot); opacity: .9; }
+    .tete .trait { width: 64px; height: 4px; background: var(--blanc); margin: 2.4rem auto 0; }
+
+    /* Contenu : titres et listes à puces carrées, sans rien de plus */
+    main.col { padding-top: 5.5rem; padding-bottom: 6rem; }
+    h2 { margin: 0 0 1rem; font: 500 clamp(1.9rem, 4vw, 2.6rem)/1.05 var(--grot); letter-spacing: -.025em; }
+    h2 + ul { margin-top: 0; }
+    section + section { margin-top: 3.4rem; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { position: relative; padding-left: 1.6rem; margin: 0 0 .7rem; }
+    li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; background: var(--navy); }
+    strong { font-weight: 700; }
+    .etat { display: inline-block; margin-bottom: 3rem; padding: .5rem 1rem; border-radius: 999px; font: 600 .95rem var(--grot); background: #fff; border: 1px solid rgba(33,52,72,.18); }
+    .etat.ouverte { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 4rem 22px calc(4.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; }
+    .pied b { font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--grot); text-transform: uppercase; letter-spacing: -.03em; }
+    .pied .rosace { width: 90px; height: 90px; margin: 1.6rem auto 1.4rem; background: currentColor; -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
+    .pied span { font: 500 .85rem var(--grot); letter-spacing: .24em; text-transform: uppercase; opacity: .75; }
+    .mail { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: .6rem; }
+    .mail a { font: 500 clamp(1.4rem, 3.4vw, 2.2rem)/1.1 var(--grot); letter-spacing: -.02em; color: var(--bordeaux); text-decoration: none; border-bottom: 2px solid currentColor; overflow-wrap: anywhere; }
+    .mail button { font: 600 .95rem var(--grot); padding: .6rem 1.2rem; border-radius: 999px; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); cursor: pointer; }
+    .mail button.copie { background: var(--navy); color: var(--blanc); }
+    section p { margin: 0 0 1rem; }
+    /* Plus d'air */
+    .tete { padding: 10rem 0 6rem; }
+    main.col { padding-top: 7rem; padding-bottom: 8rem; }
+    section + section { margin-top: 5.5rem; padding-top: 5.5rem; border-top: 1px solid rgba(33,52,72,.14); }
+    h2 { margin-bottom: 1.8rem; }
+    li { margin-bottom: 1.2rem; line-height: 1.7; }
+    .mail { margin-top: 0; gap: 1.4rem 2rem; }
+
+    .champ { display: flex; gap: .6rem; margin-bottom: 1rem; }
+    .champ input { flex: 1; min-width: 0; font: 400 1.3rem var(--sans); padding: .9rem 1.1rem; border: 1px solid rgba(33,52,72,.35); border-radius: 999px; background: var(--blanc); color: var(--navy); }
+    .champ input:focus { outline: 2px solid var(--bordeaux); outline-offset: 2px; }
+    .aide { font: italic 400 .95rem var(--sans); opacity: .7; margin: 0 0 3rem; }
+    .ex button { font: 500 .9rem var(--grot); padding: .35rem .9rem; margin: 0 .4rem .5rem 0; border-radius: 999px; border: 1px solid rgba(33,52,72,.25); background: var(--blanc); color: var(--navy); cursor: pointer; }
+    #compte { font: 600 .95rem var(--grot); color: var(--bordeaux); margin: 0 0 1.5rem; }
+    #res { list-style: none; margin: 0; padding: 0; }
+    #res li { padding: 1.4rem 0; margin: 0; border-top: 1px solid rgba(33,52,72,.14); }
+    #res li::before { display: none; }
+    #res a { text-decoration: none; display: block; }
+    #res .pg { font: 500 .8rem var(--grot); letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+    #res .ti { display: block; font: 500 1.35rem/1.25 var(--grot); color: var(--bordeaux); margin: .2rem 0 .4rem; overflow-wrap: anywhere; }
+    #res a:hover .ti { text-decoration: underline; text-underline-offset: 3px; }
+    #res p { margin: 0; font-size: 1rem; line-height: 1.55; overflow-wrap: anywhere; }
+    mark { background: rgba(74,21,24,.14); color: inherit; padding: 0 .1em; }
+  </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Recherche", "item": "https://basiliquesaintepvre.com/recherche/"}]}</script>
+</head>
+<body>
+
+<header class="tete">
+  <div class="col">
+    <h1>Recherche</h1>
+    <p>Un nom, une date, un sujet : tout le site.</p>
+    <div class="trait" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="col">
+  <form class="champ" role="search" onsubmit="return false">
+    <label for="q" class="sr" style="position:absolute;left:-9999px">Rechercher</label>
+    <input id="q" type="search" placeholder="Ex. : Klem, Bruckner, 1871, crypte…" autocomplete="off" autofocus>
+  </form>
+  <p class="aide">Accents et majuscules sans importance. Plusieurs mots : les résultats contiennent tous les mots.</p>
+  <div class="ex" id="ex"></div>
+  <p id="compte" aria-live="polite"></p>
+  <ul id="res"></ul>
+</main>
+
+<footer class="pied">
+  <b>Saint-Epvre</b>
+  <div class="rosace" aria-hidden="true"></div>
+  <span>Nancy · Lorraine · France</span>
+</footer>
+
+<script src="/assets/js/nav.js?v=28"></script>
+<script>
+(function () {
+  var D = null, q = document.getElementById('q'), res = document.getElementById('res'), compte = document.getElementById('compte');
+  var EX = ['Klem', 'Bruckner', 'crypte', 'Morey', 'zeppelin', '1871', 'vitrail', 'Jeanne d’Arc'];
+  document.getElementById('ex').innerHTML = EX.map(function (e) { return '<button type="button">' + e + '</button>'; }).join('');
+  document.getElementById('ex').addEventListener('click', function (e) { if (e.target.tagName === 'BUTTON') { q.value = e.target.textContent; go(); } });
+  function norm(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase(); }
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function surl(t, mots) {
+    var n = norm(t), i = -1;
+    for (var k = 0; k < mots.length && i < 0; k++) i = n.indexOf(mots[k]);
+    var a = Math.max(0, i - 90), b = Math.min(t.length, (i < 0 ? 0 : i) + 200);
+    var s = t.slice(a, b), ns = norm(s), out = '', pos = 0;
+    var re = new RegExp(mots.map(function (m) { return m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|'), 'g'), m;
+    while ((m = re.exec(ns))) { out += esc(s.slice(pos, m.index)) + '<mark>' + esc(s.slice(m.index, m.index + m[0].length)) + '</mark>'; pos = m.index + m[0].length; if (!m[0].length) break; }
+    return (a ? '… ' : '') + out + esc(s.slice(pos)) + (b < t.length ? ' …' : '');
+  }
+  function go() {
+    var v = q.value.trim();
+    try { history.replaceState(null, '', v ? '?q=' + encodeURIComponent(v) : location.pathname); } catch (e) {}
+    if (!D) return;
+    var mots = norm(v).split(/\s+/).filter(function (m) { return m.length > 1 || /\d/.test(m); });
+    if (!mots.length) { res.innerHTML = ''; compte.textContent = ''; return; }
+    var r = [];
+    D.forEach(function (d) {
+      var h = norm(d.h + ' ' + d.p), t = norm(d.t), sc = 0;
+      for (var k = 0; k < mots.length; k++) {
+        var inH = h.indexOf(mots[k]) >= 0, inT = t.indexOf(mots[k]) >= 0;
+        if (!inH && !inT) return;
+        sc += (inH ? 10 : 0) + (inT ? 1 + Math.min(5, t.split(mots[k]).length - 2) : 0);
+      }
+      r.push([sc, d]);
+    });
+    r.sort(function (a, b) { return b[0] - a[0]; });
+    compte.textContent = r.length ? r.length + ' résultat' + (r.length > 1 ? 's' : '') : 'Aucun résultat.';
+    res.innerHTML = r.slice(0, 60).map(function (x) {
+      var d = x[1], pg = d.u === '/' ? 'Accueil' : d.p;
+      return '<li><a href="' + d.u + '"><span class="pg">' + esc(pg) + '</span><span class="ti">' + esc(d.h || pg) + '</span><p>' + surl(d.t, mots) + '</p></a></li>';
+    }).join('');
+  }
+  var t0; q.addEventListener('input', function () { clearTimeout(t0); t0 = setTimeout(go, 120); });
+  var p = new URLSearchParams(location.search).get('q'); if (p) q.value = p;
+  fetch('/assets/data/recherche.json?v=1').then(function (r) { return r.json(); }).then(function (d) { D = d; go(); });
+})();
+</script>
+<script src="/assets/js/visionneuse.js?v=3"></script>
+</body>
+</html>

@@ -45,6 +45,7 @@
       { href: '/planches/',                   label: 'Planches de 1890' },
       { href: '/basilique-3d/',               label: 'Saint-Epvre en 3D' },
       { href: '/1914-1918/',                  label: '1914 – 1918' },
+      { href: '/scouts-5e-nancy/',            label: 'Scouts (5e Nancy)' },
       { href: '/sauvegarde-et-restauration/', label: 'Sauvegarde' },
       { href: '/presse/',                     label: 'Presse' },
       { href: '/bibliographie/',              label: 'Bibliographie' },

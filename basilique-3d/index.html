@@ -88,9 +88,6 @@
   body.libre .chap, body.libre .jauge, body.libre .libre-bouton { display: none; }
   .aide-libre { position: absolute; left: 50%; top: 80px; translate: -50% 0; font: italic 400 .85rem var(--s); opacity: .7; display: none; text-align: center; white-space: nowrap; z-index: 3; }
   body.libre .aide-libre { display: block; }
-  .aide-dedans { position: absolute; left: 50%; bottom: 90px; translate: -50% 0; width: min(560px, 86%); margin: 0; font: italic 400 .85rem/1.45 var(--s); color: #fff; opacity: .8; text-align: center; display: none; z-index: 3; }
-  body.libre.dedans .aide-dedans { display: block; }
-  body.dedans .rep { display: none !important; }
   .chap .lire-btn { display: none; }
   @media (max-width: 700px) {
     .chap { left: 14px; right: 14px; max-width: none; bottom: clamp(64px, 9vh, 96px); padding: .8rem 1rem .85rem; border-radius: 12px; background: rgba(33,52,72,.62); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 12px 40px rgba(0,0,0,.28); }
@@ -159,12 +156,11 @@
     <button type="button" class="btn plein continuer" id="continuer">Continuer l’expérience <span aria-hidden="true">↓</span></button>
     <div class="libre-bouton"><button type="button" class="btn plein" id="libre">Prendre les commandes</button></div>
     <p class="aide-libre">Glisser : tourner · Molette ou pincer : zoom · Clic droit ou deux doigts : déplacer</p>
-    <div class="outils-libre"><button type="button" class="btn" id="nef">Entrer dans la nef</button> <button type="button" class="btn" id="reprendre">Reprendre la balade</button></div>
-    <p class="aide-dedans">Intérieur restitué d’après le plan de Prosper Morey et les cotes de 1890 : piliers, voûte de la nef à 24 m, bas-côtés à 11,30 m. Ce n’est pas un relevé.</p>
+    <div class="outils-libre"><button type="button" class="btn" id="reprendre">Reprendre la balade</button></div>
   </div>
 </div>
 
-<p class="sources">Sources : IGN, <a href="https://geoservices.ign.fr/lidarhd" rel="noopener">LiDAR HD</a>, nuage de points classé, dalles LHD_FXX_0933_6849 et LHD_FXX_0934_6849, édition du 29 janvier 2025, classement automatique IGN_AUTO_V5, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">licence ouverte Etalab 2.0</a> ; IGN, BD TOPO v3, emprises des bâtiments religieux, même licence. Dimensions historiques : monographie de 1890, voir la page <a href="/architecture/">Architecture</a>. Détails de la façade : contours tirés d’une <a href="https://commons.wikimedia.org/wiki/File:Basilique_Saint_Epvre_-_Nancy_(FR54)_-_2022-02-26_-_9.jpg" rel="noopener">photographie de Chabe01</a> (2022, CC BY-SA 4.0), projetés sur le plan de façade mesuré par le LiDAR. Intérieur : restitution schématique d’après le plan de Prosper Morey (monographie de 1890) et les cotes publiées, calée sur le LiDAR. Visionneuse : bibliothèque three.js (licence MIT).</p>
+<p class="sources">Sources : IGN, <a href="https://geoservices.ign.fr/lidarhd" rel="noopener">LiDAR HD</a>, nuage de points classé, dalles LHD_FXX_0933_6849 et LHD_FXX_0934_6849, édition du 29 janvier 2025, classement automatique IGN_AUTO_V5, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">licence ouverte Etalab 2.0</a> ; IGN, BD TOPO v3, emprises des bâtiments religieux, même licence. Dimensions historiques : monographie de 1890, voir la page <a href="/architecture/">Architecture</a>. Visionneuse : bibliothèque three.js (licence MIT).</p>
 
 <div class="suite"><a href="/architecture/">Lire l’architecture</a><a href="/images-anciennes/">Voir les images anciennes</a></div>
 
@@ -174,7 +170,7 @@
   <span>Nancy · Lorraine · France</span>
 </footer>
 
-<script src="/assets/js/nav.js?v=25"></script>
+<script src="/assets/js/nav.js?v=26"></script>
 <script>
 /* Anecdotes repliées sur mobile */
 document.addEventListener('click', function (e) { var b = e.target.closest('.lire-btn'); if (!b) return; var c = b.closest('.chap'); var on = c.classList.toggle('ouvert'); b.setAttribute('aria-expanded', on); b.firstChild.textContent = on ? 'Réduire ' : 'Lire '; });
@@ -186,6 +182,6 @@ document.addEventListener('click', function (e) { var b = e.target.closest('.lir
 })();
 </script>
 <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/" } }</script>
-<script type="module" src="/assets/js/basilique-3d.js?v=17"></script>
+<script type="module" src="/assets/js/basilique-3d.js?v=18"></script>
 </body>
 </html>

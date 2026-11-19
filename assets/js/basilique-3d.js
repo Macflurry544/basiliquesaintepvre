@@ -84,7 +84,7 @@ const mat = new THREE.ShaderMaterial({
     }`,
 });
 
-let geo = null, nb = 0, cls = null, inten = null, ptsLidar = null;
+let geo = null, nb = 0, cls = null, inten = null;
 async function charge() {
   try {
     const rep = await fetch('/assets/3d/basilique.ply');
@@ -99,34 +99,11 @@ async function charge() {
     }
     const buf = new Uint8Array(recu); let o = 0; for (const m of morceaux) { buf.set(m, o); o += m.length; }
     construit(buf.buffer);
-    // détails de la façade, restitués d'après une photographie calée sur le LiDAR
-    fetch('/assets/3d/facade.ply').then(r => r.ok ? r.arrayBuffer() : null).then(ab => { if (ab) ajoute(ab); }).catch(() => {});
   } catch (e) {
     charg.classList.add('erreur'); charg.firstChild.textContent = 'Le nuage n’a pas pu être chargé.'; chargTxt.textContent = 'Vérifiez la connexion puis rechargez la page.';
     console.error(e);
   }
 }
-function lit(ab) {
-  const txt = new TextDecoder().decode(new Uint8Array(ab, 0, Math.min(ab.byteLength, 2048)));
-  const fin = txt.indexOf('end_header\n'); const n = +txt.slice(0, fin).match(/element vertex (\d+)/)[1];
-  const dv = new DataView(ab, fin + 'end_header\n'.length);
-  const pos = new Float32Array(n * 3), poids = new Float32Array(n);
-  for (let i = 0; i < n; i++) {
-    const b = i * 14;
-    pos[i * 3] = dv.getFloat32(b, true); pos[i * 3 + 2] = -dv.getFloat32(b + 4, true); pos[i * 3 + 1] = dv.getFloat32(b + 8, true);
-    const c = dv.getUint8(b + 12), it = dv.getUint8(b + 13);
-    poids[i] = c === 2 ? 0 : .5 + .5 * it / 255;
-  }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  g.setAttribute('poids', new THREE.BufferAttribute(poids, 1));
-  return g;
-}
-const matFine = mat.clone(); matFine.uniforms = { uTaille: { value: .7 }, uEchelle: { value: 600 } };
-let ptsFacade = null, ptsInt = null, dedans = false;
-const matInt = mat.clone(); matInt.uniforms = { uTaille: { value: .22 }, uEchelle: { value: 600 } };
-matInt.vertexShader = mat.vertexShader.replace('clamp(uTaille * uEchelle / d, 1.2, 6.5)', 'clamp(uTaille * uEchelle / d, 1.0, 2.6)').replace('smoothstep(380.0, 90.0, d)', '.55 * smoothstep(90.0, 4.0, d)');
-function ajoute(ab) { ptsFacade = new THREE.Points(lit(ab), matFine); scene.add(ptsFacade); }
 function construit(ab) {
   const txt = new TextDecoder().decode(new Uint8Array(ab, 0, Math.min(ab.byteLength, 2048)));
   const fin = txt.indexOf('end_header\n'); const entete = txt.slice(0, fin);
@@ -142,7 +119,7 @@ function construit(ab) {
   geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   geo.setAttribute('poids', new THREE.BufferAttribute(poids, 1));
-  ptsLidar = new THREE.Points(geo, mat); scene.add(ptsLidar);
+  scene.add(new THREE.Points(geo, mat));
   document.body.classList.add('pret');
   boucle();
 }
@@ -210,26 +187,7 @@ function modeLibre(on) {
   if (on) { camera.up.set(0, 1, 0); camera.position.set(-110, 48, 70); controls.target.set(-4, 22, -6); controls.update(); }
 }
 libre.addEventListener('click', () => { modeLibre(true); scene3.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-document.getElementById('reprendre').addEventListener('click', () => { if (dedans) nef(false); modeLibre(false); mesure(); });
-/* Intérieur restitué d'après le plan de Morey : on entre dans la nef */
-const btnNef = document.getElementById('nef');
-const AX = { d: [-.4348663, .90049505], n: [-.90049505, -.4348663] };
-function vers(p, q, z) { return new THREE.Vector3(AX.d[0] * p + AX.n[0] * q, z, -(AX.d[1] * p + AX.n[1] * q)); }
-async function nef(on) {
-  if (on && !ptsInt) {
-    btnNef.disabled = true; btnNef.textContent = 'Chargement…';
-    try { const ab = await (await fetch('/assets/3d/interieur.ply')).arrayBuffer(); ptsInt = new THREE.Points(lit(ab), matInt); scene.add(ptsInt); }
-    catch (e) { btnNef.disabled = false; btnNef.textContent = 'Entrer dans la nef'; return; }
-    btnNef.disabled = false;
-  }
-  dedans = on; document.body.classList.toggle('dedans', on);
-  if (ptsInt) ptsInt.visible = on; if (ptsLidar) ptsLidar.visible = !on; if (ptsFacade) ptsFacade.visible = !on;
-  btnNef.textContent = on ? 'Sortir de la nef' : 'Entrer dans la nef';
-  if (on) { controls.minDistance = .5; camera.position.copy(vers(26, .6, 1.7)); controls.target.copy(vers(16, .6, 6)); scene.fog.near = 20; scene.fog.far = 120; }
-  else { controls.minDistance = 12; camera.position.set(-110, 48, 70); controls.target.set(-4, 22, -6); scene.fog.near = 170; scene.fog.far = 380; }
-  controls.update();
-}
-if (btnNef) btnNef.addEventListener('click', () => nef(!dedans));
+document.getElementById('reprendre').addEventListener('click', () => { modeLibre(false); mesure(); });
 
 /* ---- Rendu ---- */
 const pPrec = new THREE.Vector3(), tmpP = new THREE.Vector3(), tmpC = new THREE.Vector3(), lateral = new THREE.Vector3(), avant = new THREE.Vector3(), croix = new THREE.Vector3();
@@ -237,7 +195,7 @@ let roulis = 0;
 function taille() {
   const w = scene3.clientWidth, h = scene3.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w < h ? 72 : 60; camera.updateProjectionMatrix();
-  mat.uniforms.uEchelle.value = h * .9; matFine.uniforms.uEchelle.value = h * .9; matInt.uniforms.uEchelle.value = h * .9;
+  mat.uniforms.uEchelle.value = h * .9;
 }
 new ResizeObserver(taille).observe(scene3); taille();
 

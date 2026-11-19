@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Scouts de Saint-Epvre — Basilique Saint-Epvre de Nancy</title>
+  <meta name="description" content="Le groupe scout « 5e Nancy » de la paroisse Saint-Epvre : page en construction, d'après les archives municipales de Nancy.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4a1518">
+  <link rel="canonical" href="https://basiliquesaintepvre.com/scouts-5e-nancy/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_io/favicon.svg?v=2">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/favicon_io/apple-touch-icon.png?v=2">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://basiliquesaintepvre.com/scouts-5e-nancy/">
+  <meta property="og:title" content="Scouts de Saint-Epvre — Basilique Saint-Epvre de Nancy">
+  <meta property="og:description" content="Le groupe scout 5e Nancy de la paroisse Saint-Epvre.">
+  <meta property="og:image" content="https://basiliquesaintepvre.com/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Basilique Saint-Epvre">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/nav.css?v=9">
+  <style>
+    :root { --bordeaux: #4a1518; --navy: #213448; --papier: #fbf9f5; --blanc: #fff;
+      --grot: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font: 400 19px/1.65 var(--sans); }
+    a { color: inherit; }
+    .col { max-width: 820px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+
+    /* Ouverture bordeaux : une phrase, un trait */
+    .tete { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 9rem 0 4.5rem; }
+    .tete h1 { margin: 0; font: 500 clamp(3rem, 10vw, 7.5rem)/.9 var(--grot); letter-spacing: -.045em; text-transform: uppercase; }
+    .tete p { margin: 1.6rem auto 0; max-width: 34ch; font: 400 clamp(1.2rem, 2.4vw, 1.6rem)/1.35 var(--grot); opacity: .9; }
+    .tete .trait { width: 64px; height: 4px; background: var(--blanc); margin: 2.4rem auto 0; }
+
+    /* Contenu : titres et listes à puces carrées, sans rien de plus */
+    main.col { padding-top: 5.5rem; padding-bottom: 6rem; }
+    h2 { margin: 0 0 1rem; font: 500 clamp(1.9rem, 4vw, 2.6rem)/1.05 var(--grot); letter-spacing: -.025em; }
+    h2 + ul { margin-top: 0; }
+    section + section { margin-top: 3.4rem; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { position: relative; padding-left: 1.6rem; margin: 0 0 .7rem; }
+    li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; background: var(--navy); }
+    strong { font-weight: 700; }
+    .etat { display: inline-block; margin-bottom: 3rem; padding: .5rem 1rem; border-radius: 999px; font: 600 .95rem var(--grot); background: #fff; border: 1px solid rgba(33,52,72,.18); }
+    .etat.ouverte { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 4rem 22px calc(4.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; }
+    .pied b { font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--grot); text-transform: uppercase; letter-spacing: -.03em; }
+    .pied .rosace { width: 90px; height: 90px; margin: 1.6rem auto 1.4rem; background: currentColor; -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
+    .pied span { font: 500 .85rem var(--grot); letter-spacing: .24em; text-transform: uppercase; opacity: .75; }
+    .mail { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: .6rem; }
+    .mail a { font: 500 clamp(1.4rem, 3.4vw, 2.2rem)/1.1 var(--grot); letter-spacing: -.02em; color: var(--bordeaux); text-decoration: none; border-bottom: 2px solid currentColor; overflow-wrap: anywhere; }
+    .mail button { font: 600 .95rem var(--grot); padding: .6rem 1.2rem; border-radius: 999px; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); cursor: pointer; }
+    .mail button.copie { background: var(--navy); color: var(--blanc); }
+    section p { margin: 0 0 1rem; }
+    /* Plus d'air */
+    .tete { padding: 10rem 0 6rem; }
+    main.col { padding-top: 7rem; padding-bottom: 8rem; }
+    section + section { margin-top: 5.5rem; padding-top: 5.5rem; border-top: 1px solid rgba(33,52,72,.14); }
+    h2 { margin-bottom: 1.8rem; }
+    li { margin-bottom: 1.2rem; line-height: 1.7; }
+    .mail { margin-top: 0; gap: 1.4rem 2rem; }
+  </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Scouts de Saint-Epvre", "item": "https://basiliquesaintepvre.com/scouts-5e-nancy/"}]}</script>
+</head>
+<body>
+
+<header class="tete">
+  <div class="col">
+    <h1>Scouts</h1>
+    <p>Le groupe « 5e Nancy », paroisse Saint-Epvre.</p>
+    <div class="trait" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="col">
+  <span class="etat">Page en construction</span>
+
+  <section>
+    <h2>Ce que l’on sait</h2>
+    <ul>
+      <li>En <strong>juillet 1914</strong>, le bulletin de la paroisse met encore les parents en garde contre les « Boy-Scouts », jugés d’origine protestante. Les patronages catholiques, comme la Jeune Garde Drouot, en tiennent lieu.</li>
+      <li>Les catholiques fondent leurs propres <strong>Scouts de France</strong> en 1920.</li>
+      <li>En <strong>1957</strong>, la paroisse a son groupe : les archives municipales de Nancy conservent un dossier sur les scouts de Saint-Epvre, le groupe « <strong>5e Nancy</strong> », avec leur bulletin mensuel, <em>Les échos de la bauge et des nids</em>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ce qui reste à chercher</h2>
+    <ul>
+      <li>La date de fondation du groupe et ses premiers chefs.</li>
+      <li>Le dossier « Éclaireurs et scouts de France, 1920-1970 » des archives municipales (cote 3 R 47-50).</li>
+      <li>Photographies, camps, souvenirs d’anciens : vous avez été scout à Saint-Epvre ? <a href="/contact/">Écrivez-moi</a>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://gallica.bnf.fr/ark:/12148/bpt6k6565369n">Bulletin de la paroisse Saint-Epvre, juillet 1914</a>, Gallica (BnF).</li>
+      <li><a href="https://recherche-archives.nancy.fr/printResultsPage/default/scouts">Archives municipales de Nancy, recherche « scouts »</a>.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="pied">
+  <b>Saint-Epvre</b>
+  <div class="rosace" aria-hidden="true"></div>
+  <span>Nancy · Lorraine · France</span>
+</footer>
+
+<script src="/assets/js/nav.js?v=26"></script>
+<script src="/assets/js/visionneuse.js?v=3"></script>
+</body>
+</html>

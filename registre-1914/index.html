@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Registre de 1914 — Basilique Saint-Epvre de Nancy</title>
+  <meta name="description" content="Baptêmes, mariages, décès et premiers communiants de la paroisse Saint-Epvre de Nancy, d’après les bulletins paroissiaux de 1914.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4a1518">
+  <link rel="canonical" href="https://basiliquesaintepvre.com/registre-1914/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon_io/favicon.svg?v=2">
+  <link rel="icon" href="/assets/favicon_io/favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/favicon_io/apple-touch-icon.png?v=2">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://basiliquesaintepvre.com/registre-1914/">
+  <meta property="og:title" content="Registre de 1914 — Basilique Saint-Epvre de Nancy">
+  <meta property="og:description" content="Les noms des bulletins paroissiaux de 1914.">
+  <meta property="og:image" content="https://basiliquesaintepvre.com/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Basilique Saint-Epvre">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/nav.css?v=9">
+  <style>
+    :root { --bordeaux: #4a1518; --navy: #213448; --papier: #fbf9f5; --blanc: #fff;
+      --grot: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif; --sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--papier); color: var(--navy); font: 400 19px/1.65 var(--sans); }
+    a { color: inherit; }
+    .col { max-width: 820px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left, 0px)); }
+
+    /* Ouverture bordeaux : une phrase, un trait */
+    .tete { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 9rem 0 4.5rem; }
+    .tete h1 { margin: 0; font: 500 clamp(3rem, 10vw, 7.5rem)/.9 var(--grot); letter-spacing: -.045em; text-transform: uppercase; }
+    .tete p { margin: 1.6rem auto 0; max-width: 34ch; font: 400 clamp(1.2rem, 2.4vw, 1.6rem)/1.35 var(--grot); opacity: .9; }
+    .tete .trait { width: 64px; height: 4px; background: var(--blanc); margin: 2.4rem auto 0; }
+
+    /* Contenu : titres et listes à puces carrées, sans rien de plus */
+    main.col { padding-top: 5.5rem; padding-bottom: 6rem; }
+    h2 { margin: 0 0 1rem; font: 500 clamp(1.9rem, 4vw, 2.6rem)/1.05 var(--grot); letter-spacing: -.025em; }
+    h2 + ul { margin-top: 0; }
+    section + section { margin-top: 3.4rem; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { position: relative; padding-left: 1.6rem; margin: 0 0 .7rem; }
+    li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; background: var(--navy); }
+    strong { font-weight: 700; }
+    .etat { display: inline-block; margin-bottom: 3rem; padding: .5rem 1rem; border-radius: 999px; font: 600 .95rem var(--grot); background: #fff; border: 1px solid rgba(33,52,72,.18); }
+    .etat.ouverte { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--blanc); }
+
+    .pied { background: var(--bordeaux); color: var(--blanc); text-align: center; padding: 4rem 22px calc(4.5rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; }
+    .pied b { font: 600 clamp(2.4rem, 9vw, 5rem)/1 var(--grot); text-transform: uppercase; letter-spacing: -.03em; }
+    .pied .rosace { width: 90px; height: 90px; margin: 1.6rem auto 1.4rem; background: currentColor; -webkit-mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; mask: url(/assets/ornements/rosace-p.svg?v=2) center / contain no-repeat; }
+    .pied span { font: 500 .85rem var(--grot); letter-spacing: .24em; text-transform: uppercase; opacity: .75; }
+    .mail { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: .6rem; }
+    .mail a { font: 500 clamp(1.4rem, 3.4vw, 2.2rem)/1.1 var(--grot); letter-spacing: -.02em; color: var(--bordeaux); text-decoration: none; border-bottom: 2px solid currentColor; overflow-wrap: anywhere; }
+    .mail button { font: 600 .95rem var(--grot); padding: .6rem 1.2rem; border-radius: 999px; border: 1px solid var(--navy); background: var(--blanc); color: var(--navy); cursor: pointer; }
+    .mail button.copie { background: var(--navy); color: var(--blanc); }
+    section p { margin: 0 0 1rem; }
+    /* Plus d'air */
+    .tete { padding: 10rem 0 6rem; }
+    main.col { padding-top: 7rem; padding-bottom: 8rem; }
+    section + section { margin-top: 5.5rem; padding-top: 5.5rem; border-top: 1px solid rgba(33,52,72,.14); }
+    h2 { margin-bottom: 1.8rem; }
+    li { margin-bottom: 1.2rem; line-height: 1.7; }
+    .mail { margin-top: 0; gap: 1.4rem 2rem; }
+
+    .filtre input { width: 100%; font: 400 1.2rem var(--sans); padding: .85rem 1.1rem; border: 1px solid rgba(33,52,72,.35); border-radius: 999px; background: var(--blanc); color: var(--navy); }
+    .intro p { margin: 0 0 1rem; }
+    .mois h2 { color: var(--bordeaux); margin-bottom: .4rem; }
+    .mois h3 { margin: 2rem 0 .8rem; font: 600 1.05rem var(--grot); letter-spacing: .1em; text-transform: uppercase; }
+    .per, .tard, .src { font-size: .95rem; opacity: .75; font-style: italic; margin: .4rem 0 0; }
+    .src { margin-top: 2rem; }
+    ul.noms { columns: 2 260px; column-gap: 2.4rem; }
+    ul.noms li { break-inside: avoid; margin: 0 0 .45rem; line-height: 1.45; overflow-wrap: anywhere; }
+    ul.noms li.cache { display: none; }
+    .dou { font-size: .8em; opacity: .6; }
+    #rien { font-style: italic; display: none; }
+  </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Registre de 1914", "item": "https://basiliquesaintepvre.com/registre-1914/"}]}</script>
+</head>
+<body>
+
+<header class="tete">
+  <div class="col">
+    <h1>Registre de 1914</h1>
+    <p>Baptêmes, mariages, décès et communiants de la paroisse.</p>
+    <div class="trait" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="col">
+  <section class="intro">
+    <p>Chaque mois, le bulletin de la paroisse publiait les « actes religieux » : baptêmes, mariages et décès. Voici ceux des sept numéros de 1914 conservés par la Bibliothèque nationale, de janvier à juillet, et la liste des premiers communiants du 17 mai.</p>
+    <p><em>Les noms sont transcrits depuis le texte numérisé par Gallica, qui contient des erreurs. Les lectures douteuses sont marquées [?] ; en cas de doute, consultez l’original en lien.</em></p>
+    <form class="filtre" role="search" onsubmit="return false"><input id="f" type="search" placeholder="Chercher un nom de famille…" autocomplete="off" aria-label="Chercher un nom"></form>
+    <p id="rien">Aucun nom ne correspond.</p>
+  </section>
+
+  <section class="mois" id="communiants">
+    <h2>Les premiers communiants du 17 mai 1914</h2>
+    <h3>Garçons (41)</h3><ul class="noms"><li>Roger Achin</li><li>Maurice Aubry</li><li>Marcel Barbier</li><li>Robert Bassompierre</li><li>Albert Bauer</li><li>André Bieth</li><li>Léon Blin</li><li>Henri Bœhm</li><li>Paul Boutrout</li><li>Charles Boutserin</li><li>André Charée</li><li>Joseph Clément</li><li>Donat Clerget</li><li>René Duval</li><li>Paul Érard</li><li>Henri Georges</li><li>André Glossinde</li><li>Georges Hamant</li><li>Georges Hocquart</li><li>Maurice Hugot</li><li>Pierre Hugot</li><li>Georges Kener</li><li>Marcel Kuballa</li><li>Maxime Laurent</li><li>Robert Martin</li><li>Paul Michel</li><li>Émile Moritz</li><li>Henri Munier</li><li>Arille Nicolas</li><li>Guy Nicolas</li><li>Émile Paumier</li><li>Louis Pennerat</li><li>Maurice Richelot</li><li>Lucien Rihm</li><li>Albert Rispal</li><li>Joseph Roussel</li><li>Armand Royer</li><li>Ernest Schosse <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Auguste Selle</li><li>Jean Vatrin</li><li>Marcel Voirin</li></ul>
+    <h3>Filles (44)</h3><ul class="noms"><li>Renée Ancel</li><li>Marguerite Baumann</li><li>Yvonne Bricka</li><li>Marie-Thérèse Boucaud</li><li>Élisabeth Buch</li><li>Henriette Buhr</li><li>Madeleine Boutserin</li><li>Simonne Caveneget</li><li>Yvonne Chutron</li><li>Anne-Marie de Cissey</li><li>Chantal de Cissey</li><li>Henriette Denis</li><li>Rose Dumont</li><li>Alice Fortier <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Madeleine Gastiger <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Henriette Georges</li><li>Madeleine Gérard</li><li>Antoinette Gigout</li><li>Albertine Grosjean</li><li>Marcelle Hubert</li><li>Marcelle Jeanmaire</li><li>Suzanne Jenderat <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Marguerite Joly</li><li>Madeleine Kraemer</li><li>Fernande Lemoine</li><li>Yvonne Le Gall</li><li>Émilienne Leroy</li><li>Marguerite Michel</li><li>Andrée Marchal <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Jeanne Meyer</li><li>Marguerite Metzger</li><li>Gabrielle Neveu</li><li>Madeleine Pierre <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Eugénie Pierrot</li><li>Marie-Louise Royer</li><li>Rose Schæffer</li><li>Marie Schneider</li><li>Marie-Thérèse Thomas</li><li>Émilie Thiébaut</li><li>Madeleine Urion</li><li>Émilienne Untereiner</li><li>Jeanne Vincent</li><li>Cécile Vautrin</li><li>Marguerite Warrin</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k65653813" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, juin 1914, Gallica (BnF)</a> · <a href="/petites-histoires/#communiants">la petite histoire</a></p>
+  </section>
+  <section class="mois" id="janvier">
+    <h2>Bulletin de janvier 1914</h2><p class="per">Actes du 15 novembre – 15 décembre 1913</p>
+    <h3>Baptêmes</h3><ul class="noms"><li>Jean-Paul-Désiré Jannin</li><li>Pierre Marchal <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Joséphine Pierrot</li><li>Paulette-Blanche Poirel</li><li>Nicole-Barbe Mangea</li><li>Maurice-Clément-Marius Sécail</li><li>Roger-Georges Renner</li></ul><p class="tard">Et 6 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><ul class="noms"><li>Édouard Toreau et Marie Schœnauer</li><li>Georges-Émile-Henri Tissier et Louise-Marie-Thérèse Vuillaume</li><li>Albert Urion et Louise Brière</li><li>Jacques-Marie-Félix-Georges Bessey de Boissy et Anne-Marie-Félicie-Jeanne de Villers</li></ul><h3>Décès</h3><ul class="noms"><li>Charles-Alfred Caravate, 53 ans</li><li>Jules-Saturnin Dumenil, 55 ans</li><li>Mme veuve Renauld, 73 ans</li><li>Émile-Nicolas Houard, 54 ans</li><li>Mme veuve Samson, 71 ans</li><li>Yvonne-Renée Stempfel, 16 ans</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k6565373j" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, janvier 1914, Gallica (BnF)</a></p>
+  </section>
+  <section class="mois" id="février">
+    <h2>Bulletin de février 1914</h2><p class="per">Actes du 15 décembre 1913 – 15 janvier 1914</p>
+    <h3>Baptêmes</h3><ul class="noms"><li>Jean-Henri-Alexis-Nicolas Boucher</li><li>Camille-Jules Jolas</li><li>Lucie-Marie Dehlinger</li><li>Eugène-Albert Noël</li><li>Pierre-Albert-Jean Baudesson de Chanville</li></ul><p class="tard">Et 8 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><ul class="noms"><li>Nicolas Meyer et Marie Collin</li><li>Louis-Augustin Garnier et Cécile-Alice Toussenot</li><li>René Laloy et Lucie Muller</li><li>Fernand-Marie Maxence et Marie-Jeanne-Madeleine Paquy</li><li>Paul Dambach et Louise-Mathilde Burger</li><li>Jules-Joseph Thomas et Antoinette-Suzanne Possien</li><li>Charles-Marc Gascard et Hortense Hasse</li></ul><h3>Décès</h3><ul class="noms"><li>Anna Muller, 71 ans</li><li>Mme Kaiser, 28 ans</li><li>le général Mathis, 68 ans</li><li>Charles-Édouard Beusson, 37 ans</li><li>Joséphine-Léopoldine Bellot, 81 ans</li><li>Marthe-Andrée Muracciole, 1 an</li><li>Madeleine Müller, 65 ans</li><li>Nicolas Willette, 72 ans</li><li>Joseph Bertel, 51 ans</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k65642838" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, février 1914, Gallica (BnF)</a></p>
+  </section>
+  <section class="mois" id="mars">
+    <h2>Bulletin de mars 1914</h2>
+    <h3>Baptêmes</h3><ul class="noms"><li>Jeanne-Raymonde Widenmann</li><li>Léonie-Marie-Thérèse de Drouin de Bouville</li><li>Albert-Marie-Joseph Seitz</li></ul><p class="tard">Et 3 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><ul class="noms"><li>Louis-Antoine Guillaumont et Jeanne-Thérèse-Claudine Decorne</li><li>Paul-Eugène Cabirol et Lucie-Mathis Téret</li><li>Alexandre Josselin et Émilie Grossenrieder</li><li>Edmond-Désiré Roux et Antonia Leypée</li></ul><h3>Décès</h3><ul class="noms"><li>Louis Mathis, 71 ans</li><li>Mme Rezzonico <span class="dou" title="lecture incertaine de l’OCR">[?]</span>, 67 ans</li><li>Mme Gentil, 54 ans</li><li>Joséphine Pierrot, 2 mois</li><li>Agnès-Rosalie Barbier, 82 ans</li><li>Julien Aubry, 63 ans</li><li>Mme Gantois, 56 ans</li><li>Charles-Martin Claudin, 78 ans</li><li>Roland Barbé, 1 mois</li><li>Jean-Yvon Englinger, 1 an</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k65642801" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, mars 1914, Gallica (BnF)</a></p>
+  </section>
+  <section class="mois" id="avril">
+    <h2>Bulletin de avril 1914</h2>
+    <h3>Baptêmes</h3><ul class="noms"><li>André-Michel-Florent Ernstberger</li><li>Alfred-Louis Manussier</li></ul><p class="tard">Et 2 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><p class="tard">Le bulletin reprend les quatre mariages déjà publiés en mars.</p><h3>Décès</h3><ul class="noms"><li>Monique-Élisabeth Sordoillet, 8 mois</li><li>David Prime, 18 ans</li><li>Mme veuve Lardenoy, 81 ans</li><li>Désiré-Auguste Leeman, 62 ans</li><li>Mme veuve Bailly, 67 ans</li><li>Catherine-Julienne Marchal <span class="dou" title="lecture incertaine de l’OCR">[?]</span>, 88 ans</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k6565384b" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, avril 1914, Gallica (BnF)</a></p>
+  </section>
+  <section class="mois" id="mai">
+    <h2>Bulletin de mai 1914</h2>
+    <h3>Baptêmes</h3><ul class="noms"><li>Ferdinand-Albert Wurtz</li><li>Pierre-Louis-Marcel Nicolas</li><li>Marguerite-Marie-Jeanne Scheveffer <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Roger-Charles-Joseph Grandjean</li><li>Madeleine-Suzanne Bouko <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Raymonde-Denise Marchand</li><li>Suzanne-Marie-Louise Kammerer</li></ul><p class="tard">Et 9 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><ul class="noms"><li>Jules-Prosper Bastien et Marthe Cambas</li><li>Paul-Charles-Louis Mulot et Marie-Jeanne-Joséphine-Rosalie Conraux</li></ul><h3>Décès</h3><ul class="noms"><li>Pierre-Auguste-Octave Bena, 15 ans</li><li>Charles-Étienne Pont, 45 ans</li><li>Joseph Meyer, 68 ans</li><li>Georges-Nestor Hennequin, 50 ans</li><li>Henry-Joseph Campagne, 39 ans</li><li>René-Émile-Christophe Gonnet, 13 ans</li><li>Mme veuve Estienne, 86 ans</li><li>Mme veuve O’Gorman, 85 ans</li><li>Nicolas-Émile Barba, 67 ans</li><li>Edmond Sigrist, 32 ans</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k65642853" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, mai 1914, Gallica (BnF)</a></p>
+  </section>
+  <section class="mois" id="juin">
+    <h2>Bulletin de juin 1914</h2><p class="per">Actes du 15 avril – 15 mai 1914</p>
+    <h3>Baptêmes</h3><ul class="noms"><li>Suzanne-Ernestine Thomann</li><li>Jean-Henri-Marie Lacourt</li><li>Pierre Michel</li><li>André-Auguste-Henri Pariset</li><li>Paulette-Lucienne-Augustine Perez</li><li>Jeanne-Antoinette Colin</li><li>Paulette-Charlotte-Louise Breton</li><li>Andrée Noircler</li></ul><p class="tard">Et 6 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><ul class="noms"><li>Eugène-Louis-Rodolphe Lepiller et Raymonde Leroy</li><li>Henri-Gabriel Antoine et Marie-Amélie Mulberger</li><li>Paul-Eugène Faubel et Anne-Hélène Vautrin</li><li>Henri-Théophile Hauter et Marie-Alice Mahou</li><li>Ferdinand-Michel-Joseph Frana et Jeanne-Marie-Léonie Rinquebac</li><li>Félicien-François Gantois et Marie-Virginie Desroses</li><li>Émile Lindeperg et Marie Schneider</li><li>Louis-Charles Seibel et Marie-Joséphine Poirot</li><li>Nicolas Henrion et Marie Dort</li></ul><h3>Décès</h3><ul class="noms"><li>Marie-Théodore-Henri Nœtinger, 69 ans</li><li>René Dilschneider, 57 ans</li><li>Léon-Joseph-Charles Thiry, 7 mois</li><li>Mme veuve Braun, 65 ans</li><li>Mme Pennerat, 52 ans</li><li>Gabriel Bernard, âge illisible</li><li>Louise-Alice Socolofsky, 3 ans</li><li>Alexandre-Marie-Antoine de Metz-Noblat, 64 ans</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k65653813" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, juin 1914, Gallica (BnF)</a></p>
+  </section>
+  <section class="mois" id="juillet">
+    <h2>Bulletin de juillet 1914</h2><p class="per">Actes du 15 mai – 15 juin 1914</p>
+    <h3>Baptêmes</h3><ul class="noms"><li>Simone-Marie Furiani</li><li>René-Marie Blaise <span class="dou" title="lecture incertaine de l’OCR">[?]</span></li><li>Thérèse-Jeanne Skiber</li><li>Marguerite Caps</li></ul><p class="tard">Et 6 enfants baptisés plus d’un mois après leur naissance, sans leur nom.</p><h3>Mariages</h3><ul class="noms"><li>Émile Guillaumée et Marie Klammés</li><li>François-René-Valentin de Regnauld de Lannoy de Bissy <span class="dou" title="lecture incertaine de l’OCR">[?]</span> et Charlotte-Adèle-Anne-Marie Maure</li></ul><h3>Décès</h3><ul class="noms"><li>Marie-Louis-Henri Heimburger, 49 ans</li><li>Mme veuve Arvois, 82 ans</li><li>Mme veuve Woillet, 73 ans</li><li>Marguerite-Marie Voilqué <span class="dou" title="lecture incertaine de l’OCR">[?]</span>, 16 ans</li><li>Mme veuve Faye, 69 ans</li><li>Mme veuve Strub, 77 ans</li><li>Suzanne-Fernande Rittimann, 8 ans</li><li>Joseph-Nicolas Valtersperger, 68 ans</li><li>Mme Furiani, 37 ans</li><li>Rose-Alexandrine Habert, 78 ans</li><li>Mme veuve Colson, 79 ans</li><li>Joseph-Auguste Thouvenot, 81 ans</li><li>Seger Auguste-Astier <span class="dou" title="lecture incertaine de l’OCR">[?]</span>, 45 ans</li></ul>
+    <p class="src">Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k6565369n" target="_blank" rel="noopener">Bulletin de la paroisse Saint-Epvre, juillet 1914, Gallica (BnF)</a></p>
+  </section>
+</main>
+
+<footer class="pied">
+  <b>Saint-Epvre</b>
+  <div class="rosace" aria-hidden="true"></div>
+  <span>Nancy · Lorraine · France</span>
+</footer>
+
+<script src="/assets/js/nav.js?v=29"></script>
+<script>
+(function () {
+  var f = document.getElementById('f'), rien = document.getElementById('rien');
+  function n(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+  f.addEventListener('input', function () {
+    var v = n(f.value.trim()), tot = 0;
+    document.querySelectorAll('ul.noms li').forEach(function (li) { var ok = !v || n(li.textContent).indexOf(v) >= 0; li.classList.toggle('cache', !ok); if (ok) tot++; });
+    document.querySelectorAll('.mois').forEach(function (s) { s.style.display = (!v || s.querySelector('ul.noms li:not(.cache)')) ? '' : 'none'; });
+    document.querySelectorAll('.mois h3').forEach(function (h) { var u = h.nextElementSibling; h.style.display = (!v || (u && u.matches('ul.noms') && u.querySelector('li:not(.cache)'))) ? '' : 'none'; });
+    document.querySelectorAll('.mois .tard').forEach(function (t) { t.style.display = v ? 'none' : ''; });
+    rien.style.display = tot ? 'none' : 'block';
+  });
+  var q = new URLSearchParams(location.search).get('q'); if (q) { f.value = q; f.dispatchEvent(new Event('input')); }
+})();
+</script>
+<script src="/assets/js/visionneuse.js?v=3"></script>
+</body>
+</html>

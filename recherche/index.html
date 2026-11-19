@@ -111,7 +111,7 @@
   <span>Nancy · Lorraine · France</span>
 </footer>
 
-<script src="/assets/js/nav.js?v=28"></script>
+<script src="/assets/js/nav.js?v=29"></script>
 <script>
 (function () {
   var D = null, q = document.getElementById('q'), res = document.getElementById('res'), compte = document.getElementById('compte');
@@ -154,7 +154,7 @@
   }
   var t0; q.addEventListener('input', function () { clearTimeout(t0); t0 = setTimeout(go, 120); });
   var p = new URLSearchParams(location.search).get('q'); if (p) q.value = p;
-  fetch('/assets/data/recherche.json?v=1').then(function (r) { return r.json(); }).then(function (d) { D = d; go(); });
+  fetch('/assets/data/recherche.json?v=2').then(function (r) { return r.json(); }).then(function (d) { D = d; go(); });
 })();
 </script>
 <script src="/assets/js/visionneuse.js?v=3"></script>

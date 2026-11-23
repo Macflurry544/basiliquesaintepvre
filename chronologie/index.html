@@ -61,53 +61,51 @@
     /* Plus d'air */
     .tete { padding: 10rem 0 6rem; }
     main.col { padding-top: 7rem; padding-bottom: 8rem; }
-    section + section { margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(33,52,72,.14); }
+    section + section { margin-top: 5.5rem; padding-top: 5.5rem; border-top: 1px solid rgba(33,52,72,.14); }
     h2 { margin-bottom: 1.8rem; }
     li { margin-bottom: 1.2rem; line-height: 1.7; }
     .mail { margin-top: 0; gap: 1.4rem 2rem; }
+      .ferronnerie { display: block; height: 51px; margin: 2.5rem 0; color: #4a1518; opacity: .55; background: currentColor; -webkit-mask: url(/assets/ornements/grille-lorraine.svg?v=4) center / auto 100% repeat-x; mask: url(/assets/ornements/grille-lorraine.svg?v=4) center / auto 100% repeat-x; }
 
-    body { background: #fbf9f5; }
+    body { background: #f3f0eb; }
     .ferronnerie { display: block; height: 51px; margin: 2.5rem 0 0; color: #4a1518; opacity: .55; background: currentColor; -webkit-mask: url(/assets/ornements/grille-lorraine.svg?v=4) center / auto 100% repeat-x; mask: url(/assets/ornements/grille-lorraine.svg?v=4) center / auto 100% repeat-x; }
-    .chrono { padding: 2.5rem max(12px, 3vw) 4rem; display: grid; gap: clamp(3rem, 7vw, 6rem); max-width: 1320px; margin: 0 auto; }
-    .chrono-tete { color: #4a1518; padding: 1rem clamp(.4rem, 1vw, 1rem) 0; }
-    .chrono-tete h1 { margin: 0; font: 700 clamp(2.6rem, 8vw, 6.4rem)/.9 'Familjen Grotesk', sans-serif; letter-spacing: -.05em; text-transform: uppercase; }
-    .chrono-tete p { margin: .8rem 0 0; font: 500 clamp(1rem, 2vw, 1.3rem) 'Familjen Grotesk', sans-serif; opacity: .8; }
-    .chrono-note { color: rgba(33,52,72,.6); font-style: italic; text-align: center; margin: 0; }
-
-    /* Scène : photo voilée, grande année, artefact au premier plan ; seule la partie de l'artefact qui recouvre l'année est blanche */
-    .scene { position: relative; overflow: hidden; aspect-ratio: 1600 / 760; max-height: 86vh; isolation: isolate; width: 100vw; margin-left: calc(50% - 50vw); }
-    html, body { overflow-x: clip; }
-    .sc-img { position: absolute; inset: 0; z-index: -2; background: var(--img) center 35% / cover no-repeat; filter: grayscale(.45) contrast(1.05); }
-    .sc-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(251,249,245,.7), rgba(251,249,245,.84)); }
-    .sc-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
-    .sc-svg text { font-family: 'Familjen Grotesk', sans-serif; font-weight: 700; letter-spacing: -24px; }
-    .sc-tete { position: absolute; z-index: 1; max-width: min(30rem, 40%); color: #213448; }
-    .bg .sc-tete { left: clamp(1rem, 3vw, 2.6rem); bottom: clamp(1rem, 3vw, 2.4rem); }
-    .bd .sc-tete { right: clamp(1rem, 3vw, 2.6rem); bottom: clamp(1rem, 3vw, 2.4rem); text-align: right; }
-    .hd .sc-tete { right: clamp(1rem, 3vw, 2.6rem); top: 50%; text-align: right; }
-    .sc-tete small { display: inline-block; padding: .3rem .7rem; background: #4a1518; color: #fbf9f5; font: 600 .72rem 'Familjen Grotesk', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
-    .sc-tete h2 { margin: .6rem 0 .5rem; font: 700 clamp(1.5rem, 3vw, 2.5rem)/1 'Familjen Grotesk', sans-serif; text-transform: uppercase; letter-spacing: -.01em; color: #4a1518; }
-    .sc-tete p { margin: 0; font: 500 clamp(1rem, 1.6vw, 1.2rem)/1.4 'Familjen Grotesk', sans-serif; }
-    .sc-credit { position: absolute; z-index: 1; left: clamp(1rem, 3vw, 2.6rem); top: 1rem; margin: 0; font-size: .7rem; max-width: 22rem; color: rgba(33,52,72,.6); }
-    .bg .sc-credit { left: auto; right: clamp(1rem, 3vw, 2.6rem); text-align: right; }
-
-    /* Les dates, sous la scène */
-    .ere-dates { list-style: none; margin: 1.8rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.4rem 1.8rem; }
-    .ere-dates li { margin: 0; padding: 0 0 0 1rem; border-left: 2px solid #4a1518; }
-    .ere-dates li::before { display: none; }
-    .ere-dates li.phare { display: none; }
-    .ere-dates b { display: block; font: 700 1.45rem/1 'Familjen Grotesk', sans-serif; color: #4a1518; letter-spacing: -.02em; margin-bottom: .35rem; }
-    .ere-dates p { margin: 0 0 .4rem; font: 500 .98rem/1.4 'Familjen Grotesk', sans-serif; color: #213448; }
-    .ere-dates a { font: 600 .82rem 'Familjen Grotesk', sans-serif; color: #4a1518; }
-
-    @media (max-width: 700px) {
-      .scene { overflow: visible; aspect-ratio: auto; max-height: none; }
-      .sc-img, .sc-svg { position: relative; display: block; height: auto; aspect-ratio: 1600 / 760; }
-      .sc-img { position: absolute; inset: 0 0 auto 0; }
-      .sc-tete, .bd .sc-tete, .hd .sc-tete { position: static; max-width: none; text-align: left; padding: 1rem 1rem 0; }
-      .sc-credit, .bg .sc-credit { position: static; text-align: left; padding: .4rem 1rem 0; }
+    .frise-v { position: relative; max-width: 1200px; margin: 3rem auto 4rem; padding: 0 max(12px, 3vw); }
+    /* la bande centrale, grain d'enduit */
+    .frise-v::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: clamp(110px, 13vw, 170px); translate: -50% 0; background-color: #213448;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .fv-tete { position: relative; display: grid; grid-template-columns: 1fr clamp(110px, 13vw, 170px) 1fr; margin-bottom: 1rem; }
+    .fv-tete .an { grid-column: 2; }
+    .fv-tete h2 { grid-column: 3; margin: 0; padding-left: clamp(1rem, 2.4vw, 2rem); font: 700 clamp(2rem, 4.4vw, 3.6rem)/.95 'Familjen Grotesk', sans-serif; color: #213448; letter-spacing: -.03em; }
+    .fv-tete h2 span { color: #4a1518; }
+    .fv-tete small { display: block; font: 700 .8rem 'Familjen Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #4a1518; margin-bottom: .5rem; }
+    .fv-ligne { position: relative; display: grid; grid-template-columns: 1fr clamp(110px, 13vw, 170px) 1fr; align-items: center; margin: 0 0 clamp(.6rem, 2vw, 1.4rem); }
+    .an { grid-column: 2; grid-row: 1; justify-self: center; text-align: center; color: #fbf9f5; font: 700 clamp(2.4rem, 5.4vw, 4.4rem)/.86 'Familjen Grotesk', sans-serif; letter-spacing: -.02em; }
+    .an span { display: block; }
+    .fv-ligne.petite .an { font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
+    .fv-corps { grid-row: 1; display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2rem); }
+    .gauche .fv-corps { grid-column: 1; justify-content: flex-end; text-align: right; padding-right: clamp(1rem, 2.4vw, 2rem); flex-direction: row-reverse; }
+    .droite .fv-corps { grid-column: 3; padding-left: clamp(1rem, 2.4vw, 2rem); }
+    .gauche .fv-corps { flex-direction: row; }
+    .fv-txt { max-width: 22rem; }
+    .fv-txt b { display: block; font: 700 1.05rem/1.2 'Familjen Grotesk', sans-serif; color: #4a1518; margin-bottom: .25rem; }
+    .fv-txt p { margin: 0 0 .3rem; font: 500 1rem/1.35 'Familjen Grotesk', sans-serif; color: #213448; }
+    .fv-txt a { font: 600 .8rem 'Familjen Grotesk', sans-serif; color: #4a1518; }
+    .fv-ill { flex: 0 0 auto; margin: 0; }
+    .fv-ill img { display: block; width: clamp(150px, 20vw, 280px); height: auto; mix-blend-mode: multiply; filter: sepia(.55) saturate(.9) contrast(1.08); }
+    .fv-ill .orn { display: block; width: clamp(130px, 17vw, 240px); aspect-ratio: var(--ar); background: #5a2a2e; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+    .fv-ill figcaption { font-size: .68rem; color: rgba(33,52,72,.55); margin-top: .3rem; max-width: 260px; }
+    .petite .fv-txt p { font-size: .94rem; }
+    .chrono-note { text-align: center; color: rgba(33,52,72,.6); font-style: italic; margin: 0 0 4rem; position: relative; }
+    @media (max-width: 760px) {
+      .frise-v::before { left: 34px; width: 56px; translate: none; }
+      .fv-tete, .fv-ligne { grid-template-columns: 56px 1fr; column-gap: 14px; }
+      .fv-tete h2, .gauche .fv-corps, .droite .fv-corps { grid-column: 2; padding: 0; }
+      .fv-tete .an, .an { grid-column: 1; }
+      .an { font-size: 1.25rem !important; }
+      .gauche .fv-corps, .droite .fv-corps { flex-direction: column; align-items: flex-start; text-align: left; justify-content: flex-start; }
+      .fv-ill img { width: min(70vw, 260px); } .fv-ill .orn { width: min(46vw, 180px); }
     }
-  </style>
+</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Chronologie", "item": "https://basiliquesaintepvre.com/chronologie/"}]}</script>
 </head>
 <body>
@@ -120,45 +118,41 @@
   </div>
 </header>
 <div class="ferronnerie" aria-hidden="true"></div>
-<main class="chrono">
-  <section class="ere">
-    <div class="scene bg" style="--img:url(/assets/img/cartes/place-1850.webp)">
-      <div class="sc-img" role="img" aria-label="La place Saint-Epvre vers 1850, d’après J.-J. Thorelle · Bibliothèque de Nancy, domaine public"></div>
-      <svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="am0" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/pinacle.svg?v=2" x="726" y="30" width="149" height="730" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="ac0"><text x="800" y="330" text-anchor="middle" font-size="390">1080</text></clipPath></defs><g fill="#4a1518"><text x="800" y="330" text-anchor="middle" font-size="390">1080</text></g><rect width="1600" height="760" fill="#213448" mask="url(#am0)"/><g clip-path="url(#ac0)"><rect width="1600" height="760" fill="#fff" mask="url(#am0)"/></g></svg>
-      <div class="sc-tete"><small>Période I</small><h2>L’ancienne église</h2><p><b>1080.</b> Le duc Thierry II fonde la paroisse.</p></div>
-      <p class="sc-credit">La place Saint-Epvre vers 1850, d’après J.-J. Thorelle · Bibliothèque de Nancy, domaine public</p>
-    </div>
-    <ol class="ere-dates"><li class="phare"><b>1080</b><p>Le duc Thierry II fonde la paroisse.</p><a href="/histoire/">Histoire →</a></li><li><b>1476</b><p>Pendant le siège de Nancy, Siffrein de Baschi, le « Bon Chiffron », est pris et pendu sur ordre du duc de Bourgogne.</p><a href="/petites-histoires/#pendus">Les pendus de la tour →</a></li><li><b>1502</b><p>Fonte de la plus ancienne cloche, toujours en place au beffroi.</p><a href="/les-cloches/">Les cloches →</a></li><li><b>1593</b><p>Saint-Epvre ne suffit plus à la Ville-Vieille : la paroisse est coupée en deux.</p><a href="/petites-histoires/#hosties">Petite histoire →</a></li><li><b>1751</b><p>Jean-François Despois fond à Nancy le grand timbre d’horloge.</p><a href="/les-cloches/">Les cloches →</a></li><li><b>1765</b><p>Un tableau quitte l’église.</p><a href="/petites-histoires/#tableau">Petite histoire →</a></li><li><b>1776</b><p>La flèche de l’ancienne église est rabotée.</p><a href="/petites-histoires/#fleche-1776">Petite histoire →</a></li></ol>
-  </section>
-  <section class="ere">
-    <div class="scene bd" style="--img:url(/assets/img/cartes/chantier-1864-1871.webp)">
-      <div class="sc-img" role="img" aria-label="Le chantier, 1864 – 1871 · Bibliothèque municipale de Nancy (Limédia), domaine public"></div>
-      <svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="am1" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/clocher.svg?v=2" x="713" y="15" width="174" height="745" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="ac1"><text x="800" y="330" text-anchor="middle" font-size="390">1864</text></clipPath></defs><g fill="#213448"><text x="800" y="330" text-anchor="middle" font-size="390">1864</text></g><rect width="1600" height="760" fill="#4a1518" mask="url(#am1)"/><g clip-path="url(#ac1)"><rect width="1600" height="760" fill="#fff" mask="url(#am1)"/></g></svg>
-      <div class="sc-tete"><small>Période II</small><h2>La construction</h2><p><b>1864.</b> Pose de la première pierre.</p></div>
-      <p class="sc-credit">Le chantier, 1864 – 1871 · Bibliothèque municipale de Nancy (Limédia), domaine public</p>
-    </div>
-    <ol class="ere-dates"><li><b>1809</b><p>Naissance de Joseph Trouillet à Lixheim, le 24 septembre.</p><a href="/joseph-trouillet/">Joseph Trouillet →</a></li><li><b>1862</b><p>Concours pour une nouvelle église : Léopold Gigout remporte la médaille d’or, mais le chantier est confié à Prosper Morey.</p><a href="/histoire/">Histoire →</a></li><li><b>1863</b><p>L’ancienne église est démolie et son mobilier se disperse.</p><a href="/petites-histoires/#disperses">Petite histoire →</a></li><li class="phare"><b>1864</b><p>Pose de la première pierre.</p><a href="/joseph-trouillet/">Joseph Trouillet →</a></li><li><b>1865</b><p>Des tombes juives sont découvertes sous la vieille tour.</p><a href="/petites-histoires/#pierres">Petite histoire →</a></li><li><b>1866</b><p>L’empereur François-Joseph et l’impératrice Élisabeth offrent un vitrail.</p><a href="/petites-histoires/#verriere">La verrière de l’empereur →</a></li><li><b>1867</b><p>François-Joseph visite le chantier le 22 octobre. L’orgue de Merklin reçoit une médaille d’or à l’Exposition universelle.</p><a href="/les-grandes-orgues/">Les grandes orgues →</a></li><li><b>1869</b><p>Anton Bruckner inaugure le grand orgue, les 28 et 29 avril.</p><a href="/les-grandes-orgues/">Les grandes orgues →</a></li><li><b>1871</b><p>L’église est inaugurée le 20 mars. Le 4 juillet, les ossements de l’ancienne église sont déposés dans la crypte.</p><a href="/petites-histoires/#crypte">Sous le chœur, la crypte →</a></li><li><b>1874</b><p>Le pape Pie IX élève Saint-Epvre au rang de basilique.</p><a href="/histoire/">Histoire →</a></li><li><b>1875</b><p>Consécration de la basilique, le 7 juillet.</p><a href="/les-cloches/">Les cloches →</a></li></ol>
-  </section>
-  <section class="ere">
-    <div class="scene hd" style="--img:url(/assets/img/monographie/nef-1890.webp)">
-      <div class="sc-img" role="img" aria-label="La nef vers 1890, éclairée au gaz · Monographie de 1890, phototypie J. Royer, domaine public"></div>
-      <svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="am2" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/applique.svg?v=2" x="506" y="91" width="332" height="669" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="ac2"><text x="800" y="330" text-anchor="middle" font-size="390">1890</text></clipPath></defs><g fill="#4a1518"><text x="800" y="330" text-anchor="middle" font-size="390">1890</text></g><rect width="1600" height="760" fill="#213448" mask="url(#am2)"/><g clip-path="url(#ac2)"><rect width="1600" height="760" fill="#fff" mask="url(#am2)"/></g></svg>
-      <div class="sc-tete"><small>Période III</small><h2>Le temps de Trouillet</h2><p><b>1890.</b> Parution de la monographie de la basilique et de ses 75 planches.</p></div>
-      <p class="sc-credit">La nef vers 1890, éclairée au gaz · Monographie de 1890, phototypie J. Royer, domaine public</p>
-    </div>
-    <ol class="ere-dates"><li><b>1878</b><p>Un aigle sème la discorde.</p><a href="/petites-histoires/#aigle">Petite histoire →</a></li><li><b>1883</b><p>Le missel des servantes et l’armoire des noces d’or.</p><a href="/petites-histoires/#servantes">Petite histoire →</a></li><li><b>1886</b><p>Mort de Prosper Morey, le 5 juillet.</p><a href="/histoire/">Histoire →</a></li><li><b>1887</b><p>Mort de Mgr Trouillet, le 12 mars. Les paroissiens envoient des couronnes.</p><a href="/petites-histoires/#groupes">Une paroisse en couronnes →</a></li><li class="phare"><b>1890</b><p>Parution de la monographie de la basilique et de ses 75 planches.</p><a href="/planches/">Planches de 1890 →</a></li></ol>
-  </section>
-  <section class="ere">
-    <div class="scene bg" style="--img:url(/assets/img/cartes/cp-00075.webp)">
-      <div class="sc-img" role="img" aria-label="Dégâts après les bombes du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public"></div>
-      <svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="am3" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/rosace-p.svg?v=2" x="834" y="198" width="572" height="562" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="ac3"><text x="800" y="330" text-anchor="middle" font-size="390">1914</text></clipPath></defs><g fill="#213448"><text x="800" y="330" text-anchor="middle" font-size="390">1914</text></g><rect width="1600" height="760" fill="#4a1518" mask="url(#am3)"/><g clip-path="url(#ac3)"><rect width="1600" height="760" fill="#fff" mask="url(#am3)"/></g></svg>
-      <div class="sc-tete"><small>Période IV</small><h2>Le XXᵉ siècle et après</h2><p><b>1914.</b> Le bulletin paroissial raconte le dernier printemps avant la guerre.</p></div>
-      <p class="sc-credit">Dégâts après les bombes du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public</p>
-    </div>
-    <ol class="ere-dates"><li class="phare"><b>1914</b><p>Le bulletin paroissial raconte le dernier printemps avant la guerre.</p><a href="/petites-histoires/#mai-1914">Le dernier printemps →</a></li><li class="phare"><b>1914</b><p>Le 26 décembre, selon la date la plus souvent citée, des bombes de zeppelin endommagent l’église.</p><a href="/1914-1918/">1914 – 1918 →</a></li><li><b>1918</b><p>La Grande Guerre a sévèrement endommagé la basilique.</p><a href="/sauvegarde-et-restauration/">Sauvegarde →</a></li><li><b>1957</b><p>La paroisse a son groupe scout, le « 5e Nancy ».</p><a href="/scouts-5e-nancy/">Scouts →</a></li><li><b>1999</b><p>La basilique est classée monument historique, le 8 septembre.</p><a href="https://monumentum.fr/monument-historique/pa00106109/nancy-basilique-saint-epvre" target="_blank" rel="noopener">Monumentum →</a></li><li><b>2009</b><p>Restauration de l’orgue de chœur.</p><a href="/les-grandes-orgues/">Les grandes orgues →</a></li><li><b>2018</b><p>Un incendie se déclare dans la grande sacristie pendant la messe.</p><a href="/petites-histoires/#incendie">Le feu pendant la messe →</a></li><li><b>2026</b><p>Restauration annoncée de la sacristie et de vitraux.</p><a href="/petites-histoires/#incendie">Petite histoire →</a></li></ol>
-  </section>
-  <p class="chrono-note">Chaque date renvoie à la page du site qui en donne les sources.</p>
+<main class="frise-v">
+  <div class="fv-tete"><div class="an"></div><h2><small>Repères</small>Mille ans<br>de <span>Saint-Epvre</span></h2></div>
+  <div class="fv-ligne gauche"><div class="an"><span>10</span><span>80</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/vue-xixe.webp" alt="L’ancienne église, plan et élévation" loading="lazy" data-leg="L’ancienne église, plan et élévation · Bibliothèques de Nancy, domaine public"><figcaption>L’ancienne église, plan et élévation · Bibliothèques de Nancy, domaine public</figcaption></figure><div class="fv-txt"><p>Le duc Thierry II fonde la paroisse.</p><a href="/histoire/">Histoire →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1476</div><div class="fv-corps"><div class="fv-txt"><p>Pendant le siège de Nancy, Siffrein de Baschi, le « Bon Chiffron », est pris et pendu sur ordre du duc de Bourgogne.</p><a href="/petites-histoires/#pendus">Les pendus de la tour →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1502</div><div class="fv-corps"><div class="fv-txt"><p>Fonte de la plus ancienne cloche, toujours en place au beffroi.</p><a href="/les-cloches/">Les cloches →</a></div></div></div>
+  <div class="fv-ligne droite"><div class="an"><span>15</span><span>93</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/marche-1611.webp" alt="La place et l’église en 1611" loading="lazy" data-leg="La place et l’église en 1611 · Bibliothèques de Nancy, P-FG-ES-00313, domaine public"><figcaption>La place et l’église en 1611 · Bibliothèques de Nancy, P-FG-ES-00313, domaine public</figcaption></figure><div class="fv-txt"><p>Saint-Epvre ne suffit plus à la Ville-Vieille : la paroisse est coupée en deux.</p><a href="/petites-histoires/#hosties">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1751</div><div class="fv-corps"><div class="fv-txt"><p>Jean-François Despois fond à Nancy le grand timbre d’horloge.</p><a href="/les-cloches/">Les cloches →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1765</div><div class="fv-corps"><div class="fv-txt"><p>Un tableau quitte l’église.</p><a href="/petites-histoires/#tableau">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne gauche"><div class="an"><span>17</span><span>76</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/place-1850.webp" alt="La tour à pyramide tronquée, vers 1850" loading="lazy" data-leg="La tour à pyramide tronquée, vers 1850 · Bibliothèque de Nancy, d’après J.-J. Thorelle, domaine public"><figcaption>La tour à pyramide tronquée, vers 1850 · Bibliothèque de Nancy, d’après J.-J. Thorelle, domaine public</figcaption></figure><div class="fv-txt"><p>La flèche de l’ancienne église est rabotée.</p><a href="/petites-histoires/#fleche-1776">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1809</div><div class="fv-corps"><div class="fv-txt"><p>Naissance de Joseph Trouillet à Lixheim, le 24 septembre.</p><a href="/joseph-trouillet/">Joseph Trouillet →</a></div></div></div>
+  <div class="fv-ligne gauche"><div class="an"><span>18</span><span>62</span></div><div class="fv-corps"><figure class="fv-ill"><span class="orn" style="--src:url(/assets/ornements/architecture/projet-gigout.svg?v=2);--ar:0.591" role="img" aria-label="Le projet de Léopold Gigout"></span><figcaption>Le projet de Léopold Gigout · Monographie de 1890</figcaption></figure><div class="fv-txt"><p>Concours pour une nouvelle église : Léopold Gigout remporte la médaille d’or, mais le chantier est confié à Prosper Morey.</p><a href="/histoire/">Histoire →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1863</div><div class="fv-corps"><div class="fv-txt"><p>L’ancienne église est démolie et son mobilier se disperse.</p><a href="/petites-histoires/#disperses">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne gauche"><div class="an"><span>18</span><span>64</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/gravure-1864-1886.webp" alt="La nouvelle église, gravure" loading="lazy" data-leg="La nouvelle église, gravure · Bibliothèques de Nancy, domaine public"><figcaption>La nouvelle église, gravure · Bibliothèques de Nancy, domaine public</figcaption></figure><div class="fv-txt"><p>Pose de la première pierre.</p><a href="/joseph-trouillet/">Joseph Trouillet →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1865</div><div class="fv-corps"><div class="fv-txt"><p>Des tombes juives sont découvertes sous la vieille tour.</p><a href="/petites-histoires/#pierres">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1866</div><div class="fv-corps"><div class="fv-txt"><p>L’empereur François-Joseph et l’impératrice Élisabeth offrent un vitrail.</p><a href="/petites-histoires/#verriere">La verrière de l’empereur →</a></div></div></div>
+  <div class="fv-ligne droite"><div class="an"><span>18</span><span>67</span></div><div class="fv-corps"><figure class="fv-ill"><span class="orn" style="--src:url(/assets/ornements/orgue-1867.svg?v=2);--ar:0.937" role="img" aria-label="L’orgue à l’Exposition universelle"></span><figcaption>L’orgue à l’Exposition universelle · Gravure de 1867</figcaption></figure><div class="fv-txt"><p>François-Joseph visite le chantier le 22 octobre. L’orgue de Merklin reçoit une médaille d’or à l’Exposition universelle.</p><a href="/les-grandes-orgues/">Les grandes orgues →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1869</div><div class="fv-corps"><div class="fv-txt"><p>Anton Bruckner inaugure le grand orgue, les 28 et 29 avril.</p><a href="/les-grandes-orgues/">Les grandes orgues →</a></div></div></div>
+  <div class="fv-ligne droite"><div class="an"><span>18</span><span>71</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/monographie/crypte-coupe.webp" alt="La crypte dans la coupe de Morey" loading="lazy" data-leg="La crypte dans la coupe de Morey · Monographie de 1890"><figcaption>La crypte dans la coupe de Morey · Monographie de 1890</figcaption></figure><div class="fv-txt"><p>L’église est inaugurée le 20 mars. Le 4 juillet, les ossements de l’ancienne église sont déposés dans la crypte.</p><a href="/petites-histoires/#crypte">Sous le chœur, la crypte →</a></div></div></div>
+  <div class="fv-ligne gauche"><div class="an"><span>18</span><span>74</span></div><div class="fv-corps"><figure class="fv-ill"><span class="orn" style="--src:url(/assets/ornements/facade.svg?v=2);--ar:0.634" role="img" aria-label="La façade de Prosper Morey"></span><figcaption>La façade de Prosper Morey · Monographie de 1890</figcaption></figure><div class="fv-txt"><p>Le pape Pie IX élève Saint-Epvre au rang de basilique.</p><a href="/histoire/">Histoire →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1875</div><div class="fv-corps"><div class="fv-txt"><p>Consécration de la basilique, le 7 juillet.</p><a href="/les-cloches/">Les cloches →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1878</div><div class="fv-corps"><div class="fv-txt"><p>Un aigle sème la discorde.</p><a href="/petites-histoires/#aigle">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1883</div><div class="fv-corps"><div class="fv-txt"><p>Le missel des servantes et l’armoire des noces d’or.</p><a href="/petites-histoires/#servantes">Petite histoire →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1886</div><div class="fv-corps"><div class="fv-txt"><p>Mort de Prosper Morey, le 5 juillet.</p><a href="/histoire/">Histoire →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1887</div><div class="fv-corps"><div class="fv-txt"><p>Mort de Mgr Trouillet, le 12 mars. Les paroissiens envoient des couronnes.</p><a href="/petites-histoires/#groupes">Une paroisse en couronnes →</a></div></div></div>
+  <div class="fv-ligne gauche"><div class="an"><span>18</span><span>90</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/monographie/nef-1890.webp" alt="La nef vers 1890" loading="lazy" data-leg="La nef vers 1890 · Monographie de 1890, phototypie J. Royer"><figcaption>La nef vers 1890 · Monographie de 1890, phototypie J. Royer</figcaption></figure><div class="fv-txt"><p>Parution de la monographie de la basilique et de ses 75 planches.</p><a href="/planches/">Planches de 1890 →</a></div></div></div>
+  <div class="fv-ligne droite"><div class="an"><span>19</span><span>14</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/cp-00075.webp" alt="Dégâts du zeppelin, décembre 1914" loading="lazy" data-leg="Dégâts du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public"><figcaption>Dégâts du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public</figcaption></figure><div class="fv-txt"><p>Le bulletin paroissial raconte le dernier printemps avant la guerre.</p><a href="/petites-histoires/#mai-1914">Le dernier printemps →</a></div></div></div>
+  <div class="fv-ligne gauche"><div class="an"><span>19</span><span>14</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/cp-00075.webp" alt="Dégâts du zeppelin, décembre 1914" loading="lazy" data-leg="Dégâts du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public"><figcaption>Dégâts du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public</figcaption></figure><div class="fv-txt"><p>Le 26 décembre, selon la date la plus souvent citée, des bombes de zeppelin endommagent l’église.</p><a href="/1914-1918/">1914 – 1918 →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1918</div><div class="fv-corps"><div class="fv-txt"><p>La Grande Guerre a sévèrement endommagé la basilique.</p><a href="/sauvegarde-et-restauration/">Sauvegarde →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">1957</div><div class="fv-corps"><div class="fv-txt"><p>La paroisse a son groupe scout, le « 5e Nancy ».</p><a href="/scouts-5e-nancy/">Scouts →</a></div></div></div>
+  <div class="fv-ligne droite petite"><div class="an">1999</div><div class="fv-corps"><div class="fv-txt"><p>La basilique est classée monument historique, le 8 septembre.</p><a href="https://monumentum.fr/monument-historique/pa00106109/nancy-basilique-saint-epvre" target="_blank" rel="noopener">Monumentum →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">2009</div><div class="fv-corps"><div class="fv-txt"><p>Restauration de l’orgue de chœur.</p><a href="/les-grandes-orgues/">Les grandes orgues →</a></div></div></div>
+  <div class="fv-ligne droite"><div class="an"><span>20</span><span>18</span></div><div class="fv-corps"><figure class="fv-ill"><span class="orn" style="--src:url(/assets/ornements/chandelier.svg?v=2);--ar:0.288" role="img" aria-label="Chandelier, gravure de la monographie"></span><figcaption>Chandelier, gravure de la monographie · Monographie de 1890</figcaption></figure><div class="fv-txt"><p>Un incendie se déclare dans la grande sacristie pendant la messe.</p><a href="/petites-histoires/#incendie">Le feu pendant la messe →</a></div></div></div>
+  <div class="fv-ligne gauche petite"><div class="an">2026</div><div class="fv-corps"><div class="fv-txt"><p>Restauration annoncée de la sacristie et de vitraux.</p><a href="/petites-histoires/#incendie">Petite histoire →</a></div></div></div>
 </main>
+<p class="chrono-note">Chaque date renvoie à la page du site qui en donne les sources.</p>
 
 <footer class="pied">
   <b>Saint-Epvre</b>

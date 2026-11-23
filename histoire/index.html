@@ -541,6 +541,12 @@
     .q-recit, .q-sous, .q-note, .q-sources { margin-left: auto !important; margin-right: auto !important; }
     .q-camps { max-width: 68ch; margin-left: auto !important; margin-right: auto !important; }
     .querelle .b-num, .querelle h2, .q-sous { text-align: center; }
+    /* Grandes dates : apparition douce, du flou à la netteté */
+    @media (min-width: 1000px) {
+      .jalon > .jalon-date.rv, .sc-svg.rv { opacity: 0; transform: translateY(18px) scale(.97); filter: blur(10px); transition: opacity 1.6s ease, transform 1.8s cubic-bezier(.22,1,.36,1), filter 1.6s ease; }
+      .jalon > .jalon-date.rv.vu, .sc-svg.rv.vu { opacity: .9; transform: none; filter: none; }
+      .sc-svg.rv.vu { opacity: 1; }
+    }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Histoire", "item": "https://basiliquesaintepvre.com/histoire/"}]}</script>
 </head>
@@ -851,9 +857,14 @@
 (function () {
   if (!matchMedia('(min-width: 1000px)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var el = document.querySelectorAll('.bande-texte > h2, .bande-texte > .b-num, .bande-texte > .argument, .jalon > .jalon-date, .jalon > h3, .bande-grille > .visuel, .sc-svg, .sc-tete');
-  el.forEach(function (e) { e.classList.add('rv'); });
-  var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('vu'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
-  el.forEach(function (e) { io.observe(e); });
+  el.forEach(function (e) { e.style.transition = 'none'; e.classList.add('rv'); });
+  void document.body.offsetHeight;
+  el.forEach(function (e) { e.style.transition = ''; });
+  // vérifie à chaque défilement ce qui entre à l'écran (plus robuste qu'IntersectionObserver)
+  var reste = [].slice.call(el);
+  function voir() { var h = innerHeight * .88; reste = reste.filter(function (e) { var r = e.getBoundingClientRect(); if (r.top < h && r.bottom > 0) { e.classList.add('vu'); return false; } return true; }); }
+  var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; voir(); }); } }, { passive: true });
+  addEventListener('resize', voir); setTimeout(voir, 60); setInterval(function () { if (reste.length) voir(); }, 700);
 })();
 </script>
 </body>

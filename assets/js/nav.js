@@ -370,6 +370,7 @@
       '.retour-accueil svg{flex:none;width:clamp(90px,16vw,230px);height:auto;overflow:visible;transition:transform .5s cubic-bezier(.22,1,.36,1)}',
       '.retour-accueil b{font-weight:500;font-size:clamp(2.4rem,7.5vw,6.2rem);line-height:.9;letter-spacing:-.045em;text-transform:uppercase}',
       '.retour-accueil:hover svg,.retour-accueil:focus-visible svg{transform:translateX(-14px)}',
+      '.retour-accueil.sur-sombre{color:#fff}.retour-accueil.sur-sombre .ra-lab{color:rgba(255,255,255,.7)}.retour-accueil.sur-sombre .ra-filet{border-top-color:rgba(255,255,255,.25)}',
       '@media (prefers-reduced-motion:reduce){.retour-accueil svg{transition:none}}'
     ].join('');
     document.head.appendChild(st);
@@ -379,6 +380,12 @@
       + '<span class="ra-ligne"><svg viewBox="0 0 230 60" aria-hidden="true"><path d="M228 30H8M34 4 6 30l28 26" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square"/></svg><b>Retour à l’accueil</b></span>';
     var avant = document.querySelector('.cul-de-lampe') && document.querySelector('.cul-de-lampe').nextElementSibling === pied ? document.querySelector('.cul-de-lampe') : pied;
     pied.parentNode.insertBefore(a, avant);
+    // Sur un fond sombre (bleu, bordeaux), le lien passe en blanc
+    var el = a.parentNode, bg = '';
+    while (el && el !== document.documentElement) { bg = getComputedStyle(el).backgroundColor; if (bg && !/rgba\(.*, 0\)|transparent/.test(bg)) break; el = el.parentNode; bg = ''; }
+    if (!bg) bg = getComputedStyle(document.body).backgroundColor;
+    var m = bg.match(/\d+(\.\d+)?/g);
+    if (m && (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) < 110) a.classList.add('sur-sombre');
   })();
 
   /* Petite flèche de retour en haut à gauche : courte, épaisse, attirée par la souris */

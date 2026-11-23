@@ -537,7 +537,11 @@
       .rv { opacity: 0; transform: translateY(34px); transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1); }
       .rv.vu { opacity: 1; transform: none; }
     }
-  </style>
+      /* Le concours : récit, camps et notes centrés dans la colonne */
+    .q-recit, .q-sous, .q-note, .q-sources { margin-left: auto !important; margin-right: auto !important; }
+    .q-camps { max-width: 68ch; margin-left: auto !important; margin-right: auto !important; }
+    .querelle .b-num, .querelle h2, .q-sous { text-align: center; }
+</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Histoire", "item": "https://basiliquesaintepvre.com/histoire/"}]}</script>
 </head>
 <body>
@@ -566,13 +570,11 @@
     <ol><li><a href="#moyen-age"><span>La paroisse des origines</span></a></li><li><a href="#reconstruction"><span>La grande reconstruction</span></a></li><li><a href="#xxe-siecle"><span>Blessures et renaissances</span></a></li></ol>
   </nav>
 
-<div class="scene bg" style="--img:url(/assets/img/cartes/place-1850.webp)"><div class="sc-img" role="img" aria-label="La place Saint-Epvre vers 1850, d’après J.-J. Thorelle · Bibliothèque de Nancy, domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham0" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/pinacle.svg?v=2" x="726" y="30" width="149" height="730" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac0"><text x="800" y="330" text-anchor="middle" font-size="390">1080</text></clipPath></defs><g fill="#4a1518"><text x="800" y="330" text-anchor="middle" font-size="390">1080</text></g><rect width="1600" height="760" fill="#213448" mask="url(#ham0)"/><g clip-path="url(#hac0)"><rect width="1600" height="760" fill="#fff" mask="url(#ham0)"/></g></svg><div class="sc-tete"><small>Partie I</small><p class="sc-titre">La paroisse des origines</p><p><b>1080.</b> Le duc Thierry II fonde la paroisse.</p></div><p class="sc-credit">La place Saint-Epvre vers 1850, d’après J.-J. Thorelle · Bibliothèque de Nancy, domaine public</p></div><!--/scene-->
+<div class="scene bg" style="--img:url(/assets/img/cartes/place-1850.webp)"><div class="sc-img" role="img" aria-label="La place Saint-Epvre vers 1850, d’après J.-J. Thorelle · Bibliothèque de Nancy, domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham0" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/pinacle.svg?v=2" x="726" y="30" width="149" height="730" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac0"><text x="800" y="330" text-anchor="middle" font-size="390">1080</text></clipPath></defs><g fill="#4a1518"><text x="800" y="330" text-anchor="middle" font-size="390">1080</text></g><rect width="1600" height="760" fill="#213448" mask="url(#ham0)"/><g clip-path="url(#hac0)"><rect width="1600" height="760" fill="#fff" mask="url(#ham0)"/></g></svg><div class="sc-tete"><small>Partie I</small><h2 class="sc-titre">La paroisse des origines</h2><p><b>1080.</b> Le duc Thierry II fonde la paroisse.</p></div><p class="sc-credit">La place Saint-Epvre vers 1850, d’après J.-J. Thorelle · Bibliothèque de Nancy, domaine public</p></div><!--/scene-->
   <section class="bande b-papier" id="moyen-age">
     <div class="bande-grille">
       <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1KsnaVUGmNyYVbxjMUoRgWTl4B44Ikh3n.jpg)" role="img" aria-label="La place Saint-Epvre et la statue de René II"></div><p class="visuel-leg">La place Saint-Epvre et la statue de René II</p></div>
       <div class="bande-texte">
-        <span class="b-num">I</span>
-        <h2>La paroisse des origines</h2>
         <p class="argument">XIe – XVe siècle — Au cœur de la cité naissante, la plus ancienne paroisse de Nancy.</p>
         <ol class="jalons">
           <li class="jalon">
@@ -595,13 +597,11 @@
       </div>
     </div>
   </section>
-<div class="scene bd" style="--img:url(/assets/img/cartes/chantier-1864-1871.webp)"><div class="sc-img" role="img" aria-label="Le chantier, 1864 – 1871 · Bibliothèque municipale de Nancy (Limédia), domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham1" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/clocher.svg?v=2" x="713" y="15" width="174" height="745" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac1"><text x="800" y="330" text-anchor="middle" font-size="390">1864</text></clipPath></defs><g fill="#213448"><text x="800" y="330" text-anchor="middle" font-size="390">1864</text></g><rect width="1600" height="760" fill="#4a1518" mask="url(#ham1)"/><g clip-path="url(#hac1)"><rect width="1600" height="760" fill="#fff" mask="url(#ham1)"/></g></svg><div class="sc-tete"><small>Partie II</small><p class="sc-titre">La grande reconstruction</p><p><b>1864.</b> Pose de la première pierre.</p></div><p class="sc-credit">Le chantier, 1864 – 1871 · Bibliothèque municipale de Nancy (Limédia), domaine public</p></div><!--/scene-->
+<div class="scene bd" style="--img:url(/assets/img/cartes/chantier-1864-1871.webp)"><div class="sc-img" role="img" aria-label="Le chantier, 1864 – 1871 · Bibliothèque municipale de Nancy (Limédia), domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham1" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/clocher.svg?v=2" x="713" y="15" width="174" height="745" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac1"><text x="800" y="330" text-anchor="middle" font-size="390">1864</text></clipPath></defs><g fill="#213448"><text x="800" y="330" text-anchor="middle" font-size="390">1864</text></g><rect width="1600" height="760" fill="#4a1518" mask="url(#ham1)"/><g clip-path="url(#hac1)"><rect width="1600" height="760" fill="#fff" mask="url(#ham1)"/></g></svg><div class="sc-tete"><small>Partie II</small><h2 class="sc-titre">La grande reconstruction</h2><p><b>1864.</b> Pose de la première pierre.</p></div><p class="sc-credit">Le chantier, 1864 – 1871 · Bibliothèque municipale de Nancy (Limédia), domaine public</p></div><!--/scene-->
   <section class="bande b-bordeaux" id="reconstruction">
     <div class="bande-grille">
       <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/biblio/morey.jpg)" role="img" aria-label="Le projet de Prosper Morey, 1862-1864"></div><p class="visuel-leg">Le projet de <a class="lien-perso" href="/personnages/#morey">Prosper Morey</a>, 1862-1864</p></div>
       <div class="bande-texte">
-        <span class="b-num">II</span>
-        <h2>La grande reconstruction</h2>
         <p class="argument">1862 – 1875 — Treize ans pour élever une cathédrale néo-gothique au cœur de la Ville-Vieille.</p>
         <ol class="jalons">
           <li class="jalon">
@@ -665,11 +665,9 @@
       </div>
     </div>
   </section>
-<div class="scene bg" style="--img:url(/assets/img/biblio/morey.jpg)"><div class="sc-img" role="img" aria-label="Gravure de Prosper Morey · Wikimedia Commons, domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham2" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/rosace-p.svg?v=2" x="834" y="198" width="572" height="562" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac2"><text x="800" y="330" text-anchor="middle" font-size="390">1862</text></clipPath></defs><g fill="#4a1518"><text x="800" y="330" text-anchor="middle" font-size="390">1862</text></g><rect width="1600" height="760" fill="#213448" mask="url(#ham2)"/><g clip-path="url(#hac2)"><rect width="1600" height="760" fill="#fff" mask="url(#ham2)"/></g></svg><div class="sc-tete"><small>Partie III</small><p class="sc-titre">Le concours</p><p><b>1862.</b> Deux architectes, un procès en plagiat.</p></div><p class="sc-credit">Gravure de Prosper Morey · Wikimedia Commons, domaine public</p></div><!--/scene-->
+<div class="scene bg" style="--img:url(/assets/img/biblio/morey.jpg)"><div class="sc-img" role="img" aria-label="Gravure de Prosper Morey · Wikimedia Commons, domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham2" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/rosace-p.svg?v=2" x="834" y="198" width="572" height="562" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac2"><text x="800" y="330" text-anchor="middle" font-size="390">1862</text></clipPath></defs><g fill="#4a1518"><text x="800" y="330" text-anchor="middle" font-size="390">1862</text></g><rect width="1600" height="760" fill="#213448" mask="url(#ham2)"/><g clip-path="url(#hac2)"><rect width="1600" height="760" fill="#fff" mask="url(#ham2)"/></g></svg><div class="sc-tete"><small>Partie III</small><h2 class="sc-titre">Le concours</h2><p><b>1862.</b> Deux architectes, un procès en plagiat.</p></div><p class="sc-credit">Gravure de Prosper Morey · Wikimedia Commons, domaine public</p></div><!--/scene-->
   <section class="bande b-papier querelle" id="concours">
     <div class="q-col">
-      <span class="b-num">III</span>
-      <h2>Un concours, deux architectes et un procès en plagiat</h2>
       <p class="q-sous">1862 – 1891 · La basilique a failli ne jamais ressembler à ce que vous voyez. Voici l’histoire du concours, racontée par ses deux camps.</p>
 
       <div class="q-facades">
@@ -712,13 +710,11 @@
       <p class="q-sources">Sources : Léopold Gigout, <em>La Vérité sur la reconstruction de la basilique de St-Epvre à Nancy</em>, Nancy, R. Vagner, 1891, chap. II et III, <a href="https://gallica.bnf.fr/ark:/12148/bpt6k9625291w" target="_blank" rel="noopener">Gallica ↗</a> ; <em>Monographie de l’église Saint-Epvre</em>, 1890, p. 32-33, <a href="https://archive.org/details/gri_33125013356007/page/n51/mode/1up" target="_blank" rel="noopener">Internet Archive ↗</a>. Les dessins des projets n° 5 et 6 sont vectorisés d’après les vignettes de la monographie.</p>
     </div>
   </section>
-<div class="scene hd" style="--img:url(/assets/img/cartes/cp-00075.webp)"><div class="sc-img" role="img" aria-label="Dégâts après les bombes du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham3" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/applique.svg?v=2" x="506" y="91" width="332" height="669" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac3"><text x="800" y="330" text-anchor="middle" font-size="390">1914</text></clipPath></defs><g fill="#213448"><text x="800" y="330" text-anchor="middle" font-size="390">1914</text></g><rect width="1600" height="760" fill="#4a1518" mask="url(#ham3)"/><g clip-path="url(#hac3)"><rect width="1600" height="760" fill="#fff" mask="url(#ham3)"/></g></svg><div class="sc-tete"><small>Partie IV</small><p class="sc-titre">Blessures et renaissances</p><p><b>1914.</b> Les bombes du dirigeable.</p></div><p class="sc-credit">Dégâts après les bombes du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public</p></div><!--/scene-->
+<div class="scene hd" style="--img:url(/assets/img/cartes/cp-00075.webp)"><div class="sc-img" role="img" aria-label="Dégâts après les bombes du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public"></div><svg class="sc-svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="ham3" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="760" style="mask-type:alpha"><image href="/assets/ornements/applique.svg?v=2" x="506" y="91" width="332" height="669" preserveAspectRatio="xMidYMax meet"/></mask><clipPath id="hac3"><text x="800" y="330" text-anchor="middle" font-size="390">1914</text></clipPath></defs><g fill="#213448"><text x="800" y="330" text-anchor="middle" font-size="390">1914</text></g><rect width="1600" height="760" fill="#4a1518" mask="url(#ham3)"/><g clip-path="url(#hac3)"><rect width="1600" height="760" fill="#fff" mask="url(#ham3)"/></g></svg><div class="sc-tete"><small>Partie IV</small><h2 class="sc-titre">Blessures et renaissances</h2><p><b>1914.</b> Les bombes du dirigeable.</p></div><p class="sc-credit">Dégâts après les bombes du zeppelin, décembre 1914 · Bibliothèques de Nancy, P-FG-CP-00075, domaine public</p></div><!--/scene-->
   <section class="bande b-navy" id="xxe-siecle">
     <div class="bande-grille">
       <div class="visuel"><div class="visuel-img oculus" style="background-image:url(/assets/img/site/1K_8ACR6KASBJhgbiR8ztsq6hNrWrAjya.jpg)" role="img" aria-label="La flèche et les toits aujourd'hui"></div><p class="visuel-leg">La flèche et les toits aujourd'hui</p></div>
       <div class="bande-texte">
-        <span class="b-num">IV</span>
-        <h2>Blessures et renaissances</h2>
         <p class="argument">1914 – aujourd'hui — Bombardements, tempête, restaurations : la basilique traverse le siècle.</p>
         <ol class="jalons">
           <li class="jalon">

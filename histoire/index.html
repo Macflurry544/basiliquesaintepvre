@@ -508,7 +508,36 @@
     /* les scènes s'empilent comme les bandes de la page */
     .scene { position: sticky !important; top: var(--st, 0px); min-height: 100vh; min-height: 100svh; max-height: none; aspect-ratio: auto; }
     @media (max-width: 700px) { .scene { position: relative !important; min-height: 0; } }
-</style>
+
+    /* ═══ Réorganisation (ordinateur) : chaque partie s'ouvre sur un titre et une image, puis chaque date est une « diapositive » aérée ═══ */
+    @media (min-width: 1000px) {
+      .bande { position: relative !important; top: auto !important; min-height: 0 !important; padding: clamp(5rem, 9vw, 8rem) 0 !important; }
+      .scene { position: relative !important; min-height: 0 !important; aspect-ratio: 1600 / 760 !important; max-height: 88vh !important; }
+      .bande-grille { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(260px, 380px); column-gap: clamp(3rem, 6vw, 6rem); align-items: end; max-width: 1180px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+      .bande-grille > .visuel { grid-column: 2; grid-row: 1 / span 3; position: static !important; align-self: center; }
+      .bande-texte { display: contents !important; }
+      .bande-texte > * { grid-column: 1 / -1; }
+      .bande-texte > .b-num, .bande-texte > h2, .bande-texte > .argument { grid-column: 1; }
+      .bande-texte > h2 { font-size: clamp(3rem, 6vw, 5.6rem) !important; line-height: .92 !important; letter-spacing: -.04em; margin: .2rem 0 1.2rem !important; }
+      .bande-texte > .argument { font-size: clamp(1.1rem, 1.6vw, 1.35rem) !important; max-width: 34rem; margin: 0 0 1rem !important; }
+      .jalons { margin-top: clamp(3rem, 6vw, 5rem) !important; }
+      .jalon { display: grid !important; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); grid-template-areas: "d t" "d x"; column-gap: clamp(2.5rem, 5vw, 5rem); align-items: start; padding: clamp(2.6rem, 4.5vw, 4rem) 0 !important; border-top: 1px solid rgba(127,127,127,.22); margin: 0 !important; }
+      .jalon:nth-child(even) { grid-template-columns: minmax(0, 1.4fr) minmax(0, .9fr); grid-template-areas: "t d" "x d"; }
+      .jalon > .jalon-date { grid-area: d; align-self: center; font: 700 clamp(4.6rem, 9vw, 8.4rem)/.85 'Familjen Grotesk', sans-serif !important; letter-spacing: -.05em; color: transparent !important; -webkit-text-stroke: 1.6px currentColor; opacity: .9; }
+      .jalon:nth-child(even) > .jalon-date { text-align: right; }
+      .jalon > h3 { grid-area: t; font-size: clamp(1.5rem, 2.4vw, 2.1rem) !important; margin: 0 0 .8rem !important; }
+      .jalon > :not(.jalon-date):not(h3) { grid-column: auto; }
+      .jalon > p, .jalon > details, .jalon > .src-jalon, .jalon > div { grid-area: auto; }
+      .jalon > p:first-of-type { grid-area: x; max-width: 36rem; font-size: 1.08rem; line-height: 1.65; }
+      .jalon:nth-child(even) > p:first-of-type { justify-self: end; }
+      .jalon > *:not(.jalon-date):not(h3):not(p:first-of-type) { grid-column: 1 / -1; }
+      .b-papier .jalon > .jalon-date { color: transparent !important; -webkit-text-stroke-color: #4a1518; }
+      .b-bordeaux .jalon > .jalon-date, .b-navy .jalon > .jalon-date { -webkit-text-stroke-color: rgba(251,249,245,.85); }
+      /* une seule animation pour tout : titres, dates, artefacts */
+      .rv { opacity: 0; transform: translateY(34px); transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1); }
+      .rv.vu { opacity: 1; transform: none; }
+    }
+  </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Histoire", "item": "https://basiliquesaintepvre.com/histoire/"}]}</script>
 </head>
 <body>
@@ -822,5 +851,14 @@
 </script>
 <script defer src="../assets/js/nav.js?v=33"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
+<script>
+(function () {
+  if (!matchMedia('(min-width: 1000px)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var el = document.querySelectorAll('.bande-texte > h2, .bande-texte > .b-num, .bande-texte > .argument, .jalon > .jalon-date, .jalon > h3, .bande-grille > .visuel, .sc-svg, .sc-tete');
+  el.forEach(function (e) { e.classList.add('rv'); });
+  var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('vu'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
+  el.forEach(function (e) { io.observe(e); });
+})();
+</script>
 </body>
 </html>

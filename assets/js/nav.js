@@ -493,7 +493,10 @@
     ['crosse', 'Bâton recourbé de l’évêque, signe du pasteur.'],
     ['mitre', 'Haute coiffure de l’évêque, en forme de bouclier pointu.'],
     ['vicaire', 'Prêtre qui assiste le curé de la paroisse.'],
-    ['sacristie', 'Salle où l’on garde les vêtements et objets du culte, et où le prêtre se prépare.']
+    ['sacristie', 'Salle où l’on garde les vêtements et objets du culte, et où le prêtre se prépare.'],
+    ['étayées', 'Soutenues provisoirement par des étais, c’est-à-dire des poutres ou des cadres de bois ou de métal, pour éviter qu’elles ne se déforment ou ne s’effondrent en attendant les travaux.'],
+    ['défauts de maçonnerie', 'Erreurs dans la construction des murs : pierres mal posées ou mal choisies, joints de mortier insuffisants, assises qui n’ont pas eu le temps de sécher et de se tasser.'],
+    ['vieillissement prématuré', 'Usure arrivée bien plus tôt que prévu : la pierre se dégrade, s’effrite ou se fissure après quelques décennies au lieu de plusieurs siècles.']
   ];
   var zone = document.querySelector('main') || document.body;
   if (!zone || document.body.dataset.glossaire === 'non') return;

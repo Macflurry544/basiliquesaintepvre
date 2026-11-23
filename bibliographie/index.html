@@ -196,6 +196,45 @@
     .serre { flex: none; align-self: flex-end; position: relative; width: 22px; height: 150px; margin: 0 8px; border-radius: 4px 4px 0 0; background: linear-gradient(90deg, #2c3f55, var(--navy) 60%, #1a2a3a); }
     .serre span { position: absolute; left: 50%; bottom: calc(100% + 10px); translate: -50% 0; writing-mode: vertical-rl; rotate: 180deg; white-space: nowrap; font: 600 .66rem/1 var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux); }
     .serre.premier { margin-left: 0; }
+
+  /* Ouverture : un mur de salle de musée, éclairé par un projecteur */
+  .mur { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--nav-h, 80px) + 3vh) max(16px, 5vw) 9vh;
+    background-color: #4a1518;
+    background-image:
+      radial-gradient(ellipse 38% 46% at 30% 44%, rgba(255,214,170,.16), rgba(255,214,170,0) 70%),
+      radial-gradient(ellipse 30% 40% at 72% 42%, rgba(255,214,170,.07), rgba(255,214,170,0) 70%),
+      linear-gradient(to bottom, rgba(0,0,0,.62) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 78%, rgba(0,0,0,.5) 100%),
+      radial-gradient(ellipse 90% 80% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.42) 100%); }
+  /* grain d'enduit, très léger */
+  .mur::before { content: ''; position: absolute; inset: 0; opacity: .22; mix-blend-mode: multiply; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .1 0 0 0 0 .1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .mur-lumiere { position: absolute; left: 30%; top: 0; width: 1px; height: 1px; }
+  .mur-grille { position: relative; z-index: 1; width: 100%; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .mur-oeuvre { display: flex; align-items: flex-end; gap: clamp(1rem, 2.4vw, 2rem); justify-content: center; }
+  .cadre { margin: 0; flex: 0 1 auto; width: min(100%, 360px); padding: 10px; background: linear-gradient(145deg, #2b1a14, #1a0f0c 60%, #2a1912);
+    box-shadow: inset 0 0 0 1px rgba(255,220,180,.10), inset 0 1px 0 rgba(255,225,190,.18), 0 2px 3px rgba(0,0,0,.35), 0 26px 30px -12px rgba(0,0,0,.6), 0 58px 80px -24px rgba(0,0,0,.55); }
+  .cadre img { display: block; width: 100%; height: auto; box-shadow: inset 0 0 0 1px rgba(0,0,0,.4); filter: saturate(.92) contrast(1.02); }
+  .cadre { position: relative; }
+  .cadre::after { content: ''; position: absolute; inset: 10px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,230,200,.10), rgba(0,0,0,0) 40%, rgba(0,0,0,.18)); }
+  .cartel { flex: 0 0 auto; width: 9.5rem; margin: 0 0 2rem; padding: .8rem .9rem; background: rgba(251,249,245,.06); border: 1px solid rgba(251,249,245,.12); color: rgba(251,249,245,.78); font: 400 .72rem/1.45 'Source Sans 3', sans-serif; }
+  .cartel b { display: block; margin-bottom: .35rem; color: #fbf9f5; font: 600 .74rem/1.3 'Familjen Grotesk', sans-serif; }
+  .cartel a { color: rgba(251,249,245,.85); }
+  .mur-texte { color: #fbf9f5; }
+  .mur-texte h1 { margin: 0; font: 700 clamp(2.2rem, 6.2vw, 5.6rem)/.86 'Familjen Grotesk', sans-serif; letter-spacing: -.05em; text-transform: uppercase; color: #f4ece2; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
+  @media (max-width: 860px) { .mur-texte h1 { font-size: clamp(2.2rem, 11.5vw, 4.4rem); } }
+  .frise-g { height: clamp(26px, 3vw, 38px); margin: clamp(1rem, 2.2vw, 1.6rem) 0 clamp(1rem, 2vw, 1.4rem); background: rgba(244,236,226,.78);
+    -webkit-mask: url(/assets/img/biblio/frise-gothique.png) left top / auto 100% repeat-x; mask: url(/assets/img/biblio/frise-gothique.png) left top / auto 100% repeat-x; }
+  .mur-sous { margin: 0 0 1.4rem; font: 600 clamp(1.1rem, 2vw, 1.5rem)/1.1 'Familjen Grotesk', sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+  .mur-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  .mur-cols p { margin: 0; font: 400 .98rem/1.55 'Source Sans 3', sans-serif; color: rgba(251,249,245,.86); }
+  @media (max-width: 860px) {
+    .mur { padding-bottom: 6vh; }
+    .mur-grille { grid-template-columns: 1fr; }
+    .mur-oeuvre { order: 2; }
+    .cadre { width: min(72vw, 320px); }
+    .mur-cols { grid-template-columns: 1fr; }
+    .cartel { display: none; }
+  }
 </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
   <link rel="stylesheet" href="/assets/css/refonte.css?v=8">
@@ -203,11 +242,22 @@
 </head>
 <body>
 
-<header class="ouverture">
-  <div class="courant col"><span>Basilique Saint-Epvre</span><span>Bibliographie</span></div>
-  <div class="col">
-    <h1>Bibliographie</h1>
-    <p class="sous">Les livres, gravures et journaux d'où vient ce que raconte ce site. Tirez un livre de l'étagère.</p>
+<header class="mur" aria-label="Bibliographie">
+  <div class="mur-lumiere" aria-hidden="true"></div>
+  <div class="mur-grille">
+    <div class="mur-oeuvre">
+      <figure class="cadre"><img src="/assets/img/biblio/mono-titre.jpg" alt="Page de titre de la Monographie de la basilique Saint-Epvre, 1890" data-leg="Monographie de la basilique Saint-Epvre, 1890 · page de titre"></figure>
+      <p class="cartel"><b>Monographie de la basilique Saint-Epvre</b>Nancy, 1890<br>Page de titre, chromolithographie<br><a href="https://archive.org/details/gri_33125013356007" target="_blank" rel="noopener">Internet Archive ↗</a><br><br>Frise : bordure des pages de la même monographie.</p>
+    </div>
+    <div class="mur-texte">
+      <h1>Bibliographie</h1>
+      <div class="frise-g" aria-hidden="true"></div>
+      <p class="mur-sous">Les livres de la basilique</p>
+      <div class="mur-cols">
+        <p>Tout ce que raconte ce site vient de livres, de gravures et de journaux. Le plus précieux est la monographie publiée en 1890 : un volume de texte et un volume de soixante-quinze planches, gravures, photographies et chromolithographies.</p>
+        <p>Sa page de titre, imprimée en couleurs, annonce une publication « sous le haut patronage de Son Éminence le Cardinal Foulon, archevêque de Lyon et de Vienne ». Tirez un livre de l’étagère pour découvrir les autres sources.</p>
+      </div>
+    </div>
   </div>
 </header>
 

@@ -70,16 +70,19 @@
     body { background: #f3f0eb; }
     .ferronnerie { display: block; height: 51px; margin: 2.5rem 0 0; color: #4a1518; opacity: .55; background: currentColor; -webkit-mask: url(/assets/ornements/grille-lorraine.svg?v=4) center / auto 100% repeat-x; mask: url(/assets/ornements/grille-lorraine.svg?v=4) center / auto 100% repeat-x; }
     .frise-v { position: relative; max-width: 1200px; margin: 3rem auto 4rem; padding: 0 max(12px, 3vw); }
-    /* la bande centrale, grain d'enduit */
-    .frise-v::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: clamp(110px, 13vw, 170px); translate: -50% 0; background-color: #213448;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    /* le fil du temps : un trait épais qui se trace au défilement, avec sa pointe */
+    .fil { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: visible; z-index: 0; }
+    .fil path { fill: none; stroke: #4a1518; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .fil .trace-fond { stroke: rgba(74,21,24,.12); stroke-dasharray: 2 14; stroke-width: 4; }
+    .fil polygon { fill: #4a1518; }
+    .fv-ligne, .fv-tete { z-index: 1; }
     .fv-tete { position: relative; display: grid; grid-template-columns: 1fr clamp(110px, 13vw, 170px) 1fr; margin-bottom: 1rem; }
     .fv-tete .an { grid-column: 2; }
     .fv-tete h2 { grid-column: 3; margin: 0; padding-left: clamp(1rem, 2.4vw, 2rem); font: 700 clamp(2rem, 4.4vw, 3.6rem)/.95 'Familjen Grotesk', sans-serif; color: #213448; letter-spacing: -.03em; }
     .fv-tete h2 span { color: #4a1518; }
     .fv-tete small { display: block; font: 700 .8rem 'Familjen Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #4a1518; margin-bottom: .5rem; }
     .fv-ligne { position: relative; display: grid; grid-template-columns: 1fr clamp(110px, 13vw, 170px) 1fr; align-items: center; margin: 0 0 clamp(.6rem, 2vw, 1.4rem); }
-    .an { grid-column: 2; grid-row: 1; justify-self: center; text-align: center; color: #fbf9f5; font: 700 clamp(2.4rem, 5.4vw, 4.4rem)/.86 'Familjen Grotesk', sans-serif; letter-spacing: -.02em; }
+    .an { grid-column: 2; grid-row: 1; justify-self: center; text-align: center; color: #4a1518; background: #f3f0eb; padding: .5rem .3rem; border-radius: 999px; font: 700 clamp(2.4rem, 5.4vw, 4.4rem)/.86 'Familjen Grotesk', sans-serif; letter-spacing: -.02em; }
     .an span { display: block; }
     .fv-ligne.petite .an { font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
     .fv-corps { grid-row: 1; display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2rem); }
@@ -97,7 +100,6 @@
     .petite .fv-txt p { font-size: .94rem; }
     .chrono-note { text-align: center; color: rgba(33,52,72,.6); font-style: italic; margin: 0 0 4rem; position: relative; }
     @media (max-width: 760px) {
-      .frise-v::before { left: 34px; width: 56px; translate: none; }
       .fv-tete, .fv-ligne { grid-template-columns: 56px 1fr; column-gap: 14px; }
       .fv-tete h2, .gauche .fv-corps, .droite .fv-corps { grid-column: 2; padding: 0; }
       .fv-tete .an, .an { grid-column: 1; }
@@ -118,7 +120,8 @@
   </div>
 </header>
 <div class="ferronnerie" aria-hidden="true"></div>
-<main class="frise-v">
+<main class="frise-v" id="frise">
+  <svg class="fil" id="fil" aria-hidden="true"><path class="trace-fond" id="fil-fond"/><path id="fil-trace"/><polygon id="fil-pointe" points="0,-13 26,0 0,13"/></svg>
   <div class="fv-tete"><div class="an"></div><h2><small>Repères</small>Mille ans<br>de <span>Saint-Epvre</span></h2></div>
   <div class="fv-ligne gauche"><div class="an"><span>10</span><span>80</span></div><div class="fv-corps"><figure class="fv-ill"><img src="/assets/img/cartes/vue-xixe.webp" alt="L’ancienne église, plan et élévation" loading="lazy" data-leg="L’ancienne église, plan et élévation · Bibliothèques de Nancy, domaine public"><figcaption>L’ancienne église, plan et élévation · Bibliothèques de Nancy, domaine public</figcaption></figure><div class="fv-txt"><p>Le duc Thierry II fonde la paroisse.</p><a href="/histoire/">Histoire →</a></div></div></div>
   <div class="fv-ligne droite petite"><div class="an">1476</div><div class="fv-corps"><div class="fv-txt"><p>Pendant le siège de Nancy, Siffrein de Baschi, le « Bon Chiffron », est pris et pendu sur ordre du duc de Bourgogne.</p><a href="/petites-histoires/#pendus">Les pendus de la tour →</a></div></div></div>
@@ -162,5 +165,37 @@
 
 <script src="/assets/js/nav.js?v=33"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
+<script>
+(function () {
+  var F = document.getElementById('frise'), S = document.getElementById('fil'), T = document.getElementById('fil-trace'), B = document.getElementById('fil-fond'), A = document.getElementById('fil-pointe'), L = 0;
+  function trace() {
+    var r = F.getBoundingClientRect(), mob = innerWidth <= 760, pts = [];
+    var xs = [].map.call(F.querySelectorAll('.fv-ligne .an'), function (a) { var q = a.getBoundingClientRect(); return [q.left + q.width / 2 - r.left, q.top + q.height / 2 - r.top]; });
+    if (!xs.length) return;
+    var cx = mob ? xs[0][0] : r.width / 2, amp = mob ? 10 : Math.min(90, r.width * .07);
+    var d = 'M' + cx + ' 0';
+    var px = cx, py = 0;
+    xs.forEach(function (p, i) {
+      var y = p[1], mid = (py + y) / 2, sw = (i % 2 ? 1 : -1) * amp;
+      d += ' C' + (px + sw) + ' ' + mid + ' ' + (cx - sw) + ' ' + mid + ' ' + cx + ' ' + y;
+      px = cx; py = y;
+    });
+    d += ' L' + cx + ' ' + F.offsetHeight;
+    S.setAttribute('height', F.offsetHeight); S.setAttribute('viewBox', '0 0 ' + r.width + ' ' + F.offsetHeight); S.style.height = F.offsetHeight + 'px';
+    T.setAttribute('d', d); B.setAttribute('d', d); L = T.getTotalLength(); T.style.strokeDasharray = L; maj();
+  }
+  function maj() {
+    if (!L) return;
+    var r = F.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight * .62 - r.top) / F.offsetHeight)), l = L * p;
+    T.style.strokeDashoffset = L - l;
+    var a = T.getPointAtLength(Math.max(0, l)), b = T.getPointAtLength(Math.max(0, l - 6));
+    var ang = Math.atan2(a.y - b.y, a.x - b.x) * 180 / Math.PI; if (l < 7) ang = 90;
+    A.setAttribute('transform', 'translate(' + a.x + ' ' + a.y + ') rotate(' + ang + ')');
+  }
+  var att = false; addEventListener('scroll', function () { if (!att) { att = true; requestAnimationFrame(function () { att = false; maj(); }); } }, { passive: true });
+  addEventListener('resize', trace); addEventListener('load', trace); trace();
+  if (window.ResizeObserver) new ResizeObserver(trace).observe(F);
+})();
+</script>
 </body>
 </html>

@@ -547,6 +547,15 @@
       .jalon > .jalon-date.rv.vu, .sc-svg.rv.vu { opacity: .9; transform: none; filter: none; }
       .sc-svg.rv.vu { opacity: 1; }
     }
+    /* En-tête de partie compact : la phrase d'introduction et l'image côte à côte, sans vide */
+    @media (min-width: 1000px) {
+      .bande { padding: clamp(3rem, 5vw, 4.5rem) 0 !important; }
+      .bande-grille { grid-template-columns: minmax(0, 1fr) 240px !important; align-items: center !important; row-gap: 0 !important; }
+      .bande-grille > .visuel { grid-row: 1 !important; width: 240px; }
+      .bande-grille > .visuel .visuel-img { width: 240px !important; height: 240px !important; }
+      .bande-texte > .argument { grid-row: 1; align-self: center; font-size: clamp(1.4rem, 2.2vw, 1.9rem) !important; line-height: 1.3 !important; max-width: 40rem; margin: 0 !important; }
+      .jalons { margin-top: clamp(1.6rem, 3vw, 2.4rem) !important; }
+    }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Histoire", "item": "https://basiliquesaintepvre.com/histoire/"}]}</script>
 </head>

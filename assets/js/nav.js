@@ -113,7 +113,6 @@
     +   '<a href="/" class="nav-logo">Basilique Saint-Epvre</a>'
     +   '<span class="nav-sep" aria-hidden="true"></span>'
     +   '<ul class="nav-links" role="list">' + desktopItems + '</ul>'
-    +   '<button class="nav-langue nav-loupe" id="navLoupe" aria-label="Rechercher dans le site" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg></button>'
     +   '<button class="nav-langue" id="navLangue" aria-label="Traduire la page" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg></button>'
     +   '<button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navFullscreen">'
     +     '<span></span><span></span><span></span>'
@@ -130,6 +129,7 @@
     +   '<div class="nm-haut">'
     +     '<a class="nm-heure" href="/horaires-douverture/">Ouverte le samedi 16h30–18h30 <span>→</span></a>'
     +     '<a class="nm-logo" href="/"><span class="nm-rosace" aria-hidden="true"></span>Basilique<br>Saint-Epvre</a>'
+    +     '<button class="nm-loupe" id="navLoupe" aria-label="Rechercher dans le site" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg></button>'
     +     '<button class="nav-fullscreen-close" id="navClose" aria-label="Fermer le menu">' + closeSVG + '</button>'
     +   '</div>'
     +   '<nav class="nm-groupes" aria-label="Sommaire">' + groupsHTML + '</nav>'
@@ -273,13 +273,14 @@
   (function () {
     var b = document.getElementById('navLoupe'), pn = document.getElementById('navCherche'), q = document.getElementById('navQ'), ul = document.getElementById('navRes'), D = null;
     var st = document.createElement('style');
-    st.textContent = '.nav-cherche{position:fixed;z-index:260;top:76px;left:50%;transform:translateX(-50%);width:min(560px,calc(100vw - 32px));box-sizing:border-box;background:#fbf9f5;color:#213448;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.25);padding:12px}'
+    st.textContent = '.nav-cherche{position:fixed;z-index:400;top:76px;left:50%;transform:translateX(-50%);width:min(560px,calc(100vw - 32px));box-sizing:border-box;background:#fbf9f5;color:#213448;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.25);padding:12px}'
       + '.nav-cherche input{width:100%;box-sizing:border-box;font:400 1.1rem "Source Sans 3",sans-serif;padding:.75rem 1rem;border:1px solid rgba(33,52,72,.3);border-radius:999px;background:#fff;color:#213448}'
       + '.nav-cherche ul{list-style:none;margin:0;padding:0;max-height:min(60vh,460px);overflow-y:auto}'
       + '.nav-cherche li a{display:block;padding:.7rem .6rem;border-bottom:1px solid rgba(33,52,72,.1);text-decoration:none;color:#213448}'
       + '.nav-cherche li a:hover{background:rgba(74,21,24,.06)}'
       + '.nav-cherche .p{display:block;font:600 .72rem "Familjen Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase;opacity:.6}'
       + '.nav-cherche .t{display:block;font:500 1.02rem/1.3 "Familjen Grotesk",sans-serif;color:#4a1518}'
+      + '.nm-loupe{position:absolute;right:70px;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:6px;border:0;background:none;color:#fff;cursor:pointer}.nm-loupe svg{width:100%;height:100%}.nm-haut{position:relative}'
       + '.nav-cherche .tout{font:600 .9rem "Familjen Grotesk",sans-serif;color:#4a1518;border-bottom:0}';
     document.head.appendChild(st);
     function n(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase(); }

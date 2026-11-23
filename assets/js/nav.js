@@ -113,6 +113,7 @@
     +   '<a href="/" class="nav-logo">Basilique Saint-Epvre</a>'
     +   '<span class="nav-sep" aria-hidden="true"></span>'
     +   '<ul class="nav-links" role="list">' + desktopItems + '</ul>'
+    +   '<button class="nav-langue nav-loupe" id="navLoupe" aria-label="Rechercher dans le site" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg></button>'
     +   '<button class="nav-langue" id="navLangue" aria-label="Traduire la page" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg></button>'
     +   '<button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navFullscreen">'
     +     '<span></span><span></span><span></span>'
@@ -123,6 +124,7 @@
           return '<a href="https://translate.google.com/translate?sl=fr&tl=' + l[0] + '&u=' + encodeURIComponent(location.href) + '" rel="noopener">' + l[1] + '</a>';
         }).join('')
     + '</div>'
+    + '<div class="nav-cherche" id="navCherche" hidden><form role="search" action="/recherche/"><input name="q" id="navQ" type="search" placeholder="Chercher dans le site…" autocomplete="off" aria-label="Chercher dans le site"></form><ul id="navRes"></ul></div>'
     + '<div class="nav-voile" id="navVoile" aria-hidden="true"></div>'
     + '<div class="nav-fullscreen" id="navFullscreen" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">'
     +   '<div class="nm-haut">'
@@ -266,6 +268,38 @@
   document.addEventListener('click', function (e) { if (!lp.hidden && !lp.contains(e.target)) { lp.hidden = true; lb.setAttribute('aria-expanded', 'false'); } });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lp.hidden = true; });
 
+
+  // Loupe : recherche intégrée (mêmes données que la page /recherche/)
+  (function () {
+    var b = document.getElementById('navLoupe'), pn = document.getElementById('navCherche'), q = document.getElementById('navQ'), ul = document.getElementById('navRes'), D = null;
+    var st = document.createElement('style');
+    st.textContent = '.nav-cherche{position:fixed;z-index:260;top:76px;left:50%;transform:translateX(-50%);width:min(560px,calc(100vw - 32px));box-sizing:border-box;background:#fbf9f5;color:#213448;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.25);padding:12px}'
+      + '.nav-cherche input{width:100%;box-sizing:border-box;font:400 1.1rem "Source Sans 3",sans-serif;padding:.75rem 1rem;border:1px solid rgba(33,52,72,.3);border-radius:999px;background:#fff;color:#213448}'
+      + '.nav-cherche ul{list-style:none;margin:0;padding:0;max-height:min(60vh,460px);overflow-y:auto}'
+      + '.nav-cherche li a{display:block;padding:.7rem .6rem;border-bottom:1px solid rgba(33,52,72,.1);text-decoration:none;color:#213448}'
+      + '.nav-cherche li a:hover{background:rgba(74,21,24,.06)}'
+      + '.nav-cherche .p{display:block;font:600 .72rem "Familjen Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase;opacity:.6}'
+      + '.nav-cherche .t{display:block;font:500 1.02rem/1.3 "Familjen Grotesk",sans-serif;color:#4a1518}'
+      + '.nav-cherche .tout{font:600 .9rem "Familjen Grotesk",sans-serif;color:#4a1518;border-bottom:0}';
+    document.head.appendChild(st);
+    function n(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase(); }
+    function e(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function charge() { if (!D) fetch('/assets/data/recherche.json?v=2').then(function (r) { return r.json(); }).then(function (d) { D = d; cherche(); }); }
+    function cherche() {
+      var v = q.value.trim(); if (!D || !v) { ul.innerHTML = ''; return; }
+      var m = n(v).split(/\s+/).filter(function (x) { return x.length > 1 || /\d/.test(x); }), r = [];
+      D.forEach(function (d) { var h = n(d.h + ' ' + d.p), t = n(d.t), s = 0;
+        for (var k = 0; k < m.length; k++) { var a = h.indexOf(m[k]) >= 0, b2 = t.indexOf(m[k]) >= 0; if (!a && !b2) return; s += (a ? 10 : 0) + (b2 ? 1 : 0); }
+        r.push([s, d]); });
+      r.sort(function (a, b2) { return b2[0] - a[0]; });
+      ul.innerHTML = r.slice(0, 7).map(function (x) { var d = x[1]; return '<li><a href="' + d.u + '"><span class="p">' + e(d.u === '/' ? 'Accueil' : d.p) + '</span><span class="t">' + e(d.h || d.p) + '</span></a></li>'; }).join('')
+        + '<li><a class="tout" href="/recherche/?q=' + encodeURIComponent(v) + '">' + (r.length ? 'Tous les résultats (' + r.length + ') →' : 'Aucun résultat') + '</a></li>';
+    }
+    var tm; q.addEventListener('input', function () { clearTimeout(tm); tm = setTimeout(cherche, 120); });
+    b.addEventListener('click', function (ev) { ev.stopPropagation(); pn.hidden = !pn.hidden; b.setAttribute('aria-expanded', !pn.hidden); if (!pn.hidden) { charge(); q.focus(); } });
+    document.addEventListener('click', function (ev) { if (!pn.hidden && !pn.contains(ev.target) && !b.contains(ev.target)) { pn.hidden = true; b.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') pn.hidden = true; });
+  })();
   // Bannière de traduction : seulement si la langue du navigateur n'est pas le français (pas de géolocalisation)
   (function () {
     var nl = (navigator.languages && navigator.languages[0]) || navigator.language || 'fr';

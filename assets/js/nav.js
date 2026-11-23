@@ -301,6 +301,25 @@
     document.addEventListener('click', function (ev) { if (!pn.hidden && !pn.contains(ev.target) && !b.contains(ev.target)) { pn.hidden = true; b.setAttribute('aria-expanded', 'false'); } });
     document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') pn.hidden = true; });
   })();
+  // Règle du site : jamais de rouge (bordeaux) sur du bleu. Tout texte rougeâtre posé sur un fond bleu sombre passe en blanc cassé.
+  (function () {
+    function rgb(v) { var m = v && v.match(/[\d.]+/g); return m ? m.map(Number) : null; }
+    function fond(e) { while (e && e.nodeType === 1) { var b = rgb(getComputedStyle(e).backgroundColor); if (b && (b.length < 4 || b[3] > .5)) return b; e = e.parentNode; } return rgb(getComputedStyle(document.body).backgroundColor); }
+    function rouge(c) { return c && c[0] > c[2] + 25 && c[0] > c[1] + 25 && (c.length < 4 || c[3] > .3); }
+    function bleu(b) { return b && b[2] > b[0] + 15 && (0.299 * b[0] + 0.587 * b[1] + 0.114 * b[2]) < 120; }
+    function corrige() {
+      document.querySelectorAll('body *:not(script):not(style):not(svg *)').forEach(function (e) {
+        var s = getComputedStyle(e), c = rgb(s.color), k = rgb(s.webkitTextStrokeColor);
+        if (!rouge(c) && !rouge(k)) return;
+        if (!bleu(fond(e))) return;
+        if (rouge(c)) e.style.setProperty('color', '#fbf9f5', 'important');
+        if (rouge(k) && s.webkitTextStrokeWidth !== '0px') e.style.setProperty('-webkit-text-stroke-color', 'rgba(251,249,245,.85)', 'important');
+      });
+    }
+    if (document.readyState === 'complete') setTimeout(corrige, 50); else addEventListener('load', function () { setTimeout(corrige, 50); });
+    setTimeout(corrige, 1500);
+  })();
+
   // Bannière de traduction : seulement si la langue du navigateur n'est pas le français (pas de géolocalisation)
   (function () {
     var nl = (navigator.languages && navigator.languages[0]) || navigator.language || 'fr';

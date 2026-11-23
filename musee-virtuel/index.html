@@ -38,7 +38,7 @@
     .ouverture { background: var(--bordeaux); color: var(--blanc); padding: 8rem 0 4rem; text-align: center; overflow: hidden; }
     .ouverture h1 { margin: 0; font: 500 clamp(2.6rem, 9vw, 8rem)/.86 var(--titre); letter-spacing: -.045em; text-transform: uppercase; }
     .ouverture .sous { margin: 1.2rem auto 0; max-width: 34ch; font-size: 1.12rem; line-height: 1.5; color: rgba(255,255,255,.85); }
-    .ferronnerie { height: clamp(56px, 9vw, 92px); color: var(--bordeaux); -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-position: center; mask-position: center; margin: 2.5rem 0 0; }
+    .ferronnerie { height: 34px; color: var(--bordeaux); opacity: .55; -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-position: center; mask-position: center; margin: 2.5rem 0 0; }
 
     /* Le chapeau se lit au défilement */
     .lecture { max-width: 1240px; margin: 0 auto; padding: 6rem max(22px, env(safe-area-inset-left, 0px)) 5rem; }
@@ -261,6 +261,35 @@
       .visuel img { max-height: 62svh; }
     }
     @media (prefers-reduced-motion: reduce) { .lecture-texte span { transition: none; } .apparait { opacity: 1; translate: none; transition: none; } html { scroll-behavior: auto; } }
+
+    /* Carrousel en éventail : la salle au centre en grand, les autres s'étagent de chaque côté */
+    .cf { margin: 0 0 4.5rem; padding: 3rem 0 2rem; background: linear-gradient(180deg, #ece8df, #fbf9f5); overflow: hidden; }
+    .cf-scene { position: relative; height: clamp(340px, 46vw, 520px); }
+    .cf-carte { position: absolute; left: 50%; top: 50%; width: min(860px, 88vw); height: 100%; translate: -50% -50%; display: grid; grid-template-columns: 1fr 1fr; background: #fff; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 18px 50px rgba(33,52,72,.22); transition: transform .8s cubic-bezier(.2,.75,.2,1), opacity .6s ease, filter .6s ease; will-change: transform; cursor: pointer; }
+    .cf-img { position: relative; background: #213448; }
+    .cf-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .cf-txt { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.2rem, 3vw, 2.6rem); color: var(--navy, #213448); transition: opacity .4s ease; }
+    .cf-txt small { font: 600 .78rem var(--titre); letter-spacing: .2em; text-transform: uppercase; color: var(--bordeaux, #4a1518); }
+    .cf-txt h3 { margin: .5rem 0 .8rem; font: 500 clamp(1.5rem, 3vw, 2.4rem)/1.02 var(--titre); letter-spacing: -.02em; }
+    .cf-txt .cf-oeuvre { font: italic 400 1rem var(--texte, 'Source Sans 3'), sans-serif; opacity: .7; margin: 0 0 .6rem; }
+    .cf-txt p { margin: 0 0 1rem; font-size: 1rem; line-height: 1.5; }
+    .cf-txt a { font: 600 .95rem var(--titre); color: var(--bordeaux, #4a1518); }
+    .cf-carte:not(.centre) { width: min(430px, 44vw); grid-template-columns: 1fr; }
+    .cf-carte:not(.centre) .cf-txt { display: none; }
+    .cf-carte:not(.centre) { filter: saturate(.7) brightness(.92); }
+    .cf-ctrl { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.6rem; }
+    .cf-fl { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(33,52,72,.3); background: #fff; color: #213448; font-size: 1.2rem; cursor: pointer; }
+    .cf-points { display: flex; gap: .45rem; }
+    .cf-points button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: rgba(33,52,72,.25); cursor: pointer; transition: width .3s, background .3s; }
+    .cf-points button.on { width: 26px; background: var(--bordeaux, #4a1518); }
+    @media (max-width: 700px) {
+      .cf-scene { height: 560px; }
+      .cf-carte:not(.centre) { width: 60vw; }
+      .cf-carte { grid-template-columns: 1fr; grid-template-rows: 46% 54%; width: 80vw; }
+      .cf-txt { justify-content: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { .cf-carte { transition: none; } }
   </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Musée virtuel", "item": "https://basiliquesaintepvre.com/musee-virtuel/"}]}</script>
 </head>
@@ -279,11 +308,38 @@
   <section class="lecture"><p class="lecture-texte" aria-label="Les murs de la basilique ne sont pas peints directement : chaque scène a été peinte à l'huile sur une toile, puis marouflée, c'est-à-dire collée au mur. Des Vertus de l'entrée aux anges de l'Apocalypse, l'œuvre de Sublet forme un seul poème, que voici tableau par tableau."><span>Les</span> <span>murs</span> <span>de</span> <span>la</span> <span>basilique</span> <span>ne</span> <span>sont</span> <span>pas</span> <span>peints</span> <span>directement</span> <span>:</span> <span>chaque</span> <span>scène</span> <span>a</span> <span>été</span> <span>peinte</span> <span>à</span> <span>l'huile</span> <span>sur</span> <span>une</span> <span>toile,</span> <span>puis</span> <span>marouflée,</span> <span>c'est-à-dire</span> <span>collée</span> <span>au</span> <span>mur.</span> <span>Des</span> <span>Vertus</span> <span>de</span> <span>l'entrée</span> <span>aux</span> <span>anges</span> <span>de</span> <span>l'Apocalypse,</span> <span>l'œuvre</span> <span>de</span> <span>Sublet</span> <span>forme</span> <span>un</span> <span>seul</span> <span>poème,</span> <span>que</span> <span>voici</span> <span>tableau</span> <span>par</span> <span>tableau.</span></p></section>
 
 
-  <section class="vitrine" aria-label="Les salles du musée">
-    <div class="vit-tete col"><span class="cartouche">Choisir une salle</span><p>Les pièces défilent : survolez un tableau pour le regarder de plus près.</p></div>
-    <div class="vit-salle">
-      <div class="vit-rail"><div class="vit-piste"><a class="tableau objet" href="#obj-chaire" style="--r:0.34;--h:1"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>La chaire à prêcher<em>Plans de Prosper Morey</em></span></a><a class="tableau objet" href="#obj-stalle" style="--r:0.34;--h:0.84"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/stalle.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>Les stalles du sanctuaire<em>Composition et plans de Prosper Morey</em></span></a><a class="tableau" href="#obj-ostensoir" style="--r:0.38642857142857145;--h:0.94"><span class="cadre-t"><img src="/assets/img/mobilier/ostensoir.webp" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>L’ostensoir<em>Composé et exécuté par M. Daubrée</em></span></a><a class="tableau objet" href="#obj-pupitre" style="--r:0.3761602344894968;--h:0.78"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/pupitre.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>Le lutrin de Metz<em>Fer forgé, Metz, 1723</em></span></a><a class="tableau" href="#obj-chasse" style="--r:1.6;--h:0.9"><span class="cadre-t"><img src="/assets/img/mobilier/chasse.webp" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>La châsse de saint Epvre<em>Travail italien, auteur inconnu</em></span></a><a class="tableau objet" href="#obj-grille" style="--r:0.7593950504124656;--h:1"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/grille.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>La grille de la crypte<em>Composition de M. Cuny, architecte diocésain</em></span></a><a class="tableau objet" href="#obj-chandeliers" style="--r:0.6443890274314215;--h:0.84"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/chandeliers.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>Chandelier, candélabre et applique<em>Chandeliers de la maison Marggraff</em></span></a><a class="tableau" href="#vertus" style="--r:0.34;--h:0.94"><span class="cadre-t"><img src="/assets/img/musee/m68-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle I</b>Les Vertus<em>La Charité, la Justice… et les vices qui leur répondent</em></span></a><a class="tableau" href="#colere" style="--r:1.276;--h:0.78"><span class="cadre-t"><img src="/assets/img/musee/m74-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle II</b>La Colère<em>Le Christ juge et les fléaux de l’Apocalypse</em></span></a><a class="tableau" href="#gloire" style="--r:1.474;--h:0.9"><span class="cadre-t"><img src="/assets/img/musee/m76-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle III</b>La Gloire<em>La Sainte Famille couronnée au ciel</em></span></a><a class="tableau" href="#saint-michel" style="--r:1.005;--h:1"><span class="cadre-t"><img src="/assets/img/musee/m88-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle IV</b>Chapelle Saint-Michel<em>Jacob, Tobie, Gabriel : les apparitions des anges</em></span></a><a class="tableau" href="#vierge-sacre-coeur" style="--r:1.011;--h:0.84"><span class="cadre-t"><img src="/assets/img/musee/m84-4.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle V</b>Chapelles de la Vierge et du Sacré-Cœur<em>La Passion et les sept sacrements</em></span></a><a class="tableau" href="#saint-joseph" style="--r:1.046;--h:0.94"><span class="cadre-t"><img src="/assets/img/musee/m90-3.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle VI</b>Chapelle Saint-Joseph<em>De la Nativité à la mort de saint Joseph</em></span></a><a class="tableau" href="#purgatoire" style="--r:0.987;--h:0.78"><span class="cadre-t"><img src="/assets/img/musee/m94-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle VII</b>Chapelle des Âmes du Purgatoire<em>La fournaise, les lions : figures du purgatoire</em></span></a><a class="tableau" href="#transept" style="--r:0.932;--h:0.9"><span class="cadre-t"><img src="/assets/img/musee/m92-5.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle VIII</b>Le Transept<em>Les arts, la théologie et l’éloquence</em></span></a><a class="tableau" href="#soubassements" style="--r:1.6;--h:1"><span class="cadre-t"><img src="/assets/img/musee/m86-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle IX</b>Soubassements<em>Les soubassements, vus en entier</em></span></a><a class="tableau objet" href="#obj-chaire" style="--r:0.34;--h:0.84" tabindex="-1" aria-hidden="true"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/chaire.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>La chaire à prêcher<em>Plans de Prosper Morey</em></span></a><a class="tableau objet" href="#obj-stalle" style="--r:0.34;--h:0.94" tabindex="-1" aria-hidden="true"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/stalle.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>Les stalles du sanctuaire<em>Composition et plans de Prosper Morey</em></span></a><a class="tableau" href="#obj-ostensoir" style="--r:0.38642857142857145;--h:0.78" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/mobilier/ostensoir.webp" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>L’ostensoir<em>Composé et exécuté par M. Daubrée</em></span></a><a class="tableau objet" href="#obj-pupitre" style="--r:0.3761602344894968;--h:0.9" tabindex="-1" aria-hidden="true"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/pupitre.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>Le lutrin de Metz<em>Fer forgé, Metz, 1723</em></span></a><a class="tableau" href="#obj-chasse" style="--r:1.6;--h:1" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/mobilier/chasse.webp" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>La châsse de saint Epvre<em>Travail italien, auteur inconnu</em></span></a><a class="tableau objet" href="#obj-grille" style="--r:0.7593950504124656;--h:0.84" tabindex="-1" aria-hidden="true"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/grille.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>La grille de la crypte<em>Composition de M. Cuny, architecte diocésain</em></span></a><a class="tableau objet" href="#obj-chandeliers" style="--r:0.6443890274314215;--h:0.94" tabindex="-1" aria-hidden="true"><span class="cadre-t"><span class="trace-t" style="--src:url(/assets/ornements/mobilier/chandeliers.svg?v=2)"></span><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Le mobilier</b>Chandelier, candélabre et applique<em>Chandeliers de la maison Marggraff</em></span></a><a class="tableau" href="#vertus" style="--r:0.34;--h:0.78" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m68-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle I</b>Les Vertus<em>La Charité, la Justice… et les vices qui leur répondent</em></span></a><a class="tableau" href="#colere" style="--r:1.276;--h:0.9" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m74-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle II</b>La Colère<em>Le Christ juge et les fléaux de l’Apocalypse</em></span></a><a class="tableau" href="#gloire" style="--r:1.474;--h:1" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m76-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle III</b>La Gloire<em>La Sainte Famille couronnée au ciel</em></span></a><a class="tableau" href="#saint-michel" style="--r:1.005;--h:0.84" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m88-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle IV</b>Chapelle Saint-Michel<em>Jacob, Tobie, Gabriel : les apparitions des anges</em></span></a><a class="tableau" href="#vierge-sacre-coeur" style="--r:1.011;--h:0.94" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m84-4.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle V</b>Chapelles de la Vierge et du Sacré-Cœur<em>La Passion et les sept sacrements</em></span></a><a class="tableau" href="#saint-joseph" style="--r:1.046;--h:0.78" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m90-3.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle VI</b>Chapelle Saint-Joseph<em>De la Nativité à la mort de saint Joseph</em></span></a><a class="tableau" href="#purgatoire" style="--r:0.987;--h:0.9" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m94-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle VII</b>Chapelle des Âmes du Purgatoire<em>La fournaise, les lions : figures du purgatoire</em></span></a><a class="tableau" href="#transept" style="--r:0.932;--h:1" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m92-5.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle VIII</b>Le Transept<em>Les arts, la théologie et l’éloquence</em></span></a><a class="tableau" href="#soubassements" style="--r:1.6;--h:0.84" tabindex="-1" aria-hidden="true"><span class="cadre-t"><img src="/assets/img/musee/m86-0.webp?v=2" alt="" loading="lazy" decoding="async"><span class="aller" aria-hidden="true">→</span></span><span class="cartel"><b>Salle IX</b>Soubassements<em>Les soubassements, vus en entier</em></span></a></div></div>
+  <section class="cf" aria-roledescription="carrousel" aria-label="Les salles du musée">
+    <div class="cf-scene" id="cf-scene">
+    <article class="cf-carte" data-i="0">
+      <div class="cf-img"><img src="/assets/img/musee/m68-0.webp?v=2" alt="La Charité" loading="eager" decoding="async"></div>
+      <div class="cf-txt"><small>Salle I</small><h3>Les Vertus</h3><p class="cf-oeuvre">La Charité</p><p>Caritas — Diligite invicem sicut dilexi vos</p><a href="#vertus">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="1">
+      <div class="cf-img"><img src="/assets/img/musee/m74-0.webp?v=2" alt="Le Christ roi et juge" loading="eager" decoding="async"></div>
+      <div class="cf-txt"><small>Salle II</small><h3>La Colère</h3><p class="cf-oeuvre">Le Christ roi et juge</p><p>Parce, Domine, ne disperdas populum tuum</p><a href="#colere">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="2">
+      <div class="cf-img"><img src="/assets/img/musee/m76-0.webp?v=2" alt="La Sainte Famille dans la gloire" loading="eager" decoding="async"></div>
+      <div class="cf-txt"><small>Salle III</small><h3>La Gloire</h3><p class="cf-oeuvre">La Sainte Famille dans la gloire</p><p>Ecce tabernaculum Dei cum hominibus</p><a href="#gloire">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="3">
+      <div class="cf-img"><img src="/assets/img/musee/m88-1.webp?v=2" alt="L’échelle de Jacob" loading="lazy" decoding="async"></div>
+      <div class="cf-txt"><small>Salle IV</small><h3>Chapelle Saint-Michel</h3><p class="cf-oeuvre">L’échelle de Jacob</p><p>Jacob voit en songe une échelle où les anges montent et descendent.</p><a href="#saint-michel">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="4">
+      <div class="cf-img"><img src="/assets/img/musee/m84-3.webp?v=2" alt="Marie rencontre Jésus" loading="lazy" decoding="async"></div>
+      <div class="cf-txt"><small>Salle V</small><h3>Chapelles de la Vierge et du Sacré-Cœur</h3><p class="cf-oeuvre">Marie rencontre Jésus</p><p>Jésus, chargé de sa croix, croise sa mère. Trois personnages seulement.</p><a href="#vierge-sacre-coeur">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="5">
+      <div class="cf-img"><img src="/assets/img/musee/m90-2.webp?v=2" alt="La Nativité" loading="lazy" decoding="async"></div>
+      <div class="cf-txt"><small>Salle VI</small><h3>Chapelle Saint-Joseph</h3><p class="cf-oeuvre">La Nativité</p><p>Joseph et Marie, premiers adorateurs de la crèche.</p><a href="#saint-joseph">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="6">
+      <div class="cf-img"><img src="/assets/img/musee/m94-3.webp?v=2" alt="Loth fuit Sodome" loading="lazy" decoding="async"></div>
+      <div class="cf-txt"><small>Salle VII</small><h3>Chapelle des Âmes du Purgatoire</h3><p class="cf-oeuvre">Loth fuit Sodome</p><p>Il faut fuir le péché dont la punition est le feu. L’ange, dessous, tient un coq et la devise Vigilantia.</p><a href="#purgatoire">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="7">
+      <div class="cf-img"><img src="/assets/img/musee/m94-4.webp?v=2" alt="L’Adoration des bergers" loading="lazy" decoding="async"></div>
+      <div class="cf-txt"><small>Salle VIII</small><h3>Le Transept</h3><p class="cf-oeuvre">L’Adoration des bergers</p><p>Côté de l’Évangile : les petits viennent adorer.</p><a href="#transept">Entrer dans la salle →</a></div>
+    </article><article class="cf-carte" data-i="8">
+      <div class="cf-img"><img src="/assets/img/musee/m86-0.webp?v=2" alt="Soubassement de la chapelle de la Vierge" loading="lazy" decoding="async"></div>
+      <div class="cf-txt"><small>Salle IX</small><h3>Soubassements</h3><p class="cf-oeuvre">Soubassement de la chapelle de la Vierge</p><p>En haut, quatre sujets dans des quadrilobes gothiques ; en bas, de petits anges tiennent l’écusson qui les explique.</p><a href="#soubassements">Entrer dans la salle →</a></div>
+    </article>
     </div>
+    <div class="cf-ctrl"><button type="button" class="cf-fl" id="cf-prec" aria-label="Salle précédente">←</button><div class="cf-points" id="cf-points"><button type="button" aria-label="Les Vertus" data-i="0"></button><button type="button" aria-label="La Colère" data-i="1"></button><button type="button" aria-label="La Gloire" data-i="2"></button><button type="button" aria-label="Chapelle Saint-Michel" data-i="3"></button><button type="button" aria-label="Chapelles de la Vierge et du Sacré-Cœur" data-i="4"></button><button type="button" aria-label="Chapelle Saint-Joseph" data-i="5"></button><button type="button" aria-label="Chapelle des Âmes du Purgatoire" data-i="6"></button><button type="button" aria-label="Le Transept" data-i="7"></button><button type="button" aria-label="Soubassements" data-i="8"></button></div><button type="button" class="cf-fl" id="cf-suiv" aria-label="Salle suivante">→</button></div>
   </section>
 
   <nav class="sommaire col apparait" id="sommaire" aria-label="Les salles">
@@ -1317,5 +1373,36 @@
 </script>
 <script defer src="../assets/js/nav.js?v=30"></script>
 <script src="/assets/js/visionneuse.js?v=3"></script>
+<script>
+(function () {
+  var sc = document.getElementById('cf-scene'); if (!sc) return;
+  var C = [].slice.call(sc.querySelectorAll('.cf-carte')), N = C.length, cur = 0, t;
+  var D = [].slice.call(document.querySelectorAll('#cf-points button'));
+  function place() {
+        C.forEach(function (c, i) {
+      var d = i - cur; if (d > N / 2) d -= N; if (d < -N / 2) d += N;
+      var a = Math.abs(d), s = d === 0 ? 1 : Math.max(.42, .62 - (a - 1) * .1);
+      var x = d === 0 ? 0 : Math.sign(d) * (125 + (a - 1) * 62);
+      c.style.transform = 'translateX(' + x + '%) scale(' + s + ')';
+      c.style.zIndex = 50 - a; c.style.opacity = a > 3 ? 0 : 1;
+      c.classList.toggle('centre', d === 0);
+      c.setAttribute('aria-hidden', d !== 0);
+    });
+    D.forEach(function (b, i) { b.classList.toggle('on', i === cur); });
+  }
+  function va(i) { cur = (i + N) % N; place(); relance(); }
+  function relance() { clearInterval(t); t = setInterval(function () { va(cur + 1); }, 5000); }
+  C.forEach(function (c, i) { c.addEventListener('click', function (e) { if (i !== cur) { e.preventDefault(); va(i); } }); });
+  D.forEach(function (b, i) { b.addEventListener('click', function () { va(i); }); });
+  document.getElementById('cf-prec').addEventListener('click', function () { va(cur - 1); });
+  document.getElementById('cf-suiv').addEventListener('click', function () { va(cur + 1); });
+  sc.addEventListener('mouseenter', function () { clearInterval(t); }); sc.addEventListener('mouseleave', relance);
+  var x0 = null; sc.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  sc.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) va(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+  addEventListener('resize', place);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { place(); return; }
+  place(); relance();
+})();
+</script>
 </body>
 </html>

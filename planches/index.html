@@ -35,7 +35,7 @@
   .tete p { max-width: 36ch; margin: 1.6rem auto 0; font: 400 clamp(1.1rem, 2.2vw, 1.4rem)/1.4 var(--g); opacity: .9; }
   .tete .ap { position: absolute; top: 50%; translate: 0 -50%; width: clamp(60px, 9vw, 130px); height: clamp(130px, 19vw, 260px); opacity: .32; color: #fff; }
   .tete .ap.g { left: clamp(10px, 6vw, 110px); } .tete .ap.d { right: clamp(10px, 6vw, 110px); transform: scaleX(-1); }
-  .frise { height: 34px; background: var(--b); opacity: .55; -webkit-mask: url(/assets/ornements/grille-lorraine.svg) 0 100% / auto 100% repeat-x; mask: url(/assets/ornements/grille-lorraine.svg) 0 100% / auto 100% repeat-x; margin-top: 2.4rem; }
+  .frise { height: 51px; background: var(--b); opacity: .55; -webkit-mask: url(/assets/ornements/grille-lorraine.svg) 0 100% / auto 100% repeat-x; mask: url(/assets/ornements/grille-lorraine.svg) 0 100% / auto 100% repeat-x; margin-top: 2.4rem; }
   .lede { max-width: 760px; margin: 0 auto; padding: 4rem 22px 1rem; font: 400 clamp(1.25rem, 2.4vw, 1.6rem)/1.45 var(--g); letter-spacing: -.01em; }
   .lede small { display: block; margin-top: 1rem; font: italic 400 .95rem/1.5 var(--s); opacity: .7; }
   .grille-cartes { max-width: 1180px; margin: 0 auto; padding: 2.5rem 22px 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr)); gap: 2rem; align-items: start; }
@@ -93,7 +93,13 @@
   .chromo figure { margin: 0; }
   .chromo img { width: 100%; height: auto; display: block; box-shadow: 0 14px 34px rgba(33,52,72,.16); }
   .chromo label { display: block; font: 600 .78rem var(--g); letter-spacing: .2em; text-transform: uppercase; color: var(--b); margin: 1.6rem 0 .6rem; }
-  .chromo input { width: 100%; accent-color: #4a1518; }
+  .chromo input { width: 100%; height: 44px; margin: 0; background: none; -webkit-appearance: none; appearance: none; cursor: grab; }
+  .chromo input::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: rgba(33,52,72,.15); }
+  .chromo input::-moz-range-track { height: 6px; border-radius: 6px; background: rgba(33,52,72,.15); }
+  .chromo input::-webkit-slider-thumb { -webkit-appearance: none; width: 44px; height: 44px; margin-top: -19px; border-radius: 50%; border: 0; background: #4a1518 var(--fl) center / 22px no-repeat; box-shadow: 0 4px 14px rgba(74,21,24,.35); }
+  .chromo input::-moz-range-thumb { width: 44px; height: 44px; border-radius: 50%; border: 0; background: #4a1518 var(--fl) center / 22px no-repeat; box-shadow: 0 4px 14px rgba(74,21,24,.35); }
+  .chromo input { --fl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbf9f5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 6l-6 6 6 6'/%3E%3C/svg%3E"); }
+  .chromo input.vers-droite { --fl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbf9f5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E"); }
   .chromo .etat { font: 500 2.4rem/1 var(--g); color: var(--b); letter-spacing: -.03em; }
   @media (max-width: 760px) { .chromo { grid-template-columns: 1fr; gap: 1.4rem; } }
 </style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Basilique Saint-Epvre", "item": "https://basiliquesaintepvre.com/"}, {"@type": "ListItem", "position": 2, "name": "Les planches de 1890", "item": "https://basiliquesaintepvre.com/planches/"}]}</script>
@@ -113,7 +119,7 @@
     <figure><img id="chromo-img" src="/assets/img/planches/p038.webp" alt="Vitrail offert par l’empereur François-Joseph, chromolithographie" data-leg="Vitrail offert par François-Joseph · monographie de 1890"></figure>
     <div>
       <p>Le livre reproduit le vitrail offert par l’empereur François-Joseph en chromolithographie, une couleur après l’autre. Il en publie chaque étape : la première planche n’est qu’un dessin au trait, la dernière montre le vitrail achevé, « exécuté d’après l’aquarelle des artistes verriers ».</p>
-      <label for="chromo-r">Faites glisser pour ajouter les couleurs</label>
+      <label for="chromo-r" id="chromo-l">Faites glisser vers la gauche pour retirer les couleurs</label>
       <input type="range" id="chromo-r" min="1" max="18" value="18">
       <p class="etat"><span id="chromo-n">18</span> / 18</p>
     </div>
@@ -390,7 +396,12 @@
 <script>
 (function () {
   var L = ["/assets/img/planches/p004.webp", "/assets/img/planches/p006.webp", "/assets/img/planches/p008.webp", "/assets/img/planches/p010.webp", "/assets/img/planches/p012.webp", "/assets/img/planches/p014.webp", "/assets/img/planches/p016.webp", "/assets/img/planches/p018.webp", "/assets/img/planches/p020.webp", "/assets/img/planches/p022.webp", "/assets/img/planches/p024.webp", "/assets/img/planches/p026.webp", "/assets/img/planches/p028.webp", "/assets/img/planches/p030.webp", "/assets/img/planches/p032.webp", "/assets/img/planches/p034.webp", "/assets/img/planches/p036.webp", "/assets/img/planches/p038.webp"], r = document.getElementById('chromo-r'), im = document.getElementById('chromo-img'), n = document.getElementById('chromo-n');
-  r.addEventListener('input', function () { im.src = L[r.value - 1]; n.textContent = r.value; });
+  var lab = document.getElementById('chromo-l'), sens = 'g';
+  function maj() { im.src = L[r.value - 1]; n.textContent = r.value;
+    if (+r.value >= L.length) sens = 'g'; else if (+r.value <= 1) sens = 'd';
+    r.classList.toggle('vers-droite', sens === 'd');
+    lab.textContent = sens === 'd' ? 'Faites glisser vers la droite pour ajouter les couleurs' : 'Faites glisser vers la gauche pour retirer les couleurs'; }
+  r.addEventListener('input', maj); r.value = L.length; maj();
   var pre = function () { L.forEach(function (u) { var i = new Image(); i.src = u; }); r.removeEventListener('pointerdown', pre); };
   r.addEventListener('pointerdown', pre); r.addEventListener('focus', pre, { once: true });
 })();

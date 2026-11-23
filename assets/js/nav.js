@@ -266,6 +266,33 @@
   document.addEventListener('click', function (e) { if (!lp.hidden && !lp.contains(e.target)) { lp.hidden = true; lb.setAttribute('aria-expanded', 'false'); } });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lp.hidden = true; });
 
+  // Bannière de traduction : seulement si la langue du navigateur n'est pas le français (pas de géolocalisation)
+  (function () {
+    var nl = (navigator.languages && navigator.languages[0]) || navigator.language || 'fr';
+    var code = nl.toLowerCase().split('-')[0];
+    if (code === 'fr' || /translate\.goog$/.test(location.hostname)) return;
+    try { if (localStorage.getItem('se-trad-ferme')) return; } catch (e) {}
+    var T = {
+      en: ['This site is in French.', 'Read it in English'], de: ['Diese Seite ist auf Französisch.', 'Auf Deutsch lesen'],
+      es: ['Este sitio está en francés.', 'Leer en español'], it: ['Questo sito è in francese.', 'Leggi in italiano'],
+      pl: ['Ta strona jest po francusku.', 'Czytaj po polsku'], nl: ['Deze site is in het Frans.', 'Lees in het Nederlands'],
+      pt: ['Este site está em francês.', 'Ler em português']
+    };
+    var t = T[code];
+    if (!t) { var nom = code; try { nom = new Intl.DisplayNames([code], { type: 'language' }).of(code); } catch (e) {} t = ['This site is in French.', 'Translate (' + nom + ')']; }
+    var tl = code === 'zh' ? (/tw|hk|hant/i.test(nl) ? 'zh-TW' : 'zh-CN') : code;
+    var b = document.createElement('div');
+    b.className = 'se-trad'; b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'Translation');
+    b.innerHTML = '<span>' + t[0] + '</span><a href="https://translate.google.com/translate?sl=fr&tl=' + tl + '&u=' + encodeURIComponent(location.href) + '" rel="noopener">' + t[1] + ' →</a><button type="button" aria-label="Close">×</button>';
+    var st = document.createElement('style');
+    st.textContent = '.se-trad{position:fixed;z-index:150;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;padding:.75rem .8rem .75rem 1.1rem;background:#213448;color:#fbf9f5;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);font:500 .95rem/1.3 "Familjen Grotesk","Helvetica Neue",Arial,sans-serif}'
+      + '.se-trad a{color:#fbf9f5;font-weight:600;text-underline-offset:3px}'
+      + '.se-trad button{margin-left:auto;width:32px;height:32px;border:0;border-radius:50%;background:rgba(251,249,245,.14);color:#fbf9f5;font-size:1.2rem;line-height:1;cursor:pointer}'
+      + '@media (max-width:520px){.se-trad{border-radius:14px}}';
+    document.head.appendChild(st); document.body.appendChild(b);
+    b.querySelector('button').addEventListener('click', function () { b.remove(); try { localStorage.setItem('se-trad-ferme', '1'); } catch (e) {} });
+  })();
+
   burger.addEventListener('click', function () {
     if (menu.classList.contains('open')) closeMenu(); else openMenu();
   });

@@ -701,6 +701,16 @@
     .ed-cell::after { display: none !important; }
     .hero-img.loaded { transform: none !important; }
     @media (max-width: 640px) { .ed-cell, .ed-cell.grande, .ed-cell.petite, .ed-cell.pano, .ed-cell.tiers { flex-basis: calc(var(--r) * 200px) !important; } }
+    /* Flèches de la visionneuse : grosses, dans le thème du site */
+    .lb-nav { position: fixed !important; top: 50% !important; transform: translateY(-50%) !important; width: 76px !important; height: 76px !important; border-radius: 50% !important; border: 0 !important; background: #4a1518 !important; color: #fbf9f5 !important; box-shadow: 0 10px 30px rgba(0,0,0,.35); z-index: 5; }
+    .lb-nav:hover { background: #5e1d21 !important; color: #fff !important; }
+    .lb-nav svg { width: 34px !important; height: 24px !important; }
+    .lb-nav svg path { fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: square; stroke-linejoin: miter; }
+    .lb-prev { left: max(16px, 2.5vw) !important; right: auto !important; }
+    .lb-next { right: max(16px, 2.5vw) !important; left: auto !important; }
+    .lb-prev:hover svg { transform: translateX(-4px); } .lb-next:hover svg { transform: translateX(4px); }
+    .lb-nav svg { transition: transform .3s cubic-bezier(.22,1,.36,1); }
+    @media (max-width: 640px) { .lb-prev, .lb-next { display: flex !important; width: 56px !important; height: 56px !important; top: auto !important; bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important; transform: none !important; } .lb-nav svg { width: 26px !important; height: 18px !important; } }
 </style>
   <script type="application/ld+json">
   {
@@ -729,11 +739,11 @@
   <span class="lb-compteur" id="lbCpt"></span>
   <div class="lb-zone">
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Précédente">
-      <svg viewBox="0 0 14 6"><polyline points="4,1 1,3 4,5"/><line x1="1" y1="3" x2="13" y2="3"/></svg>
+      <svg viewBox="0 0 60 40" aria-hidden="true"><path d="M58 20H6M22 4 6 20l16 16"/></svg>
     </button>
     <img class="lb-img" id="lbImg" src="" alt="">
     <button class="lb-nav lb-next" id="lbNext" aria-label="Suivante">
-      <svg viewBox="0 0 14 6"><line x1="1" y1="3" x2="13" y2="3"/><polyline points="10,1 13,3 10,5"/></svg>
+      <svg viewBox="0 0 60 40" aria-hidden="true"><path d="M2 20h52M38 4l16 16-16 16"/></svg>
     </button>
     <div class="lb-legende"><span class="lb-legende-texte" id="lbLeg"></span></div>
   </div>
